@@ -1,0 +1,133 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+
+  <!-- PRESSURE -->
+  <graph type='pressure'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactor where time between "{from}" and "{to}" order by time</query>
+    <ylabel>Pressure / mbar</ylabel>
+    <title>Pressure in the Microreactor chamber</title>
+    <default_yscale>log</default_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+  
+  <!-- PIRANI BUFFERVOLUME -->
+  <graph type='pirani_buffervolume'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactor_pirani_buffervolume where time between "{from}" and "{to}" order by time</query>
+    <ylabel>Pressure / mbar</ylabel>
+    <title>Pressure in the Microreactor Buffer Volume</title>
+    <default_yscale>log</default_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- Turbo temperatures -->
+  <graph type='temperature_turbos'>
+    <query>SELECT unix_timestamp(time), temperature FROM temperature_microreactor_chamberturbo where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), temperature FROM temperature_microreactor_bufferturbo where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query1>
+    <query2>SELECT unix_timestamp(time), temperature FROM temperature_hall_microreactors where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query2>
+    <ordering>left|green,left|blue,left|red</ordering>
+    <ylabel>Temperature / C</ylabel>
+    <title>Temperature of the turbos 
+(old, green; new, blue;ambient, red)</title>
+    <default_yscale>lin</default_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- PIRANI NEW TURBO -->
+  <graph type='pirani_newturbo'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactor_pirani_newturbo where time between "{from}" and "{to}" order by time</query>
+    <ylabel>Pressure / mbar</ylabel>
+    <title>Backing pressure, new turbo</title>
+    <default_yscale>log</default_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+
+  <!-- PIRANI OLD TURBO -->
+  <graph type='pirani_oldturbo'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactor_pirani_oldturbo where time between "{from}" and "{to}" order by time</query>
+    <ylabel>Pressure / mbar</ylabel>
+    <title>Backing pressure, old turbo</title>
+    <default_yscale>log</default_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- REACTOR PRESSURE -->
+  <graph type='reactor_pressure'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactor_reactor where time between "{from}" and "{to}" order by time</query>
+    <ylabel>Pressure / bar</ylabel>
+    <title>Pressure in the reactorvolume</title>
+    <default_yscale>lin</default_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  
+  <!-- MORNING_PRESSURE -->
+  <graph type='morning_pressure'>
+    <query>select unix_timestamp(date(time)), avg(pressure) from pressure_microreactor where hour(time) = 1 and minute(time) between 00 and 20 and time between "{from}" and "{to}" group by date(time) order by time desc limit 100</query>
+    <ylabel>Pressure / mbar</ylabel>
+    <title>Pressure at 1 am in the Microreactor Chamber</title>
+    <default_yscale>log</default_yscale>
+    <default_xscale>dat</default_xscale>
+    <default_style>barplot</default_style>
+  </graph>
+
+  <!-- TEMPERATURE -->
+  <graph type='temperature'>
+    <query>SELECT unix_timestamp(time), temperature FROM temperature_microreactor where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query>
+    <ylabel>Temperature / C</ylabel>
+    <title>Temperature in the Microreactor</title>
+    <default_yscale>lin</default_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+  
+  <!-- MASSSPECTRUM -->
+  <graph type='massspectrum'>
+    <query>SELECT x,y  FROM xy_values_microreactor where measurement = {id} order by id</query>
+    <offset_query>SELECT min(y) FROM xy_values_microreactor where measurement = {id}</offset_query>
+    <type>4</type>
+    <xlabel>Mass / amu</xlabel>
+    <ylabel>SEM current / A</ylabel>
+    <title>Mass Spectrum</title>
+    <default_xscale>lin</default_xscale>
+    <default_yscale>lin</default_yscale>
+    <param0_field>sem_voltage</param0_field>
+    <param0_name>SEM Voltage / V</param0_name>
+    <param1_field>preamp_range</param1_field>
+    <param1_name>Range</param1_name>
+  </graph>
+  
+  <!-- MASSTIME -->
+  <graph type='masstime'>
+    <!-- <query>SELECT x/1000,y  FROM xy_values_microreactor where measurement = {id} order by id</query> -->
+    <query>SELECT x/1000,y  FROM xy_values_microreactor where measurement = {id}</query>
+    <t_query>SELECT x/1000,y FROM xy_values_microreactor where measurement = {t_id} order by id</t_query>
+    <type>5</type>
+    <image_format>png</image_format>
+    <xlabel>Time / s</xlabel>
+    <t_xlabel>RTD Tempemperature / </t_xlabel>
+    <temperature_unit>C</temperature_unit>
+    <ylabel>SEM current / A</ylabel>
+    <!-- Title for mass vs. time -->
+    <title>Mass vs. time</title>
+    <!-- Title for mass vs. temperature -->
+    <t_title>Mass vs. temperature</t_title>
+    <legend_field_name>mass_label</legend_field_name>
+    <right_y_axis_field_name>mass_label</right_y_axis_field_name>
+    <right_y_axis_field_value>TC temperature, RTD temperature,Flow N2O, Flow He, Flow O2, Flow H2, Flow 1,Flow 2,Flow 3, Flow 4</right_y_axis_field_value>
+    <right_yscale>lin</right_yscale>
+    <right_ylabel>RTD Temperature / C</right_ylabel>
+    <default_xscale>lin</default_xscale>
+    <default_yscale>lin</default_yscale>
+    <param0_field>sem_voltage</param0_field>
+    <param0_name>SEM Voltage / V</param0_name>
+    <param1_field>preamp_range</param1_field>
+    <param1_name>Range</param1_name>
+  </graph>
+    
+  <global_settings>
+    <measurements_table>measurements_microreactor</measurements_table>
+    <xyvalues_table>xy_values_microreactor</xyvalues_table>
+    <chamber_name>Microreactor</chamber_name>
+    <sql_username>microreactor</sql_username>
+  </global_settings>
+</graphs>

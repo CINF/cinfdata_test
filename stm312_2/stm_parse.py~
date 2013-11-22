@@ -1,0 +1,179 @@
+#!/usr/bin/python
+
+import struct
+from collections import namedtuple
+import numpy as np
+
+from pylab import *
+from scipy import mgrid
+
+class ParseMulFile():
+    """ General comment """
+
+    def __init__(self, filename):
+        """ Init method """
+        ### Open file in binary mode for reading
+        self.file = open(filename, 'rb')
+        ### Initialize data structures
+        self.data = []
+        self.fig = None
+        self.timing = None
+        
+        ### Create the structs for reading from the mul-files
+        # Index struct
+        self.index_struct = struct.Struct('<hl')
+        # Label struct, names
+        self.label_names = ['nr', 'size', 'xch', 'ych', 'zch', 'year', 'month',
+                            'day', 'hour', 'minute', 'second', 'xsize', 'ysize',
+                            'xshift', 'yshift', 'zscale', 'tilt', 'speed',
+                            'bias', 'current', 'sample', 'title', 'postpr',
+                            'postd1', 'constheight', 'Currfac', 'R_Nr',
+                            'unitnr', 'version']
+        # Structs (separate one for the spare, because we want to read them in
+        # as a list)
+        self.label_names_struct = struct.Struct('<5h6h6hhhh21p21p7h')
+        self.label_spare_struct = struct.Struct('<16h')
+
+    def read_index(self):
+        """ Read index """
+        # Go to the beginning of the file
+        self.file.seek(0)
+
+        # For each of the 64 entries in the index
+        for i in range(64):
+            # Read the current index from file and unpack
+            index = self.index_struct.unpack_from(
+                self.file.read(self.index_struct.size)
+                )
+            # If the index dexcribes an image, save it
+            if index[0] != 0:
+                self.data.append({'index':index,'label':None,'data':None})
+                              
+    def read_single(self, image):
+        """ Read the label and image data for a single images
+        
+        Keywords:
+        index        The internal zero base position index
+        """
+        ### Read the label
+        # Go to the corrects place in the file, 'self.index[][1]' is the start
+        # block and 128 (bytes) is the block size
+        self.file.seek(image['index'][1] * 128)
+    
+        # Read all of the label except the 'spare' variable
+        label_items = self.label_names_struct.unpack_from(
+            self.file.read(self.label_names_struct.size)
+            )
+        label = dict(
+            [[name, datum] for name, datum in zip(self.label_names, label_items)]
+            )
+
+        # Read the spare variable
+        label['spare'] = self.label_spare_struct.unpack_from(
+            self.file.read(self.label_spare_struct.size)
+            )
+
+        # Add the label to self.data (through image)
+        image['label'] = label
+
+        ### Read the image data
+        # Calculate the image size
+        image_size = label['xch'] * label['ych']
+        # Read the raw data
+        image_struct = struct.Struct('<' + str(image_size) + 'h')
+        # Unpack it and store into an array
+        data = np.array(image_struct.unpack_from(self.file.read(image_struct.size)))
+        # Reshape it to be 'xch' by 'ych'
+        data.resize(label['ych'], label['xch'])
+        # Append the data
+        image['data'] = data
+
+    def read_all(self):
+        """ Read all images from file """
+        # Read the index
+        self.read_index()
+        # Read the data for which we have an index entry
+        for image in self.data:
+            # When the index is not None
+            self.read_single(image)
+
+    def make_single_thumbnail(self, image, size=128):
+        """ Make a single thumbnail """
+        xch = image['label']['xch']
+        ych = image['label']['ych']
+        pix_index = arange(xch)
+        x_korr = ones(xch) * image['label']['spare'][7] * 0.01
+        y_korr = ones(ych) * image['label']['spare'][8] * 0.01
+        m = array([pix_index, y_korr])
+        n = array([x_korr, pix_index]).transpose()
+
+        correction = np.dot(n, m)
+
+        # Subtract the correction and invert
+        data = (image['data'] - correction) * -1
+    
+        self.imsave('imsave'+str(image['label']['nr'])+'.png', data,
+                    size, cmap=cm.hot )
+        
+
+    def make_all_thumbnails(self, size=128):
+        # Read the index
+        self.read_all()
+        # Loop through the images
+        for image in self.data:
+            # Read that image
+            self.make_single_thumbnail(image, size)
+
+    def print_metadata(self, image):
+        # Print out the metadata nicely
+        print '##############################################################################'
+        print 'Image nr:', image['label']['nr'], 'size:', image['label']['size'], 'bytes'
+        print 'Resolution:', image['label']['xch'], 'by', image['label']['ych'], 'pixel (xch, ych)'
+        #print 'zch', image['label']['zch']
+        print 'Recorded: {0}-{1}-{2} {3}:{4}:{5}'.format(
+            image['label']['year'], image['label']['month'], image['label']['day'],
+            image['label']['hour'], image['label']['minute'], image['label']['second'])    
+        print 'Size:', image['label']['xsize'], 'by', image['label']['ysize'], 'Angstrom (xsize, ysize)'
+        print 'Position:', str(image['label']['xshift']) + ',', image['label']['yshift'], 'Angstrom (xshift, yshift)'
+        print 'zscale:', image['label']['zscale'], 'V, tilt:', image['label']['tilt'],\
+            'Scan duration:', float(image['label']['speed'])/100, 's'
+        print 'Bias:', round(float(image['label']['bias'])/-3276.3, 3),\
+            'V, Current:', round(float(image['label']['current'])/100, 3), 'nA'
+        print 'Sample:', image['label']['sample']
+        print 'Title:', image['label']['title']
+        print 'postpr', image['label']['postpr'],\
+            'postd1', image['label']['postd1'],\
+            'constheight', image['label']['constheight'],\
+            'Currfac', image['label']['Currfac'],\
+            'R_Nr', image['label']['R_Nr'],\
+            'unitnr', image['label']['unitnr'],\
+            'version', image['label']['version']
+        print 'spare:', image['label']['spare']
+        
+    def imsave(self, filename, X, image_size, **kwargs):
+        """ Homebrewed imsave to have nice colors... """
+        #figsize=(array(X.shape)/100.0)[::-1]
+        if not self.fig:
+            figsize=[image_size/100.0]*2
+            rcParams.update({'figure.figsize':figsize})
+            self.fig = figure(figsize=figsize)
+        axes([0,0,1,1]) # Make the plot occupy the whole canvas
+        axis('off')
+        #self.fig.set_size_inches(figsize)
+        imshow(X,origin='lower', **kwargs)
+        savefig(filename, facecolor='black', edgecolor='black',
+                dpi=100)
+        close(self.fig)
+
+    def print_all_metadata(self):
+        if not self.data:
+            self.read_all()
+        for image in self.data:
+            self.print_metadata(image)
+                
+
+if __name__ == '__main__':
+    p = ParseMulFile('24_12_35.mul')
+    #p.read_all()
+    #p.make_all_thumbnails()
+    p.print_all_metadata()

@@ -1,0 +1,80 @@
+.container{
+	max-width:950px;
+	margin-left:auto;
+	margin-right:auto;
+	}
+
+.plotcontainer{
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+	}
+
+.copyright{
+	background:#0C5DA5;
+	padding:5px;
+	color:#FFFFFF;
+	font-size:16px;
+	text-align:center;
+	font-weight:bold;
+	}
+
+.logo{
+	position:relative;
+	margin-right:0px;
+	float:right;
+	height:40px;
+	}
+
+table.generaloptions{
+	border-width: 2px;
+	border-collapse: collapse;
+	margin-right:auto;
+	margin-left:auto;
+	width:80%; 
+	margin-top: 10px;
+	margin-bottom: 10px;
+	}
+
+table.selection{
+	border-width: 5px;
+	border-collapse: collapse;
+	margin-right:auto;
+	margin-left:auto;
+	width:80%; 
+	margin-top: 10px;
+	margin-bottom: 10px;
+	}
+
+.additionalinfo{
+	border-width: 2px;
+	border-collapse: collapse;
+	margin-right:auto;
+	margin-left:auto;
+	width:80%; 
+	margin-top: 10px;
+	margin-bottom: 10px;
+	}
+	
+.caption{
+	background:#0C5DA5; 
+	padding: 10px; 
+	color:#FFFFFF;
+	font-weight:bold;
+	font-size: 32px;
+	}
+
+a:link{
+	color:black;
+	text-decoration:none;
+	}
+
+a:visited{
+	color:black;
+	text-decoration:none;
+	}
+
+a:hover{
+	color:#0C5DA5;
+	text-decoration:underline;
+	}

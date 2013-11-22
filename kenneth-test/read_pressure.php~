@@ -1,0 +1,21 @@
+<?
+$to = date('Y-m-d H:i',time() + 60); // Default, 1 minute into the future, to be shure get the whole plot
+$from = date('Y-m-d H:i',time() - 60 * 60 * 24); // Default, plot the last 24 hours
+
+$from = ($_GET["from"] == "") ? $from : $_GET["from"]; // If we get an argument, skip the defaults
+$to = ($_GET["to"] == "") ? $to : $_GET["to"];
+?>
+
+<html>
+<head>
+<title>Pressure readout for Volvo</title>
+</head>
+<body>
+<p><img src="pressure.php?from=<?=$from?>&to=<?=$to?>"></p>
+<form action="read_pressure.php" method="get">
+<b>From:</b> <input name="from" type="text" value="<?=$from?>"> <b>To:</b><input name="to" type="text" value="<?=$to;?>"><br>
+<input type="submit" value="Update">
+</form>
+
+</body>
+</html>

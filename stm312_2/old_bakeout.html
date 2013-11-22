@@ -1,0 +1,27 @@
+
+<html>
+<head>
+<title>Bakeout status page STM 312</title>
+</head>
+<body>
+ <table border="0">
+    <tr>
+      <td><img src="oven.jpg"></td>
+      <td><h1>Overview of the bakeout status STM 312</h1></td>
+      <td><img src="setup.jpg"></td>
+    </tr>
+  </table>
+<h2>Current temperature: <?=round($temperature,2)-273.15?> &deg;C, at <?=$temperature_time?></h2>
+<h2>Current pressure: <?=$pressure?> torr, at <?=$pressure_time?></h2>
+
+
+<img src="http://robertj/stm312/plot.php?type=temperature_bakeout&smallplot=1&xsize=400&ysize=300"><img src="http://robertj/stm312/plot.php?type=temperature_bakeout&smallplot=1&xsize=400&ysize=300"><br>
+<h1>Full size graphs</h1>
+<img src="http://robertj/stm312/plot.php?type=temperature_bakeout"><br><img src="http://robertj/stm312/plot.php?type=temperature_bakeout">
+</body>
+</html>
+
+
+
+
+

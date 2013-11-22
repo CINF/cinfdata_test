@@ -1,0 +1,43 @@
+<html>
+<head><title>CINF data logging</title>
+  <link rel="StyleSheet" href="../css/screen.css" type="text/css" media="screen">
+</head>
+<body>
+<div class="container">
+ <div class="caption">Data viewer
+  <a href="/"><img class="logo" src="../images/cinf_logo_beta_greek.png"></a>
+ </div>
+
+<form action="mass_calc.php" method="get">
+<input type="hidden" name="type" value="pressure">
+<p>
+<table>
+  <tr>
+    <td colspan="4"><b>Molecule 1:</b></td>
+  </tr>
+  <tr>
+    <td><b>C:</b></td><td><input name="carbon_atoms_1" type="text" size="5" value="0"></td>
+    <td><b>O:</b></td><td><input name="oxygen_atoms_1" type="text" size="5" value="0"></td>
+    <td><b>H:</b></td><td><input name="hydrogen_atoms_1" type="text" size="5" value="0"></td>
+    <td><b>N:</b></td><td><input name="nitrogen_atoms_1" type="text" size="5" value="0"></td>
+  </tr>
+  <tr>
+    <td colspan="4"><b>Molecule 2:</b></td>
+  </tr>
+  <tr>
+    <td><b>C:</b></td><td><input name="carbon_atoms_2" type="text" size="5" value="0"></td>
+    <td><b>O:</b></td><td><input name="oxygen_atoms_2" type="text" size="5" value="0"></td>
+    <td><b>H:</b></td><td><input name="hydrogen_atoms_2" type="text" size="5" value="0"></td>
+    <td><b>N:</b></td><td><input name="nitrogen_atoms_2" type="text" size="5" value="0"></td>
+  </tr>
+  <tr>
+    <td colspan="4"><input type="submit" value="Submit"></td>
+  </tr>
+</table>
+</p>
+</form>
+
+<div class="copyright">...</div>
+</div>
+</body>
+</html>

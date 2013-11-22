@@ -1,0 +1,18 @@
+<?php
+#include("../common_functions.php");
+
+echo('test');
+
+exec('python gas_analysis.py 1128', $command_output);
+
+# ... otherwise, something has produced more output, either intentionally
+# with print or error messages, either we want to se it in stead of the
+# figure
+#header('Content-type: text/plain');
+echo('<pre>');
+for($i=0;$i<count($command_output);$i++){
+  echo($command_output[$i].'</br>');
+}
+echo('</pre>');
+
+?>

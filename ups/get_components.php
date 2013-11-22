@@ -1,0 +1,1 @@
+/var/www/cinfdata/sym-files/get_components.php

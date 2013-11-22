@@ -1,0 +1,48 @@
+
+<?php
+
+function live_header($css="../css/style.css", $title="Data viewer"){
+  $header = "";
+  $header = $header . "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n";
+  $header = $header . "<html>\n";
+  $header = $header . "  <head>\n";
+  $header = $header . "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n";
+  $header = $header . "    <title>CINF $title</title>\n";
+  $header = $header . "    <link rel=\"StyleSheet\" href=\"$css\" type=\"text/css\" media=\"screen\">\n";
+  $header = $header . "    <script type=\"text/javascript\" src=\"dygraph/dygraph-dev.js\"></script>\n";
+  $header = $header . "    <script type=\"text/javascript\" src=\"../js/update.js\"></script> \n";
+  $header = $header . "    <script type=\"text/javascript\" src=\"../js/toogle.js\"></script>\n";
+  $header = $header . "  </head>\n";
+  $header = $header . "  <body>\n";
+  $header = $header . "    <div class=\"container\">\n";
+  $header = $header . "      <div class=\"caption\">\n";
+  $header = $header . "        $title\n";
+  $header = $header . "        <a href=\"/\"><img class=\"logo\" src=\"../images/cinf_logo_beta_greek.png\" alt=\"CINF data viewer\"></a>\n";
+  $header = $header . "          <div class=\"header_utilities\">\n";
+  $header = $header . "            <a class=\"header_links\" href=\"https://cinfwiki.fysik.dtu.dk/cinfwiki/Software/DataWebPageUserDocumentation\">Help</a><br>\n";
+  $header = $header . "            <a class=\"header_links\" href=\"test_configuration_file.php\">Config</a>\n";
+  $header = $header . "          </div>\n";
+  $header = $header . "      </div>\n";
+  $header = $header . "      <div class=\"plotcontainer\">\n";
+
+  return($header);
+}
+
+function live_footer(){
+  $footer = "";
+  $footer = $footer . "      </div>\n";
+  $footer = $footer . "      <div class=\"copyright\">...</div>\n";
+  $footer = $footer . "    </div>\n";
+  $footer = $footer . "  </body>\n";
+  $footer = $footer . "</html>\n";
+  return($footer);
+}
+
+
+
+echo(live_header("../css/live.css", "Live plots"));
+?>
+        <p>Hallo world</p>
+<?php
+echo(live_footer());
+?>

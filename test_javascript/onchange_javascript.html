@@ -1,0 +1,34 @@
+<html>
+<head>
+	
+<!--
+<script type="text/javascript">
+ function bar() {
+      document.write('test')
+ }
+ </script>
+ 
+-->
+ <script type="text/javascript">
+function replace() {
+  var txt1=document.getElementById("myDiv")
+  var txt2=document.getElementById("myDiv2")
+  txt1.innerHTML="<?php echo('test'); ?>"
+  txt2.innerHTML="87";
+  }
+
+</script>
+ 
+ </head>
+ <body>
+	<select multiple size="4" onChange="return replace()">
+		<option value="volvo">Volvo</option>
+		<option value="saab">Saab</option>
+		<option value="mercedes">Mercedes</option>
+		<option value="audi">Audi</option>
+	</select> 
+<div id="myDiv"></div>
+<br>
+<div id="myDiv2"></div>
+</body>
+</html>

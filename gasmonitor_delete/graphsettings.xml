@@ -1,0 +1,87 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+
+  <!-- MULTI DATEPLOT -->
+  <graph type='multidateplot'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- Fall back settings -->
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <!-- Date plot 1 - GAS CH01 -->
+    <dateplot1>
+      <title>Gas monitor CH1</title>
+      <legend>Gas level CH1</legend>
+      <query>SELECT unix_timestamp(time), value FROM gasmonitor_ch01 where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / mA</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>Gas monitor CH2</title>
+      <legend>Gas level CH2</legend>
+      <query>SELECT unix_timestamp(time), value FROM gasmonitor_ch02 where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / mA</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <dateplot3>
+      <title>Gas monitor CH3</title>
+      <legend>Gas level CH3</legend>
+      <query>SELECT unix_timestamp(time), value FROM gasmonitor_ch03 where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / mA</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>Gas monitor CH4</title>
+      <legend>Gas level CH4</legend>
+      <query>SELECT unix_timestamp(time), value FROM gasmonitor_ch04 where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / mA</ylabel>
+      <color>4</color>
+    </dateplot4>
+  </graph>
+
+
+  <!-- GLOBAL SETTINGS -->
+  <global_settings>
+    <measurements_table>measurements_gasmonitor</measurements_table>
+    <xyvalues_table>xy_values_gasmonitor</xyvalues_table>
+    <!--<chamber_name>microreactorNG</chamber_name>-->
+    <sql_username>gasmonitor</sql_username>
+    <image_format>png</image_format>
+    <mandatory_export_fields>
+      <field0>
+	<field>id</field>
+	<name>Id</name>
+      </field0>
+      <field1>
+	<field>type</field>
+	<name>Type</name>
+      </field1>
+      <field2>
+	<field>time</field>
+	<name>Recorded at</name>
+      </field2>
+      <field3>
+	<field>comment</field>
+	<name>Comment</name>
+      </field3>
+    </mandatory_export_fields>
+    <matplotlib_settings>
+      <width>900</width>
+      <height>600</height>
+      <title_size>24</title_size>
+      <xtick_labelsize>12</xtick_labelsize>
+      <ytick_labelsize>12</ytick_labelsize>
+      <legend_fontsize>10</legend_fontsize>
+      <label_fontsize>16</label_fontsize>
+    </matplotlib_settings>
+  </global_settings>
+</graphs>

@@ -1,0 +1,39 @@
+<html>
+<head>
+<script type="text/javascript">
+function showData(str){
+	if (str==""){
+  		document.getElementById("output").innerHTML=""; //don't output if you don't have anything to say
+  		return;
+  	}
+ 
+	if (window.XMLHttpRequest){
+  		xmlhttp=new XMLHttpRequest(); //Create object we will check upon
+  	}
+
+	xmlhttp.onreadystatechange=function(){
+  		if (xmlhttp.readyState==4 && xmlhttp.status==200){ // readyState indicates all data have been received and status is 'OK' = go ahead!
+    			document.getElementById("output").innerHTML=xmlhttp.responseText; //Where should we put the answer? Let's go for output!
+    		}
+  	}
+	xmlhttp.open("GET","getdata.php?query="+str,true); //retrieve data from MySQL using PHP
+	xmlhttp.send(); // Show it to me!
+}
+</script>
+</head>
+<body>
+Ok - very static so far. Table and ID's are hard coded in "getdata.php" and chosen for measurements_bifrost. But it illustrates the principle!
+<form>
+<select name="users" onchange="showData(this.value)">
+<option value="">Vælg id:</option>
+<option value="5">ID: 5</option>
+<option value="6">ID: 6</option>
+<option value="7">ID: 7</option>
+<option value="8">ID: 8</option>
+</select>
+</form>
+<br />
+<div id="output"><b>select an ID - this text will be replaced by you in a minute :-)</b></div>
+
+</body>
+</html>

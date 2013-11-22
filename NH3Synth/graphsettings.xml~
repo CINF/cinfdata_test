@@ -1,0 +1,220 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+
+  <graph type='multidateplot'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <!-- Ammonia Concentration -->
+    <dateplot1>
+      <title>Ammonia Concentration</title>
+      <legend>Concentration</legend>
+      <query>SELECT unix_timestamp(time), concentration FROM ir_nh3_concentration_NH3Synth where time between "{from}" and "{to}" and concentration > -100 order by time</query>
+      <ylabel>Concentration / ppm</ylabel>
+      <color>1</color>
+    </dateplot1>
+    <!-- Raw IR signal -->
+    <dateplot2>
+      <title>Raw IR signal</title>
+      <legend>Raw IR signal</legend>
+      <query>SELECT unix_timestamp(time), value FROM ir_nh3_raw_NH3Synth where time between "{from}" and "{to}" and value > 0  order by time</query>
+      <ylabel>Raw signal output</ylabel>
+      <color>2</color>
+    </dateplot2>
+    <!-- Pressure, iongauge -->
+    <dateplot3>
+      <title>Pressure, iongauge</title>
+      <legend>Massspec chamber</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_NH3Synth_iongauge_massspec where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>3</color>
+    </dateplot3>
+    <dateplot4>
+      <title>Temperature 1</title>
+      <legend>Temperature 1</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_NH3Synth where time between "{from}" and "{to}" and 750 > temperature order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>4</color>
+    </dateplot4>
+    <dateplot5>
+      <title>Temperature 2</title>
+      <legend>Temperature 2</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature2_NH3Synth where time between "{from}" and "{to}" and 750 > temperature order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>5</color>
+    </dateplot5>
+    <dateplot6>
+      <title>Temperature 3</title>
+      <legend>Temperature 3</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature3_NH3Synth where time between "{from}" and "{to}"  and 750 > temperature order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>6</color>
+    </dateplot6>
+    <dateplot7>
+      <title>Temperature 4</title>
+      <legend>Temperature 4</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature4_NH3Synth where time between "{from}" and "{to}" and 750 > temperature order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>7</color>
+    </dateplot7>
+   </graph>
+
+  <!-- MASSTIME -->
+  <graph type='masstime'>
+    <default_xscale>lin</default_xscale>
+    <type>5</type>
+    <xlabel>Time / s</xlabel>
+    <title>Mass vs. time</title>
+    <grouping_column>time</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x/1000,y  FROM xy_values_NH3Synth where measurement = {id} order by id</default>
+      <column>mass_label</column>
+    </queries>
+    <!-- ylabel -->
+    <ylabel>
+      <default>Mixed units</default>
+      <column>mass_label</column>
+      <pattern0>
+	<reg_match>^M[0-9]{1,2}$</reg_match>
+	<ylabel>SEM current / A</ylabel>
+      </pattern0>
+      <pattern1>
+	<reg_match>^.*temperature$</reg_match>
+	<ylabel>Temperature / C</ylabel>
+      </pattern1>
+      <pattern2>
+	<reg_match>^.*pressure$|^Pirani.*$</reg_match>
+	<ylabel>Pressure / mbar</ylabel>
+      </pattern2>
+      <pattern3>
+	<reg_match>^Input power$</reg_match>
+	<ylabel>Power / W</ylabel>
+      </pattern3>
+      <pattern4>
+	<reg_match>^Flow [0-9]$</reg_match>
+	<ylabel>Flow / mL/min</ylabel>
+      </pattern4>
+    </ylabel>
+    <!-- legend -->
+    <legend>
+      <default>{mass_label}</default>
+      <column>mass_label</column>
+      <pattern0>
+	<reg_match>^.*temperature$</reg_match>
+	<legend>Temp.</legend>
+      </pattern0>
+    </legend>
+    <!-- parameters -->
+    <parameters>
+      <param0>
+	<field>sem_voltage</field>
+	<name>SEM Voltage / V</name>
+      </param0>
+      <param1>
+	<field>preamp_range</field>
+	<name>Range</name>
+      </param1>
+    </parameters>
+    <!-- data treatment -->
+    <flip_x>
+      <gui>Flip x-scale</gui>
+    </flip_x>
+    <as_function_of>
+      <gui>As function of T</gui>
+      <column>mass_label</column>
+      <reg_match>RTD temperature</reg_match>
+      <xlabel>Temperature / C</xlabel>
+    </as_function_of>
+    <diff_left_y>
+      <gui>Diff. left y-axis</gui>
+      <ylabel_addition>diff</ylabel_addition>
+    </diff_left_y>
+    <diff_right_y>
+      <gui>Diff. right y-axis</gui>
+      <ylabel_addition>diff</ylabel_addition>
+    </diff_right_y>
+    <linscale_x0>
+      <gui>X-axis in hours</gui>
+      <xlabel_addition>convert to hours</xlabel_addition>
+      <!-- 1/3600 -->
+      <a>0.0002777777777777778</a>
+      <b>0</b>
+    </linscale_x0>
+    <!--
+    <matplotlib_settings>
+      <width>900</width>
+      <height>600</height>
+      <title_size>74</title_size>
+      <xtick_labelsize>4</xtick_labelsize>
+      <ytick_labelsize>8</ytick_labelsize>
+      <legend_fontsize>16</legend_fontsize>
+      <label_fontsize>16</label_fontsize>
+      <linewidth>5</linewidth>
+      <grid>True</grid>
+    </matplotlib_settings>
+    -->
+  </graph>
+
+  <!-- MASSSPECTRUM -->
+  <graph type='massspectrum'>
+    <default_xscale>lin</default_xscale>
+    <type>4</type>
+    <grouping_column>time</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <label_column>id</label_column>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x,y  FROM xy_values_NH3Synth where measurement = {id} order by id</default>
+    </queries>
+    <!-- legend -->
+    <legend>
+      <default>{id} - {time}</default>
+    </legend>
+  </graph>
+
+  <!-- GLOBAL SETTINGS -->
+  <global_settings>
+    <measurements_table>measurements_NH3Synth</measurements_table>
+    <xyvalues_table>xy_values_NH3Synth</xyvalues_table>
+    <sql_username>NH3Synth</sql_username>
+    <image_format>png</image_format>
+    <label_column>mass_label</label_column>
+    <mandatory_export_fields>
+      <field0>
+	<field>id</field>
+	<name>Id</name>
+      </field0>
+      <field1>
+	<field>type</field>
+	<name>Type</name>
+      </field1>
+      <field2>
+	<field>time</field>
+	<name>Recorded at</name>
+      </field2>
+      <field3>
+	<field>comment</field>
+	<name>Comment</name>
+      </field3>
+    </mandatory_export_fields>
+    <matplotlib_settings>
+      <width>900</width>
+      <height>600</height>
+      <title_size>24</title_size>
+      <xtick_labelsize>12</xtick_labelsize>
+      <ytick_labelsize>12</ytick_labelsize>
+      <legend_fontsize>10</legend_fontsize>
+      <label_fontsize>16</label_fontsize>
+    </matplotlib_settings>
+  </global_settings>
+</graphs>

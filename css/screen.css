@@ -1,0 +1,283 @@
+.container {
+	max-width:950px;
+	margin-left:auto;
+	margin-right:auto;
+	}
+	
+.caption {
+	background:#0C5DA5; 
+	padding: 10px; 
+	color:#FFFFFF;
+	font-weight:bold;
+	font-size: 32px;
+	}
+
+a:link {
+	color:black;
+	text-decoration:none;
+	}
+
+a:visited {
+	color:black;
+	text-decoration:none;
+	}
+
+a:hover {
+	color:#0C5DA5;
+	text-decoration:underline;
+	}
+
+
+.caption img {
+	border:0px;
+	}
+
+.copyright {
+	background:#0C5DA5;
+	padding:5px;
+	color:#FFFFFF;
+	font-size:16px;
+	text-align:center;
+	font-weight:bold;
+	}
+
+.copyright a:link {
+	color:#FFFFFF;
+	text-decoration:none;
+	}
+
+.copyright a:visited {
+	color:#FFFFFF;
+	text-decoration:none;
+	}
+
+.copyright a:hover {
+	color:#FFFFFF;
+	text-decoration:underline;
+	}
+
+.logo {
+	position:relative;
+	margin-right:0px;
+	float:right;
+	height:40px;
+	}
+
+table.links {
+	border-width: 2px;
+	border-collapse: collapse;
+	margin-right:auto;
+	margin-left:auto;
+	width:80%; 
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+}
+
+table.links td {
+	max-width:400px;
+	border-width: 2px;
+}
+
+table.frontpage {
+	margin-right:auto;
+	margin-left:auto;
+	width:80%; 
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+table.frontpage tr {
+	padding: 1px;
+}
+
+table.frontpage td {
+	border-width: 0px;
+	border-style: inset;
+	border-color: blue;
+	width:30%;
+}
+
+table.frontpage h2 {
+	color:#0C5DA5;
+	margin:5px;
+
+}
+
+table.frontpage ul {
+	margin:0px;
+}
+
+.infobox {
+	float:left;
+	width:250px;
+	padding:5px;
+	margin-top:10px;
+	margin-left:10px;
+	margin-bottom:10px;
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+	}
+
+.data {
+	float: left;
+	padding:10px 0px 0px 10px;
+   }
+
+.element {
+	float: left;
+	width: 300px;
+	height: 280px;
+	text-align: left;
+	padding-bottom:10px;
+   }
+
+.element a:link {
+	color:black;
+	text-decoration:none;
+	}
+
+.element a:visited {
+	color:black;
+	text-decoration:none;
+	}
+
+.element a:hover {
+	color:#0C5DA5;
+	text-decoration:underline;
+	}
+
+.element h2 {
+	color:#0C5DA5;
+	}
+
+.next {
+	clear:both;
+}
+
+.selectcontainer {
+	float:left;
+	padding-left:10px;
+	}
+
+.selectcontainer a:link {
+	color:black;
+	text-decoration:none;
+	}
+
+.selectcontainer a:visited {
+	color:black;
+	text-decoration:none;
+	}
+
+.selectcontainer a:hover {
+	color:#0C5DA5;
+	text-decoration:underline;
+	}
+
+.select {
+   }
+
+.scaleboxes {
+	float:left;
+	margin-left:10px;
+	}
+
+.scaleboxes a:link {
+	color:black;
+	text-decoration:none;
+	}
+
+.scaleboxes a:visited {
+	color:black;
+	text-decoration:none;
+	}
+
+.scaleboxes a:hover {
+	color:#0C5DA5;
+	text-decoration:underline;
+	}
+
+.gasanalysis {
+	float: left;
+	width: 650px;
+	text-align: left;
+	padding:10px;
+	}
+
+.smallgraph {
+	float: left;
+	width: 400px;
+	padding-left:20px;
+	}
+
+.smallgraph h2 {
+	color:black;
+	margin-bottom:0px;
+	margin-top:10px;
+	}
+
+.smallgraph h3 {
+	color:black;
+	margin-bottom:0px;
+	margin-top:0px;
+	}
+
+.smallgraph img {
+	border:0px;
+	margin-left:auto;
+	margin-right:auto;
+	}
+
+.graph {
+	float: left;
+	width: 800px;
+	}
+
+.graph h2 {
+	color:black;
+	margin-bottom:0px;
+	margin-top:10px;
+	}
+
+.graph h3 {
+	color:black;
+	margin-bottom:0px;
+	margin-top:0px;
+	}
+
+.graph img {
+	border:0px;
+	margin-left:auto;
+	margin-right:auto;
+	}
+
+.config_check h2 {
+    color: white;
+    background: black;
+    padding: 3px 0px 3px 7px;
+}
+
+.config_check_l1 {
+    border-style: solid;
+    border-color: #BEBEBE;
+    border-width: 5px;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.check_config_h3_highlight {
+    background: #DCDCDC;
+}
+
+.config_check_graph {
+    border-top-style: solid;
+    border-color: #BEBEBE;
+}
+
+.suboption {
+    padding-left: 20px;
+}

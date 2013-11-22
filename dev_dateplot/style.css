@@ -1,0 +1,87 @@
+.dydiv{
+        border: 0px solid black;
+        margin-left:auto;
+	margin-right:auto;
+	width:850px;
+	height:500px;
+}
+
+.container{
+        border: 0px solid red;
+	max-width:950px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.plotcontainer{
+	margin-left:auto;
+	margin-top:10px;
+	margin-right:auto;
+	margin-bottom:10px;
+}
+
+img.matplotlib{
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.copyright{
+	background:#0C5DA5;
+	padding:5px;
+	color:#FFFFFF;
+	font-size:16px;
+	text-align:center;
+	font-weight:bold;
+	height:40px;
+}
+
+.logo{
+	position:relative;
+	margin-right:0px;
+	float:right;
+	height:40px;
+}
+
+table.generaloptions,table.selection,.additionalinfo{
+	border-width: 2px;
+	border-collapse: collapse;
+	margin-right:auto;
+	margin-left:auto;
+	width:80%; 
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+tr#plot_options{
+	border:outset 3px;
+}
+	
+
+.component_select{
+	padding-bottom:5px;
+	padding-top:5px;
+}
+
+#measurement_select{
+	width:100%;
+}
+	
+.caption{
+	background:#0C5DA5; 
+	padding: 10px; 
+	color:#FFFFFF;
+	font-weight:bold;
+	font-size: 32px;
+}
+
+a:link,a:visited{
+	color:black;
+	text-decoration:none;
+}
+
+a:hover{
+	color:#0C5DA5;
+	text-decoration:underline;
+}
+
+

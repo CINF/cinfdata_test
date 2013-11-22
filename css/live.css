@@ -1,0 +1,68 @@
+
+.copyright{
+	background:#0C5DA5;
+	padding:5px;
+	color:#FFFFFF;
+	font-size:16px;
+	text-align:center;
+	font-weight:bold;
+	height:30px;
+}
+
+
+table.generaloptions,table.selection,.additionalinfo{
+	border-width: 2px;
+	border-collapse: collapse;
+	margin-right:auto;
+	margin-left:auto;
+	width:80%; 
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+td.plot_options{
+	border-left: 1px solid;
+	border-right: 1px solid;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+}
+
+.caption{
+	background:#0C5DA5; 
+	padding: 10px; 
+	color:#FFFFFF;
+	font-weight:bold;
+	font-size: 32px;
+}
+
+.logo{
+	position:relative;
+	margin-right:0px;
+	float:right;
+	height:40px;
+}
+
+.header_utilities{
+	position:relative;
+	margin-right: 20px;
+	float:right;
+	font-size:16px;
+}
+
+a.header_links:link,a.header_links:visited{
+	color:#FFFFFF;
+}
+
+a.header_links:hover{
+	text-decoration:underline;
+}
+
+a:link,a:visited{
+	color:black;
+	text-decoration:none;
+}
+
+a:hover{
+	color:#0C5DA5;
+	text-decoration:underline;
+}

@@ -1,0 +1,17 @@
+<?
+function plot_settings($type,$params=""){
+    $settings = "";
+    switch($type){
+    case "temperature":
+        $settings["query"] = "SELECT unix_timestamp(time), temperature FROM temperature where temperature between -1 and 1300 and time between \"" . $params["from"] . "\" and \"" . $params["to"] ."\" order by time";
+        $settings["ylabel"] = "Temperature / C";
+        $settings["titel"] = "Temperature in the Volvo";
+        $settings["default_yscale"] = "lin";
+        $settings["default_xscale"] = "dat";
+        break;
+    }
+    $settings["measurements_table"] = "measurements";
+    $settings["xyvalues_table"] = "xy_values";
+    return($settings);
+}
+?>

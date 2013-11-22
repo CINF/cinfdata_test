@@ -1,0 +1,505 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+
+  <graph type='multidateplot'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <!-- Chamber pressure -->
+    <dateplot1>
+      <title>Chamber pressure</title>
+      <legend>Chamber pressure</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_stm312 where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / torr</ylabel>
+      <color>1</color>
+    </dateplot1>
+    <!-- Elbow pressure -->
+    <dateplot2>
+      <title>Elbow pressure</title>
+      <legend>Elbow pressure</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_stm312_elbow where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / torr</ylabel>
+      <color>2</color>
+    </dateplot2>
+    <!-- Temperature -->
+    <dateplot3>
+      <title>Sample temperature</title>
+      <legend>Sample temperature</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312 where temperature between -1 and 1600 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>3</color>
+    </dateplot3>
+    <!-- Pressure big turbo prepump -->
+    <dateplot4>
+      <title>Big turbo prepump pressure</title>
+      <legend>Big turbo prepump p.</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_stm312_prepumpbigturbo where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / torr</ylabel>
+      <color>1</color>
+    </dateplot4>
+    <!-- Pressure ? prepump -->
+    <dateplot5>
+      <title>Gashandling prepump pressure</title>
+      <legend>Gashandling prepump p.</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_stm312_prepumpgashandling where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / torr</ylabel>
+      <color>2</color>
+    </dateplot5>
+    <!-- Pressure diff prepump -->
+    <dateplot6>
+      <title>Diff prepump pressure</title>
+      <legend>Diff prepump p.</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_stm312_prepumpdiff where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / torr</ylabel>
+      <color>3</color>
+    </dateplot6>
+    <!-- Combined pressure -->
+    <dateplot7>
+      <title>Pressure</title>
+      <legend>Pressure combined</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_stm312 where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / torr</ylabel>
+      <color>4</color>
+    </dateplot7>
+    <!-- Temperature STM -->
+    <dateplot8>
+      <title>STM Temperature</title>
+      <legend>STM Temperature</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312_stm where temperature > -998 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>5</color>
+    </dateplot8>
+  </graph>
+
+  <!-- Turbo temperatures -->
+  <graph type='multidateplot_tt'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <!-- Big turbo temperatur -->
+    <dateplot1>
+      <title>Big turbo temperatur</title>
+      <legend>Big turbo temperatur</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312_big_turbo where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>1</color>
+    </dateplot1>
+    <!-- Gas handling turbo temperatur -->
+    <dateplot2>
+      <title>Gas handling turbo temperatur</title>
+      <legend>Gas handling turbo temperatur</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312_gas_handling where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>2</color>
+    </dateplot2>
+    <!-- Sputter gun turbo temperatur -->
+    <dateplot3>
+      <title>Sputter gun turbo temperatur</title>
+      <legend>Sputter gun turbo temperatur</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312_sputter_gun where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>3</color>
+    </dateplot3>
+  </graph>
+
+  <graph type='multidateplot_heating'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <!-- Filament bias -->
+    <dateplot1>
+      <title>Sample temperature</title>
+      <legend>Sample temperature</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312 where temperature between -1 and 1600 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>Filament Bias</title>
+      <legend>Filament bias</legend>
+      <query>SELECT unix_timestamp(time), value FROM stm312_filament_bias where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Filament bias / V</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <dateplot3>
+      <title>Filament Current</title>
+      <legend>Filament Current</legend>
+      <query>SELECT unix_timestamp(time), value FROM stm312_filament_current where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Current / A</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>Filament Power</title>
+      <legend>Filament Power</legend>
+      <query>SELECT unix_timestamp(time), value FROM stm312_filament_power where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Power / W</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <dateplot5>
+      <title>HV Bias</title>
+      <legend>HV Bias</legend>
+      <query>SELECT unix_timestamp(time), value FROM stm312_HV_bias where time between "{from}" and "{to}" order by time</query>
+      <ylabel>HV Bias/ V</ylabel>
+      <color>5</color>
+    </dateplot5>
+
+    <dateplot6>
+      <title>HV Emmision Current</title>
+      <legend>HV Emmision</legend>
+      <query>SELECT unix_timestamp(time), value FROM stm312_HV_emmision_current where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Emmision Current / mA</ylabel>
+      <color>6</color>
+    </dateplot6>
+
+    <dateplot7>
+      <title>HV Power</title>
+      <legend>HV Power</legend>
+      <query>SELECT unix_timestamp(time), value FROM stm312_HV_power where time between "{from}" and "{to}" order by time</query>
+      <ylabel>HV Power / W</ylabel>
+      <color>7</color>
+    </dateplot7>
+
+
+  </graph>
+
+  <!-- Turbo temperatures -->
+  <graph type='multidateplot_tt'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <!-- Big turbo temperatur -->
+    <dateplot1>
+      <title>Big turbo temperatur</title>
+      <legend>Big turbo temperatur</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312_big_turbo where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>1</color>
+    </dateplot1>
+    <!-- Gas handling turbo temperatur -->
+    <dateplot2>
+      <title>Gas handling turbo temperatur</title>
+      <legend>Gas handling turbo temperatur</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312_gas_handling where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>2</color>
+    </dateplot2>
+    <!-- Sputter gun turbo temperatur -->
+    <dateplot3>
+      <title>Sputter gun turbo temperatur</title>
+      <legend>Sputter gun turbo temperatur</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312_sputter_gun where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+
+  </graph>
+
+
+  <!-- High pressure cell -->
+  <graph type='multidateplot_hp'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <!-- Chamber pressure -->
+    <dateplot1>
+      <title>Pirani pressure</title>
+      <legend>Pirani pressure</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_stm312hp_pirani where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>Pressure controller pressure</title>
+      <legend>Pressure controller pressure</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_stm312hp_pressure_controller where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <dateplot3>
+      <title>Temperature</title>
+      <legend>Temperature</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312hp where temperature > -998 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>Power supply Voltage</title>
+      <legend>Voltage</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 'hp_psu_voltage' and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Voltage / V</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <dateplot5>
+      <title>Power supply current</title>
+      <legend>Current</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 'hp_psu_current' and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Current / A</ylabel>
+      <color>5</color>
+    </dateplot5>
+
+    <dateplot6>
+      <title>Sample temperature</title>
+      <legend>Sample temperature</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312 where temperature between -1 and 1600 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>3</color>
+    </dateplot6>
+
+  </graph>
+
+
+
+
+  <!-- MASSSPECTRUM -->
+  <graph type="massspectra">
+    <default_xscale>lin</default_xscale>
+    <type>4</type>
+    <grouping_column>time</grouping_column>
+    <label_column>name</label_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <dygraph_settings>
+      <series_highlight>true</series_highlight>
+      <labels_side>true</labels_side>
+      <labels_newline>true</labels_newline>
+    </dygraph_settings>
+    <queries>
+      <default>SELECT x,y  FROM xy_values_stm312 where measurement = {id} order by id</default>
+    </queries>
+    <xlabel>Mass / amu</xlabel>
+    <ylabel>
+      <default>SEM current / A</default>
+    </ylabel>
+    <legend>
+      <default>{id}</default>
+    </legend>
+    <title>Mass Spectrum</title>
+    <parameters>
+      <param0>
+	<field>SEM_voltage</field>
+	<name>SEM Voltage / V</name>
+      </param0>
+      <param1>
+	<field>preamp_range</field>
+	<name>Range</name>
+      </param1>
+    </parameters>
+  </graph>
+
+  <!-- XPS -->
+  <graph type="xps">
+    <default_xscale>lin</default_xscale>
+    <type>2</type>
+    <grouping_column>file_name</grouping_column>
+    <label_column>name</label_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <queries>
+      <default>SELECT x,y  FROM xy_values_stm312 where measurement = {id} order by id</default>
+    </queries>
+    <xlabel>Binding energy / eV</xlabel>
+    <ylabel>
+      <default>Counts per second / n</default>
+    </ylabel>
+    <legend>
+      <default>{name}</default>
+    </legend>
+    <title>XPS</title>
+    <flip_x>
+      <gui>Flip X-scale</gui>
+    </flip_x>
+    <linscale_x0>
+      <gui>Switch to kinetic energy</gui>
+      <xlabel_addition>Binding->Kinetic</xlabel_addition>
+      <a>-1</a>
+      <b>{excitation_energy}</b>
+    </linscale_x0>
+    <parameters>
+      <param0>
+	<field>excitation_energy</field>
+	<name>Excitation energy / eV</name>
+      </param0>
+      <param1>
+	<field>number_of_scans</field>
+	<name>Number of scans</name>
+      </param1>
+      <param2>
+	<field>project</field>
+	<name>Project</name>
+      </param2>
+      <param3>
+	<field>file_name</field>
+	<name>File name</name>
+      </param3>
+      <param4>
+	<field>timestep</field>
+	<name>Timestep</name>
+      </param4>
+      <param5>
+	<field>pass_energy</field>
+	<name>Pass energy / eV</name>
+      </param5>
+    </parameters>
+  </graph>
+  
+  <graph type="masstime">
+    <default_xscale>lin</default_xscale>
+    <type>5</type>
+    <grouping_column>time</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <xlabel>Time / s</xlabel>
+    <title>Masstime</title>
+    <!-- dygraph -->
+    <dygraph_settings>
+      <labels_newline>true</labels_newline>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x/1000,y  FROM xy_values_stm312 where measurement = {id} order by id</default>
+    </queries>
+    <!-- ylabel -->
+    <ylabel>
+      <default>Mixed units</default>
+      <column>mass_label</column>
+      <pattern0>
+	<reg_match>^.*[0-9]{1,2}.*$</reg_match>
+	<ylabel>SEM current / A</ylabel>
+      </pattern0>
+      <pattern1>
+	<reg_match>^.*emperature$</reg_match>
+	<ylabel>Temperature / C</ylabel>
+      </pattern1>
+      <pattern2>
+	<reg_match>^.*ressure$</reg_match>
+	<ylabel>Pressure / torr</ylabel>
+      </pattern2>
+    </ylabel>
+    <!-- legend -->
+    <legend>
+      <default>{mass_label}</default>
+      <column>mass_label</column>
+      <pattern0>
+	<reg_match>^Temperature$</reg_match>
+	<legend>Temp.</legend>
+      </pattern0>
+      <pattern1>
+	<reg_match>^Pressure$</reg_match>
+	<legend>Pres.</legend>
+      </pattern1>
+    </legend>
+
+    <parameters>
+      <param0>
+	<field>SEM_voltage</field>
+	<name>SEM Voltage / V</name>
+      </param0>
+      <param1>
+	<field>preamp_range</field>
+	<name>Range</name>
+      </param1>
+    </parameters>
+
+    <!-- data treatment -->
+    <as_function_of>
+      <gui>As function of T</gui>
+      <column>mass_label</column>
+      <reg_match>.*emperature</reg_match>
+      <xlabel>Temperature / C</xlabel>
+    </as_function_of>
+    <linscale_x0>
+      <gui>X-axis in hours</gui>
+      <xlabel_addition>convert to hours</xlabel_addition>
+      <!-- 1/3600 -->
+      <a>0.0002777777777777778</a>
+      <b>0</b>
+    </linscale_x0>
+    <linscale_x1>
+      <gui>X-axis C->K</gui>
+      <xlabel_addition>C->K</xlabel_addition>
+      <a>1</a>
+      <b>273.15</b>
+    </linscale_x1>
+    <linscale_right_y0>
+      <gui>Right Y-axis C->K</gui>
+      <ylabel_addition>C->K</ylabel_addition>
+      <a>1</a>
+      <b>273.15</b>
+    </linscale_right_y0>
+  </graph>
+
+  <global_settings>
+    <measurements_table>measurements_stm312</measurements_table>
+    <xyvalues_table>xy_values_stm312</xyvalues_table>
+    <sql_username>stm312</sql_username>
+    <label_column>mass_label</label_column>
+    <image_format>png</image_format>
+    <mandatory_export_fields>
+      <field0>
+	<field>id</field>
+	<name>Id</name>
+      </field0>
+      <field1>
+	<field>type</field>
+	<name>Type</name>
+      </field1>
+      <field2>
+	<field>time</field>
+	<name>Recorded at</name>
+      </field2>
+      <field3>
+	<field>Comment</field>
+	<name>Comment</name>
+      </field3>
+    </mandatory_export_fields>
+  </global_settings>
+</graphs>
+

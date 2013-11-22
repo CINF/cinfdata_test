@@ -1,0 +1,216 @@
+##############################################################################
+Image nr: 1 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 12:32:53
+Size: 500 by 500 Angstrom (xsize, ysize)
+Position: -428, -469 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 57.48 s
+Bias: -1.46 V, Current: -1.14 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -1600, -1511, 0, 0, 0, 416, 0, 0, 0)
+##############################################################################
+Image nr: 2 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 12:40:29
+Size: 500 by 500 Angstrom (xsize, ysize)
+Position: -2005, -1003 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 57.46 s
+Bias: -1.904 V, Current: -1.1 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -1644, -989, 0, 0, 0, 416, 0, 0, 0)
+##############################################################################
+Image nr: 3 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 12:45:52
+Size: 500 by 500 Angstrom (xsize, ysize)
+Position: -3017, -1514 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 57.46 s
+Bias: -1.633 V, Current: -1.1 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -1267, -1933, 0, 0, 0, 416, 0, 0, 0)
+##############################################################################
+Image nr: 4 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 12:47:52
+Size: 500 by 500 Angstrom (xsize, ysize)
+Position: -2494, -1514 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 57.48 s
+Bias: -1.633 V, Current: -1.11 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -1700, -700, 0, 0, 0, 416, 0, 0, 0)
+##############################################################################
+Image nr: 5 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 12:49:9
+Size: 500 by 500 Angstrom (xsize, ysize)
+Position: -2001, -1514 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 42.31 s
+Bias: -1.633 V, Current: -1.12 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -1211, -633, 0, 0, 0, 416, 0, 0, 0)
+##############################################################################
+Image nr: 6 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 12:50:9
+Size: 500 by 500 Angstrom (xsize, ysize)
+Position: -1498, -1514 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 42.29 s
+Bias: -1.633 V, Current: -1.18 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -1644, -544, 0, 0, 0, 416, 0, 0, 0)
+##############################################################################
+Image nr: 7 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 12:51:8
+Size: 500 by 500 Angstrom (xsize, ysize)
+Position: -998, -1514 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 43.43 s
+Bias: -1.633 V, Current: -1.16 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -1767, -556, 0, 0, 0, 416, 0, 0, 0)
+##############################################################################
+Image nr: 8 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 12:54:39
+Size: 1000 by 1000 Angstrom (xsize, ysize)
+Position: 1004, -1514 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 60.64 s
+Bias: -1.904 V, Current: -1.15 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -3400, -933, 0, 0, 0, 501, 0, 0, 0)
+##############################################################################
+Image nr: 9 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 12:57:3
+Size: 1000 by 1000 Angstrom (xsize, ysize)
+Position: 1004, -499 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 60.64 s
+Bias: -1.904 V, Current: -1.17 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -3122, -900, 0, 0, 0, 501, 0, 0, 0)
+##############################################################################
+Image nr: 10 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 12:59:42
+Size: 1000 by 1000 Angstrom (xsize, ysize)
+Position: 1004, 904 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 61.35 s
+Bias: -1.401 V, Current: -1.12 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -3400, 2367, 0, 0, 0, 501, 0, 0, 0)
+##############################################################################
+Image nr: 11 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 13:3:38
+Size: 1000 by 1000 Angstrom (xsize, ysize)
+Position: -209, 2510 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 60.67 s
+Bias: -1.633 V, Current: -1.16 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -3078, -1556, 0, 0, 0, 363, 0, 0, 0)
+##############################################################################
+Image nr: 12 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 13:5:9
+Size: 1000 by 1000 Angstrom (xsize, ysize)
+Position: -1213, 2515 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 60.62 s
+Bias: -1.633 V, Current: -1.28 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -3422, -778, 0, 0, 0, 363, 0, 0, 0)
+##############################################################################
+Image nr: 13 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 13:6:42
+Size: 1000 by 1000 Angstrom (xsize, ysize)
+Position: -2204, 2515 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 60.64 s
+Bias: -1.633 V, Current: -1.44 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -3100, -1022, 0, 0, 0, 363, 0, 0, 0)
+##############################################################################
+Image nr: 14 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 13:8:17
+Size: 1000 by 1000 Angstrom (xsize, ysize)
+Position: -2204, 1497 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 60.64 s
+Bias: -1.633 V, Current: -1.15 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -3178, -1011, 0, 0, 0, 363, 0, 0, 0)
+##############################################################################
+Image nr: 15 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 13:8:17
+Size: 1000 by 1000 Angstrom (xsize, ysize)
+Position: -2204, 1497 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 60.64 s
+Bias: -1.633 V, Current: -1.15 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -3178, -1011, 0, 0, 0, 363, 0, 0, 0)
+##############################################################################
+Image nr: 16 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 13:11:30
+Size: 1000 by 1000 Angstrom (xsize, ysize)
+Position: -2219, 3018 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 60.73 s
+Bias: -1.633 V, Current: -1.45 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -3111, -856, 0, 0, 0, 363, 0, 0, 0)
+##############################################################################
+Image nr: 17 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 13:14:54
+Size: 2000 by 2000 Angstrom (xsize, ysize)
+Position: -166, 3008 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 152.65 s
+Bias: -1.489 V, Current: -1.28 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -6511, -2367, 0, 0, 0, 536, 0, 0, 0)
+##############################################################################
+Image nr: 18 size: 4097 bytes
+Resolution: 512 by 512 pixel (xch, ych)
+Recorded: 2006-5-24 13:24:16
+Size: 2000 by 2000 Angstrom (xsize, ysize)
+Position: 3998, 3342 Angstrom (xshift, yshift)
+zscale: 5 V, tilt: 0 Scan duration: 152.31 s
+Bias: -2.403 V, Current: -1.28 nA
+Sample: MoS2/Au(111)  [Jane]
+Title: as 22_14_30
+postpr 3 postd1 0 constheight 0 Currfac 1 R_Nr 0 unitnr 14 version 20
+spare: (0, 0, 0, 0, 0, 0, 0, -6222, -2456, 0, 0, 0, 407, 0, 0, 0)

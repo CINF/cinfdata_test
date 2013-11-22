@@ -1,0 +1,107 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+
+  <graph type='multidateplot'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <!-- Chamber pressure -->
+    <dateplot1>
+      <title>Chamber pressure</title>
+      <legend>Chamber pressure</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_sputterchamber_iongauge where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <!-- QCM Frequency -->
+    <dateplot2>
+      <title>QCM Frequency</title>
+      <legend>QCM Frequency</legend>
+      <query>SELECT unix_timestamp(time), value FROM sputterchamber_qcm_frequency where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Frequency / Hz</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <!-- QCM Thickness -->
+    <dateplot3>
+      <title>QCM Thickness</title>
+      <legend>QCM Thickness</legend>
+      <query>SELECT unix_timestamp(time), value FROM sputterchamber_qcm_thickness where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Thickness / kÅ</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <!-- QCM Crystal Life -->
+    <dateplot4>
+      <title>QCM Crystal Life</title>
+      <legend>QCM Crystal Life</legend>
+      <query>SELECT unix_timestamp(time), value FROM sputterchamber_qcm_crystal_life where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Life / %</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+
+    <!-- data treatment -->
+    <as_function_of>
+      <gui>As function of T</gui>
+      <column>mass_label</column>
+      <reg_match>.*emperature</reg_match>
+      <xlabel>Temperature / C</xlabel>
+    </as_function_of>
+    <linscale_x0>
+      <gui>X-axis in hours</gui>
+      <xlabel_addition>convert to hours</xlabel_addition>
+      <!-- 1/3600 -->
+      <a>0.0002777777777777778</a>
+      <b>0</b>
+    </linscale_x0>
+    <linscale_x1>
+      <gui>X-axis C->K</gui>
+      <xlabel_addition>C->K</xlabel_addition>
+      <a>1</a>
+      <b>273.15</b>
+    </linscale_x1>
+    <linscale_right_y0>
+      <gui>Right Y-axis C->K</gui>
+      <ylabel_addition>C->K</ylabel_addition>
+      <a>1</a>
+      <b>273.15</b>
+    </linscale_right_y0>
+  </graph>
+
+  <global_settings>
+    <measurements_table>measurements_sputterchamber</measurements_table>
+    <xyvalues_table>xy_values_sputterchamber</xyvalues_table>
+    <sql_username>sputterchamber</sql_username>
+    <label_column>mass_label</label_column>
+    <image_format>png</image_format>
+    <mandatory_export_fields>
+      <field0>
+	<field>id</field>
+	<name>Id</name>
+      </field0>
+      <field1>
+	<field>type</field>
+	<name>Type</name>
+      </field1>
+      <field2>
+	<field>time</field>
+	<name>Recorded at</name>
+      </field2>
+      <field3>
+	<field>Comment</field>
+	<name>Comment</name>
+      </field3>
+    </mandatory_export_fields>
+  </global_settings>
+</graphs>
+

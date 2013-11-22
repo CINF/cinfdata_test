@@ -1,0 +1,251 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+
+  <!-- HALL OVERVIEW -->
+  <graph type='hall_overview'>
+    <query>SELECT unix_timestamp(time), temperature FROM temperature_hall where time between "{from}" and "{to}" order by time</query>
+    <!--<query1>SELECT unix_timestamp(time), temperature FROM temperature_stm312 where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query1>-->
+    <ordering>left|red</ordering>
+    <ylabel>Temperature / C</ylabel>
+    <right_ylabel>Temperature / C</right_ylabel>
+    <title>Temperature in the STM 312 chamber</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>lin</default_yscale>
+    <right_yscale>lin</right_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- STM312 OVERVIEW -->
+  <graph type='stm312_overview'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_stm312 where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), temperature FROM temperature_stm312 where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query1>
+    <ordering>left|blue,right|red</ordering>
+    <ylabel>Pressure / Torr</ylabel>
+    <right_ylabel>Temperature / C</right_ylabel>
+    <title>Pressure and temperature in the STM 312 chamber</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>log</default_yscale>
+    <right_yscale>lin</right_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- VOLVO OVERVIEW -->
+  <graph type='volvo_overview'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_volvo where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), temperature FROM temperature_volvo where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query1>
+    <ordering>left|blue,right|red</ordering>
+    <ylabel>Pressure / mbar</ylabel>
+    <right_ylabel>Temperature / C</right_ylabel>
+    <title>Pressure and temperature in the Volvo</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>log</default_yscale>
+    <right_yscale>lin</right_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- BIFROST OVERVIEW -->
+  <graph type='bifrost_overview'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_bifrost where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), temperature FROM heating_data_bifrost where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query1>
+    <ordering>left|blue,right|red</ordering>
+    <ylabel>Pressure / Torr</ylabel>
+    <right_ylabel>Temperature / C</right_ylabel>
+    <title>Pressure and temperature in Bifrost</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>log</default_yscale>
+    <right_yscale>lin</right_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- MICROREACTOR OVERVIEW -->
+  <graph type='microreactor_overview'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactor where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), temperature FROM temperature_microreactor where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query1>
+    <ordering>left|blue,right|red</ordering>
+    <ylabel>Pressure / mbar</ylabel>
+    <right_ylabel>Temperature / C</right_ylabel>
+    <title>Pressure and temperature in the microreactor</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>log</default_yscale>
+    <right_yscale>lin</right_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- MICROREACTOR PRESSURE OVERVIEW -->
+  <graph type='microreactor_pressure_overview'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactor_pirani_buffervolume where time between "{from}" and "{to}" order by time</query>
+    <ordering>left|blue,right|red</ordering>
+    <ylabel>Pressure / mbar</ylabel>
+    <right_ylabel>Temperature / C</right_ylabel>
+    <title>Pressure and temperature in the microreactor</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>log</default_yscale>
+    <right_yscale>lin</right_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- MICROREACTORNG OVERVIEW -->
+  <graph type='microreactorNG_overview'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactorNG where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), temperature FROM temperature_microreactorNG where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query1>
+    <ordering>left|blue,right|red</ordering>
+    <ylabel>Pressure / mbar</ylabel>
+    <right_ylabel>Temperature / C</right_ylabel>
+    <title>Pressure and temperature in the microreactorNG</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>log</default_yscale>
+    <right_yscale>lin</right_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- MICROREACTORNG PRESSURE OVERVIEW -->
+  <graph type='microreactorNG_pressure_overview'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactorNG_pirani_buffervolume where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), pressure FROM pressure_microreactorNG_pirani_samplecontainer where time between "{from}" and "{to}" order by time</query1>
+    <ordering>left|blue,right|red</ordering>
+    <ylabel>Pressure / mbar</ylabel>
+    <right_ylabel>Temperature / C</right_ylabel>
+    <title>Pressure and temperature in the microreactor</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>log</default_yscale>
+    <right_yscale>lin</right_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- MASSSPECTRUM -->
+  <graph type='microreactorNG_massspectrum'>
+    <query>SELECT x,y  FROM xy_values_microreactorNG where measurement = 500 order by id</query>
+    <type>4</type>
+    <xlabel>Mass / amu</xlabel>
+    <ylabel>SEM current / A</ylabel>
+    <title>Mass Spectrum</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_xscale>lin</default_xscale>
+    <default_yscale>lin</default_yscale>
+  </graph>
+
+  <!-- OMICRON ANA OVERVIEW -->
+  <graph type='omicron_ana_overview'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_omicron_ana where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), pressure FROM pressure_omicron_nanobeam where time between "{from}" and "{to}" order by time</query1>
+    <ordering>left|blue,right|red</ordering>
+    <ylabel>Pressure / Torr</ylabel>
+    <right_ylabel>Temperature / C</right_ylabel>
+    <title>Pressure and temperature in Omicron Ana.</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>log</default_yscale>
+    <right_yscale>lin</right_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- OMICRON PREP OVERVIEW -->
+  <graph type='omicron_prep_overview'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_omicron_prep where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), temperature FROM temperature_omicron where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query1>
+    <ordering>left|blue,right|red</ordering>
+    <ylabel>Pressure / Torr</ylabel>
+    <right_ylabel>Temperature / C</right_ylabel>
+    <title>Pressure and temperature in Omicron Ana.</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>log</default_yscale>
+    <right_yscale>lin</right_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- UPS POWER OVERVIEW -->
+  <graph type='UPS_power_overview'>
+    <query>SELECT unix_timestamp(time), value FROM ups_WPh1 where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), value FROM ups_WPh2 where time between "{from}" and "{to}" order by time</query1>
+    <query2>SELECT unix_timestamp(time), value FROM ups_WPh3 where time between "{from}" and "{to}" order by time</query2>
+    <ordering>left|blue,left|red,left|green</ordering>
+    <ylabel>Power / W</ylabel>
+    <right_ylabel>Power / W</right_ylabel>
+    <title>Power drawn from the UPS</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>lin</default_yscale>
+    <right_yscale>lin</right_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- UPS CURRENT OVERVIEW -->
+  <graph type='UPS_current_overview'>
+    <query>SELECT unix_timestamp(time), value FROM ups_currentPh1 where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), value FROM ups_currentPh2 where time between "{from}" and "{to}" order by time</query1>
+    <query2>SELECT unix_timestamp(time), value FROM ups_currentPh3 where time between "{from}" and "{to}" order by time</query2>
+    <ordering>left|blue,left|red,left|green</ordering>
+    <ylabel>Voltage / V</ylabel>
+    <!--<right_ylabel>Power / W</right_ylabel>-->
+    <title>Output current from the UPS</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>lin</default_yscale>
+    <!--<right_yscale>lin</right_yscale>-->
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- UPS VOLTAGE OVERVIEW -->
+  <graph type='UPS_voltage_overview'>
+    <query>SELECT unix_timestamp(time), value FROM ups_voltagePh1 where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), value FROM ups_voltagePh2 where time between "{from}" and "{to}" order by time</query1>
+    <query2>SELECT unix_timestamp(time), value FROM ups_voltagePh3 where time between "{from}" and "{to}" order by time</query2>
+    <ordering>left|blue,left|red,left|green</ordering>
+    <ylabel>Voltage / V</ylabel>
+    <!--<right_ylabel>Power / W</right_ylabel>-->
+    <title>Output voltage from the UPS</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>lin</default_yscale>
+    <!--<right_yscale>lin</right_yscale>-->
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- UPS VOLTAGE kVA OVERVIEW -->
+  <graph type='UPS_voltage_kVA_overview'>
+    <query>SELECT unix_timestamp(time), value FROM ups_kVAPh1 where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), value FROM ups_kVAPh2 where time between "{from}" and "{to}" order by time</query1>
+    <query2>SELECT unix_timestamp(time), value FROM ups_kVAPh3 where time between "{from}" and "{to}" order by time</query2>
+    <ordering>left|blue,left|red,left|green</ordering>
+    <ylabel>Voltage / V</ylabel>
+    <!--<right_ylabel>Power / W</right_ylabel>-->
+    <title>kVA from the UPS</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>lin</default_yscale>
+    <!--<right_yscale>lin</right_yscale>-->
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- UPS VOLTAGE INPUT OVERVIEW -->
+  <graph type='UPS_voltage_input_overview'>
+    <query>SELECT unix_timestamp(time), value FROM ups_voltage1NormalInput where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), value FROM ups_voltage2NormalInput where time between "{from}" and "{to}" order by time</query1>
+    <query2>SELECT unix_timestamp(time), value FROM ups_voltage3NormalInput where time between "{from}" and "{to}" order by time</query2>
+    <ordering>left|blue,left|red,left|green</ordering>
+    <ylabel>Voltage / V</ylabel>
+    <!--<right_ylabel>Power / W</right_ylabel>-->
+    <title>Input voltage to the UPS</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>lin</default_yscale>
+    <!--<right_yscale>lin</right_yscale>-->
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- UPS FREQUENCY AND BATTERY TEMPERATURE OVERVIEW -->
+  <graph type='UPS_freq_batt_temp_overview'>
+    <query>SELECT unix_timestamp(time), value FROM ups_frequencyNormalInput where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), value FROM ups_batteryTemperatureLevel where time between "{from}" and "{to}" order by time</query1>
+    <ordering>left|blue,right|red</ordering>
+    <ylabel>Voltage / V</ylabel>
+    <!--<right_ylabel>Power / W</right_ylabel>-->
+    <title>Net freqency and battery temperature</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>lin</default_yscale>
+    <right_yscale>lin</right_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+  
+  <global_settings>
+    <chamber_name>cinf_common</chamber_name>
+    <!-- These tables obviusely don't exist. Setting them to non-existing values just makes it easier to trouble shoot if they are actually used somewhere as table names where they shouldn't -->
+    <measurements_table>measurements_cinf_common</measurements_table>
+    <xyvalues_table>xy_values_cinf_common</xyvalues_table>
+  </global_settings>
+</graphs>
+

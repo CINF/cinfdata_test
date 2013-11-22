@@ -1,0 +1,38 @@
+<?xml version='1.0' standalone='yes'?>
+
+<graphs>
+  <!-- PRESSURE_XRDGAS_ASG -->
+  <graph type='pressure_asg'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_xrdgas_asg where time between "{from}" and "{to}" order by time</query>
+    <ylabel>Pressure / mbar</ylabel>
+    <title>Pressure asg</title>
+    <default_yscale>log</default_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- PRESSURE_XRDGAS_WRG -->
+  <graph type='pressure_wrg'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_xrdgas_wrg where time between "{from}" and "{to}" order by time</query>
+    <ylabel>Pressure / mbar</ylabel>
+    <title>Pressure wrg</title>
+    <default_yscale>log</default_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <!-- PRESSURE_XRDGAS_WRGMS -->
+  <graph type='pressure_wrgms'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_xrdgas_wrgms where time between "{from}" and "{to}" order by time</query>
+    <ylabel>Pressure / mbar</ylabel>
+    <title>Pressure wrgms</title>
+    <default_yscale>log</default_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <global_settings>
+    <measurements_table>none</measurements_table>
+    <xyvalues_table>none</xyvalues_table>
+    <chamber_name>xrd</chamber_name>
+    <sql_username>xrd</sql_username>
+  </global_settings>
+</graphs>
+

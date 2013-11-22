@@ -1,0 +1,56 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+  
+
+  <!-- TURBO TEMPERATURES -->
+  <graph type='backingpressure'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_oldclustersource_rough_aggregationzone where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), pressure FROM pressure_oldclustersource_rough_quadropole where time between "{from}" and "{to}" order by time</query1>
+    <query2>SELECT unix_timestamp(time), pressure FROM pressure_oldclustersource_rough_loadlock where time between "{from}" and "{to}" order by time</query2>
+    <ordering>left|green,left|blue,left|red</ordering>
+    <ylabel>Pressure / mbar</ylabel>
+    <title>Rouging pressure
+(Aggregation, green; Quadropole, blue;loadlock, red)</title>
+    <default_yscale>log</default_yscale>
+    <default_xscale>dat</default_xscale>
+    <image_format>pdf</image_format>
+  </graph>
+
+
+
+  <!-- MASSSPECTRUM -->
+  <graph type='clusterdeposition'>
+    <query>SELECT x,y  FROM xy_values_oldclustersource where measurement = {id} order by id</query>
+    <offset_query>SELECT min(y) FROM xy_values_oldclustersource where measurement = {id}</offset_query>
+    <type>10</type>
+    <xlabel>Mass / amu</xlabel>
+    <ylabel>SEM current / A</ylabel>
+    <title>Mass Spectrum</title>
+    <default_xscale>lin</default_xscale>
+    <default_yscale>lin</default_yscale>
+  </graph>
+
+  <graph type='temperatures'>
+    <query>SELECT unix_timestamp(time), temperature FROM temperature_oldclustersource_manifold_inlet where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), temperature FROM temperature_oldclustersource_manifold_outlet where time between "{from}" and "{to}" order by time</query1>
+    <query2>SELECT unix_timestamp(time), temperature FROM temperature_oldclustersource_magnetron_inlet where time between "{from}" and "{to}" order by time</query2>
+    <query3>SELECT unix_timestamp(time), temperature FROM temperature_oldclustersource_magnetron_outlet where time between "{from}" and "{to}" order by time</query3>
+    <query4>SELECT unix_timestamp(time), temperature FROM temperature_oldclustersource where time between "{from}" and "{to}" order by time</query4>
+    <ylabel>Temperature / C</ylabel>
+    <title>Turbo temperatures, Green (manifold, inlet)
+blue (manifold, outlet), red (magnetron, inlet), 
+orange (magnetron, outlet), purple (atmosphere)</title>
+    <ordering>left|green,left|blue,left|red,left|orange,left|purple</ordering>
+    <default_yscale>lin</default_yscale>
+    <default_xscale>dat</default_xscale>
+    <image_format>png</image_format>
+  </graph>
+
+  <global_settings>
+    <measurements_table>measurements_oldclustersource</measurements_table>
+    <xyvalues_table>xy_values_oldclustersource</xyvalues_table>
+    <chamber_name>oldclustersource</chamber_name>
+    <sql_username>oldclustersource</sql_username>
+  </global_settings>
+</graphs>
+    

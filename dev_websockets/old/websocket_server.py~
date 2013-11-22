@@ -1,0 +1,4 @@
+#!/usr/bin/env python2
+
+""" Websocket server for servcinf """
+

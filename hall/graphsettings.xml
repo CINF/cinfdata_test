@@ -1,0 +1,15 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+  <!-- TEMPERATURE -->
+  <graph type='temperature'>
+    <query>SELECT unix_timestamp(time), temperature FROM temperature_hall where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query>
+    <ylabel>Temperature / C</ylabel>
+    <title>Temperature in the experimental hall</title>
+    <default_yscale>lin</default_yscale>
+    <default_xscale>dat</default_xscale>
+  </graph>
+  
+  <global_settings>
+    <chamber_name>Hall</chamber_name>
+  </global_settings>
+</graphs>

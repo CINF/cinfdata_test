@@ -1,0 +1,4 @@
+$db = mysql_connect("localhost", "root", "CINF123");  
+if ( $db == "" ) { echo " DB Connection error...\r\n"; exit(); }  
+   
+mysql_select_db("mydatabase",$db);  
