@@ -139,7 +139,7 @@
     <as_function_of>
       <gui>As function of T</gui>
       <column>mass_label</column>
-      <reg_match>RTD temperature</reg_match>
+      <reg_match>Temperature 5</reg_match>
       <xlabel>Temperature / C</xlabel>
     </as_function_of>
     <diff_left_y>
