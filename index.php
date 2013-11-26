@@ -309,7 +309,7 @@
           <td>
            <a href="javascript:toggle('gasmonitor')"><h2>Gasmonitor</h2></a></td><td>
            <a href="javascript:toggle('chillers')"><h2>Chillers</h2></a></td><td>
-           <a href=""></a></td><td>
+           <a href="javascript:toggle('booking')"><h2>Booking</h2></a></td><td>
           </td>
          </tr>
          <tr>
@@ -326,6 +326,9 @@
               <li><a href="chillers/dateplot.php?type=multidateplot_sputterchamber&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&right_plotlist[]=4&right_plotlist[]=5&right_ymin=0&right_ymax=0">Chiller Sputterchamber</a></li>
           </td>
           <td>
+           <ul id="booking" style="display:none"> 
+              <li><a href="booking/b307.php">Building 307</a></li>
+	   </ul>
           </td>
          </tr>
         </table>
