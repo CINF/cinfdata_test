@@ -24,7 +24,7 @@ function file_element($file){
 }
 
 function byteFormat($bytes, $unit = "", $decimals = 2) {
-  # Borrowed code
+  # Borrowed from http://www.if-not-true-then-false.com/2009/format-bytes-with-php-b-kb-mb-gb-tb-pb-eb-zb-yb-converter/
   $units = array('B' => 0, 'KB' => 1, 'MB' => 2, 'GB' => 3, 'TB' => 4, 
 		 'PB' => 5, 'EB' => 6, 'ZB' => 7, 'YB' => 8);
  
