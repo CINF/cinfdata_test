@@ -94,6 +94,24 @@ function weed($str){
  */
 
 function html_header(){
+  if(date("n") != "12"){
+    $header = html_header_normal();
+  } else {
+    $header = html_header_x();
+  }
+  return $header;
+}
+
+function html_footer(){
+  if(date("n") != "12"){
+    $footer = html_footer_normal();
+  } else {
+    $footer = html_footer_x();
+  }
+  return $footer;
+}
+
+function html_header_normal(){
 
   $header = "";
   $header = $header . "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n";
@@ -143,7 +161,7 @@ function header_v2(){
   return($header);
 }
 
-function html_footer(){
+function html_footer_normal(){
   $footer = "";
   $footer = $footer . "      </div>\n";
   $footer = $footer . "      <div class=\"copyright\">...</div>\n";
@@ -174,6 +192,64 @@ function html_code_header($file){
     $header = $header . "</div>\n";
     return($header);
 }
+
+function html_header_x(){
+  $files = Array();
+  if ($handle = opendir('../images/xmas-shift')) {
+    while (false !== ($entry = readdir($handle))) {
+      if ($entry != "." && $entry != "..") {
+	$files[] = $entry;
+      }
+    }
+    closedir($handle);
+  }
+  
+  $rand_img = $files[array_rand($files)];
+
+  $header = "";
+  $header = $header . "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n";
+  $header = $header . "<html>\n";
+  $header = $header . "  <head>\n";
+  $header = $header . "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n";
+  $header = $header . "    <title>CINF data logging</title>\n";
+  $header = $header . "    <link rel=\"StyleSheet\" href=\"../css/style.css\" type=\"text/css\" media=\"screen\">\n";
+  $header = $header . "    <script type=\"text/javascript\" src=\"dygraph/dygraph-dev.js\"></script>\n";
+  $header = $header . "    <script type=\"text/javascript\" src=\"../js/update.js\"></script> \n";
+  $header = $header . "    <script type=\"text/javascript\" src=\"../js/toogle.js\"></script>\n";
+  $header = $header . "  </head>\n";
+  $header = $header . "  <body>\n";
+  $header = $header . "    <div class=\"container\">\n";
+  $header = $header . "    <div class=\"caption_alt\">\n";
+#  $header = $header . "      <img src=\"../images/fir_branch_with_cones.png\" height=\"42\" width=\"42\">\n";
+  $header = $header . "      Data viewer\n";
+  $header = $header . "      <a href=\"/\"><img class=\"logo_alt\" src=\"../images/cinf_logo_beta_greek.png\" alt=\"CINF data viewer\"></a>\n";
+  $header = $header . "        <div class=\"header_utilities\">\n";
+  $header = $header . "          <a class=\"header_links\" href=\"https://cinfwiki.fysik.dtu.dk/cinfwiki/Software/DataWebPageUserDocumentation\">Help</a><br>\n";
+  $header = $header . "          <a class=\"header_links\" href=\"test_configuration_file.php\">Config</a>\n";
+  $header = $header . "        </div>\n";
+  $header = $header . "        <div class=\"header_decorations_shift\">\n";
+  $header = $header . "        <img class=\"header_img_shift\" src=\"../images/xmas-shift/{$rand_img}\" title=\"Merry Christmas\" alt=\"CINF data viewer\">\n";
+  $header = $header . "        </div>\n";
+  $header = $header . "        <div class=\"header_decorations_static\">\n";
+  $header = $header . "        <img class=\"edition\" src=\"../images/xmas_edition.png\" alt=\"Merry Christmas\">\n";
+  $header = $header . "        </div>\n";
+  $header = $header . "    </div>\n";
+  $header = $header . "    <div class=\"plotcontainer\">\n";
+
+  return($header);
+}
+
+
+function html_footer_x(){
+  $footer = "";
+  $footer = $footer . "      </div>\n";
+  $footer = $footer . "      <div class=\"copyright_decorations\"></div>\n";
+  $footer = $footer . "    </div>\n";
+  $footer = $footer . "  </body>\n";
+  $footer = $footer . "</html>\n";
+  return($footer);
+}
+
 
 function indent($level, $str){
   foreach (explode("\n", $str) as $line){

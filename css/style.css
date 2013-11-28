@@ -63,6 +63,19 @@ img.matplotlib{
 	height:30px;
 }
 
+.copyright_decorations{
+	background:#0C5DA5;
+	background-image: url(../images/christmas-balls-40.png);
+	background-repeat: repeat-x;
+	background-position: left;
+	background-size:auto 30px;
+	color:#FFFFFF;
+	font-size:16px;
+	text-align:center;
+	font-weight:bold;
+	height:30px;
+}
+
 
 table.generaloptions,table.selection,.additionalinfo{
 	border-width: 2px;
@@ -118,6 +131,18 @@ table.frontpage ul {
 	font-size: 32px;
 }
 
+.caption_alt{
+	background:#0C5DA5;
+	background-image: url(../images/fir_branch_with_cones.png), url(../images/fir_branch_with_cones_right.png);
+	background-repeat: no-repeat, no-repeat;
+	background-position: left, right;
+	background-size:80px, 80px;
+	padding: 10px 10px 10px 80px;
+	color:#FFFFFF;
+	font-weight:bold;
+	font-size: 32px;
+}
+
 .logo{
 	position:relative;
 	margin-right:0px;
@@ -125,11 +150,48 @@ table.frontpage ul {
 	height:40px;
 }
 
+.logo_alt{
+	position:relative;
+	margin-right:75px;
+	float:right;
+	height:40px;
+}
+
+.header_img_shift{
+    margin:0px 0px 0px 0px;
+    position:relative;
+    float:right;
+    height:45px;
+}
+
 .header_utilities{
 	position:relative;
 	margin-right: 20px;
 	float:right;
 	font-size:16px;
+}
+
+.header_decorations_shift{
+	position:relative;
+	margin: 0px 40px 0px 0px;
+	float:right;
+	font-size:16px;
+	width:100px;
+	height:40px;
+}
+
+.header_decorations_static{
+	position:relative;
+	margin-right: 110px;
+	float:right;
+	font-size:16px;
+}
+
+.edition{
+	position:relative;
+	margin-right:10px;
+	float:right;
+	height: 40px;
 }
 
 a.header_links:link,a.header_links:visited{
