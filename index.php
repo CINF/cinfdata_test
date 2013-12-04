@@ -1,28 +1,27 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
-  <head><title>CINF data logging</title>
-<!--    <link rel="StyleSheet" href="css/screen.css" type="text/css" media="screen" />-->
-    <link rel="StyleSheet" href="css/style.css" type="text/css" media="screen" />
+<?php
+  /*
+    Copyright (C) 2012 Robert Jensen, Thomas Andersen and Kenneth Nielsen
+    
+    The CINF Data Presentation Website is free software: you can
+    redistribute it and/or modify it under the terms of the GNU
+    General Public License as published by the Free Software
+    Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    The CINF Data Presentation Website is distributed in the hope
+    that it will be useful, but WITHOUT ANY WARRANTY; without even
+    the implied warranty of MERCHANTABILITY or FITNESS FOR A
+    PARTICULAR PURPOSE.  See the GNU General Public License for more
+    details.
+    
+    You should have received a copy of the GNU General Public License
+    along with The CINF Data Presentation Website.  If not, see
+    <http://www.gnu.org/licenses/>.
+  */
 
-    <script type="text/javascript">
-     function toggle(list){ 
-     var listElementStyle=document.getElementById(list).style;
-      if (listElementStyle.display=="none"){ 
-        listElementStyle.display="block"; 
-      }
-      else{listElementStyle.display="none"; 
-      } 
-     }
-    </script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="caption">Data logged at CINF
-       <img class="logo" src="images/cinf_logo_beta_greek.png">
-       <div class="header_utilities">
-         <a class="header_links" href="https://cinfwiki.fysik.dtu.dk/cinfwiki/Software/DataWebPageUserDocumentation">Help</a><br>
-       </div>
-      </div>
+include("common_functions_v2.php");
+echo(html_header($root="", $title="Data logged at CINF"));
+?>
         <table class="frontpage">
           <tr>
            <td>      
@@ -332,9 +331,6 @@
           </td>
          </tr>
         </table>
-      <div class="next"></div>
-      <div class="copyright">...</div>
-    </div>
-    
-  </body>
-</html>
+<?php
+echo(html_footer());
+?>

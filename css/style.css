@@ -176,13 +176,13 @@ table.frontpage ul {
 	margin: 0px 40px 0px 0px;
 	float:right;
 	font-size:16px;
-	width:100px;
+	width:60px;
 	height:40px;
 }
 
 .header_decorations_static{
 	position:relative;
-	margin-right: 110px;
+	margin-right: 10px;
 	float:right;
 	font-size:16px;
 }
