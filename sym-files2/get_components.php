@@ -20,6 +20,7 @@
   */
 
 include("../common_functions.php");
+date_default_timezone_set("Europe/Copenhagen");
 include("graphsettings.php");
 $db = std_db();
 

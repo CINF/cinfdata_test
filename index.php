@@ -192,8 +192,8 @@
           </td>
           <td>
            <ul id="tower" style="display:none">
-	    <li><a href="tower/read_dateplot.php?type=pressure">Pressure</a></li>
-	    <li><a href="tower/read_plot_group.php?type=deposition">Deposition</a></li>
+	    <li><a href="tower/dateplot.php?type=pressure&left_plotlist%5B%5D=1&left_logscale=checked">Pressure</a></li>
+	    <li><a href="tower/xyplot.php?type=deposition">Deposition</a></li>
 	   </ul>
           </td>
           <td>

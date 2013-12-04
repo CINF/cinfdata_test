@@ -1,36 +1,99 @@
 <?xml version='1.0' standalone='yes'?>
 <graphs>
 
-  <!-- PRESSURE -->
+  <!-- MULTI DATEPLOT -->
   <graph type='pressure'>
-    <query>SELECT unix_timestamp(time), pressure FROM pressure_tower where time between "{from}" and "{to}" order by time</query>
-    <ylabel>Pressure / mbar</ylabel>
-    <title>Pressure in the tower</title>
-    <default_yscale>log</default_yscale>
     <default_xscale>dat</default_xscale>
-    <small_fig_settings>figure.figsize:[4,3.0]|xtick.labelsize:small|ytick.labelsize:small</small_fig_settings>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <image_format>pdf</image_format>
+    <!-- Fall back settings -->
+    <title>Pressure in the tower</title>
+    <ylabel>Pressure / mbar</ylabel>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+    </dygraph_settings>
+
+    <!-- PRESSURE -->
+    <dateplot1>
+      <title>Pressure in the tower</title>
+      <legend>Pressure</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_tower where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>1</color>
+    </dateplot1>
   </graph>
- 
+
   <!-- DEPOSITION -->
   <graph type='deposition'>
-    <query>SELECT x/1000,y*100  FROM xy_values_tower where measurement = {id} order by id</query>
-    <type>9</type>
-    <image_format>pdf</image_format>
-    <xlabel>Time / s</xlabel>
-    <ylabel>Thickness / nm</ylabel>
-    <title>Deposition</title>
-    <right_y_axis_field_name>mass_label</right_y_axis_field_name>
-    <right_y_axis_field_value>Frequency</right_y_axis_field_value>
-    <right_yscale>lin</right_yscale>
-    <right_ylabel>Frequency / Hz</right_ylabel>
     <default_xscale>lin</default_xscale>
-    <default_yscale>lin</default_yscale>
-    <legend_field_name>mass_label</legend_field_name>
+    <type>9</type>
+    <xlabel>Time / s</xlabel>
+    <title>Deposition</title>
+    <grouping_column>time</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- dygraph -->
+    <dygraph_settings>
+      <labels_newline>true</labels_newline>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x/1000,y*100  FROM xy_values_tower where measurement = {id} order by id</default>
+      <column>mass_label</column>
+    </queries>
+    <!-- ylabel -->
+    <ylabel>
+      <default>Mixed units</default>
+      <column>mass_label</column>
+      <pattern0>
+        <reg_match>^Thickness.*$</reg_match>
+        <ylabel>Thickness / nm</ylabel>
+      </pattern0>
+      <pattern1>
+        <reg_match>^Frequency.*$</reg_match>
+        <ylabel>Frequency / Hz</ylabel>
+      </pattern1>
+    </ylabel>
+    <!-- legend -->
+    <legend>
+      <default>{mass_label}</default>
+      <column>mass_label</column>
+      <pattern0>
+        <reg_match>^Thickness.*$</reg_match>
+        <legend>Thick. {id}</legend>
+      </pattern0>
+      <pattern1>
+        <reg_match>^Frequency.*$</reg_match>
+        <legend>Freq. {id}</legend>
+      </pattern1>
+    </legend>
   </graph>
     
   <global_settings>
     <measurements_table>measurements_tower</measurements_table>
     <xyvalues_table>xy_values_tower</xyvalues_table>
-    <chamber_name>tower</chamber_name>
+    <sql_username>tower</sql_username>
+    <image_format>png</image_format>
+    <label_column>mass_label</label_column>
+    <mandatory_export_fields>
+      <field0>
+        <field>id</field>
+        <name>Id</name>
+      </field0>
+      <field1>
+        <field>type</field>
+        <name>Type</name>
+      </field1>
+      <field2>
+	<field>time</field>
+	<name>Recorded at</name>
+      </field2>
+      <field3>
+	<field>comment</field>
+	<name>Comment</name>
+      </field3>
+    </mandatory_export_fields>
   </global_settings>
 </graphs>
