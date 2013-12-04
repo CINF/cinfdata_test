@@ -1,0 +1,36 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+
+  <!-- PRESSURE -->
+  <graph type='pressure'>
+    <query>SELECT unix_timestamp(time), pressure FROM pressure_tower where time between "{from}" and "{to}" order by time</query>
+    <ylabel>Pressure / mbar</ylabel>
+    <title>Pressure in the tower</title>
+    <default_yscale>log</default_yscale>
+    <default_xscale>dat</default_xscale>
+    <small_fig_settings>figure.figsize:[4,3.0]|xtick.labelsize:small|ytick.labelsize:small</small_fig_settings>
+  </graph>
+ 
+  <!-- DEPOSITION -->
+  <graph type='deposition'>
+    <query>SELECT x/1000,y*100  FROM xy_values_tower where measurement = {id} order by id</query>
+    <type>9</type>
+    <image_format>pdf</image_format>
+    <xlabel>Time / s</xlabel>
+    <ylabel>Thickness / nm</ylabel>
+    <title>Deposition</title>
+    <right_y_axis_field_name>mass_label</right_y_axis_field_name>
+    <right_y_axis_field_value>Frequency</right_y_axis_field_value>
+    <right_yscale>lin</right_yscale>
+    <right_ylabel>Frequency / Hz</right_ylabel>
+    <default_xscale>lin</default_xscale>
+    <default_yscale>lin</default_yscale>
+    <legend_field_name>mass_label</legend_field_name>
+  </graph>
+    
+  <global_settings>
+    <measurements_table>measurements_tower</measurements_table>
+    <xyvalues_table>xy_values_tower</xyvalues_table>
+    <chamber_name>tower</chamber_name>
+  </global_settings>
+</graphs>
