@@ -301,7 +301,7 @@ if ($matplotlib == 'checked'){
           <div id="list_measurements">
            <!--LIST OF MEASUREMENTS-->
 	       <b>Select measurement:</b><br>
-             <select id="measurement_select" name="chosen_group[]" multiple size="8" onChange="showData(this.value)">
+             <select id="measurement_select" name="chosen_group[]" multiple size="8" onChange="showData(this.value, <?php echo("'" . $type . "'"); ?>)">
               <?php
                 // Creation of measurement list
                 for($i=0;$i<count($datelist);$i++){
