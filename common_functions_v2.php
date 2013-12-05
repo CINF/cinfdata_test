@@ -14,10 +14,23 @@ function std_db($user = "cinf_reader"){
 }
 
 function single_sql_value($db,$query,$column){
-    $result  = mysql_query($query,$db);  
+    $result  = mysql_query($query,$db);
     $row = mysql_fetch_array($result);
     $value = $row[$column];
     return($value);
+}
+
+function latest_sql_row($db, $query){
+  // Returns the lastest row from the result of the query
+  if (strpos($query, " desc") == false){
+    $query .= " desc";
+  }
+  if (strpos($query, " limit ") == false){
+    $query .= " limit 1";
+  }
+  $result  = mysql_query($query, $db);
+  $row = mysql_fetch_array($result);
+  return($row);
 }
 
 function get_xy_values($query,$db,$offset=0){

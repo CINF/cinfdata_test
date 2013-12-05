@@ -21,29 +21,10 @@
 
 include("graphsettings.php");
 include("../common_functions_v2.php");
-
 $db = std_db();
 
 # Get the default to and from to populate fields in the GUI
 $xscale = date_xscale(0,0);
-
-$type = $_GET["type"];
-$settings = plot_settings($type,$xscale);
-
-# Get the latest measurement point and time. Only support for one plot!
-$dateplot_number = ($_GET["left_plotlist"][0]);
-$latest_value = single_sql_value($db, $settings["dateplot" . $dateplot_number]["query"] . " desc limit 1", 1);
-$latest_time = single_sql_value($db, $settings["dateplot" . $dateplot_number]["query"] . " desc limit 1", 0);
-
-
-# Make a list of the all the graphs in the multiplot definition
-$graphs = Array();
-foreach($settings as $key => $value){
-  # Regular expression matching the dateplotN tag (with minimum one N-digit)
-  if (preg_match("/^dateplot[0-9][0-9]*$/", $key)){
-    $graphs[$key] = $value;
-  }
-}
 
 # Remember settings after submitting
 $from              = isset($_GET["from"])               ? $_GET["from"]           : $xscale["from"];
@@ -58,6 +39,17 @@ $left_plotlist     = isset($_GET["left_plotlist"])      ? $_GET["left_plotlist"]
 $right_plotlist    = isset($_GET["right_plotlist"])     ? $_GET["right_plotlist"] : array();
 $matplotlib        = isset($_GET["matplotlib"])         ? "checked"               : "";
 
+$type = $_GET["type"];
+$settings = plot_settings($type, Array("from" => $from, "to" => $to));
+
+# Make a list of the all the graphs in the multiplot definition
+$graphs = Array();
+foreach($settings as $key => $value){
+  # Regular expression matching the dateplotN tag (with minimum one N-digit)
+  if (preg_match("/^dateplot[0-9][0-9]*$/", $key)){
+    $graphs[$key] = $value;
+  }
+}
 
 # Generate URL for figure ...
 $options_line = '';
@@ -185,14 +177,27 @@ if ($matplotlib == 'checked'){
       </form>
       
       <hr>
-
       <div class="additionalinfo">
 	<h2><a href="javascript:toggle('sqlinfo')">SQL info</a></h2>
 	<div id="sqlinfo" style="display:none">
-	  <b>Sql-statement for this graph:</b><br>
-          <?php echo($settings["dateplot" . $dateplot_number]["query"]);?><br>
-	  <b>Latest value:</b><br>
-          <?php echo($latest_value);?> @ <?php echo date("Y-m-d H:i:s", $latest_time)?>
+	  <h3>Sql-statements for this graph, left side:</h3>
+	  <?php
+	     foreach ($left_plotlist as $index){
+	     $latest = latest_sql_row($db, $settings["dateplot" . $index]["query"]);
+	     echo("<p><b>Dateplot {$index}:</b><br>");
+	     echo("<b>Query: </b>" . $settings["dateplot" . $index]["query"] . "<br>");
+	     echo("<b>Latest value: </b>{$latest[1]}@" . date("Y-m-d H:i:s", $latest[0]) . "</p>");
+	     }
+	     ?>
+	  <h3>Sql-statements for this graph, right side:</h3>
+	  <?php
+	     foreach ($right_plotlist as $index){
+	     $latest = latest_sql_row($db, $settings["dateplot" . $index]["query"]);
+	     echo("<p><b>Dateplot {$index}:</b><br>");
+	     echo("<b>Query: </b>" . $settings["dateplot" . $index]["query"] . "<br>");
+	     echo("<b>Latest value: </b>{$latest[1]}@" . date("Y-m-d H:i:s", $latest[0]) . "</p>");
+	     }
+	     ?>
 	</div>
 	
 	<h2><a href="javascript:toggle('shortlinks')">Make shortlink</a></h2>
