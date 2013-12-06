@@ -191,7 +191,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
           </td>
           <td>
            <ul id="tower" style="display:none">
-	    <li><a href="tower/dateplot.php?type=multidateplot&left_plotlist%5B%5D=1&right_plotlist%5B%5D=2&left_logscale=checked">Pressure and sample temperature</a></li>
+	    <li><a href="tower/dateplot.php?type=multidateplot&left_plotlist%5B%5D=1&right_plotlist%5B%5D=2&left_logscale=checked">Pressure and temperature</a></li>
 	    <li><a href="tower/xyplot.php?type=deposition">Deposition</a></li>
 	   </ul>
           </td>
