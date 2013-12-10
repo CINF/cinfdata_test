@@ -1,0 +1,256 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+
+  <!-- MULTI DATEPLOT -->
+  <graph type='multidateplot'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- Fall back settings -->
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+    </dygraph_settings>
+
+    <!-- Date plot 1 - Chamber pressure -->
+    <dateplot1>
+      <title>Chamber pressure</title>
+      <legend>Pressure</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactorNG where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <!-- Date plot 2 - PIRANI BUFFER VOLUME -->
+    <dateplot2>
+      <title>Pirani, buffer volume</title>
+      <legend>Buffer</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactorNG where type = 'P_pirani_buffer' and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <!-- Date plot 3 - PIRANI SAMPLE CONTAINMENT -->
+    <dateplot3>
+      <title>Pirani, containment volume</title>
+      <legend>Containment</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactorNG where type = 'P_containment' and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <!-- Date plot 4 - ION GAUGE BUFFER VOLUME -->
+    <dateplot4>
+      <title>Ion gauge, buffer volume</title>
+      <legend>IG Buffer</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactorNG where type = 'P_iongauge_buffer' and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <!-- Date plot 5 - REACTOR PRESSURE -->
+    <dateplot5>
+      <title>Reactor pressure</title>
+      <legend>Reactor</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactorNG where type = 'P_reactor' and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>5</color>
+    </dateplot5>
+
+    <!-- Date plot 6 - BACKING PRESSURE, BUFFER TURBO -->
+    <dateplot6>
+      <title>Backing pressure, Buffer Turbo</title>
+      <legend>Backing, Buffer</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactorNG where type = 'P_pirani_buf_turbo' and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>6</color>
+    </dateplot6>
+
+    <!-- Date plot 7 - BACKING PRESSURE, CHAMBER TURBO -->
+    <dateplot7>
+      <title>Backing pressure, chamber turbo</title>
+      <legend>Backing, chamber</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactor_pirani_oldturbo where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>7</color>
+    </dateplot7>
+
+    <!-- Date plot 8 - TEMPERATURE, SAMPLE -->
+    <dateplot8>
+      <title>Sample Temperature</title>
+      <legend>Temperature</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactorNG where type = 'T_sample' and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>8</color>
+    </dateplot8>
+
+    <!-- Date plot 9 - TEMPERATURE BUFFER TURBO -->
+    <dateplot9>
+      <title>Temperature, Buffer Turbo</title>
+      <legend>Temperature</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactorNG where type = 'T_bufferturbo' and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature</ylabel>
+      <color>9</color>
+    </dateplot9>
+  </graph>
+
+
+  <!-- MASSTIME -->
+  <graph type='masstime'>
+    <default_xscale>lin</default_xscale>
+    <type>5</type>
+    <xlabel>Time / s</xlabel>
+    <title>Mass vs. time</title>
+    <grouping_column>time</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- dygraph -->
+    <dygraph_settings>
+      <labels_newline>true</labels_newline>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x/1000,y  FROM xy_values_microreactorNG where measurement = {id} order by id</default>
+      <column>mass_label</column>
+    </queries>
+    <!-- ylabel -->
+    <ylabel>
+      <default>Mixed units</default>
+      <column>mass_label</column>
+      <pattern0>
+	<reg_match>^M[0-9]{1,2}$</reg_match>
+	<ylabel>SEM current / A</ylabel>
+      </pattern0>
+      <pattern1>
+	<reg_match>^.*temperature$</reg_match>
+	<ylabel>Temperature / C</ylabel>
+      </pattern1>
+      <pattern2>
+	<reg_match>^.*pressure$|^Pirani.*$</reg_match>
+	<ylabel>Pressure / mbar</ylabel>
+      </pattern2>
+      <pattern3>
+	<reg_match>^Input power$</reg_match>
+	<ylabel>Power / W</ylabel>
+      </pattern3>
+      <pattern4>
+	<reg_match>^Flow [0-9]$</reg_match>
+	<ylabel>Flow / mL/min</ylabel>
+      </pattern4>
+    </ylabel>
+    <!-- legend -->
+    <legend>
+      <default>{mass_label}</default>
+      <column>mass_label</column>
+      <pattern0>
+	<reg_match>^.*temperature$</reg_match>
+	<legend>Temp.</legend>
+      </pattern0>
+    </legend>
+    <!-- parameters -->
+    <parameters>
+      <param0>
+	<field>sem_voltage</field>
+	<name>SEM Voltage / V</name>
+      </param0>
+      <param1>
+	<field>preamp_range</field>
+	<name>Range</name>
+      </param1>
+    </parameters>
+    <!-- data treatment -->
+    <flip_x>
+      <gui>Flip x-scale</gui>
+    </flip_x>
+    <as_function_of>
+      <gui>As function of T</gui>
+      <column>mass_label</column>
+      <reg_match>RTD temperature</reg_match>
+      <xlabel>Temperature / C</xlabel>
+    </as_function_of>
+    <diff_left_y>
+      <gui>Diff. left y-axis</gui>
+      <ylabel_addition>diff</ylabel_addition>
+    </diff_left_y>
+    <diff_right_y>
+      <gui>Diff. right y-axis</gui>
+      <ylabel_addition>diff</ylabel_addition>
+    </diff_right_y>
+    <linscale_x0>
+      <gui>X-axis in hours</gui>
+      <xlabel_addition>converted to hours</xlabel_addition>
+      <!-- 1/3600 -->
+      <a>0.0002777777777777778</a>
+      <b>0</b>
+    </linscale_x0>
+    <!--
+    <matplotlib_settings>
+      <width>900</width>
+      <height>600</height>
+      <title_size>74</title_size>
+      <xtick_labelsize>4</xtick_labelsize>
+      <ytick_labelsize>8</ytick_labelsize>
+      <legend_fontsize>16</legend_fontsize>
+      <label_fontsize>16</label_fontsize>
+      <linewidth>5</linewidth>
+      <grid>True</grid>
+    </matplotlib_settings>
+    -->
+  </graph>
+
+  <!-- MASSSPECTRUM -->
+  <graph type='massspectrum'>
+    <default_xscale>lin</default_xscale>
+    <type>4</type>
+    <grouping_column>time</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <label_column>id</label_column>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x,y  FROM xy_values_microreactorNG where measurement = {id} order by id</default>
+    </queries>
+    <!-- legend -->
+    <legend>
+      <default>{id} - {time}</default>
+    </legend>
+  </graph>
+
+  <!-- GLOBAL SETTINGS -->
+  <global_settings>
+    <measurements_table>measurements_microreactorNG</measurements_table>
+    <xyvalues_table>xy_values_microreactorNG</xyvalues_table>
+    <!--<chamber_name>microreactorNG</chamber_name>-->
+    <sql_username>microreactorNG</sql_username>
+    <image_format>png</image_format>
+    <label_column>mass_label</label_column>
+    <mandatory_export_fields>
+      <field0>
+	<field>id</field>
+	<name>Id</name>
+      </field0>
+      <field1>
+	<field>type</field>
+	<name>Type</name>
+      </field1>
+      <field2>
+	<field>time</field>
+	<name>Recorded at</name>
+      </field2>
+      <field3>
+	<field>comment</field>
+	<name>Comment</name>
+      </field3>
+    </mandatory_export_fields>
+    <matplotlib_settings>
+      <width>900</width>
+      <height>600</height>
+      <title_size>24</title_size>
+      <xtick_labelsize>12</xtick_labelsize>
+      <ytick_labelsize>12</ytick_labelsize>
+      <legend_fontsize>10</legend_fontsize>
+      <label_fontsize>16</label_fontsize>
+    </matplotlib_settings>
+  </global_settings>
+</graphs>
