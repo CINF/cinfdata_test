@@ -30,7 +30,7 @@ tm.Voltages['R1'] = options.R1
 tm.Voltages['R2'] = options.R2
 
 if tm.Voltages['R2'] <= 0: # Liniar mode
-    tm.Voltages['R1'] = Voltages['R1'] = Voltages['liner']
+    tm.Voltages['R1'] = tm.Voltages['R1'] = tm.Voltages['liner']
 
 
 

@@ -1,1 +1,1 @@
-../sym-files/graphsettings.php
+../sym-files2/graphsettings.php

@@ -6,6 +6,7 @@ import sys
 sys.path.insert(1, '/var/www/cinfdata')
 import numpy as np
 
+
 cnxn = MySQLdb.connect(host="localhost", user="cinf_reader",passwd = "cinf_reader", db = "cinfdata")
 ########### EDIT HERE ##########
 setup = 'tof'
@@ -33,23 +34,40 @@ time = time[0][0]
 
 # Getting the nearest pressure measurement and the corresponding time after the
 # mass-scan from Robert's mySQL database
-cursor.execute("""SELECT pressure, unix_timestamp(time) from pressure_%s_iongauge where
+cursor.execute("""SELECT value, unix_timestamp(time) from dateplots_%s where type = 'P_iongauge' and 
                 unix_timestamp(time) > %i order by time asc limit 1;"""  % (setup, time))
 pressure11 = cursor.fetchall()
-pressure1 = pressure11[0][0]
-time1 = pressure11[0][1]/1.0
+try:
+    pressure1 = pressure11[0][0]
+    time1 = pressure11[0][1]/1.0
+except IndexError:
+    pressure1 = None
 
 # Getting the nearest pressure measurement and the corresponding time before the
 # mass-scan from Robert's mySQL database
-cursor.execute("""SELECT pressure, unix_timestamp(time) from pressure_%s_iongauge where
+cursor.execute("""SELECT value, unix_timestamp(time) from dateplots_%s where type = 'P_iongauge' and 
                 unix_timestamp(time) < %i order by time desc limit 1;""" % (setup, time))
 pressure22 = cursor.fetchall()
-pressure2= pressure22[0][0]
-time2 = pressure22[0][1]/1.0
+try:
+    pressure2 = pressure22[0][0]
+    time2 = pressure22[0][1]/1.0
+except IndexError:
+    pressure2 = None
 
 # Calculating a weighted average for the two pressure measurements
-pressuretotal = ((time1-time)/(time1-time2)*pressure1+
-                 (time-time2)/(time1-time2)*pressure2)
+if pressure1 is not None and pressure2 is not None:
+    pressuretotal = ((time1-time)/(time1-time2)*pressure1+
+                     (time-time2)/(time1-time2)*pressure2)
+    warning = ''
+elif (pressure1 is None) ^ (pressure2 is None):
+    if pressure1 is not None:
+        pressuretotal = pressure1
+    else:
+        pressuretotal = pressure2
+    warning = 'PRESSURE IS NOT WEIGHED AVERAGE, ONLY ONE PRESSURE READING IS'
+else:
+    pressuretotal = 1000
+    warning = 'NO PRESSURE READING, DUMMY VALUE OF 1 BAR USED'
 
 # Datasets of compounds, and their peak position and intensity based on
 # cracking patterns. The variable name is the name of the compound. The first
@@ -297,6 +315,9 @@ for i in range(len(compounds)):
     j = order[i]
     print "%4s %15.3g" % ( compounds[j], pressuremolekyle[j])
 print "Sum:", pressuremolekyle.sum()
+
+if warning != '':
+    print '\n' + warning
 
 #Plotting the data as red, and the best fit as blue
 #plt.plot(data[:,0],y, 'b-')
