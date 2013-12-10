@@ -184,7 +184,7 @@ if ($matplotlib == 'checked'){
 		  <option value="3">3 days back</option>
 	    </select> -->
         <div class="permanent_options">  
-	       <!--X-axis zoom is implemented in the data selection, not in the graph, and therefore it can only be given in the units and scale of the original untreated x-axis data"-->
+	       <!--X-axis zoom is implemented in the data selection, not in the graph, and therefore it can only be given in the units and scale of the original untreated x-axis data-->
 	      <b>x-min:</b><input name="xmin" type="text" value="<?php echo($xmin);?>" size="13"><br>
 	       <!--X-axis zoom is implemented in the data selection, not in the graph, and therefore it can only be given in the units and scale of the original untreated x-axis data-->
 	      <b>x-max:</b><input name="xmax" type="text" value="<?php echo($xmax);?>" size="13"><br>
@@ -317,15 +317,91 @@ if ($matplotlib == 'checked'){
       <div style="clear: both;"></div>
       <hr>
 
+	      
+
       <div class="additionalinfo">
+
+	<a href="javascript:toggle('infobox')"><h2>Show infobox(es)</h2></a>
+	<div id="infobox" style="display:none">
+	      
+	      <?php
+              # Combine plot lists
+	      $plotlist = array_merge($left_plotlist, $right_plotlist);
+              $plotlist = array_unique($plotlist);
+	      sort($plotlist);
+		       
+	      # Generate the infoboxes
+	      foreach($plotlist as $id){
+	        echo("<div class=\"infobox\">");
+		$query = "SELECT * from {$settings['measurements_table']} WHERE id=$id";
+		$result = mysql_query($query);
+		$meta = mysql_fetch_array($result);
+		if (in_array("mandatory_export_fields", array_keys($settings)) == "1"){
+		  $keys = array_keys($settings["mandatory_export_fields"]);
+		  natsort($keys);
+		  foreach ($keys as $key){
+		    $value = $meta[$settings["mandatory_export_fields"][$key]["field"]];
+		    echo("<b>{$settings['mandatory_export_fields'][$key]['name']}:</b> {$value}<br>");
+		  }
+		}
+		if (in_array("parameters", array_keys($settings)) == "1"){
+		  $keys = array_keys($settings["parameters"]);
+		  natsort($keys);
+		  foreach ($keys as $key){
+		    $value = $meta[$settings["parameters"][$key]["field"]];
+		    echo("<b>{$settings['parameters'][$key]['name']}:</b> {$value}<br>");
+		  }
+		}
+		echo("</div>");
+	    }
+?>
+	</div>
+	<div style="clear: both;"></div>
 	<h2><a href="javascript:toggle('sqlinfo')">SQL info</a></h2>
 	<div id="sqlinfo" style="display:none">
-	  <b>Sql-statement for this graph:</b><br>
-	  <?php echo($query);?><br>
-	  <b>Latest value:</b><br>
-	  1.896e-08 @ 2011-12-13 16:33:53
+	  <b>Default query:</b><br>
+	  <?php echo($settings['queries']['default']);?><br>
 	</div>
+	<?php
+	   if (in_array("gas_analysis", array_keys($settings)) == "1" && $settings["gas_analysis"] == "true"){
+	   echo("<div class=\"next\"></div>");
+	   echo("<a href=\"javascript:toggle('gasanalysis')\"><h2>Show gas analysis</h2></a>");
+	   echo("<div id=\"gasanalysis\" style=\"display:none\">");
+	   echo("<div class=\"gasanalysis\">");
+	   foreach($plotlist as $id){
+	     echo("<b>ID: </b>$id");
+	     echo("<pre>");
+	     echo(shell_exec("./gas_analysis.py " . $id));
+           echo("</pre>");
+	   }
+	   echo("</div>");
+	   echo("</div>");
+	   }
+
 	
+	   if (in_array("flight_time_estimate", array_keys($settings)) == "1" && $settings["flight_time_estimate"] == "true"){
+	   echo("<div class=\"next\"></div>");
+	   echo("<a href=\"javascript:toggle('flighttime')\"><h2>Show flight time estimate</h2></a>");
+	   echo("<div id=\"flighttime\" style=\"display:none\">");
+	   echo("<div class=\"flighttime\">");
+	   echo("<b>Id: {$plotlist[0]}</b><br>");
+	   # $plotlist, $settings[$plotlist[0]]['tof_liner_voltage']
+	   if($type == "tofspectrum"){
+	   $query = "SELECT * from {$settings['measurements_table']} WHERE id=$plotlist[0]";
+	   $result = mysql_query($query);
+	   $meta = mysql_fetch_array($result);
+	   $command = "/var/www/cinfdata/tof/flighttime/flighttime.py --liner=" . round($meta['tof_liner_voltage']) . " --pulse=" . round($meta['tof_pulse_voltage']) . " --R1=" . round($meta['tof_R1_voltage']) . " --R2=" . round($meta['tof_R1_voltage']) . " 2>&1";
+	   exec($command,$out);
+	   for ($i=0;$i<count($out);$i++){
+			  print($out[$i]);
+			  }
+    }
+echo("</div>");
+echo("</div>");
+
+	   }
+	
+	   ?>	
 	<h2><a href="javascript:toggle('shortlinks')">Make shortlink</a></h2>
 	<div id="shortlinks" style="display:none">
 	  <form action="../links/link.php?url=checked" method="post">

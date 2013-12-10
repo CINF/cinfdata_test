@@ -314,7 +314,8 @@ function xy_graph_tag_test($xml){
 		    "linscale_right_y0", "linscale_right_y1", "linscale_right_y2");
   $rest = Array("title", "xlabel", "ylabel", "image_format", "parameters",
 		"as_function_of", "mandatory_export_fields", "label_column",
-		"matplotlib_settings", "dygraph_settings");
+		"matplotlib_settings", "dygraph_settings", "flight_time_estimate",
+		"gas_analysis");
   # Add them up
   $optional = array_merge($gui_only, $linscale, $rest);
   $children = $xml->children();
