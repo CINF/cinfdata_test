@@ -25,19 +25,11 @@ echo(html_header($root="", $title="Data logged at CINF"));
         <table class="frontpage">
           <tr>
            <td>      
-	    <a href="javascript:toggle('bifrost')"><h2>Bifrost</h2></a></td><td>
+	    <a href="javascript:toggle('mwg')"><h2>Mobile gas wall</h2></a></td><td>
             <a href="javascript:toggle('stm312')"><h2>STM312</h2></a></td><td>
 	    <a href="javascript:toggle('volvo')"><h2>Volvo</h2></a></td></tr><tr><td>
-            <ul id="bifrost" style="display:none">
-	      <li><a href="bifrost/read_dateplot.php?type=pressure">Pressure</a></li>
-	      <li><a href="bifrost/read_dateplot.php?type=temperature">Temperature</a></li>
-	      <li><a href="bifrost/status_heating.php">Heating status</a></li>
-	      <li><a href="bifrost/status_ion_gun.php">Ion gun status</a></li>
-	      <li><a href="bifrost/read_plot.php?type=xps">XPS-data</a></li>
-	      <li><a href="bifrost/read_plot.php?type=aes">AES-data</a></li>
-	      <li><a href="bifrost/read_plot.php?type=massspectrum">Mass spectra</a></li>
-	      <li><a href="bifrost/read_plot_group.php?type=masstime">Mass-time</a></li>
-	      <li><a href="bifrost/plot.php?type=morning_pressure&from=2009-01-01&to=2012-01-01&manualscale=checked&ymax=1E-5&ymin=1E-11&xsize=1000&ysize=750">Morning status</a></li>
+            <ul id="mwg" style="display:none">
+              <li><a href="mgw/dateplot.php?type=multidateplot&left_plotlist[]=1&right_plotlist[]=2">Pressure</a></li>
 	    </ul>
            </td>
            <td>
@@ -326,26 +318,6 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	   </ul>
           </td>
          </tr>
-
-         <tr>
-          <td>
-           <a href="javascript:toggle('mgw')"><h2>Mobile Gass Wall</h2></a></td><td>
-          </td>
-         </tr>
-         <tr>
-          <td>
-           <ul id="mgw" style="display:none"> 
-              <li><a href="mgw/dateplot.php?type=multidateplot&left_plotlist[]=1&right_plotlist[]=2">Pressure</a></li>
-	   </ul>
-          </td>
-          <td>
-          &nbsp;
-          </td>
-          <td>
-	  &nbsp;
-          </td>
-         </tr>
-
 
         </table>
 <?php
