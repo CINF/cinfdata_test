@@ -1,1 +1,148 @@
-../sym-files2/graphsettings.xml
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+
+  <!-- MULTI DATEPLOT -->
+  <graph type='multidateplot_stm312'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- Fall back settings -->
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <dygraph_settings>
+      <roll_period>5</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <dateplot1>
+      <title>Temperature, water</title>
+      <legend>Water / C</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM chiller_stm312_temperature where time between "{from}" and "{to}" and temperature > -9998 order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>Temperature, ambient</title>
+      <legend>Ambient / C</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM chiller_stm312_temperature_ambient where time between "{from}" and "{to}" and temperature > -9998 order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <dateplot3>
+      <title>Temperature, setpoint</title>
+      <legend>Setpoint / C</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM chiller_stm312_temperature_setpoint where time between "{from}" and "{to}" and temperature > -9998 order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>Flow</title>
+      <legend>Flow / LPM</legend>
+      <query>SELECT unix_timestamp(time), flow FROM chiller_stm312_flow where time between "{from}" and "{to}" and flow > -9998 order by time</query>
+      <ylabel>Flow rate / LPM</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <dateplot5>
+      <title>Pressure</title>
+      <legend>Pressure / bar</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM chiller_stm312_pressure where time between "{from}" and "{to}" and pressure > -9998 order by time</query>
+      <ylabel>Pressure / bar</ylabel>
+      <color>5</color>
+    </dateplot5>
+  </graph>
+
+  <!-- MULTI DATEPLOT -->
+  <graph type='multidateplot_sputterchamber'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- Fall back settings -->
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <dygraph_settings>
+      <roll_period>5</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <dateplot1>
+      <title>Temperature, water</title>
+      <legend>Water / C</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM chiller_sputterchamber_temperature where time between "{from}" and "{to}" and temperature > -9998 order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>Temperature, ambient</title>
+      <legend>Ambient / C</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM chiller_sputterchamber_temperature_ambient where time between "{from}" and "{to}" and temperature > -9998 order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <dateplot3>
+      <title>Temperature, setpoint</title>
+      <legend>Setpoint / C</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM chiller_sputterchamber_temperature_setpoint where time between "{from}" and "{to}" and temperature > -9998 order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>Flow</title>
+      <legend>Flow / LPM</legend>
+      <query>SELECT unix_timestamp(time), flow FROM chiller_sputterchamber_flow where time between "{from}" and "{to}" and flow > -9998 order by time</query>
+      <ylabel>Flow rate / LPM</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <dateplot5>
+      <title>Pressure</title>
+      <legend>Pressure / bar</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM chiller_sputterchamber_pressure where time between "{from}" and "{to}" and pressure > -9998 order by time</query>
+      <ylabel>Pressure / bar</ylabel>
+      <color>5</color>
+    </dateplot5>
+  </graph>
+
+
+  <!-- GLOBAL SETTINGS -->
+  <global_settings>
+    <measurements_table>measurements_gasmonitor</measurements_table>
+    <xyvalues_table>xy_values_gasmonitor</xyvalues_table>
+    <!--<chamber_name>microreactorNG</chamber_name>-->
+    <sql_username>gasmonitor</sql_username>
+    <image_format>png</image_format>
+    <mandatory_export_fields>
+      <field0>
+	<field>id</field>
+	<name>Id</name>
+      </field0>
+      <field1>
+	<field>type</field>
+	<name>Type</name>
+      </field1>
+      <field2>
+	<field>time</field>
+	<name>Recorded at</name>
+      </field2>
+      <field3>
+	<field>comment</field>
+	<name>Comment</name>
+      </field3>
+    </mandatory_export_fields>
+    <matplotlib_settings>
+      <width>900</width>
+      <height>600</height>
+      <title_size>24</title_size>
+      <xtick_labelsize>12</xtick_labelsize>
+      <ytick_labelsize>12</ytick_labelsize>
+      <legend_fontsize>10</legend_fontsize>
+      <label_fontsize>16</label_fontsize>
+    </matplotlib_settings>
+  </global_settings>
+</graphs>
