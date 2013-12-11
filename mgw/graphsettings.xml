@@ -26,10 +26,74 @@
     <dateplot2>
       <title>Pirani, buffer volume</title>
       <legend>Buffer</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 'buffepressure' and time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 'bufferpressure' and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>2</color>
     </dateplot2>
+
+    <!-- Date plot 3 - Turbo speed -->
+    <dateplot3>
+      <title>Turbo, Main chamber, rotation</title>
+      <legend>MC, rotation</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 'rotation_speed' and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Rotation speed / Hz</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <!-- Date plot 4 - Drive Current -->
+    <dateplot4>
+      <title>Turbo, Main chamber, Current</title>
+      <legend>MC, Current</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 'drive_current' and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Drive Current / A</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <!-- Date plot 5 - Drive Power -->
+    <dateplot5>
+      <title>Turbo, Main chamber, Power</title>
+      <legend>MC, Power</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 'drive_power' and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Drive Power / W</ylabel>
+      <color>5</color>
+    </dateplot5>
+
+    <!-- Date plot 6 - temp_motor -->
+    <dateplot6>
+      <title>Turbo, Main Chamber, Motor Temp</title>
+      <legend>MC, Motor Temp</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 'temp_motor' and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Motor Temperature / C</ylabel>
+      <color>6</color>
+    </dateplot6>
+
+    <!-- Date plot 7 - temp_electronics -->
+    <dateplot7>
+      <title>Turbo, Main Chamber, Electronics Temp</title>
+      <legend>MC, Electronics Temp</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 'temp_electronics' and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Electronics Temperature / C</ylabel>
+      <color>7</color>
+    </dateplot7>
+
+    <!-- Date plot 8 - temp_bottom -->
+    <dateplot8>
+      <title>Turbo, Main Chamber, Temp Bottom</title>
+      <legend>MC, Temp Bottom</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 'temp_bottom' and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature Bottom/ C</ylabel>
+      <color>8</color>
+    </dateplot8>
+
+    <!-- Date plot 9 - temp_bearings -->
+    <dateplot9>
+      <title>Turbo, Main Chamber, Bearings Temp</title>
+      <legend>MC, Bearings Temp</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 'temp_bearings' and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Bearings Temperature / C</ylabel>
+      <color>9</color>
+    </dateplot9>
+  </graph>
 
   <!-- MASSTIME -->
   <graph type='masstime'>
