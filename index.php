@@ -262,6 +262,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
            <ul id="other" style="display:none"> 
 	     <li><a href="code-documentation/test_config_all.php">Test my configuration file</a></li>
 	     <li><a href="code-documentation/statistics.php">Statistics</a></li>
+	     <li><a href="code-documentation/git_status.php">Git status</a></li>
 	     <li><a href="sym-files2/dateplot.php?type=multidateplot">Dateplot demo</a></li>
 	     <li><a href="sym-files2/xyplot.php?type=masstime">XY plot demo</a></li>
 	   </ul>
