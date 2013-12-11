@@ -132,7 +132,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
           <td>      
 	   <a href="javascript:toggle('xrd')"><h2>XRD</h2></a></td><td>
            <a href="javascript:toggle('hall')"><h2>Hall</h2></a></td><td>
-	   <a href="javascript:toggle('smallHPC')"><h2>Small HPC</h2></a>
+	   <a href="javascript:toggle('booking')"><h2>Booking</h2></a>
           </td>
          </tr>
          <tr>
@@ -149,12 +149,10 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	    <li><a href="hall/read_dateplot.php?type=temperature">Temperature</a></li>
 	   </ul>
           </td>
+
           <td>
-           <ul id="smallHPC" style="display:none"> 
-	    <li><a href="small_hpc/read_dateplot.php?type=temperature">Temperature</a></li>
-	    <li><a href="small_hpc/read_plot_group.php?type=masstime">Mass-time</a></li>
-	    <li><a href="small_hpc/read_plot.php?type=massspectrum">Mass spectrums</a></li>
-            <li><a href="small_hpc/modify_comment.php">Modify comments</a></li>
+           <ul id="booking" style="display:none"> 
+              <li><a href="booking/b307.php">Building 307</a></li>
 	   </ul>
           </td>
          </tr>
@@ -296,7 +294,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
           <td>
            <a href="javascript:toggle('gasmonitor')"><h2>Gasmonitor</h2></a></td><td>
            <a href="javascript:toggle('chillers')"><h2>Chillers</h2></a></td><td>
-           <a href="javascript:toggle('booking')"><h2>Booking</h2></a></td><td>
+           <!-- <a href="javascript:toggle('booking')"><h2>Booking</h2></a></td><td> -->
           </td>
          </tr>
          <tr>
@@ -311,11 +309,6 @@ echo(html_header($root="", $title="Data logged at CINF"));
            <ul id="chillers" style="display:none"> 
               <li><a href="chillers/dateplot.php?type=multidateplot_stm312&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&right_plotlist[]=4&right_plotlist[]=5&right_ymin=0&right_ymax=0">Chiller STM312</a></li>
               <li><a href="chillers/dateplot.php?type=multidateplot_sputterchamber&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&right_plotlist[]=4&right_plotlist[]=5&right_ymin=0&right_ymax=0">Chiller Sputterchamber</a></li>
-          </td>
-          <td>
-           <ul id="booking" style="display:none"> 
-              <li><a href="booking/b307.php">Building 307</a></li>
-	   </ul>
           </td>
          </tr>
 
