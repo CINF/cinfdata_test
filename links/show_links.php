@@ -1,11 +1,11 @@
 <?php
-include("../common_functions.php");
+include("../common_functions_v2.php");
 include("graphsettings.php");
 $db = std_db();
 
-echo(new_html_header());
+echo(html_header());
 
-$query = "SELECT id,url,comment FROM short_links"; 
+$query = "SELECT id,url,comment FROM short_links ORDER BY ID DESC"; 
 $result = mysql_query($query,$db);
 echo("<table border='1' class=\"links\">"); 
 echo("<tr><td><b>Id</b></td><td><b>Comment</b></td><td><b>Link</b></td></tr>"); 
@@ -20,5 +20,5 @@ while($row = mysql_fetch_array($result)) {
 } 
 echo("</table>");
 
-echo(new_html_footer());
+echo(html_footer());
 ?>

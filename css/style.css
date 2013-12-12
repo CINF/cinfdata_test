@@ -398,3 +398,19 @@ a:hover{
     border-left: 1px solid black;
     border-bottom: 1px solid black;
 }
+
+table.links {
+	border-width: 2px;
+	border-collapse: collapse;
+	margin-right:auto;
+	margin-left:auto;
+	width:80%; 
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+}
+
+table.links td {
+	max-width:400px;
+	border-width: 2px;
+}
