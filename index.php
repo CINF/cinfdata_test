@@ -50,7 +50,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	     <li><a href="stm312/chiller.php">Chiller control</a></li>
 	     <li><a href="stm312/xyplot.php?type=masstime">Mass-time</a></li>
              <hr>
-	     <li><a href="stm312_2/bakeout.php">Bakeout</a></li>
+	     <li><a href="stm312/bakeout.php">Bakeout</a></li>
              <li><a href="stm312/modify_comment.php">Modify comments</a></li>
              <hr>
 	     <li><a href="stm312/dateplot.php?type=multidateplot_hp&left_plotlist[]=1&right_plotlist[]=2">HP Cell Pressure</a></li>
