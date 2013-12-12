@@ -146,7 +146,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
           </td>
           <td>   
            <ul id="hall" style="display:none"> 
-	    <li><a href="hall/read_dateplot.php?type=temperature">Temperature</a></li>
+	    <li><a href="hall/dateplot.php?type=temperature&matplotlib=checked&left_plotlist%5B%5D=1">Temperature</a></li>
 	   </ul>
           </td>
 

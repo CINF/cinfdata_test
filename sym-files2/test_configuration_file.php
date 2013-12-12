@@ -199,8 +199,8 @@ function second_level_tag_test(){
 function global_settings_tag_test(){
   #global $figure_defaults;
   $mandatory = Array("measurements_table", "xyvalues_table", "sql_username",
-		     "label_column", "mandatory_export_fields");
-  $optional = Array("image_format", "matplotlib_settings", "dygraph_settings");
+		     "label_column", "mandatory_export_fields", "image_format");
+  $optional = Array("matplotlib_settings", "dygraph_settings");
   global $xml;
   $children = $xml->global_settings->children();
   $pass = mandatory($children, $mandatory);
