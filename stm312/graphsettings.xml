@@ -293,10 +293,7 @@
       <ylabel>Temperature / C</ylabel>
       <color>3</color>
     </dateplot6>
-
   </graph>
-
-
 
 
   <!-- MASSSPECTRUM -->
@@ -306,6 +303,7 @@
     <grouping_column>time</grouping_column>
     <label_column>name</label_column>
     <right_legend_suffix> (r)</right_legend_suffix>
+    <gas_analysis>true</gas_analysis>
     <dygraph_settings>
       <series_highlight>true</series_highlight>
       <labels_side>true</labels_side>
