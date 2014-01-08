@@ -72,7 +72,7 @@
     </dygraph_settings>
     <!-- queries -->
     <queries>
-      <default>SELECT x/1000,y  FROM xy_values_dummy where measurement = {id} order by id</default>
+      <default>SELECT x/1000,y  FROM xy_values_dummy where y > -9000 and measurement = {id} order by id</default>
       <column>mass_label</column>
     </queries>
     <!-- ylabel -->
