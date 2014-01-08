@@ -80,7 +80,7 @@
     <dateplot8>
       <title>Sample Temperature</title>
       <legend>Temperature</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactorNG where type = 'T_sample' and time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactorNG where type = 'T_sample' and value > -1000 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>8</color>
     </dateplot8>
@@ -112,7 +112,7 @@
     </dygraph_settings>
     <!-- queries -->
     <queries>
-      <default>SELECT x/1000,y  FROM xy_values_microreactorNG where measurement = {id} order by id</default>
+      <default>SELECT x/1000,y  FROM xy_values_microreactorNG where y > -9000 and measurement = {id} order by id</default>
       <column>mass_label</column>
     </queries>
     <!-- ylabel -->
