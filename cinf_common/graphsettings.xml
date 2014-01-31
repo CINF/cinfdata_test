@@ -240,6 +240,69 @@
     <right_yscale>lin</right_yscale>
     <default_xscale>dat</default_xscale>
   </graph>
+
+  <!-- GAS MONITOR -->
+  <graph type='gas_monitor_ch4'>
+    <query>SELECT unix_timestamp(time), (6.25*value - 25) FROM gasmonitor_ch01 where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), (6.25*value - 25) + 4.2 FROM gasmonitor_ch02 where time between "{from}" and "{to}" order by time</query1>
+    <query2>SELECT unix_timestamp(time), (6.25*value - 25) - 5 FROM gasmonitor_ch03 where time between "{from}" and "{to}" order by time</query2>
+    <query3>SELECT unix_timestamp(time), (6.25*value - 25) - 9.5 FROM gasmonitor_ch04 where time between "{from}" and "{to}" order by time</query3>
+
+    <ordering>left|blue,left|red,left|green,left|black</ordering>
+    <ylabel>Voltage / V</ylabel>
+    <!--<right_ylabel>Power / W</right_ylabel>-->
+    <title>Output voltage from the UPS</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>lin</default_yscale>
+    <!--<right_yscale>lin</right_yscale>-->
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <graph type='gas_monitor_ch4_2'>
+    <query>SELECT unix_timestamp(time), (6.25*value - 25)+6 FROM gasmonitor_ch09 where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), (6.25*value - 25)+5 FROM gasmonitor_ch11 where time between "{from}" and "{to}" order by time</query1>
+    <query2>SELECT unix_timestamp(time), (6.25*value - 25) +3 FROM gasmonitor_ch13 where time between "{from}" and "{to}" order by time</query2>
+
+    <ordering>left|blue,left|red,left|green</ordering>
+    <ylabel>Voltage / V</ylabel>
+    <!--<right_ylabel>Power / W</right_ylabel>-->
+    <title>Output voltage from the UPS</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>lin</default_yscale>
+    <!--<right_yscale>lin</right_yscale>-->
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <graph type='gas_monitor_CO'>
+    <query>SELECT unix_timestamp(time), 15.625*(value -4) + 0.5 FROM gasmonitor_ch05 where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), 15.625*(value -4) + 1.6 FROM gasmonitor_ch06 where time between "{from}" and "{to}" order by time</query1>
+    <query2>SELECT unix_timestamp(time), 15.625*(value -4) +0.8 FROM gasmonitor_ch07 where time between "{from}" and "{to}" order by time</query2>
+
+    <ordering>left|blue,left|red,left|green</ordering>
+    <ylabel>Voltage / V</ylabel>
+    <!--<right_ylabel>Power / W</right_ylabel>-->
+    <title>Output voltage from the UPS</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>lin</default_yscale>
+    <!--<right_yscale>lin</right_yscale>-->
+    <default_xscale>dat</default_xscale>
+  </graph>
+
+  <graph type='gas_monitor_CO_2'>
+    <query>SELECT unix_timestamp(time), 15.625*(value -4) +1.1 FROM gasmonitor_ch08 where time between "{from}" and "{to}" order by time</query>
+    <query1>SELECT unix_timestamp(time), 15.625*(value -4) +0.8 FROM gasmonitor_ch10 where time between "{from}" and "{to}" order by time</query1>
+    <query2>SELECT unix_timestamp(time), 15.625*(value -4) -1.1 FROM gasmonitor_ch12 where time between "{from}" and "{to}" order by time</query2>
+
+    <ordering>left|blue,left|red,left|green</ordering>
+    <ylabel>Voltage / V</ylabel>
+    <!--<right_ylabel>Power / W</right_ylabel>-->
+    <title>Output voltage from the UPS</title>
+    <small_fig_settings>figure.figsize:[4.0,2.0]</small_fig_settings>
+    <default_yscale>lin</default_yscale>
+    <!--<right_yscale>lin</right_yscale>-->
+    <default_xscale>dat</default_xscale>
+  </graph>
+
   
   <global_settings>
     <chamber_name>cinf_common</chamber_name>
