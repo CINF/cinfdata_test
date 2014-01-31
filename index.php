@@ -294,7 +294,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
           <td>
            <a href="javascript:toggle('gasmonitor')"><h2>Gasmonitor</h2></a></td><td>
            <a href="javascript:toggle('chillers')"><h2>Chillers</h2></a></td><td>
-           <!-- <a href="javascript:toggle('booking')"><h2>Booking</h2></a></td><td> -->
+           <a href="javascript:toggle('thetaprobe')"><h2>Theta probe</h2></a></td><td>
           </td>
          </tr>
          <tr>
@@ -309,6 +309,11 @@ echo(html_header($root="", $title="Data logged at CINF"));
            <ul id="chillers" style="display:none"> 
               <li><a href="chillers/dateplot.php?type=multidateplot_stm312&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&right_plotlist[]=4&right_plotlist[]=5&right_ymin=0&right_ymax=0">Chiller STM312</a></li>
               <li><a href="chillers/dateplot.php?type=multidateplot_sputterchamber&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&right_plotlist[]=4&right_plotlist[]=5&right_ymin=0&right_ymax=0">Chiller Sputterchamber</a></li>
+          </td>
+          </td>
+          <td>
+           <ul id="thetaprobe" style="display:none"> 
+              <li><a href="thetaprobe/dateplot.php?type=multidateplot_pressures&matplotlib=checked&left_logscale=checked&right_logscale=checked&left_plotlist%5B%5D=1&right_plotlist%5B%5D=2">Pressure</a></li>
           </td>
          </tr>
 
