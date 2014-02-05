@@ -47,7 +47,7 @@ if ($image_format == ""){
 }
 
 // Get all available measurements
-$query = "SELECT distinct time, comment FROM " .  $settings["measurements_table"] . " where type = " . $settings["type"] . " order by time desc, id limit 800";
+$query = "SELECT distinct time, comment FROM " .  $settings["measurements_table"] . " where type = " . $settings["type"] . " order by time desc, id limit 8000";
 $result  = mysql_query($query,$db);
 while ($row = mysql_fetch_array($result)){
     $datelist[] = $row[0];
