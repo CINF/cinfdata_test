@@ -29,7 +29,6 @@ border-radius: 50%;
 $file = file_get_contents('http://robertj/hosts.php');
 $output = explode("\n",$file);
 
-
 echo("<table border=1 padding=5>");
 echo("<tr><th>&nbsp;</th><th>Hostname</th><th>Uptime</th><th>Description</th><th>OS</th></tr>");
 for ($i=0;$i<sizeof($output)-2;$i++){
