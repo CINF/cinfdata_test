@@ -18,7 +18,7 @@
     <dateplot1>
       <title>Pressure in the tower</title>
       <legend>Pressure</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_tower where type = 'pressure' and time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_tower where type = 21 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>1</color>
     </dateplot1>
@@ -26,7 +26,7 @@
     <dateplot2>
       <title>Temperature of the sample</title>
       <legend>T_sample</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_tower where type = 'temperature_sample' and time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_tower where type = 20 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>2</color>
     </dateplot2>
