@@ -281,6 +281,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
  	     <li><a href="sputterchamber/dateplot.php?type=multidateplot&left_ymin=0&left_ymax=0&left_plotlist[]=2&right_ymin=0&right_ymax=0">QCM Frequency</a></li>
  	     <li><a href="sputterchamber/dateplot.php?type=multidateplot&left_ymin=0&left_ymax=0&left_plotlist[]=3&right_ymin=0&right_ymax=0">QCM Thickness</a></li>
  	     <li><a href="sputterchamber/dateplot.php?type=multidateplot&left_ymin=0&left_ymax=0&left_plotlist[]=4&right_ymin=0&right_ymax=0">QCM Life Time</a></li>
+ 	     <li><a href="sputterchamber/dateplot.php?type=multidateplot&left_ymin=0&left_ymax=0&left_plotlist[]=5&right_ymin=0&right_ymax=0">Chiller Flow</a></li>
 	   </ul>
           </td>
           <td>

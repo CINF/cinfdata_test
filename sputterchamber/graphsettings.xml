@@ -49,6 +49,16 @@
       <color>4</color>
     </dateplot4>
 
+    <!-- Chiller flow -->
+    <dateplot5>
+      <title>Chiller flow</title>
+      <legend>Flow</legend>
+      <query>SELECT unix_timestamp(time), flow FROM chiller_sputterchamber_flow where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Flow / L/min</ylabel>
+      <color>5</color>
+    </dateplot5>
+
+
 
     <!-- data treatment -->
     <as_function_of>
