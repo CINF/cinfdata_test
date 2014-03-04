@@ -137,8 +137,8 @@
     <query>SELECT x,y  FROM xy_values_omicron where measurement = {id} order by id</query>
     <type>10</type>
     <image_format>pdf</image_format>
-    <xlabel>Size / amu</xlabel>
-    <ylabel>Current / A</ylabel>
+    <xlabel>Time / s</xlabel>
+    <ylabel>Current / A &amp; pressure / mbar &amp; flow / ml/m </ylabel>
     <title>Cluster deposition</title>
 <!--    <right_y_axis_field_name>mass_label</right_y_axis_field_name>
     <right_y_axis_field_value>electrometer</right_y_axis_field_value>
