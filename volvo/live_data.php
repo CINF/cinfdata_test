@@ -5,7 +5,7 @@
 <body>
 
 <?php
-$fp = stream_socket_client("udp://130.225.87.213:9999", $errno, $errstr);
+$fp = stream_socket_client("udp://130.225.87.86:9999", $errno, $errstr);
 if (!$fp) {
   echo "ERROR: $errno - $errstr<br />\n";
 }
