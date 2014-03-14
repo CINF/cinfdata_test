@@ -87,7 +87,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
    <li><a href="microreactor/dateplot.php?type=multidateplot&left_ymin=0&left_ymax=0&left_plotlist[]=4&left_plotlist[]=5&right_ymin=0&right_ymax=0">Backing pressure, turbos</a></li>
 	    <li><a href="microreactor/dateplot.php?type=multidateplot&left_ymin=0&left_ymax=0&left_plotlist[]=6&right_ymin=0&right_ymax=0">Sample temperature</a></li>
 	    <li><a href="microreactor/dateplot.php?type=multidateplot&left_ymin=0&left_ymax=0&left_plotlist[]=7&left_plotlist[]=8&right_ymin=0&right_ymax=0">Turbo temperatures</a></li>
-	    <li><a href="microreactor/xyplot.php?type=masstime">Mass-time</a></li>
+	    <li><a href="microreactor/xyplot.php?type=masstime&matplotlib=checked">Mass-time</a></li>
 	    <li><a href="microreactor/xyplot.php?type=massspectrum">Massspectra</a></li>
             <li><a href="microreactor/modify_comment.php">Modify comments</a></li>
 	    <!--<li><a href="microreactor/manage_measurements.php">Manage measurements</a></li>-->
@@ -103,7 +103,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	    <li><a href="microreactorNG/dateplot.php?type=multidateplot&left_ymin=0&left_ymax=0&left_plotlist[]=7&right_ymin=0&right_ymax=0">Backing pressure, chamber turbo</a></li>
 	    <li><a href="microreactorNG/dateplot.php?type=multidateplot&left_ymin=0&left_ymax=0&left_plotlist[]=9&right_ymin=0&right_ymax=0">Turbo temperatures</a></li>
 	    <li><a href="microreactorNG/xyplot.php?type=massspectrum">Mass spectra</a></li>
-	    <li><a href="microreactorNG/xyplot.php?type=masstime">Mass-time</a></li>
+	    <li><a href="microreactorNG/xyplot.php?type=masstime&matplotlib=checked">Mass-time</a></li>
 	    <!--<li><a href="microreactorNG/plot.php?type=morning_pirani_bufferturbo&from=2009-01-01&to=2012-01-01&manualscale=checked&ymax=1E-1&ymin=1E-5&xsize=1000&ysize=750">Morning pressure</a></li>-->
            <li><a href="microreactorNG/modify_comment.php">Modify comments</a></li
 	    <li><a href="microreactorNG/dateplot.php?type=multidateplot_test&left_ymin=0&left_ymax=0&left_plotlist[]=1&right_ymin=0&right_ymax=0">Test</a></li>
