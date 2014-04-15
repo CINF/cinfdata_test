@@ -212,6 +212,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	     <!-- <li><a href="dummy/read_plot_group.php?type=masstime">Mass-time</a></li> -->
 	     <li><a href="dummy/xyplot.php?type=massspectrum">Mass spectrums</a></li>
 	     <li><a href="dummy/xyplot.php?type=xps">XPS</a></li>
+	     <li><a href="dummy/xyplot.php?type=it&matplotlib=checked">Current/Temperature</a></li>
 	    </ul>
           </td>
           <td>

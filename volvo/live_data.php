@@ -5,7 +5,7 @@
 <body>
 
 <?php
-$fp = stream_socket_client("udp://130.225.87.86:9999", $errno, $errstr);
+$fp = stream_socket_client("udp://rasppi04:9000", $errno, $errstr);
 if (!$fp) {
   echo "ERROR: $errno - $errstr<br />\n";
 }
@@ -15,20 +15,24 @@ if (!$fp) {
     fwrite($fp, "set_setpoint " . $setpoint_value);
     fread($fp, 26);
   }
+
+
+fwrite($fp, "json_wn");
+$json_data = fread($fp, 260);
+$json_vars = json_decode($json_data, True);
+
 ?>
 
 <h1>Temperature:
 <?php
-  fwrite($fp, "read_temperature");
-  echo fread($fp, 26);
+  echo $json_vars['temperature'][1]
 ?>
  C
 </h1>
 
 <h1>Pressure:
 <?php
-  fwrite($fp, "read_pressure");
-  echo fread($fp, 26);
+  echo $json_vars['pressure'][1]
 ?>
  mBar
 </h1>

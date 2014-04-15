@@ -3,7 +3,7 @@
 
   <!-- PRESSURE -->
   <graph type='pressure'>
-    <query>SELECT unix_timestamp(time), pressure FROM pressure_volvo where time between "{from}" and "{to}" order by time</query>
+    <query>SELECT unix_timestamp(time), value FROM dateplots_volvo where type= 31 and time between "{from}" and "{to}" order by time</query>
     <ylabel>Pressure / mbar</ylabel>
     <title>Pressure in Volvo</title>
     <default_yscale>log</default_yscale>
@@ -22,7 +22,7 @@
 
   <!-- TEMPERATURE -->
   <graph type='temperature'>
-    <query>SELECT unix_timestamp(time), temperature FROM temperature_volvo where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query>
+    <query>SELECT unix_timestamp(time), value FROM dateplots_volvo where type=30 and value between -1 and 1300 and time between "{from}" and "{to}" order by time</query>
     <ylabel>Temperature / C</ylabel>
     <title>Temperature in the Volvo</title>
     <default_yscale>lin</default_yscale>
@@ -39,7 +39,7 @@
     <default_xscale>lin</default_xscale>
     <default_yscale>log</default_yscale>
   </graph>
-  
+
   <!-- XPS -->
   <graph type='xps'>
     <query>SELECT x,y  FROM xy_values_volvo where measurement = {id} order by id</query>
@@ -98,6 +98,21 @@
     <param1_field>preamp_range</param1_field>
     <param1_name>Range</param1_name>
   </graph>
+
+  <graph type='it'>
+    <query>SELECT x/1000,y  FROM xy_values_volvo where measurement = {id} order by id</query>
+    <t_query>SELECT x/1000,y FROM xy_values_volvo where measurement = {t_id} order by id</t_query>
+    <type>13</type>
+    <xlabel>Time / s</xlabel>
+    <t_xlabel>Temperature</t_xlabel>
+    <temperature_unit>C</temperature_unit>
+    <ylabel>Current / A</ylabel>
+    <title>Current vs. time</title>
+    <t_title>Current vs. temperature</t_title>
+    <default_xscale>lin</default_xscale>
+    <default_yscale>lin</default_yscale>
+  </graph>
+
     
   <global_settings>
     <measurements_table>measurements_volvo</measurements_table>

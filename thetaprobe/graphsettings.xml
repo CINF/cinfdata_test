@@ -3,6 +3,10 @@
 
   <!-- MULTI DATEPLOT -->
   <graph type='multidateplot_pressures'>
+    <app>
+      <title>Pressures</title>
+      
+    </app>
     <default_xscale>dat</default_xscale>
     <xlabel>Date</xlabel>
     <right_legend_suffix> (r)</right_legend_suffix>
@@ -35,6 +39,7 @@
 
   <!-- GLOBAL SETTINGS -->
   <global_settings>
+    <app_title>Theta probe</app_title>
     <measurements_table>measurements_thetaprobe</measurements_table>
     <xyvalues_table>xy_values_thetaprobe</xyvalues_table>
     <sql_username>thetaprobe</sql_username>

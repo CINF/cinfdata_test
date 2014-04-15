@@ -249,7 +249,7 @@
     <dateplot1>
       <title>Pirani pressure</title>
       <legend>Pirani pressure</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM pressure_stm312hp_pirani where time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type=42 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>1</color>
     </dateplot1>
@@ -257,44 +257,54 @@
     <dateplot2>
       <title>Pressure controller pressure</title>
       <legend>Pressure controller pressure</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM pressure_stm312hp_pressure_controller where time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type=43 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>2</color>
     </dateplot2>
 
     <dateplot3>
+      <title>Baratron pressure</title>
+      <legend>Baratron pressure</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type=44 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+
+    <dateplot4>
       <title>Temperature</title>
       <legend>Temperature</legend>
       <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312hp where temperature > -998 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
-      <color>3</color>
-    </dateplot3>
-
-    <dateplot4>
-      <title>Power supply Voltage</title>
-      <legend>Voltage</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 'hp_psu_voltage' and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Voltage / V</ylabel>
       <color>4</color>
     </dateplot4>
 
     <dateplot5>
-      <title>Power supply current</title>
-      <legend>Current</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 'hp_psu_current' and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Current / A</ylabel>
+      <title>Power supply Voltage</title>
+      <legend>Voltage</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 40 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Voltage / V</ylabel>
       <color>5</color>
     </dateplot5>
 
     <dateplot6>
+      <title>Power supply current</title>
+      <legend>Current</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 41 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Current / A</ylabel>
+      <color>6</color>
+    </dateplot6>
+
+    <dateplot7>
       <title>Sample temperature</title>
       <legend>Sample temperature</legend>
       <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312 where temperature between -1 and 1600 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
-      <color>3</color>
-    </dateplot6>
-  </graph>
+      <color>7</color>
+    </dateplot7>
 
+
+  </graph>
 
   <!-- MASSSPECTRUM -->
   <graph type="massspectra">
