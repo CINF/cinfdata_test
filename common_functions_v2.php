@@ -106,11 +106,11 @@ function weed($str){
  *  @return string
  */
 
-function html_header($root="../", $title="Data viewer"){
+function html_header($root="../", $title="Data viewer", $includehead=""){
   if(date("n") != "12"){
-    $header = html_header_normal($root, $title);
+    $header = html_header_normal($root, $title, $includehead);
   } else {
-    $header = html_header_x($root, $title);
+    $header = html_header_x($root, $title, $includehead);
   }
   return $header;
 }
@@ -124,7 +124,7 @@ function html_footer(){
   return $footer;
 }
 
-function html_header_normal($root, $title){
+function html_header_normal($root, $title, $includehead){
 
   $header = "";
   $header = $header . "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n";
@@ -136,6 +136,7 @@ function html_header_normal($root, $title){
   $header = $header . "    <script type=\"text/javascript\" src=\"dygraph/dygraph-dev.js\"></script>\n";
   $header = $header . "    <script type=\"text/javascript\" src=\"{$root}js/update.js\"></script> \n";
   $header = $header . "    <script type=\"text/javascript\" src=\"{$root}js/toogle.js\"></script>\n";
+  $header = $header . $includehead . "\n";
   $header = $header . "  </head>\n";
   $header = $header . "  <body>\n";
   $header = $header . "    <div class=\"container\">\n";
@@ -206,7 +207,7 @@ function html_code_header($file){
     return($header);
 }
 
-function html_header_x($root, $title){
+function html_header_x($root, $title, $includehead){
   $files = Array();
   if ($handle = opendir("{$root}images/xmas-shift")) {
     while (false !== ($entry = readdir($handle))) {
@@ -231,6 +232,7 @@ function html_header_x($root, $title){
   }
   $header = $header . "    <script type=\"text/javascript\" src=\"{$root}js/update.js\"></script> \n";
   $header = $header . "    <script type=\"text/javascript\" src=\"{$root}js/toogle.js\"></script>\n";
+  $header = $header . $includehead . "\n";
   $header = $header . "  </head>\n";
   $header = $header . "  <body>\n";
   $header = $header . "    <div class=\"container\">\n";
