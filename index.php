@@ -184,12 +184,12 @@ echo(html_header($root="", $title="Data logged at CINF"));
            <ul id="ps" style="display:none"> 
 	    <li><a href="ps/read_dateplot.php?type=pressure">Pressure</a></li>
 	    <li><a href="ps/read_dateplot.php?type=temperature">Temperature</a></li>
-	    <li><a href="ps/read_dateplot.php?type=temperature_turbos">Temperature, turbos</a></li>
+            <li><a href="ps_new_graph_system/dateplot.php?type=multidateplot_turbo&left_plotlist[]=1&right_plotlist[]=2">Turbo status</a></li>
 	    <li><a href="ps/read_plot_group.php?type=deposition">Deposition</a></li>
             <li><a href="ps/read_plot.php?type=massspectrum">Mass spectra</a></li>
             <li><a href="ps/read_plot_group.php?type=masstime">Mass-time</a></li>
 	    <li><a href="ps/plot.php?type=morning_pressure&from=2009-01-01&to=2015-01-01&manualscale=checked&ymax=1E-5&ymin=1E-11&xsize=1000&ysize=750">Morning pressure</a></li>
-           <li><a href="ps/modify_comment.php">Modify comments</a></li>
+            <li><a href="ps/modify_comment.php">Modify comments</a></li>
 
 	   </ul>
           </td>
@@ -208,7 +208,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
           </td>
           <td>
             <ul id="dummy" style="display:none"> 
-  	     <li><a href="dummy/xyplot.php?type=masstime">Mass-time</a></li>
+  	     <li><a href="dummy/xyplot.php?type=masstime&matplotlib=checked">Mass-time</a></li>
 	     <!-- <li><a href="dummy/read_plot_group.php?type=masstime">Mass-time</a></li> -->
 	     <li><a href="dummy/xyplot.php?type=massspectrum">Mass spectrums</a></li>
 	     <li><a href="dummy/xyplot.php?type=xps">XPS</a></li>
