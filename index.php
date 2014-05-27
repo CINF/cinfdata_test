@@ -167,7 +167,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
           <td>
            <ul id="TOF" style="display:none"> 
 	    <li><a href="tof/dateplot.php?type=multidateplot&left_plotlist%5B%5D=1&left_plotlist%5B%5D=2&left_plotlist%5B%5D=3">Dateplots</a></li>
-	    <li><a href="tof/xyplot.php?type=tofspectrum">TOF spectra</a></li>
+	    <li><a href="tof/xyplot.php?type=tofspectrum&matplotlib=checked">TOF spectra</a></li>
 	    <li><a href="tof/xyplot.php?type=massspectrum">Mass spectra</a></li>
 	    <li><a href="tof/xyplot.php?type=masstime">Mass-time</a></li>
 	    <li><a href="http://robertj">Flight Time Analysis</a></li>
@@ -302,9 +302,9 @@ echo(html_header($root="", $title="Data logged at CINF"));
          <tr>
           <td>
            <ul id="gasmonitor" style="display:none"> 
-              <li><a href="gasmonitor/dateplot.php?type=multidateplot_ch4&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&left_plotlist[]=4&left_plotlist[]=5&left_plotlist[]=6&left_plotlist[]=7&right_ymin=0&right_ymax=0">Gas levels - CH<sub>4</sub></a></li>
-              <li><a href="gasmonitor/dateplot.php?type=multidateplot_co&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&left_plotlist[]=4&left_plotlist[]=5&left_plotlist[]=6&right_ymin=0&right_ymax=0">Gas levels - CO</sub></a></li>
-              <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor/dateplot.php?type=multidateplot&from=2013-09-10+15%3A52&to=2013-09-11+15%3A53&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&left_plotlist[]=4&left_plotlist[]=5&left_plotlist[]=6&left_plotlist[]=7&left_plotlist[]=8&left_plotlist[]=9&left_plotlist[]=10&left_plotlist[]=11&left_plotlist[]=12&left_plotlist[]=13&right_ymin=0&right_ymax=0">Gas levels - All</sub></a></li>
+              <li><a href="gasmonitor/dateplot.php?type=multidateplot_ch4&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&left_plotlist[]=4&left_plotlist[]=5&left_plotlist[]=6&left_plotlist[]=7&right_ymin=0&right_ymax=0">Gas levels - CH<sub>4</sub></a></li>
+              <li><a href="gasmonitor/dateplot.php?type=multidateplot_co&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&left_plotlist[]=4&left_plotlist[]=5&left_plotlist[]=6&right_ymin=0&right_ymax=0">Gas levels - CO</sub></a></li>
+              <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor/dateplot.php?type=multidateplot&matplotlib=checked&from=2013-09-10+15%3A52&to=2013-09-11+15%3A53&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&left_plotlist[]=4&left_plotlist[]=5&left_plotlist[]=6&left_plotlist[]=7&left_plotlist[]=8&left_plotlist[]=9&left_plotlist[]=10&left_plotlist[]=11&left_plotlist[]=12&left_plotlist[]=13&right_ymin=0&right_ymax=0">Gas levels - All</sub></a></li>
 	   </ul>
           </td>
           <td>

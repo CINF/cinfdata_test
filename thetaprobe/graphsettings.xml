@@ -49,7 +49,86 @@
 	<codename>thetaprobe_pressure_uvgun</codename>
 	<name>Pressure UV gun</name>
       </field1>
+      <field2>
+	<socket>1</socket>
+	<codename>pressure</codename>
+	<name>Pressure in the Volvo</name>
+      </field2>
+      <field3>
+	<socket>1</socket>
+	<codename>temperature</codename>
+	<name>Temperature in the Volvo</name>
+      </field3>
     </fields>
+  </graph>
+
+  <graph type="livegraph1">
+    <!-- All widths are in multipla of 12 px and heights in multipla of 9 px -->
+    <page_width>80</page_width>
+    <layout>
+      <container0>
+	<width>20</width>
+	<figure0>
+	  <height>20</height>
+	</figure0>
+	<figure1>
+	  <height>20</height>
+	</figure1>
+      </container0>
+      <container1>
+	<width>40</width>
+	<figure2>
+	  <height>40</height>
+	</figure2>
+      </container1>
+    </layout>
+    <figures>
+      <figure0>
+	<update_interval>100</update_interval>
+	<plots>
+	  <plot0>
+	    <socket>0</socket>
+	    <id>sine1</id>
+	    <label>Sine 1</label>
+	  </plot0>
+	</plots>
+      </figure0>
+      <figure1>
+	<update_interval>200</update_interval>
+	<plots>
+	  <plot0>
+	    <socket>0</socket>
+	    <id>sine2</id>
+	    <label>Sine 2</label>
+	  </plot0>
+	</plots>
+      </figure1>
+      <figure2>
+	<update_interval>100</update_interval>
+	<plots>
+	  <plot0>
+	    <socket>0</socket>
+	    <id>sine1</id>
+	    <label>Sine 1</label>
+	  </plot0>
+	  <plot1>
+	    <socket>0</socket>
+	    <id>sine2</id>
+	    <label>Sine 2</label>
+	  </plot1>
+	</plots>
+      </figure2>
+      <figure3>
+	<update_interval>500</update_interval>
+	<plots>
+	  <plot0>
+	    <socket>1</socket>
+	    <id>parab1</id>
+	    <label>Parab 1</label>
+	  </plot0>
+	</plots>
+      </figure3>
+    </figures>
   </graph>
 
   <!-- GLOBAL SETTINGS -->
@@ -88,6 +167,7 @@
     </matplotlib_settings>
     <sockets>
       <socket0>rasppi25:8000</socket0>
+      <socket1>rasppi04:8000</socket1>
     </sockets>
   </global_settings>
 </graphs>

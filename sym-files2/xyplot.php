@@ -390,7 +390,8 @@ if ($matplotlib == 'checked'){
 	   $query = "SELECT * from {$settings['measurements_table']} WHERE id=$plotlist[0]";
 	   $result = mysql_query($query);
 	   $meta = mysql_fetch_array($result);
-	   $command = "/var/www/cinfdata/tof/flighttime/flighttime.py --liner=" . round($meta['tof_liner_voltage']) . " --pulse=" . round($meta['tof_pulse_voltage']) . " --R1=" . round($meta['tof_R1_voltage']) . " --R2=" . round($meta['tof_R1_voltage']) . " 2>&1";
+	   $command = "/var/www/cinfdata/tof/flighttime/flighttime.py --liner=" . round($meta['tof_liner_voltage']) . " --pulse=" . round($meta['tof_pulse_voltage']) . " --R1=" . round($meta['tof_R1_voltage']) . " --R2=" . round($meta['tof_R2_voltage']) . " 2>&1";
+	   echo($command);
 	   exec($command,$out);
 	   for ($i=0;$i<count($out);$i++){
 			  print($out[$i]);

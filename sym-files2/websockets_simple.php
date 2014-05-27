@@ -25,25 +25,25 @@ include("../common_functions_v2.php");
 $type = $_GET["type"];
 $settings = plot_settings($type);
 
-$register = Array();
+$subscriptions = Array();
 $socket_defs = Array();
 foreach(array_keys($settings["sockets"]) as $socket_name){
   $socket_defs[] = $settings["sockets"][$socket_name];
   $socket_name = str_replace("socket", "", $socket_name);
-  if (sizeof($register) != (int) $socket_name){
+  if (sizeof($subscriptions) != (int) $socket_name){
     trigger_error("Sockets definitions must have consecutive numbers starting from 0", E_USER_ERROR);
   }
-  $register[] = Array();
+  $subscriptions[] = Array();
 }
 foreach($settings["fields"] as $field){
-  $register[$field["socket"]][] = $field["codename"];
+  $subscriptions[$field["socket"]][] = $field["codename"];
 }
-$register_json = json_encode($register);
+$subscriptions_json = json_encode($subscriptions);
 $socket_defs_json = json_encode($socket_defs);
 
 /*
-  After parsing "register" will contain an array of
-  machine/registration numbers and the codenames that will be used
+  After parsing "subscriptions" will contain an array of
+  machine/subscription numbers and the codenames that will be used
   from that machine, e.g:
     [0, [codename0, codename1], 2, [codename2, codename3]]
   And "socket_defs" will contain a list of hostname:ip e:g:
@@ -56,10 +56,10 @@ $head_script = <<<EOD
 window.onload = function() {
 
     // Convert php vars to java script
-    var register = JSON.parse('$register_json');
+    var subscriptions = JSON.parse('$subscriptions_json');
     var socket_defs = JSON.parse('$socket_defs_json');
 
-    // Setup websocket ...
+    // Setup websocket URI ...
     var wsuri = "wss://kenni:9001";
     console.log("ws: URI: " + wsuri);
 
@@ -72,20 +72,20 @@ window.onload = function() {
     }
 
     webSocket.onopen = function() {
-	/* On ws open register the machines (hostname:ip) that are
+	/* On ws open subscribe for data from machines (hostname:ip) that are
 	required for this page with the ws socket server.
         
         The ws server will respond with an echo of the request and the number
-        of the registration (one per hostname:ip) and the sane interval. I.e.
+        of the subscription (one per hostname:ip) and the sane interval. I.e.
         a request looks like:
-          register#hostname:ip;codename0,codename1
+          subscribe#hostname:ip;codename0,codename1
         and the response looks like:
-          register#hostname:ip;codename0,codename1#0#0.2
+          subscribe#hostname:ip;codename0,codename1#0#0.2
         */
 	console.log("ws: Connected!");
-	for (var n in register){
-	    msg = "register#".concat(socket_defs[n], ";", register[n].join(','));
-	    console.log("ws: Register connection: ".concat(msg));
+	for (var n in subscriptions){
+	    msg = "subscribe#".concat(socket_defs[n], ";", subscriptions[n].join(','));
+	    console.log("ws: Subscribe on machine: ".concat(msg));
 	    webSocket.send(msg);
 	}
     }
@@ -115,14 +115,14 @@ window.onload = function() {
 	return out
     }
 
-    function parse_register(string) {
-	/* Parse a register return string on the form:
-             register#rasppi25:8000;codename0,codename1#0#0.2
-           where the last 0 and 1 are the registration number and sane
+    function parse_subscription(string) {
+	/* Parse a subscription return string on the form:
+             subscribe#rasppi25:8000;codename0,codename1#0#0.2
+           where the last 0 and 1 are the subscription number and sane
            interval respectively
         */
 	var split = data.split("#");
-	// Schedule a ws send of the registration number once every sane
+	// Schedule a ws send of the subscription number once every sane
 	// interval
 	window.setInterval(
 	    function(){
@@ -137,10 +137,10 @@ window.onload = function() {
            where t, v are time, value sets for a point
          */
 	var socket = data[0];
-	// Loop over the number of codenames in register[socket]
-	for (var n in register[socket]){
+	// Loop over the number of codenames in subscriptions[socket]
+	for (var n in subscriptions[socket]){
 	    // Form the HTML id on the form 0#codename0
-	    var id = String(socket).concat("#", register[socket][n]);
+	    var id = String(socket).concat("#", subscriptions[socket][n]);
 	    // Get a date object from unixtime
 	    var date = new Date(data[1][n][0] * 1000);
 	    var out = '<b>Time: </b>' + iso_time(date) +
@@ -156,12 +156,12 @@ window.onload = function() {
     webSocket.onmessage = function(e) {
 	/* ws onmessage: parse the message from JSON and act on it */
 	document.getElementById("raw").innerHTML = e.data
-	//console.log("message received: " + e.data);  // LOTS of debug output
+	//console.log("message received: " + e.data);  // LOTS of output
 	data = JSON.parse(e.data)
 	if (typeof(data) == "string"){
-	    if (data.indexOf("register") == 0){
-		// The string is an register response
-		parse_register(data);
+	    if (data.indexOf("subscribe") == 0){
+		// The string is a subscription response
+		parse_subscription(data);
 	    } else {
 		// The strings is unknown, most likely an error
 		var msg = "Recieved an unknown string: '" + data +
