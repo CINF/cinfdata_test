@@ -269,11 +269,11 @@ echo(html_header($root="", $title="Data logged at CINF"));
          <tr>
           <td>
            <ul id="NH3Synth" style="display:none"> 
-              <li><a href="NH3Synth/dateplot.php?type=multidateplot&left_ymin=0&left_ymax=0&left_plotlist[]=3&right_ymin=0&right_ymax=0">Pressure, iongauge</a></li>
-              <li><a href="NH3Synth/dateplot.php?type=multidateplot&left_ymin=0&left_ymax=0&left_plotlist[]=1&right_ymin=0&right_ymax=0">Ammonia Concentration (IR)</a></li>
-              <li><a href="NH3Synth/dateplot.php?type=multidateplot&left_ymin=0&left_ymax=0&left_plotlist[]=4&left_plotlist[]=5&left_plotlist[]=6&left_plotlist[]=7&left_plotlist[]=8&right_ymin=0&right_ymax=0">Temperatures</a></li>
-              <li><a href="NH3Synth/xyplot.php?type=massspectrum">Mass spectra</a></li>
- 	      <li><a href="NH3Synth/xyplot.php?type=masstime">Mass-time</a></li>
+              <li><a href="NH3Synth/dateplot.php?type=multidateplot&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=3&right_ymin=0&right_ymax=0">Pressure, iongauge</a></li>
+              <li><a href="NH3Synth/dateplot.php?type=multidateplot&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=1&right_ymin=0&right_ymax=0">Ammonia Concentration (IR)</a></li>
+              <li><a href="NH3Synth/dateplot.php?type=multidateplot&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=4&left_plotlist[]=5&left_plotlist[]=6&left_plotlist[]=7&left_plotlist[]=8&right_ymin=0&right_ymax=0">Temperatures</a></li>
+              <li><a href="NH3Synth/xyplot.php?type=massspectrum&matplotlib=checked">Mass spectra</a></li>
+ 	      <li><a href="NH3Synth/xyplot.php?type=masstime&matplotlib=checked">Mass-time</a></li>
 	   </ul>
           </td>
           <td>

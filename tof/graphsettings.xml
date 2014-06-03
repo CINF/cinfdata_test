@@ -62,6 +62,10 @@
     <title>TOF Spectrum</title>
     <xlabel>Time / Microseconds</xlabel>
     <image_format>png</image_format>
+    <matplotlib_settings>
+      <width>1200</width>
+      <height>800</height>
+    </matplotlib_settings>
     <flight_time_estimate>true</flight_time_estimate>
     <queries>
       <default>SELECT x*1000000,y  FROM xy_values_tof where measurement = {id} order by id</default>
