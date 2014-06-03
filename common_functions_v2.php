@@ -13,6 +13,11 @@ function std_db($user = "cinf_reader"){
     return($db);
 }
 
+function std_dbi($user = "cinf_reader"){
+  $mysqli = new mysqli("localhost", $user, $user, "cinfdata");
+  return $mysqli;
+}
+
 function single_sql_value($db,$query,$column){
     $result  = mysql_query($query,$db);
     $row = mysql_fetch_array($result);
@@ -124,6 +129,7 @@ function html_footer(){
   return $footer;
 }
 
+
 function html_header_normal($root, $title, $includehead){
 
   $header = "";
@@ -136,6 +142,7 @@ function html_header_normal($root, $title, $includehead){
   $header = $header . "    <script type=\"text/javascript\" src=\"dygraph/dygraph-dev.js\"></script>\n";
   $header = $header . "    <script type=\"text/javascript\" src=\"{$root}js/update.js\"></script> \n";
   $header = $header . "    <script type=\"text/javascript\" src=\"{$root}js/toogle.js\"></script>\n";
+  $header = $header . "    <script type=\"text/javascript\" src=\"{$root}js/output.js\"></script>\n";
   $header = $header . $includehead . "\n";
   $header = $header . "  </head>\n";
   $header = $header . "  <body>\n";
@@ -232,6 +239,7 @@ function html_header_x($root, $title, $includehead){
   }
   $header = $header . "    <script type=\"text/javascript\" src=\"{$root}js/update.js\"></script> \n";
   $header = $header . "    <script type=\"text/javascript\" src=\"{$root}js/toogle.js\"></script>\n";
+  $header = $header . "    <script type=\"text/javascript\" src=\"{$root}js/output.js\"></script>\n";
   $header = $header . $includehead . "\n";
   $header = $header . "  </head>\n";
   $header = $header . "  <body>\n";

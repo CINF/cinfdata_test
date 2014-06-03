@@ -19,6 +19,11 @@ function std_db($user = "cinf_reader"){
     return($db);
 }
 
+function std_dbi($user = "cinf_reader"){
+  $mysqli = new mysqli("localhost", $user, $user, "cinfdata");
+  return $mysqli;
+}
+
 function single_sql_value($db,$query,$column){
     $result  = mysql_query($query,$db);  
     $row = mysql_fetch_array($result);
