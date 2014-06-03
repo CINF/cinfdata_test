@@ -23,6 +23,7 @@ include("graphsettings.php");
 include("../common_functions_v2.php");
 
 $db = std_db();
+$mysqli = std_dbi();
 $type = $_GET["type"];
 $settings = plot_settings($type);
 
@@ -67,6 +68,30 @@ $title             = isset($_GET["title"])              ? weed($_GET["title"])  
 $xlabel            = isset($_GET["xlabel"])             ? weed($_GET["xlabel"])        : "";
 $left_ylabel       = isset($_GET["left_ylabel"])        ? weed($_GET["left_ylabel"])   : "";
 $right_ylabel      = isset($_GET["right_ylabel"])       ? weed($_GET["right_ylabel"])  : "";
+$plugin_settings   = isset($_GET["plugin_settings"])    ? $_GET["plugin_settings"]     : Array();
+
+// Figure out whether there are plugins that produce output
+$produce_output = False;
+if (array_key_exists("plugins", $settings)){
+  foreach($settings["plugins"] as $plugin_name => $plugin){
+    $plugin_set = isset($plugin_settings[$plugin_name]) ? $plugin_settings[$plugin_name] : Array();
+    $activate = isset($plugin_set['activate']) ? $plugin_set['activate'] : "";
+    $output = isset($plugin['output']) ? $plugin['output'] : "";
+    if ($activate == "checked" and in_array($output, Array('html', 'raw'))){
+      $produce_output = True;
+    }
+  }
+}
+// Make an entry in the plot_com_out table for the output from the plugins
+if ($produce_output){
+  $query = "INSERT INTO plot_com_out (output) values ('')";
+  $mysqli->query($query);
+  $plugin_settings['output_id'] = $mysqli->insert_id;
+} else {
+  $plugin_settings['output_id'] = -1;
+}
+
+
 
 // Simple function to replicate PHP 5 behaviour
 function microtime_float()
@@ -131,9 +156,8 @@ $options = array('xmin', 'xmax',
 		 'title',
 		 'xlabel',
 		 'left_ylabel',
-		 'right_ylabel'
+		 'right_ylabel',
 		 );
-
 // ... add values ...
 foreach($options as $value){
   $options_line .= '&' . $value . '=' . str_replace(' ', '+', $$value);
@@ -145,6 +169,9 @@ foreach(array('left_plotlist', 'right_plotlist') as $value){
   $options_line .= '&' . $value . '[]=' . $id;
   }
 }
+
+// ... and the seialized pluging settings
+$options_line .= '&plugin_settings=' . htmlentities(json_encode($plugin_settings));
 
 // ... and append imageformat to them
 $plot_php_line = 'plot.php?type=' . $type . $options_line . '&image_format=' . 'png';
@@ -263,6 +290,43 @@ if ($matplotlib == 'checked'){
                 Right y-label: <input name="right_ylabel" type="text" size="15" value="<?php echo($right_ylabel);?>">
               </span>
 	<hr>
+
+<?php
+# The plugins section
+function display_plugin($name, $plugin){
+  global $plugin_settings;
+  $my_plugin = isset($plugin_settings[$name]) ? $plugin_settings[$name] : Array();
+  echo("<div class=\"plugin\">\n");
+  echo("<b>$name</b><br/>\n");
+  # Activate box
+  $activated = isset($my_plugin["activate"]) ? "checked" : "";
+  echo("$plugin[title]: <input type=\"checkbox\" name=\"plugin_settings[{$name}][activate]\" value=\"checked\" $activated><br>\n");
+  # If this array takes input
+  if (array_key_exists("input", $plugin)){
+    $input = isset($my_plugin["input"]) ? $my_plugin["input"] : "";
+    echo("$plugin[input]: <input name=\"plugin_settings[{$name}][input]\" type=\"text\" value=\"$input\"><br>\n");
+  }
+  # If the array produces output
+  if (array_key_exists("output", $plugin) and in_array($plugin["output"], Array('html', 'raw'))){
+    $output_line = $activated == "checked" ? "Waiting for output" : "Not activated";
+    echo("<div style=\"border:1px solid black\" id=\"{$name}_output\">$output_line</div>");
+  }
+  echo("</div>\n");
+}
+
+if (array_key_exists("plugins", $settings))
+{
+  foreach($settings["plugins"] as $plugin_name => $plugin)
+    {
+      display_plugin($plugin_name, $plugin);
+    }
+  if ($plugin_settings['output_id'] > -1){
+    echo("<script type=\"text/javascript\">window.onload = function(){fetchOutput({$plugin_settings['output_id']})}</script>");
+  }
+  echo("<div id=\"plugins\">");
+  echo("</div><hr>");
+}
+?>
 
 	 <div id="list_components">
 		  <div id="left_y">

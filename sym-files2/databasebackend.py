@@ -30,6 +30,11 @@ import numpy as np
 from datetime import datetime
 from graphsettings import graphSettings
 import re
+import json
+from StringIO import StringIO
+import traceback
+import cgi
+
 
 class dataBaseBackend():
     ''' This class will fetch measurement data and measurement information from the
@@ -52,10 +57,10 @@ class dataBaseBackend():
         self.plotlist = self.o['left_plotlist'] + self.o['right_plotlist']
 
         # Create MySQL session and cursor
-        db = MySQLdb.connect(user="cinf_reader",
-                             passwd="cinf_reader",
-                             db="cinfdata")
-        self.cursor = db.cursor()
+        self.conn = MySQLdb.connect(user="cinf_reader",
+                                    passwd="cinf_reader",
+                                    db="cinfdata")
+        self.cursor = self.conn.cursor()
         self.data = None
 
     def get_data(self):
@@ -163,6 +168,8 @@ class dataBaseBackend():
         # Don't do data processing on date data
         if self.ggs['default_xscale'] == 'dat':
             return
+        # Run plugin(s) on data
+        self._plugins()
         # Convert the data to be as a function of ...
         if self.o['as_function_of']:
             self._as_function_of()
@@ -188,8 +195,106 @@ class dataBaseBackend():
             self._differentiate()
         return
 
-    ### Function that does data manipulation ###
-    ############################################
+    ### Functions that does data manipulation ###
+    #############################################
+
+    def _plugins(self):
+        """Run the plugins on the data"""
+        # Get the input
+        query = 'SELECT input FROM plot_com_in WHERE id={0}'.\
+            format(self.o['input_id'])
+        self.cursor.execute(query)
+        input_settings = json.loads(self.cursor.fetchall()[0][0])
+        # Get the output_id
+        output_id = input_settings.pop('output_id')
+
+        # Check if there are any plugins to be run
+        run_plugins = False
+        for value in input_settings.values():
+            run_plugins = run_plugins or (value.get('activate') == 'checked')
+        if not run_plugins:
+            return
+
+        # Import plugins from setup folder, without permanently modifying path
+        import sys
+        old_path = list(sys.path)
+        sys.path.insert(0, '../{0}'.format(self.ggs['folder_name']))
+        import plugins
+        sys.path = old_path
+
+        # Remove the plugins from settings that should not be run
+        for name, settings in input_settings.items():
+            if settings.get('activate') != 'checked':
+                input_settings.pop(name)
+
+        # Run the plugins. stdout is changed, to be able to capture the output,
+        # so we save a copy of the old value before we start
+        output = {}
+        oldout = sys.stdout
+        for name, settings in input_settings.items():
+            output_single = self._plugin_single(name, settings, sys, plugins)
+
+            # Channel captured output to dict or old stdout depending
+            if output_id > -1 and self.ggs['plugins'][name].get('output') in ['raw', 'html']:
+                output[name] = output_single
+
+        # Send the output, if any, to the db
+        if output_id > -1:
+            output_string = json.dumps(output)
+            query = "UPDATE plot_com_out SET output=%s WHERE id={0}".format(output_id)
+            self.cursor.execute(query, (output_string))
+            self.conn.commit()
+
+        # Restore stdout
+        sys.stdout = oldout
+
+    def _plugin_single(self, name, settings, sys, plugins):
+        # Assign a new StringIO object as stdout
+        sys.stdout = StringIO()
+
+        # Get the plugin class and run
+        failed = False
+        try:
+            class_ = getattr(plugins, name)
+            plugin = class_(settings)
+            additions = plugin.run(self.data['left'], self.data['right'])
+        # This nasty 'catch all' is by design, so its OK
+        except Exception as exception:
+            additions = {
+                'xlabel_addition': 'ERROR',
+                'y_left_label_addition': 'ERROR',
+                'y_right_label_addition': 'ERROR',
+                }
+            # If the plugin accepts output, put the exception there and
+            # don't re-raise
+            if self.ggs['plugins'][name].get('output') in ['raw', 'html']:
+                failed = True
+                sys.stdout.write(traceback.format_exc())
+            else:
+                raise exception
+
+        # Raise exception if the additions are not properly filled in
+        if not isinstance(additions, dict):
+            message = 'The return value from plugins \'run\' method must '\
+                'be a dict'
+            raise TypeError(message)
+        for key in ['xlabel_addition', 'y_left_label_addition',
+                    'y_right_label_addition']:
+            if not key in additions:
+                message = 'The dict returned by a plugins \'run\' method '\
+                    'must contain the key {0}'.format(key)
+            self._plot_info_add_string(key, additions[key])
+
+        # Treat output
+        outstr = sys.stdout.getvalue()
+        if self.ggs['plugins'][name].get('output') == 'html' and not failed:
+            # TODO check html
+            pass
+        # If not html assume raw
+        else:
+            outstr = cgi.escape(outstr.strip('\n'))
+            outstr = '<pre>{0}</pre>'.format(outstr)
+        return outstr
 
     def _as_function_of(self):
         # Get the datetime of the measurement

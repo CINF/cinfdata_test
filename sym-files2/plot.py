@@ -71,6 +71,7 @@ class Plot():
 	parser.add_option('--from_to')               # Time stamp pair NOT HANDLED
 	parser.add_option('--image_format')          # String options
 	parser.add_option('--manual_labels_n_titel') # Manual labels and title for mpl
+	parser.add_option('--input_id')              # Database id for plugin input
 
         # Parse the options
         (options, args) = parser.parse_args()
@@ -107,6 +108,8 @@ class Plot():
             self.o[opt.split('=')[0]] = opt.split('=')[1]
         # From_to
         self.o['from_to'] = options.from_to.split(',')
+        # Database ID for plugin input
+        self.o['input_id'] = int(options.input_id)
         ### Done processing options
 
         # Get a (g)eneral (g)raph (s)ettings object
