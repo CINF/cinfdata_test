@@ -201,6 +201,9 @@ class dataBaseBackend():
     def _plugins(self):
         """Run the plugins on the data"""
         # Get the input
+        input_id = self.o.get('input_id')
+        if input_id is None:
+            return
         query = 'SELECT input FROM plot_com_in WHERE id={0}'.\
             format(self.o['input_id'])
         self.cursor.execute(query)
