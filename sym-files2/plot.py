@@ -44,6 +44,7 @@ import matplotlib.pyplot as plt
 
 # Import our own classes
 from databasebackend import dataBaseBackend
+
 #from common import Color, GMT1
 from graphsettings import graphSettings
 import ourmatplotlib, ourdygraph
@@ -135,7 +136,7 @@ class Plot():
         self.db = dataBaseBackend(options=self.o, ggs=self.ggs)
 
         self.defaults = {}
-        
+
     def main(self):
         # Import the plotting engine appropriate for the plot type
         if self.o['matplotlib'] is True:

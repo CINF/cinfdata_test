@@ -31,6 +31,7 @@ os.environ[ 'HOME' ] = '/var/www/cinfdata/figures'
 # System-wide ctypes cannot be run by apache... strange...
 sys.path.insert(1, '/var/www/cinfdata')
 
+import numpy as np
 # Matplotlib must be imported before MySQLdb (in dataBaseBackend), otherwise we
 # get an ugly error
 import matplotlib
@@ -104,7 +105,7 @@ class Plot():
         self.measurement_count = sum(measurement_count)
         self._init_plot()
         self._plot(data)
-        self._zoom_and_flip()
+        self._zoom_and_flip(data)
         self._title_and_labels(plot_info)
         self._save(plot_info)
 
@@ -211,20 +212,59 @@ class Plot():
             self.ax1.text(0.5, y, 'No data', horizontalalignment='center',
                           verticalalignment='center', color='red', size=60)
 
-    def _zoom_and_flip(self):
+    def _zoom_and_flip(self, data):
         """ Apply the y zooms.
         NOTE: self.ax1.axis() return a list of bounds [xmin,xmax,ymin,ymax] and
         we reuse x and replace y)
         """
+        left_yscale_inferred = self.o['left_yscale_bounding']
+        right_yscale_inferred = self.o['right_yscale_bounding']
+
+        # X-axis zoom and infer y-axis zoom implications
+        if self.o['xscale_bounding'] is not None and\
+                self.o['xscale_bounding'][1] > self.o['xscale_bounding'][0]:
+            # Set the x axis scaling, unsure if we should do it for ax2 as well
+            self.ax1.set_xlim(self.o['xscale_bounding'])
+            # With no specific left y-axis zoom, infer it from x-axis zoom
+            if left_yscale_inferred is None:
+                left_yscale_inferred = self._infer_y_on_x_zoom(
+                    data['left'], self.o['left_logscale'])
+            # With no specific right y-axis zoom, infer it from x-axis zoom
+            if right_yscale_inferred is None and self.right_yaxis:
+                right_yscale_inferred = self._infer_y_on_x_zoom(
+                    data['right'])
+
         # Left axis 
-        if self.o['left_yscale_bounding'] is not None:
-            self.ax1.axis(self.ax1.axis()[0:2] + self.o['left_yscale_bounding'])
+        if left_yscale_inferred is not None:
+            self.ax1.set_ylim(left_yscale_inferred)
         # Right axis
-        if self.right_yaxis and self.o['right_yscale_bounding'] is not None:
-            self.ax2.axis(self.ax2.axis()[0:2] + self.o['right_yscale_bounding'])
+        if self.right_yaxis and right_yscale_inferred is not None:
+            self.ax2.set_ylim(right_yscale_inferred)
 
         if self.o['flip_x']:
-            self.ax1.axis((self.ax1.axis()[1], self.ax1.axis()[0]) + self.ax1.axis()[2:4])
+            self.ax1.set_xlim((self.ax1.set_xlim()[1],self.ax1.set_xlim()[0]))
+
+    def _infer_y_on_x_zoom(self, list_of_data_sets, log=None):
+        """Infer the implied Y axis zoom with an X axis zoom, for one y axis"""
+        yscale_inferred = None
+        min_candidates = []
+        max_candidates = []
+        for dat in list_of_data_sets:
+            # Make mask that gets index for points where x is within bounds
+            mask = (dat['data'][:, 0] > self.o['xscale_bounding'][0]) &\
+                (dat['data'][:, 0] < self.o['xscale_bounding'][1])
+            # Gets all the y values from that mask
+            reduced = dat['data'][mask, 1]
+            # Add min/max candidates
+            if len(reduced) > 0:
+                min_candidates.append(np.min(reduced))
+                max_candidates.append(np.max(reduced))
+        # If there are min/max candidates, set the inferred left y bounding
+        if len(min_candidates) > 0 and len(max_candidates) > 0:
+            min_, max_ = np.min(min_candidates), np.max(max_candidates)
+            height = max_ - min_
+            yscale_inferred = (min_ - height*0.05, max_ + height*0.05)
+        return yscale_inferred
 
     def _title_and_labels(self, plot_info):
         """ Put title and labels on the plot """

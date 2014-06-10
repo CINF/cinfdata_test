@@ -206,10 +206,16 @@ class Plot():
         colors = [self.c.get_color_hex() for dat in data['left'] + data['right']]
         options.append({'colors':str(colors)})
         
-        # Zoom
+        # Zoom, left y-scale
         if self.o['left_yscale_bounding'] is not None:
             options.append({'valueRange':
                                 str(list(self.o['left_yscale_bounding']))})
+        # X-scale
+        if self.o['xscale_bounding'] is not None and\
+                self.o['xscale_bounding'][1] > self.o['xscale_bounding'][0]:
+            xzoomstring = '[{0}, {1}]'.format(self.o['xscale_bounding'][0],
+                                              self.o['xscale_bounding'][1])
+            options.append({'dateWindow': xzoomstring})
 
         grids = [{'drawXGrid': 'true'}, {'drawYGrid': 'false'}]
         # Add modifications from settings file

@@ -1,1 +1,0 @@
-../sym-files2/get_components.php
