@@ -117,15 +117,6 @@ class dataBaseBackend():
                 if v['match'] == meta_info[lgs['queries']['column']]:
                     query = v['query']
 
-        # Quick hack to provide axis zooming directly in the query
-        #if (self.o['xscale_bounding'] is not None and
-        #    self.o['xscale_bounding'][1] > self.o['xscale_bounding'][0]):
-        #    x = query.split(' ')[1].split(',')[0]
-        #    query_addition = ' {0} between {1} and {2} and'.\
-        #        format(x, str(self.o['xscale_bounding'][0]), str(self.o['xscale_bounding'][1]))
-        #    where_start =  query.lower().find('where') + 5
-        #    query = query[: where_start] + query_addition + query[where_start:]
-
         # Single plot data structure
         ret = {'key': 'dateplot' + str(plot_n),
                'lgs': lgs,
