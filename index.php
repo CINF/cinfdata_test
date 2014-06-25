@@ -319,6 +319,27 @@ echo(html_header($root="", $title="Data logged at CINF"));
           </td>
          </tr>
 
+         <tr>
+          <td>
+           <a href="javascript:toggle('vhp_setup')"><h2>VHP Setup</h2></a></td><td>
+           <a href="javascript:toggle('')"><h2></h2></a></td><td>
+           <a href="javascript:toggle('')"><h2></h2></a></td><td>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <ul id="vhp_setup" style="display:none"> 
+	     <li><a href="vhp_setup/dateplot.php?type=multidateplot&left_plotlist[]=1">Chamber Pressure</a></li>
+	     <li><a href="vhp_setup/xyplot.php?type=massspectra">Mass spectrums</a></li>
+	   </ul>
+          </td>
+          <td>
+  &nbsp;
+          </td>
+         </tr>
+
+
+
         </table>
 <?php
 echo(html_footer());
