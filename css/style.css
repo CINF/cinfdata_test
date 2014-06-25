@@ -7,11 +7,17 @@
 }
 
 .dydiv2{
-	border: 0px solid black;
+    border: 0px solid black;
     float:left;
     margin-left:5%;
-	width: 70%;
-	height: 500px;
+    width: 70%;
+    height: 500px;
+}
+
+#warning_div{
+    color: red;
+    font-size: 200%;
+    text-align: center;
 }
 
 #labels{
