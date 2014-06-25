@@ -23,6 +23,7 @@ along with The CINF Data Presentation Website.  If not, see
 
 import time
 import sys
+import uuid
 from common import Color
 
 class Plot():
@@ -45,6 +46,7 @@ class Plot():
         self.tab = '    '
         # object to give first good color, and then random colors
         self.c = Color()
+        self.reduction = 1
 
     def new_plot(self, data, plot_info, measurement_count):
         """ Produce all the plot output by calls to the different
@@ -58,6 +60,28 @@ class Plot():
         
     def _header(self, out, data, plot_info):
         """ Form the header """
+        # Get max points from settings of any, default 10000
+        #max_points = 100000
+        max_points = 50000
+        if self.ggs.get('dygraph_settings') is not None:
+            if self.ggs['dygraph_settings'].get('max_points') is not None:
+                max_points = int(self.ggs['dygraph_settings']['max_points'])
+        # Calculate the data point reduction factor
+        self.reduction = (self.measurement_count / max_points) + 1
+
+        if self.reduction > 1:
+            mouse_over = "This plot, which was supposed to contain {0} data "\
+                "points, has been reduced to only plot every {1} point, to "\
+                "reduce the total data size. The current data point limit is "\
+                "{2} and it can be changed in your graphsettings.xml"
+            mouse_over = mouse_over.format(self.measurement_count,
+                                           self.reduction, max_points)
+            warning = '<b title=\\"{0}\\">Reduced data set (hover for '\
+                'details)</b>'.format(mouse_over)
+            out.write('document.getElementById("warning_div").innerHTML='\
+                          '\"{0}\";'.format(warning))
+
+        # Write dygraph header
         out.write('g = new Dygraph(\n' +
                   self.tab + 'document.getElementById("graphdiv"),\n') 
 
@@ -65,48 +89,55 @@ class Plot():
         """ Determine the type of the plot and call the appropriate
         _data_*** function
         """
+        # Generate a random filename for the data
+        filename = '../figures/{0}.csv'.format(uuid.uuid4())
+        out.write('{0}"{1}",\n'.format(self.tab, filename))
+        file_ = open(filename, 'w')
         if self.ggs['default_xscale'] == 'dat':
-            self._data_dateplot(out, data, plot_info)
+            self._data_dateplot(file_, data, plot_info)
         else:
-            self._data_xyplot(out, data, plot_info)
+            self._data_xyplot(file_, data, plot_info)
+        file_.close()
 
     def _data_dateplot(self, out, data, plot_info):
-        plot_n = len(self.o['left_plotlist'] + self.o['right_plotlist'])
-        last_line = '\n' + self.tab + '//DATA\n'
+        """Generate the CSV data for a dateplot"""
+        # Total number of plots
+        plot_number = len(self.o['left_plotlist'] + self.o['right_plotlist'])
+        # Loop over data series
         for n, dat in enumerate(data['left'] + data['right']):
-            this_line = [''] * (plot_n + 1)
-            for item in dat['data']:
-                out.write(last_line)
-                this_line[0] = str(time.strftime('%Y-%m-%d %H:%M:%S',
-                                                 time.localtime(int(item[0]))))
-                this_line[n+1] = str(item[1])
-                last_line = self.tab + '"' + ','.join(this_line) + '\\n" +\n'
-        
-        if self.measurement_count == 0:
-            out.write(last_line)
-            this_line = [str(42), str(42)]
-            last_line = self.tab + '"' + ','.join(this_line) + '\\n" +\n'
-        
-        out.write(last_line.rstrip(' +\n') + ',\n\n')
-
-    def _data_xyplot(self, out, data, plot_info):
-        plot_n = len(self.o['left_plotlist'] + self.o['right_plotlist'])
-        last_line = '\n' + self.tab + '//DATA\n'
-        for n, dat in enumerate(data['left'] + data['right']):
-            this_line = [''] * (plot_n + 1)
-            for item in dat['data']:
-                out.write(last_line)
-                this_line[0] = str(item[0])
-                this_line[n+1] = str(item[1])
-                last_line = self.tab + '"' + ','.join(this_line) + '\\n" +\n'
+            this_line = [''] * (plot_number + 1)
+            # Loop over points in that series
+            for index, item in enumerate(dat['data']):
+                if index % self.reduction == 0:
+                    # Insert date in column 0 and y in appropriate column
+                    this_line[0] = str(time.strftime(
+                            '%Y-%m-%d %H:%M:%S', time.localtime(int(item[0]))
+                            ))
+                    this_line[n+1] = str(item[1])
+                    out.write(','.join(this_line) + '\n')
 
         # Write one bogus points if there is no data
         if self.measurement_count == 0:
-            out.write(last_line)
-            this_line = [str(42), str(42)]
-            last_line = self.tab + '"' + ','.join(this_line) + '\\n" +\n'
-        
-        out.write(last_line.rstrip(' +\n') + ',\n\n')
+            out.write('42,42\n')
+
+    def _data_xyplot(self, out, data, plot_info):
+        """Generate the CSV data for a XY plot"""
+        # Total number of plots
+        plot_number = len(self.o['left_plotlist'] + self.o['right_plotlist'])
+        # Loop over data series
+        for n, dat in enumerate(data['left'] + data['right']):
+            this_line = [''] * (plot_number + 1)
+            # Loop over points in that series
+            for index, item in enumerate(dat['data']):
+                if index % self.reduction == 0:
+                    # Insert x in column 0 and y in appropriate column
+                    this_line[0] = str(item[0])
+                    this_line[n+1] = str(item[1])
+                    out.write(','.join(this_line) + '\n')
+
+        # Write one bogus points if there is no data
+        if self.measurement_count == 0:
+            out.write('42,42\n')
 
     def _options(self, out, data, plot_info):
         """ Form all the options and ask _output_options to print them in a

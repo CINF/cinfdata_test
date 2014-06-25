@@ -82,6 +82,7 @@ if ($matplotlib == 'checked'){
 } else {
   $dygraph_settings = isset($settings["dygraph_settings"]) ? $settings["dygraph_settings"] : array();
   $labels_side = isset($dygraph_settings["labels_side"]) ? $dygraph_settings["labels_side"] : "false";
+  echo('<div id=warning_div></div>');
   if ($labels_side == "true"){
     echo('<div id="graphdiv" class="dydiv2"></div><div id="labels"></div>');
   } else {
