@@ -76,6 +76,12 @@
     <legend>
       <default>{id}</default>
     </legend>
+    <plugins>
+      <Massscale>
+	<title>Convert to approximate mass units</title>
+	<output>raw</output>
+      </Massscale>
+    </plugins>
 
     <parameters>
       <param0>
@@ -210,6 +216,7 @@
   </graph>
 
   <global_settings>
+    <folder_name>tof</folder_name>
     <measurements_table>measurements_tof</measurements_table>
     <xyvalues_table>xy_values_tof</xyvalues_table>
     <sql_username>tof</sql_username>
