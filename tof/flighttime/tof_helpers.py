@@ -1,3 +1,6 @@
+import os
+os.environ[ 'HOME' ] = '/var/www/cinfdata/figures'
+
 import scipy as sp
 import matplotlib as mpl
 #mpl.use('Agg')
