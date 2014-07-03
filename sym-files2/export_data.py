@@ -47,6 +47,7 @@ class ExportData:
 	parser.add_option('--left_yscale_bounding')  # Float pair
 	parser.add_option('--right_yscale_bounding') # Float pair
 	parser.add_option('--from_to')               # Time stamp pair NOT HANDLED
+	parser.add_option('--input_id')              # Database id for plugin input
 
         # Parse the options
         (options, args) = parser.parse_args()
@@ -81,6 +82,8 @@ class ExportData:
             self.o[key] = options.__dict__[key]
         # From_to
         self.o['from_to'] = options.from_to.split(',')
+        # Database ID for plugin input
+        self.o['input_id'] = int(options.input_id)
         ### Done processing options
 
         # If a dateplot and called without (valid) datetimes fill them in
@@ -155,7 +158,7 @@ class ExportData:
         # Find warnings in the graphsettings dict
         warning_keys = []
         for dat in (data['left'] + data['right']):
-            for key in ['warning' + str(n) for n in range(4)]:
+            for key in ['warning' + str(n) for n in range(5)]:
                 # If the current warning key is found in graphsettings and we
                 # don't already have it in warning_keys, add it
                 if (dat['lgs'].has_key(key) and (warning_keys.count(key)) == 0):

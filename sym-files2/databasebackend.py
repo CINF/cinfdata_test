@@ -45,6 +45,7 @@ class dataBaseBackend():
     warning1 = linscale x
     warning2 = linscale y
     warning3 = diff
+    warning4 = plugin
     '''
     def __init__(self, options, ggs):
         # From init
@@ -211,7 +212,7 @@ class dataBaseBackend():
 
         # Import plugins from setup folder, without permanently modifying path
         import sys
-        old_path = list(sys.path)
+        old_path = list(sys.path)  # Call list in list to create a copy
         sys.path.insert(0, '../{0}'.format(self.ggs['folder_name']))
         import plugins
         sys.path = old_path
@@ -266,6 +267,23 @@ class dataBaseBackend():
                 sys.stdout.write(traceback.format_exc())
             else:
                 raise exception
+
+        # Add warning to export about the plugins being run
+        for dat in (self.data['left'] + self.data['right']):
+            # Form the plugin warning string
+            input_ = settings.get('input')
+            if input_ is None:
+                warning = '### Plugin \'{0}\' run on data '.format(name)
+            else:
+                warning = '### Plugin \'{0}\' run on data with input '\
+                    'string: \'{1}\' '.format(name, input_)
+
+            # Add the plugin warning string
+            if dat['lgs'].get('warning4') is None:
+                dat['lgs']['warning4'] = warning
+            else:
+                dat['lgs']['warning4'] += warning
+                
 
         # Raise exception if the additions are not properly filled in
         if not isinstance(additions, dict):

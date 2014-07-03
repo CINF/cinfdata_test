@@ -36,6 +36,16 @@ foreach (array('left_plotlist', 'right_plotlist') as $list){
 ### Dateplot specific
 $from_to  = $_GET['from'] . ',' . $_GET['to'];
 
+### Plugin settings
+$mysqli = std_dbi();
+$plugin_settings_json = html_entity_decode($_GET['plugin_settings']);
+$plugin_settings_json = $mysqli->real_escape_string($plugin_settings_json);
+# Form intry in input table and get ID
+
+$query = "INSERT INTO plot_com_in (input) values ('$plugin_settings_json')";
+$mysqli->query($query);
+$input_id = $mysqli->insert_id;
+
 # Call python plot backend
 $command = './export_data.py --type ' . $_GET['type'] .
   ' --boolean_options "' . $boolean_options . '"' .
@@ -45,6 +55,7 @@ $command = './export_data.py --type ' . $_GET['type'] .
   ' --left_yscale_bounding "' . $left_yscale_bounding . '"' .
   ' --right_yscale_bounding "' . $right_yscale_bounding . '"' .
   ' --from_to "' . $from_to . '"' .
+  ' --input_id "' . $input_id . '"' .
   ' 2>&1';
 
 exec($command, $command_output);
