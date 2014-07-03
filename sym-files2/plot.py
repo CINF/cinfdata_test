@@ -45,7 +45,6 @@ import matplotlib.pyplot as plt
 # Import our own classes
 from databasebackend import dataBaseBackend
 
-#from common import Color, GMT1
 from graphsettings import graphSettings
 import ourmatplotlib, ourdygraph
 

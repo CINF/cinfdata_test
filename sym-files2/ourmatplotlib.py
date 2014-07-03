@@ -30,6 +30,7 @@ import os
 os.environ[ 'HOME' ] = '/var/www/cinfdata/figures'
 # System-wide ctypes cannot be run by apache... strange...
 sys.path.insert(1, '/var/www/cinfdata')
+from pytz import timezone
 
 import numpy as np
 # Matplotlib must be imported before MySQLdb (in dataBaseBackend), otherwise we
@@ -42,7 +43,7 @@ import matplotlib.dates as mdates
 
 # Import our own classes
 #from databasebackend import dataBaseBackend
-from common import Color, GMT1
+from common import Color
 
 class Plot():
     """This class is used to generate the figures for the plots."""
@@ -93,7 +94,7 @@ class Plot():
                                                         
         # Plotting options
         self.maxticks=15
-        self.tz = GMT1()
+        self.tz = timezone('Europe/Copenhagen')
         self.right_yaxis = len(self.o['right_plotlist']) > 0
         self.measurement_count = None
  
@@ -137,6 +138,7 @@ class Plot():
         """ Make the date plot """
         # Rotate datemarks on xaxis
         self.ax1.set_xticklabels([], rotation=25, horizontalalignment='right')
+
         # Left axis
         for dat in data['left']:
             # Form legend
@@ -174,6 +176,24 @@ class Plot():
             y = 0.00032 if self.o['left_logscale'] is True else 0.5
             self.ax1.text(0.5, y, 'No data', horizontalalignment='center',
                           verticalalignment='center', color='red', size=60)
+
+        # Set xtick formatter
+        xlim = self.ax1.set_xlim()
+        diff = max(xlim) - min(xlim)  # in minutes
+        format_out = '%H:%M:%S'  # Default
+        # Diff limit to date format translation, will pick the format format of
+        # the largest limit the diff is larger than. Limits are in minutes.
+        formats = [
+            [1.0,              '%a %H:%M'],  # Larger than 1 day
+            [7.0,              '%Y-%m-%d'],  # Larger than 1 day
+            [7*30.,              '%Y-%m'],  # Larger than 30 days
+        ]
+        for limit, format in formats:
+            if diff > limit:
+                format_out = format
+        fm = mdates.DateFormatter(format_out, tz=self.tz)
+        self.ax1.xaxis.set_major_formatter(fm)
+
 
     def _plot_xyplot(self, data):
         # Left axis

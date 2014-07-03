@@ -98,13 +98,3 @@ class Color:
         children = obj.get_children()
         for child in children:
             self._color_ticks_and_labels(child, color)
-
-### GMT1
-from datetime import tzinfo, timedelta
-class GMT1(tzinfo):
-    def utcoffset(self, dt):
-        return timedelta(hours=1)
-    def dst(self, dt):
-        return timedelta(0)
-    def tzname(self,dt):
-        return ""
