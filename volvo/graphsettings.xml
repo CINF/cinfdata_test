@@ -1,122 +1,305 @@
 <?xml version='1.0' standalone='yes'?>
 <graphs>
 
-  <!-- PRESSURE -->
-  <graph type='pressure'>
-    <query>SELECT unix_timestamp(time), value FROM dateplots_volvo where type= 31 and time between "{from}" and "{to}" order by time</query>
-    <ylabel>Pressure / mbar</ylabel>
-    <title>Pressure in Volvo</title>
-    <default_yscale>log</default_yscale>
+  <graph type='multidateplot'>
     <default_xscale>dat</default_xscale>
-  </graph>
-  
-  <!-- MORNING_PRESSURE -->
-  <graph type='morning_pressure'>
-    <query>select unix_timestamp(date(time)), avg(pressure) from pressure_volvo where hour(time) = 1 and minute(time) between 00 and 20 and time between "{from}" and "{to}" group by date(time) order by time desc limit 30</query>
-    <ylabel>Pressure / mbar</ylabel>
-    <title>Pressure at 1 am in the Volvo</title>
-    <default_yscale>log</default_yscale>
-    <default_xscale>dat</default_xscale>
-    <default_style>barplot</default_style>
-  </graph>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
 
-  <!-- TEMPERATURE -->
-  <graph type='temperature'>
-    <query>SELECT unix_timestamp(time), value FROM dateplots_volvo where type=30 and value between -1 and 1300 and time between "{from}" and "{to}" order by time</query>
-    <ylabel>Temperature / C</ylabel>
-    <title>Temperature in the Volvo</title>
-    <default_yscale>lin</default_yscale>
-    <default_xscale>dat</default_xscale>
-  </graph>
-  
-  <!-- IV -->
-  <graph type='iv'>
-    <query>SELECT x,y  FROM xy_values_volvo where measurement = {id} order by id</query>
-    <type>1</type>
-    <xlabel>Voltage / V</xlabel>
-    <ylabel>Current / A</ylabel>
-    <title>IV-curves</title>
-    <default_xscale>lin</default_xscale>
-    <default_yscale>log</default_yscale>
-  </graph>
+    <!-- Chamber pressure -->
+    <dateplot1>
+      <title>Pressure</title>
+      <legend>Pressure</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_volvo where type=31 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>1</color>
+    </dateplot1>
 
-  <!-- XPS -->
-  <graph type='xps'>
-    <query>SELECT x,y  FROM xy_values_volvo where measurement = {id} order by id</query>
-    <type>2</type>
-    <xlabel>Binding energy / eV</xlabel>
-    <ylabel>Counts / s</ylabel>
-    <title>XPS data</title>
-    <default_xscale>lin</default_xscale>
-    <default_yscale>lin</default_yscale>
-    <param0_field>pass_energy</param0_field>
-    <param0_name>Pass Energy / eV</param0_name>
-  </graph>
-  
-  <!-- ISS -->
-  <graph type='iss'>
-    <query>SELECT x,y  FROM xy_values_volvo where measurement = {id} order by id</query>
-    <type>3</type>
-    <xlabel>Energy / eV</xlabel>
-    <ylabel>Counts / s</ylabel>
-    <title>ISS data</title>
-    <default_xscale>lin</default_xscale>
-    <default_yscale>lin</default_yscale>
+    <dateplot2>
+      <title>Temperature</title>
+      <legend>Temperature</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_volvo where type=30 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>2</color>
+    </dateplot2>
   </graph>
 
   <!-- MASSSPECTRUM -->
-  <graph type='massspectrum'>
-    <query>SELECT x,y  FROM xy_values_volvo where measurement = {id} order by id</query>
-    <offset_query>SELECT min(y) FROM xy_values_volvo where measurement = {id}</offset_query>
+  <graph type="massspectra">
+    <default_xscale>lin</default_xscale>
     <type>4</type>
+    <grouping_column>time</grouping_column>
+    <label_column>id</label_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <gas_analysis>false</gas_analysis>
+    <dygraph_settings>
+      <series_highlight>true</series_highlight>
+      <labels_side>true</labels_side>
+      <labels_newline>true</labels_newline>
+    </dygraph_settings>
+    <queries>
+      <default>SELECT x,y  FROM xy_values_volvo where measurement = {id} order by id</default>
+    </queries>
     <xlabel>Mass / amu</xlabel>
-    <ylabel>SEM current / A</ylabel>
+    <ylabel>
+      <default>SEM current / A</default>
+    </ylabel>
+    <legend>
+      <default>{id}</default>
+    </legend>
     <title>Mass Spectrum</title>
-    <default_xscale>lin</default_xscale>
-    <default_yscale>log</default_yscale>
-    <param0_field>sem_voltage</param0_field>
-    <param0_name>SEM Voltage / V</param0_name>
-    <param1_field>preamp_range</param1_field>
-    <param1_name>Range</param1_name>
-  </graph>
-  
-  <!-- MASSTIME -->
-  <graph type='masstime'>
-    <query>SELECT x/1000,y  FROM xy_values_volvo where measurement = {id} order by id</query>
-    <t_query>SELECT x/1000,y FROM xy_values_volvo where measurement = {t_id} order by id</t_query>
-    <type>5</type>
-    <xlabel>Time / s</xlabel>
-    <t_xlabel>Temp / </t_xlabel>
-    <temperature_unit>C</temperature_unit>
-    <ylabel>SEM current / A</ylabel>
-    <title>Mass vs. time</title>
-    <t_title>Mass vs. temperature</t_title>
-    <default_xscale>lin</default_xscale>
-    <default_yscale>lin</default_yscale>
-    <param0_field>sem_voltage</param0_field>
-    <param0_name>SEM Voltage / V</param0_name>
-    <param1_field>preamp_range</param1_field>
-    <param1_name>Range</param1_name>
+    <parameters>
+      <param0>
+	<field>SEM_voltage</field>
+	<name>SEM Voltage / V</name>
+      </param0>
+      <param1>
+	<field>preamp_range</field>
+	<name>Range</name>
+      </param1>
+    </parameters>
   </graph>
 
-  <graph type='it'>
-    <query>SELECT x/1000,y  FROM xy_values_volvo where measurement = {id} order by id</query>
-    <t_query>SELECT x/1000,y FROM xy_values_volvo where measurement = {t_id} order by id</t_query>
+  <!-- ISS -->
+  <graph type="iss">
+    <default_xscale>lin</default_xscale>
+    <type>3</type>
+    <grouping_column>time</grouping_column>
+    <label_column>id</label_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <gas_analysis>false</gas_analysis>
+    <dygraph_settings>
+      <series_highlight>true</series_highlight>
+      <labels_side>true</labels_side>
+      <labels_newline>true</labels_newline>
+    </dygraph_settings>
+    <queries>
+      <default>SELECT x,y  FROM xy_values_volvo where measurement = {id} order by id</default>
+    </queries>
+    <xlabel>Energy / eV</xlabel>
+    <ylabel>
+      <default>Counts / s</default>
+    </ylabel>
+    <legend>
+      <default>{id}</default>
+    </legend>
+    <title>ISS Data</title>
+  </graph>
+
+  <!-- XPS -->
+  <graph type="xps">
+    <default_xscale>lin</default_xscale>
+    <type>2</type>
+    <grouping_column>time</grouping_column>
+    <label_column>id</label_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <gas_analysis>false</gas_analysis>
+    <dygraph_settings>
+      <series_highlight>true</series_highlight>
+      <labels_side>true</labels_side>
+      <labels_newline>true</labels_newline>
+    </dygraph_settings>
+    <queries>
+      <default>SELECT x,y  FROM xy_values_volvo where measurement = {id} order by id</default>
+    </queries>
+    <xlabel>Binding Energy / eV</xlabel>
+    <ylabel>
+      <default>Counts / s</default>
+    </ylabel>
+    <legend>
+      <default>{id}</default>
+    </legend>
+    <title>XPS Data</title>
+  </graph>
+
+  <!-- IV -->
+  <graph type="iv">
+    <default_xscale>lin</default_xscale>
+    <type>1</type>
+    <grouping_column>time</grouping_column>
+    <label_column>id</label_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <gas_analysis>false</gas_analysis>
+    <dygraph_settings>
+      <series_highlight>true</series_highlight>
+      <labels_side>true</labels_side>
+      <labels_newline>true</labels_newline>
+    </dygraph_settings>
+    <queries>
+      <default>SELECT x,y  FROM xy_values_volvo where measurement = {id} order by id</default>
+    </queries>
+    <xlabel>Voltage / V</xlabel>
+    <ylabel>
+      <default>Current / A</default>
+    </ylabel>
+    <legend>
+      <default>{id}</default>
+    </legend>
+    <title>IV Data</title>
+  </graph>
+
+  <!-- IT -->
+  <graph type="it">
+    <default_xscale>lin</default_xscale>
     <type>13</type>
-    <xlabel>Time / s</xlabel>
-    <t_xlabel>Temperature</t_xlabel>
-    <temperature_unit>C</temperature_unit>
-    <ylabel>Current / A</ylabel>
-    <title>Current vs. time</title>
-    <t_title>Current vs. temperature</t_title>
-    <default_xscale>lin</default_xscale>
-    <default_yscale>lin</default_yscale>
+    <grouping_column>time</grouping_column>
+    <label_column>mass_label</label_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <gas_analysis>false</gas_analysis>
+    <dygraph_settings>
+      <series_highlight>true</series_highlight>
+      <labels_side>true</labels_side>
+      <labels_newline>true</labels_newline>
+    </dygraph_settings>
+    <queries>
+      <default>SELECT x/1000,y  FROM xy_values_volvo where measurement = {id} order by id</default>
+    </queries>
+    <xlabel>Time / S</xlabel>
+    <ylabel>
+      <default>Mixed units</default>
+          <column>mass_label</column>
+          <pattern0>
+          <reg_match>Temperature</reg_match>
+	  <ylabel>Temp / C</ylabel>
+	  </pattern0>
+          <pattern1>
+          <reg_match>Current</reg_match>
+	  <ylabel>Current / A</ylabel>
+	  </pattern1>
+    </ylabel>
+    <legend>
+      <default>{id}</default>
+    </legend>
+    <title>IT Data</title>
+    <!-- data treatment -->
+    <as_function_of>
+      <gui>As function of T</gui>
+      <column>mass_label</column>
+      <reg_match>Temperature</reg_match>
+      <xlabel>Temperature / C</xlabel>
+    </as_function_of>
+
   </graph>
 
-    
+
+  <graph type="masstime">
+    <default_xscale>lin</default_xscale>
+    <type>5</type>
+    <grouping_column>time</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <xlabel>Time / s</xlabel>
+    <title>Masstime</title>
+    <!-- dygraph -->
+    <dygraph_settings>
+      <labels_newline>true</labels_newline>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x/1000,y  FROM xy_values_volvo where measurement = {id} order by id</default>
+    </queries>
+    <!-- ylabel -->
+    <ylabel>
+      <default>Mixed units</default>
+      <column>mass_label</column>
+      <pattern0>
+	<reg_match>^.*[0-9]{1,2}.*$</reg_match>
+	<ylabel>SEM current / A</ylabel>
+      </pattern0>
+      <pattern1>
+	<reg_match>^.*emperature$</reg_match>
+	<ylabel>Temperature / C</ylabel>
+      </pattern1>
+      <pattern2>
+	<reg_match>^.*ressure$</reg_match>
+	<ylabel>Pressure / torr</ylabel>
+      </pattern2>
+    </ylabel>
+    <!-- legend -->
+    <legend>
+      <default>{mass_label}</default>
+      <column>mass_label</column>
+      <pattern0>
+	<reg_match>^Temperature$</reg_match>
+	<legend>Temp.</legend>
+      </pattern0>
+      <pattern1>
+	<reg_match>^Pressure$</reg_match>
+	<legend>Pres.</legend>
+      </pattern1>
+    </legend>
+
+    <parameters>
+      <param0>
+	<field>SEM_voltage</field>
+	<name>SEM Voltage / V</name>
+      </param0>
+      <param1>
+	<field>preamp_range</field>
+	<name>Range</name>
+      </param1>
+    </parameters>
+
+    <!-- data treatment -->
+    <as_function_of>
+      <gui>As function of T</gui>
+      <column>mass_label</column>
+      <reg_match>.*emperature</reg_match>
+      <xlabel>Temperature / C</xlabel>
+    </as_function_of>
+    <linscale_x0>
+      <gui>X-axis in hours</gui>
+      <xlabel_addition>convert to hours</xlabel_addition>
+      <!-- 1/3600 -->
+      <a>0.0002777777777777778</a>
+      <b>0</b>
+    </linscale_x0>
+    <linscale_x1>
+      <gui>X-axis C->K</gui>
+      <xlabel_addition>C->K</xlabel_addition>
+      <a>1</a>
+      <b>273.15</b>
+    </linscale_x1>
+    <linscale_right_y0>
+      <gui>Right Y-axis C->K</gui>
+      <ylabel_addition>C->K</ylabel_addition>
+      <a>1</a>
+      <b>273.15</b>
+    </linscale_right_y0>
+  </graph>
+
   <global_settings>
     <measurements_table>measurements_volvo</measurements_table>
     <xyvalues_table>xy_values_volvo</xyvalues_table>
-    <chamber_name>Volvo</chamber_name>
+    <sql_username>volvo</sql_username>
+    <label_column>mass_label</label_column>
+    <image_format>png</image_format>
+    <mandatory_export_fields>
+      <field0>
+	<field>id</field>
+	<name>Id</name>
+      </field0>
+      <field1>
+	<field>type</field>
+	<name>Type</name>
+      </field1>
+      <field2>
+	<field>time</field>
+	<name>Recorded at</name>
+      </field2>
+      <field3>
+	<field>Comment</field>
+	<name>Comment</name>
+      </field3>
+    </mandatory_export_fields>
   </global_settings>
 </graphs>
+

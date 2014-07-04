@@ -1,1 +1,1 @@
-../sym-files/graphsettings.py
+../sym-files2/graphsettings.py

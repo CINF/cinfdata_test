@@ -8,7 +8,7 @@ import numpy as np
 
 cnxn = MySQLdb.connect(host="localhost", user="cinf_reader",passwd = "cinf_reader", db = "cinfdata")
 ########### EDIT HERE ##########
-setup = 'volvo'
+setup = 'stm312'
 ########### EDIT HERE ##########
 
 # Command to start script. In case the script is started without information on
@@ -36,6 +36,7 @@ time = time[0][0]
 cursor.execute("""SELECT pressure, unix_timestamp(time) from pressure_%s where
                 unix_timestamp(time) > %i order by time asc limit 1;"""  % (setup, time))
 pressure11 = cursor.fetchall()
+#print pressure11
 pressure1 = pressure11[0][0]
 time1 = pressure11[0][1]/1.0
 
