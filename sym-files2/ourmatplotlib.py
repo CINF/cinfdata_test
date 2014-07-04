@@ -177,22 +177,24 @@ class Plot():
             self.ax1.text(0.5, y, 'No data', horizontalalignment='center',
                           verticalalignment='center', color='red', size=60)
 
-        # Set xtick formatter
-        xlim = self.ax1.set_xlim()
-        diff = max(xlim) - min(xlim)  # in minutes
-        format_out = '%H:%M:%S'  # Default
-        # Diff limit to date format translation, will pick the format format of
-        # the largest limit the diff is larger than. Limits are in minutes.
-        formats = [
-            [1.0,              '%a %H:%M'],  # Larger than 1 day
-            [7.0,              '%Y-%m-%d'],  # Larger than 1 day
-            [7*30.,              '%Y-%m'],  # Larger than 30 days
-        ]
-        for limit, format in formats:
-            if diff > limit:
-                format_out = format
-        fm = mdates.DateFormatter(format_out, tz=self.tz)
-        self.ax1.xaxis.set_major_formatter(fm)
+        # Set xtick formatter (only if we have points)
+        if self.measurement_count > 0:
+            xlim = self.ax1.set_xlim()
+            diff = max(xlim) - min(xlim)  # in minutes
+            format_out = '%H:%M:%S'  # Default
+            # Diff limit to date format translation, will pick the format
+            # format of the largest limit the diff is larger than. Limits
+            # are in minutes.
+            formats = [
+                [1.0,              '%a %H:%M'],  # Larger than 1 day
+                [7.0,              '%Y-%m-%d'],  # Larger than 1 day
+                [7*30.,              '%Y-%m'],  # Larger than 30 days
+                ]
+            for limit, format in formats:
+                if diff > limit:
+                    format_out = format
+            fm = mdates.DateFormatter(format_out, tz=self.tz)
+            self.ax1.xaxis.set_major_formatter(fm)
 
 
     def _plot_xyplot(self, data):
