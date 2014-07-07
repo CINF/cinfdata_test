@@ -60,14 +60,14 @@ echo(html_header($root="", $title="Data logged at CINF"));
           </td>
           <td>
            <ul id="volvo" style="display:none">
-	    <li><a href="volvo/read_dateplot.php?type=pressure">Pressure</a></li>
-	    <li><a href="volvo/read_dateplot.php?type=temperature">Temperature</a></li>
-	    <li><a href="volvo/read_plot.php?type=iv">IV-curves</a></li>
-	    <li><a href="volvo/read_plot.php?type=xps">XPS-data</a></li>
-	    <li><a href="volvo/read_plot.php?type=iss">ISS-data</a></li>
-	    <li><a href="volvo/read_plot.php?type=massspectrum">Mass spectrums</a></li>
-	    <li><a href="volvo/read_plot_group.php?type=masstime">Mass-time</a></li>
-	    <li><a href="volvo/plot.php?type=morning_pressure&from=2009-01-01&to=2012-01-01&manualscale=checked&ymax=1E-5&ymin=1E-11&xsize=1000&ysize=750">Morning pressure - Beta!</a></li>
+	     <li><a href="volvo/dateplot.php?type=multidateplot&left_logscale=checked&left_ymin=0&left_ymax=0&left_plotlist[]=1&right_plotlist[]=2&right_ymin=0&right_ymax=0">Pressure and temperature</a></li>
+	    <li><a href="volvo/xyplot.php?type=it">IT-curves</a></li>
+	    <li><a href="volvo/xyplot.php?type=iv">IV-curves</a></li>
+	    <li><a href="volvo/xyplot.php?type=xps">XPS-data</a></li>
+	    <li><a href="volvo/xyplot.php?type=iss">ISS-data</a></li>
+	    <li><a href="volvo/xyplot.php?type=massspectrum">Mass spectrums</a></li>
+	    <li><a href="volvo/xyplot_group.php?type=masstime">Mass-time</a></li>
+	    <li><a href="volvo/x.php?type=morning_pressure&from=2009-01-01&to=2012-01-01&manualscale=checked&ymax=1E-5&ymin=1E-11&xsize=1000&ysize=750">Morning pressure - Beta!</a></li>
 	   </ul>
           </td>
          </tr>
@@ -183,6 +183,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
           <td>
            <ul id="ps" style="display:none"> 
 	    <li><a href="ps/read_dateplot.php?type=pressure">Pressure</a></li>
+	    <li><a href="ps/read_dateplot.php?type=pressure_qms">QMS Pressure</a></li>
 	    <li><a href="ps/read_dateplot.php?type=temperature">Temperature</a></li>
             <li><a href="ps_new_graph_system/dateplot.php?type=multidateplot_turbo&left_plotlist[]=1&right_plotlist[]=2">Turbo status</a></li>
 	    <li><a href="ps/read_plot_group.php?type=deposition">Deposition</a></li>
@@ -322,7 +323,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
          <tr>
           <td>
            <a href="javascript:toggle('vhp_setup')"><h2>VHP Setup</h2></a></td><td>
-           <a href="javascript:toggle('')"><h2></h2></a></td><td>
+           <a href="javascript:toggle('chemlab307')"><h2>Chemlab, 307</h2></a></td><td>
            <a href="javascript:toggle('')"><h2></h2></a></td><td>
           </td>
          </tr>
@@ -334,7 +335,10 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	   </ul>
           </td>
           <td>
-  &nbsp;
+           <ul id="chemlab307" style="display:none"> 
+             <li><a href="chemlab307/dateplot.php?type=multidateplot&left_plotlist[]=1">Temperature, Muffle furnace</a></li>
+	   </ul>
+
           </td>
          </tr>
 
