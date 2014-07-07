@@ -144,7 +144,15 @@
     <small_fig_settings>figure.figsize:[4,3.0]|xtick.labelsize:small|ytick.labelsize:small</small_fig_settings>
   </graph>
 
-
+  <!-- PRESSURE, ION GAUGE -->
+  <graph type='pressure_qms'>
+    <query>SELECT unix_timestamp(time), value FROM dateplots_ps where type = 79 and time between "{from}" and "{to}" order by time</query>
+    <ylabel>Chamber pressure / mbar</ylabel>
+    <title>Pressure in the Parallel Screening QMS Chamber</title>
+    <default_yscale>log</default_yscale>
+    <default_xscale>dat</default_xscale>
+    <small_fig_settings>figure.figsize:[4,3.0]|xtick.labelsize:small|ytick.labelsize:small</small_fig_settings>
+  </graph>
 
   <!-- TEMPERATURE -->
   <graph type='temperature'>
