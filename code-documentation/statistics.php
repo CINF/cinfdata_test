@@ -9,9 +9,11 @@ function file_element($file){
   if (in_array($file, $bad_names)){
     return 0;
   }
-  $bad_endings = Array("~", "#");
-  if (in_array(substr($file, -1), $bad_endings)){
-    return 0;
+  $bad_endings = Array("~", "#", "pyc");
+  foreach ($bad_endings as $ending){
+    if (substr($file, -strlen($ending)) === $ending){
+      return 0;
+    }
   }
   $types = Array("py"=>"python", "php"=>"php");
   $split = explode(".", $file);
@@ -61,35 +63,101 @@ data presentation webpage code</p>
 <?php
   $max_index = pow(2, 32);
 
+# Create table with table stats
 echo("" . 
-"<table border=\"1\">\n" .
-"  <tr><th>Name</th><th>Table full</th><th>Size</th></tr>\n");
-$sum = 0;
-$max = 0;
+     "<table border=\"1\">\n" .
+     "  <tr><th>Name</th><th>Table full</th><th style=\"width:120px\">Size</th><th>Name</th><th>Table full</th><th>Size</th></tr>\n");
+
+# General variables
+$sum_size = 0;
+$max_size = 0;
+$max_size_name = "";
+$max_percent = 0;
+$max_percent_name = "";
+# Get tables status
 $query = "show table status";
 $result  = mysql_query($query, $db);
+$to_output = Array();
+# Loop over the tables and calculate size and find max etc.
 while ($row = mysql_fetch_array($result)){
   $row_sum = $row["Data_length"] + $row["Index_length"];
-  $sum += $row_sum;
+  $sum_size += $row_sum;
   $fraction_of_index = (float)$row['Auto_increment'] / (float)$max_index * 100.0;
-  $max = max($max, $fraction_of_index);
+  if($fraction_of_index > $max_percent){
+    $max_percent = $fraction_of_index;
+    $max_percent_name = $row['Name'];
+  }
+  if($row_sum > $max_size){
+    $max_size = $row_sum;
+    $max_size_name = $row['Name'];
+  }
+  $to_output[] = Array("name" => $row['Name'],
+		       "full" => number_format($fraction_of_index, 2, '.', ','),
+		       "size" => byteFormat($row_sum));
+}
+
+# Output double arrays
+$floor_half = (int) (sizeof($to_output)/2);
+$ceil_half = ceil(sizeof($to_output)/2);
+for ($x=0; $x < $floor_half; $x++) {
+  $table_line = $to_output[$x];
   echo("  <tr>\n");
-  echo("    <td>{$row['Name']}</td>");
-  echo("    <td>" . number_format($fraction_of_index, 2, '.', ',') . "%</td>");
-  echo("    <td>" . byteFormat($row_sum) . "</td>");
+  foreach(Array($to_output[$x], $to_output[$x + $ceil_half]) as $table_line){
+    $name = $table_line['name'];
+    if($table_line['name'] == $max_percent_name){
+      $full = "<b>{$table_line['full']}%</b>";
+      $name = "<b>{$table_line['name']}</b>";
+    }else{
+      $full = "{$table_line['full']}%";
+    }
+    if($table_line['name'] == $max_size_name){
+      $size = "<b>{$table_line['size']}</b>";
+      $name = "<b>{$table_line['name']}</b>";
+    }else{
+      $size = "{$table_line['size']}";
+    }
+
+    echo("    <td>$name</td>");
+    echo("    <td>$full</td>");
+    echo("    <td>$size</td>");
+  }
   echo("  </tr>\n");
 }
 
+# Output trailing line with odd number of lines
+if ($floor_half != $ceil_half){
   echo("  <tr>\n");
-  echo("    <td><b>Max</b></td>");
-  echo("    <td><b>" . number_format($max, 2, '.', ',') . "%</b></td>");
+  $table_line = $to_output[$floor_half];
+  if($table_line['name'] == $max_percent_name){
+    $full = "<b>{$table_line['full']}%</b>";
+  }else{
+    $full = "{$table_line['full']}%";
+  }
+  if($table_line['name'] == $max_size_name){
+    $size = "<b>{$table_line['size']}</b>";
+  }else{
+    $size = "{$table_line['size']}";
+  }
+  echo("    <td>{$table_line['name']}</td>");
+  echo("    <td>$full</td>");
+  echo("    <td>$size</td>");
   echo("    <td></td>");
+  echo("    <td></td>");
+  echo("    <td></td>");
+  echo("  </tr>\n");
+}
+
+# Output the table bottom with summary information
+  echo("  <tr>\n");
+  echo("    <td colspan=4 ><b>Max</b></td>");
+  echo("    <td><b>" . number_format($max_percent, 2, '.', ',') . "%</b></td>");
+  echo("    <td><b>" . byteFormat($max_size, 2, '.', ',') . "</b></td>");
   echo("  </tr>\n");
 
   echo("  <tr>\n");
-  echo("    <td><b>Total</b></td>");
+  echo("    <td colspan=4 ><b>Total</b></td>");
   echo("    <td></td>");
-  echo("    <td><b>" . byteFormat($sum) . "</b></td>");
+  echo("    <td><b>" . byteFormat($sum_size) . "</b></td>");
   echo("  </tr>\n");
 
 echo("</table>\n");
