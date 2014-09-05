@@ -63,7 +63,7 @@
     <xlabel>Time / Microseconds</xlabel>
     <image_format>png</image_format>
     <matplotlib_settings>
-      <width>1200</width>
+      <width>2000</width>
       <height>800</height>
     </matplotlib_settings>
     <flight_time_estimate>true</flight_time_estimate>
