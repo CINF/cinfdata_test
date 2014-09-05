@@ -86,7 +86,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	    <li><a href="microreactor/dateplot.php?type=multidateplot&left_ymin=0&left_ymax=0&left_plotlist[]=3&right_ymin=0&right_ymax=0">Reactor pressure</a></li>
    <li><a href="microreactor/dateplot.php?type=multidateplot&left_ymin=0&left_ymax=0&left_plotlist[]=4&left_plotlist[]=5&right_ymin=0&right_ymax=0">Backing pressure, turbos</a></li>
 	    <li><a href="microreactor/dateplot.php?type=multidateplot&left_ymin=0&left_ymax=0&left_plotlist[]=6&right_ymin=0&right_ymax=0">Sample temperature</a></li>
-	    <li><a href="microreactor/dateplot.php?type=multidateplot&left_ymin=0&left_ymax=0&left_plotlist[]=7&left_plotlist[]=8&right_ymin=0&right_ymax=0">Turbo temperatures</a></li>
+	    <li><a href="microreactor/dateplot.php?type=multidateplot_turbos&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&right_ymin=0&right_ymax=0">Turbo temperatures</a></li>
 	    <li><a href="microreactor/xyplot.php?type=masstime&matplotlib=checked">Mass-time</a></li>
 	    <li><a href="microreactor/xyplot.php?type=massspectrum">Massspectra</a></li>
             <li><a href="microreactor/modify_comment.php">Modify comments</a></li>
@@ -324,7 +324,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
           <td>
            <a href="javascript:toggle('vhp_setup')"><h2>VHP Setup</h2></a></td><td>
            <a href="javascript:toggle('chemlab307')"><h2>Chemlab, 307</h2></a></td><td>
-           <a href="javascript:toggle('')"><h2></h2></a></td><td>
+           <a href="javascript:toggle('gasalarm307')"><h2>Gas alarm, 307</h2></a></td><td>
           </td>
          </tr>
          <tr>
@@ -332,19 +332,30 @@ echo(html_header($root="", $title="Data logged at CINF"));
            <ul id="vhp_setup" style="display:none"> 
 	     <li><a href="vhp_setup/dateplot.php?type=multidateplot&left_plotlist[]=1">Chamber Pressure</a></li>
 	     <li><a href="vhp_setup/xyplot.php?type=massspectra">Mass spectrums</a></li>
+	     <li><a href="vhp_setup/xyplot.php?type=masstime">Mass-time</a></li>
 	   </ul>
           </td>
           <td>
            <ul id="chemlab307" style="display:none"> 
              <li><a href="chemlab307/dateplot.php?type=multidateplot&left_plotlist[]=1">Temperature, Muffle furnace</a></li>
 	   </ul>
-
+          </td>
+          <td>
+           <ul id="gasalarm307" style="display:none">
+             <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=3&left_plotlist[]=5&left_plotlist[]=7&left_plotlist[]=9&left_plotlist[]=11&right_ymin=0&right_ymax=0&right_plotlist[]=2&right_plotlist[]=4&right_plotlist[]=6&right_plotlist[]=8&right_plotlist[]=10&right_plotlist[]=12">All detectors</a></li>
+             <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot_co&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&left_plotlist[]=4&left_plotlist[]=5&left_plotlist[]=6&right_ymin=0&right_ymax=0">All CO detectors</a></li>
+             <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot_h2&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&left_plotlist[]=4&left_plotlist[]=5&left_plotlist[]=6&right_ymin=0&right_ymax=0">All H2 detectors</a></li>
+             <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=1&right_ymin=0&right_ymax=0&right_plotlist[]=2">CO and H2 051</a></li>
+             <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=3&right_ymin=0&right_ymax=0&right_plotlist[]=4">CO and H2 055</a></li>
+             <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=5&right_ymin=0&right_ymax=0&right_plotlist[]=6">CO and H2 059</a></li>
+             <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=7&right_ymin=0&right_ymax=0&right_plotlist[]=8">CO and H2 061</a></li>
+             <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=11&right_ymin=0&right_ymax=0&right_plotlist[]=12">CO and H2 932</a></li>
+             <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=9&right_ymin=0&right_ymax=0">CO 42-43</a></li>
+             <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=10&right_ymin=0&right_ymax=0">H2 2.Floor</a></li>
+	   </ul>
           </td>
          </tr>
-
-
-
-        </table>
+   </table>
 <?php
 echo(html_footer());
 ?>

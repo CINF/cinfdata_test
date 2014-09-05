@@ -1,0 +1,289 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+
+  <!-- MULTI DATEPLOT -->
+  <graph type='multidateplot_h2'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- Fall back settings -->
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <dygraph_settings>
+      <roll_period>5</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <dateplot1>
+      <title>H2 051</title>
+      <legend>H2 051</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_H2_051") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>H2 055</title>
+      <legend>H2 055</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_H2_055") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <dateplot3>
+      <title>H2 059</title>
+      <legend>H2 059</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_H2_059") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>H2 061</title>
+      <legend>H2 061</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_H2_061") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <dateplot5>
+      <title>H2 2.Floor</title>
+      <legend>H2 2.Floor</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_H2_2sal") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>5</color>
+    </dateplot5>
+
+    <dateplot6>
+      <title>H2 932</title>
+      <legend>H2 932</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_H2_932") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>6</color>
+    </dateplot6>
+  </graph>
+
+
+  <!-- MULTI DATEPLOT -->
+  <graph type='multidateplot_co'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- Fall back settings -->
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <dygraph_settings>
+      <roll_period>5</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <dateplot1>
+      <title>CO 051</title>
+      <legend>CO 051</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_CO_051") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>CO 055</title>
+      <legend>CO 055</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_CO_055") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <dateplot3>
+      <title>CO 059</title>
+      <legend>CO 059</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_CO_059") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>CO 061</title>
+      <legend>CO 061</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_CO_061") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <dateplot5>
+      <title>CO 42-43</title>
+      <legend>CO 42-43</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_CO_42-43") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>5</color>
+    </dateplot5>
+
+    <dateplot6>
+      <title>CO 932</title>
+      <legend>CO 932</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_CO_932") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>6</color>
+    </dateplot6>
+
+  </graph>
+
+
+  <!-- MULTI DATEPLOT -->
+  <graph type='multidateplot'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- Fall back settings -->
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <dygraph_settings>
+      <roll_period>5</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <dateplot1>
+      <title>CO 051</title>
+      <legend>CO 051</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_CO_051") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>H2 051</title>
+      <legend>H2 051</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_H2_051") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <dateplot3>
+      <title>CO 055</title>
+      <legend>CO 055</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_CO_055") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>H2 055</title>
+      <legend>H2 055</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_H2_055") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <dateplot5>
+      <title>CO 059</title>
+      <legend>CO 059</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_CO_059") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>5</color>
+    </dateplot5>
+
+    <dateplot6>
+      <title>H2 059</title>
+      <legend>H2 059</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_H2_059") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>6</color>
+    </dateplot6>
+
+    <dateplot7>
+      <title>CO 061</title>
+      <legend>CO 061</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_CO_061") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>7</color>
+    </dateplot7>
+
+    <dateplot8>
+      <title>H2 061</title>
+      <legend>H2 061</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_H2_061") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>8</color>
+    </dateplot8>
+
+    <dateplot9>
+      <title>CO 42-43</title>
+      <legend>CO 42-43</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_CO_42-43") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>9</color>
+    </dateplot9>
+
+    <dateplot10>
+      <title>H2 2.Floor</title>
+      <legend>H2 2.Floor</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_H2_2sal") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>10</color>
+    </dateplot10>
+
+    <dateplot11>
+      <title>CO 932</title>
+      <legend>CO 932</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_CO_932") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>11</color>
+    </dateplot11>
+
+    <dateplot12>
+      <title>H2 932</title>
+      <legend>H2 932</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b307gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B307_gasalarm_H2_932") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>12</color>
+    </dateplot12>
+
+
+    <!--
+    <dateplot1>
+      <title>Ch1: CH4</title>
+      <legend>Ch1: CH4</legend>
+      <query>SELECT unix_timestamp(time), (6.25*value - 25) FROM gasmonitor_ch01 where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>1</color>
+    </dateplot1>
+    -->
+
+  </graph>
+
+
+  <!-- GLOBAL SETTINGS -->
+  <global_settings>
+    <measurements_table>measurements_b307gasalarm</measurements_table>
+    <xyvalues_table>xy_values_b307gasalarm</xyvalues_table>
+    <!--<chamber_name>microreactorNG</chamber_name>-->
+    <sql_username>b307gasalarm</sql_username>
+    <image_format>png</image_format>
+    <mandatory_export_fields>
+      <field0>
+	<field>id</field>
+	<name>Id</name>
+      </field0>
+      <field1>
+	<field>type</field>
+	<name>Type</name>
+      </field1>
+      <field2>
+	<field>time</field>
+	<name>Recorded at</name>
+      </field2>
+      <field3>
+	<field>comment</field>
+	<name>Comment</name>
+      </field3>
+    </mandatory_export_fields>
+    <matplotlib_settings>
+      <width>900</width>
+      <height>600</height>
+      <title_size>24</title_size>
+      <xtick_labelsize>12</xtick_labelsize>
+      <ytick_labelsize>12</ytick_labelsize>
+      <legend_fontsize>10</legend_fontsize>
+      <label_fontsize>16</label_fontsize>
+    </matplotlib_settings>
+  </global_settings>
+</graphs>
