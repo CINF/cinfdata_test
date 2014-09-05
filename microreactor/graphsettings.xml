@@ -78,14 +78,83 @@
 
     <!-- Date plot 8 - TEMPERATURE CHAMBER TURBO -->
     <dateplot8>
-      <title>Temperature, chamber turbo</title>
-      <legend>Temperature chamber </legend>
-      <query>SELECT unix_timestamp(time), temperature FROM temperature_microreactor_chamberturbo where time between "{from}" and "{to}" order by time</query>
+      <title>Motor Temp, chamber turbo</title>
+      <legend>Motor Temp chamber turbo </legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactor where type = 100 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>8</color>
     </dateplot8>
   </graph>
 
+  <!-- MULTI DATEPLOT -->
+  <graph type='multidateplot_turbos'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- Fall back settings -->
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+    </dygraph_settings>
+
+    <!-- Date plot 8 - TEMPERATURE CHAMBER TURBO -->
+    <dateplot1>
+      <title>Motor Temp, chamber turbo</title>
+      <legend>Motor Temp chamber turbo </legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactor where type = 100 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>Bottom Temp, chamber turbo</title>
+      <legend>Bottom Temp chamber turbo </legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactor where type = 103 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <dateplot3>
+      <title>Bearings Temp, chamber turbo</title>
+      <legend>Bearings Temp chamber turbo </legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactor where type = 104 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>Electronics Temp, chamber turbo</title>
+      <legend>Electronics Temp chamber turbo </legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactor where type = 105 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <dateplot5>
+      <title>Speed, chamber turbo</title>
+      <legend>Speed, chamber turbo </legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactor where type = 102 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>5</color>
+    </dateplot5>
+
+    <dateplot6>
+      <title>Current, chamber turbo</title>
+      <legend>Current, chamber turbo </legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactor where type = 101 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>6</color>
+    </dateplot6>
+
+    <dateplot7>
+      <title>Power, chamber turbo</title>
+      <legend>Power, chamber turbo </legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactor where type = 106 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>7</color>
+    </dateplot7>
+  </graph>
 
   <!-- MASSTIME -->
   <graph type='masstime'>
