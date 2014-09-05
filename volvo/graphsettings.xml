@@ -296,7 +296,7 @@
 	<name>Recorded at</name>
       </field2>
       <field3>
-	<field>Comment</field>
+	<field>comment</field>
 	<name>Comment</name>
       </field3>
     </mandatory_export_fields>
