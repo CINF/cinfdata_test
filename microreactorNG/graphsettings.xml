@@ -106,6 +106,7 @@
     <right_legend_suffix> (r)</right_legend_suffix>
     <!-- dygraph -->
     <dygraph_settings>
+      <max_points>50000</max_points>
       <labels_newline>true</labels_newline>
       <roll_period>1</roll_period>
       <labels_side>true</labels_side>
@@ -243,6 +244,10 @@
 	<name>Comment</name>
       </field3>
     </mandatory_export_fields>
+    <dygraph_settings>
+      <max_points>500000</max_points>
+    </dygraph_settings>
+
     <matplotlib_settings>
       <width>900</width>
       <height>600</height>
