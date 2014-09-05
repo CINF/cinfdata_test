@@ -105,7 +105,7 @@
     <title>Mass Spectrum</title>
     <parameters>
       <param0>
-	<field>SEM_voltage</field>
+	<field>sem_voltage</field>
 	<name>SEM Voltage / V</name>
       </param0>
       <param1>
@@ -165,7 +165,7 @@
 
     <parameters>
       <param0>
-	<field>SEM_voltage</field>
+	<field>sem_voltage</field>
 	<name>SEM Voltage / V</name>
       </param0>
       <param1>
@@ -222,7 +222,7 @@
 	<name>Recorded at</name>
       </field2>
       <field3>
-	<field>Comment</field>
+	<field>comment</field>
 	<name>Comment</name>
       </field3>
     </mandatory_export_fields>
