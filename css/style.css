@@ -420,3 +420,24 @@ table.links td {
 	max-width:400px;
 	border-width: 2px;
 }
+
+table.nicetable{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table.nicetable th{
+    border: 1px solid black;
+    padding: 5px 10px;
+    background-color: #0C5DA5;
+    color: white;
+}
+
+table.nicetable td{
+    padding: 2px 8px;
+}
+
+table.nicetable td.alert{
+    padding: 2px 8px;
+    background-color: #FF0000;
+}
