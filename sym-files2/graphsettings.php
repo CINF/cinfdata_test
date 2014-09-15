@@ -51,13 +51,18 @@ function plot_settings($type,$params=""){
   $settings = xml_tree_to_assiciative_arrays($gs_xml->global_settings);
   
   # Put the graph specific settings in $settings
+  $type_found = False;
   foreach ($gs_xml->graph as $g) {
     if ($g['type'] == $type) {
       $specific_settings = xml_tree_to_assiciative_arrays($g);
       $settings = array_replace($settings, $specific_settings);
+      $type_found = True;
     }
   }
-  
+  # Check if the graph type was valid
+  if (!$type_found){
+    return NULL;
+  }
   
   
   if (gettype($params) == 'array'){

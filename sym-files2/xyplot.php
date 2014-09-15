@@ -26,6 +26,10 @@ $db = std_db();
 $mysqli = std_dbi();
 $type = $_GET["type"];
 $settings = plot_settings($type);
+if (empty($settings)){
+  echo("Type \"$type\" not found in graphsettings.xml. Bailing out!");
+  exit(42);
+}
 
 // Get the id-number and timestamp of the newest measurement
 $query = "SELECT id, " . $settings["grouping_column"] . " FROM " . $settings["measurements_table"] . " where type = " . $settings["type"] . " order by time desc limit 1";
