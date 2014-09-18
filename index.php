@@ -182,15 +182,12 @@ echo(html_header($root="", $title="Data logged at CINF"));
           </td>
           <td>
            <ul id="ps" style="display:none"> 
-	    <li><a href="ps/read_dateplot.php?type=pressure">Pressure</a></li>
-	    <li><a href="ps/read_dateplot.php?type=pressure_qms">QMS Pressure</a></li>
-	    <li><a href="ps/read_dateplot.php?type=temperature">Temperature</a></li>
+	    <li><a href="ps_new_graph_system/dateplot.php?type=multidateplot_chamber&left_plotlist[]=1&left_plotlist[]=2&right_plotlist[]=3">Chamber status</a></li>
             <li><a href="ps_new_graph_system/dateplot.php?type=multidateplot_turbo&left_plotlist[]=1&right_plotlist[]=2">Turbo status</a></li>
-	    <li><a href="ps/read_plot_group.php?type=deposition">Deposition</a></li>
-            <li><a href="ps/read_plot.php?type=massspectrum">Mass spectra</a></li>
-            <li><a href="ps/read_plot_group.php?type=masstime">Mass-time</a></li>
-	    <li><a href="ps/plot.php?type=morning_pressure&from=2009-01-01&to=2015-01-01&manualscale=checked&ymax=1E-5&ymin=1E-11&xsize=1000&ysize=750">Morning pressure</a></li>
-            <li><a href="ps/modify_comment.php">Modify comments</a></li>
+	    <li><a href="ps_new_graph_system/xyplot.php?type=deposition">Deposition</a></li>
+            <li><a href="ps_new_graph_system/xyplot.php?type=massspectra&left_logscale=checked">Mass spectra</a></li>
+	    <li><a href="ps_new_graph_system/xyplot.php?type=masstime">Mass-time</a></li>
+            <li><a href="ps_new_graph_system/modify_comment.php">Modify comments</a></li>
 
 	   </ul>
           </td>
@@ -264,7 +261,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
           <td>
            <a href="javascript:toggle('NH3Synth')"><h2>NH<sub>3</sub> Synthesis</h2></a></td><td>
            <a href="javascript:toggle('sputterchamber')"><h2>Sputter chamber</h2></a></td><td>
-           <a href="javascript:toggle('uhvanneal')"><h2>UHV anneal</h2></a></td><td>
+           <a href="javascript:toggle('furnaceroom')"><h2>Furnace room</h2></a></td><td>
           </td>
          </tr>
          <tr>
@@ -287,9 +284,9 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	   </ul>
           </td>
           <td>
-           <ul id="uhvanneal" style="display:none"> 
- 	     <li><a href="uhv_anneal/dateplot.php?type=multidateplot&left_logscale=checked&left_ymin=0&left_ymax=0&left_plotlist[]=1&right_ymin=0&right_ymax=0">Chamber pressure</a></li>
-             <li><a href="uhv_anneal/dateplot.php?type=multidateplot&left_logscale=checked&left_ymin=0&left_ymax=0&left_plotlist[]=2&left_plotlist[]=3&left_plotlist[]=4&right_ymin=0&right_ymax=0">Temperatures</a></li>
+           <ul id="furnaceroom" style="display:none"> 
+               <li><a href="furnaceroom/dateplot.php?type=multidateplot&left_plotlist[]=1">Temperature, furnace 1</a></li>
+               <li><a href="furnaceroom/dateplot.php?type=multidateplot&left_plotlist[]=2">Temperature, furnace 2</a></li>
 	   </ul>
           </td>
          </tr>
