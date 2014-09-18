@@ -1,1 +1,1 @@
-../sym-files/plot.php
+../sym-files2/plot.php

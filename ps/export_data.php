@@ -1,1 +1,1 @@
-../sym-files/export_data.php
+../sym-files2/export_data.php
