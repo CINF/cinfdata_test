@@ -41,7 +41,7 @@ function xml_tree_to_assiciative_arrays($xml){
   return $ret;
 }
 
-function plot_settings($type,$params=""){
+function plot_settings($type, $params="", $ignore_invalid_type=False){
   # Write the type to the associative settings array and hence initiate it
   $gs = fopen('graphsettings.xml', 'r');
   $gs = fread($gs, filesize('graphsettings.xml'));
@@ -60,7 +60,7 @@ function plot_settings($type,$params=""){
     }
   }
   # Check if the graph type was valid
-  if (!$type_found){
+  if (!$type_found and !$ignore_invalid_type){
     return NULL;
   }
   

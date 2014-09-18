@@ -1,14 +1,14 @@
 <?php
 // Read dateplot is a rather simple status page used only for graphs with dates on the x-axis.
-include("../common_functions.php");
+include("../common_functions_v2.php");
 include("graphsettings.php");
 $type = "";
-$settings = plot_settings($type);
+$settings = plot_settings($type, $params="", $ignore_invalid_type=True);
 $db = std_db($settings["sql_username"]);
 ?>
 
-<?php echo new_html_header()?>
-
+<?php echo html_header()?>
+  
 <?php
 if (!empty($_GET["time"])){
     $timestamp = $_GET["time"];
