@@ -17,7 +17,8 @@
     <dateplot1>
       <title>Pressure in the Parallel Screening Chamber</title>
       <legend>Chamber pressure / mbar</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_ps where type = 70 and time between "{from}" and "{to}" order by time</query>
+      <!--<query>SELECT unix_timestamp(time), value FROM dateplots_ps where type = 70 and time between "{from}" and "{to}" order by time</query>-->
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ps where type = (SELECT id FROM dateplots_descriptions where codename="ps_chamber_pressure") and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>1</color>
     </dateplot1>
@@ -26,7 +27,7 @@
     <dateplot2>
       <title>Pressure in the Parallel Screening QMS Chamber</title>
       <legend>QMS Chamber pressure / mbar</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_ps where type = 79 and time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ps where type = (SELECT id FROM dateplots_descriptions where codename="ps_qms_pressure") and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>2</color>
     </dateplot2>

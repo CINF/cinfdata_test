@@ -8,7 +8,7 @@ import numpy as np
 
 cnxn = MySQLdb.connect(host="localhost", user="cinf_reader",passwd = "cinf_reader", db = "cinfdata")
 ########### EDIT HERE ##########
-setup = 'microreactor'
+setup = 'ps'
 ########### EDIT HERE ##########
 
 # Command to start script. In case the script is started without information on
@@ -31,29 +31,36 @@ cursor.execute("""SELECT unix_timestamp(time) FROM measurements_%s where
 time = cursor.fetchall()
 time = time[0][0]
 
-# Getting the nearest pressure measurement and the corresponding time after the
-# mass-scan from mySQL database
-cursor.execute("""SELECT pressure, unix_timestamp(time) from pressure_%s where
-                unix_timestamp(time) > %i order by time asc limit 1;"""  % (setup, time))
-pressure11 = cursor.fetchall()
-pressure1 = pressure11[0][0]
-time1 = pressure11[0][1]/1.0
 
-# Getting the nearest pressure measurement and the corresponding time before the
-# mass-scan from mySQL database
-cursor.execute("""SELECT pressure, unix_timestamp(time) from pressure_%s where
-                unix_timestamp(time) < %i order by time desc limit 1;""" % (setup, time))
-pressure22 = cursor.fetchall()
-pressure2= pressure22[0][0]
-time2 = pressure22[0][1]/1.0
+try:
+    # Getting the nearest pressure measurement and the corresponding time after the
+    # mass-scan from mySQL database
+    cursor.execute("""SELECT value, unix_timestamp(time) from dateplots_ps where
+                   type = (SELECT id FROM dateplots_descriptions where codename="ps_qms_pressure") and
+                   unix_timestamp(time) > %i order by time asc limit 1;"""  % (time))
+    pressure11 = cursor.fetchall()
+    pressure1 = pressure11[0][0]
+    time1 = pressure11[0][1]/1.0
 
-# Calculating a weighted average for the two pressure measurements
-pressuretotal = ((time1-time)/(time1-time2)*pressure1+
-                 (time-time2)/(time1-time2)*pressure2)
+    # Getting the nearest pressure measurement and the corresponding time before the
+    # mass-scan from mySQL database
+    cursor.execute("""SELECT value, unix_timestamp(time) from dateplots_ps where
+                   type = (SELECT id FROM dateplots_descriptions where codename="ps_qms_pressure") and
+                   unix_timestamp(time) < %i order by time desc limit 1;""" % (time))
 
-# Datasets of compounds, and their peak position and intensity based on
-# cracking patterns. The variable name is the name of the compound. The first
-# number is giving the peak position and the second the intensity
+    pressure22 = cursor.fetchall()
+    pressure2= pressure22[0][0]
+    time2 = pressure22[0][1]/1.0
+
+    # Calculating a weighted average for the two pressure measurements
+    pressuretotal = ((time1-time)/(time1-time2)*pressure1+
+                     (time-time2)/(time1-time2)*pressure2)
+
+    # Datasets of compounds, and their peak position and intensity based on
+    # cracking patterns. The variable name is the name of the compound. The first
+    # number is giving the peak position and the second the intensity
+except:
+    pressuretotal = None
 
 H2_spec = {1.2:0.03, 2.2:1} # Table
 He_spec = {2.2:0.32, 4.1:1}
@@ -258,7 +265,8 @@ while numtheta[numtheta.argmin()] <0:
 
 # Calculating the absolute pressure for a given molecule from pressuretotal
 # and numtheta
-pressuremolekyle = pressuretotal * np.array(numtheta)
+if pressuretotal is not None:
+    pressuremolekyle = pressuretotal * np.array(numtheta)
 
 # Print command for readable output
 print '-----------'
@@ -284,19 +292,24 @@ for i in range(len(compounds)):
 print "Sum:", numtheta.sum()
 
 # Print command for readable output
-print '-----------'
-print "Compound   Pressure (mbar)"
+if pressuretotal is not None:
+    print '-----------'
+    print "Compound   Pressure (mbar)"
 
 
-# Arranging the data in a readable form and printing. To the left the
-# compounds are listed, and to the right their absolute concetration in the
-# sample.
+    # Arranging the data in a readable form and printing. To the left the
+    # compounds are listed, and to the right their absolute concetration in the
+    # sample.
 
-order = np.argsort(pressuremolekyle)[::-1]
-for i in range(len(compounds)):
-    j = order[i]
-    print "%4s %15.3g" % ( compounds[j], pressuremolekyle[j])
-print "Sum:", pressuremolekyle.sum()
+    order = np.argsort(pressuremolekyle)[::-1]
+    for i in range(len(compounds)):
+        j = order[i]
+        print "%4s %15.3g" % ( compounds[j], pressuremolekyle[j])
+    print "Sum:", pressuremolekyle.sum()
+else:
+    print '-----------'
+    print 'No partial pressure data, since pressure reading could not be '\
+        'gathered from QMS pressure before and after scan'
 
 #Plotting the data as red, and the best fit as blue
 #plt.plot(data[:,0],y, 'b-')
