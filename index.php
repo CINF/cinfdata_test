@@ -182,12 +182,12 @@ echo(html_header($root="", $title="Data logged at CINF"));
           </td>
           <td>
            <ul id="ps" style="display:none"> 
-	    <li><a href="ps_new_graph_system/dateplot.php?type=multidateplot_chamber&left_plotlist[]=1&left_plotlist[]=2&right_plotlist[]=3">Chamber status</a></li>
-            <li><a href="ps_new_graph_system/dateplot.php?type=multidateplot_turbo&left_plotlist[]=1&right_plotlist[]=2">Turbo status</a></li>
-	    <li><a href="ps_new_graph_system/xyplot.php?type=deposition">Deposition</a></li>
-            <li><a href="ps_new_graph_system/xyplot.php?type=massspectra&left_logscale=checked">Mass spectra</a></li>
-	    <li><a href="ps_new_graph_system/xyplot.php?type=masstime">Mass-time</a></li>
-            <li><a href="ps_new_graph_system/modify_comment.php">Modify comments</a></li>
+	    <li><a href="ps/dateplot.php?type=multidateplot_chamber&left_plotlist[]=1&left_plotlist[]=2&right_plotlist[]=3">Chamber status</a></li>
+            <li><a href="ps/dateplot.php?type=multidateplot_turbo&left_plotlist[]=1&right_plotlist[]=2">Turbo status</a></li>
+	    <li><a href="ps/xyplot.php?type=deposition">Deposition</a></li>
+            <li><a href="ps/xyplot.php?type=massspectra&left_logscale=checked">Mass spectra</a></li>
+	    <li><a href="ps/xyplot.php?type=masstime">Mass-time</a></li>
+            <li><a href="ps/modify_comment.php">Modify comments</a></li>
 
 	   </ul>
           </td>
