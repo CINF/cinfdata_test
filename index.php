@@ -249,6 +249,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
           </td>
           <td>
            <ul id="other" style="display:none"> 
+	     <li><a href="todo.php">Floor Managers To Do list</a></li>
 	     <li><a href="code-documentation/test_config_all.php">Test my configuration file</a></li>
 	     <li><a href="code-documentation/statistics.php">Statistics</a></li>
 	     <li><a href="code-documentation/git_status.php">Git status</a></li>
@@ -339,6 +340,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
           </td>
           <td>
            <ul id="gasalarm307" style="display:none">
+             <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor307/system_status.php">System Status</a></li>
              <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=3&left_plotlist[]=5&left_plotlist[]=7&left_plotlist[]=9&left_plotlist[]=11&right_ymin=0&right_ymax=0&right_plotlist[]=2&right_plotlist[]=4&right_plotlist[]=6&right_plotlist[]=8&right_plotlist[]=10&right_plotlist[]=12">All detectors</a></li>
              <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot_co&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&left_plotlist[]=4&left_plotlist[]=5&left_plotlist[]=6&right_ymin=0&right_ymax=0">All CO detectors</a></li>
              <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot_h2&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&left_plotlist[]=4&left_plotlist[]=5&left_plotlist[]=6&right_ymin=0&right_ymax=0">All H2 detectors</a></li>
