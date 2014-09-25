@@ -333,40 +333,49 @@ if (array_key_exists("plugins", $settings))
 }
 ?>
 
-	 <div id="list_components">
-		  <div id="left_y">
-          <!--LEFT Y-->
-	      <b>Log-scale</b><input type="checkbox" name="left_logscale" value="checked" <?php echo($left_logscale);?>><br>
-	      <b>Y-Min:</b><input name="left_ymin" type="text" size="7" value="<?php echo($left_ymin);?>"><br>
-	      <b>Y-Max:</b><input name="left_ymax" type="text" size="7" value="<?php echo($left_ymax);?>"><br>
-	      <b>Select component (left y-axis):</b><br>
-			<select multiple size="8" name="left_plotlist[]">
-				<?php
-                     // Creation of plotlist for left axis
-		             for($i=0;$i<count($individ_idlist);$i++){
-                        $selected = (in_array($individ_idlist[$i],$left_plotlist)) ? "selected" : "";
-                        echo("<option value=\"" . $individ_idlist[$i] . "\" " . $selected . ">" . $individ_datelist[$i] . ": " . $individ_labellist[$i] . "</option>\n");
-                     }
-		          ?>
-	         </select>
-          </div>
-		  <div id="right_y">
-	          <!--RIGHT Y-->
-              <b>Log-scale</b><input type="checkbox" name="right_logscale" value="checked" <?php echo($right_logscale);?>><br>
-	          <b>Y-Min:</b><input name="right_ymin" type="text" size="7" value="<?php echo($right_ymin);?>"><br>
-	          <b>Y-Max:</b><input name="right_ymax" type="text" size="7" value="<?php echo($right_ymax);?>"><br>
-	          <b>Select component (right y-axis):</b><br>
-			  <select multiple size="8" name="right_plotlist[]" id="right_plotlist">
-				<?php
-                     // Creation of plotlist for right axis
-		             for($i=0;$i<count($individ_idlist);$i++){
-                        $selected = (in_array($individ_idlist[$i],$right_plotlist)) ? "selected" : "";
-                        echo("<option value=\"" . $individ_idlist[$i] . "\" " . $selected . ">" . $individ_datelist[$i] . ": " . $individ_labellist[$i] . "</option>\n");
-                     }
-		        ?>
-	          </select>
-          </div>   
-       </div>
+<div class="float_left">
+  <!--LEFT Y LOG AND MIN MAX-->
+  <b>Log-scale</b><input type="checkbox" name="left_logscale" value="checked" <?php echo($left_logscale);?>><br>
+  <b>Y-Min:</b><input name="left_ymin" type="text" size="7" value="<?php echo($left_ymin);?>"><br>
+  <b>Y-Max:</b><input name="left_ymax" type="text" size="7" value="<?php echo($left_ymax);?>"><br>
+</div>
+
+<div class="float_right">
+  <!--RIGHT Y LOG AND MIN MAX-->
+  <b>Log-scale</b><input type="checkbox" name="right_logscale" value="checked" <?php echo($right_logscale);?>><br>
+  <b>Y-Min:</b><input name="right_ymin" type="text" size="7" value="<?php echo($right_ymin);?>"><br>
+  <b>Y-Max:</b><input name="right_ymax" type="text" size="7" value="<?php echo($right_ymax);?>"><br>
+</div>
+<div style="clear: both;"></div>
+
+<div id="list_components">
+  <div id="left_y">
+    <!--LEFT Y COMPONENTS-->
+    <b>Select component (left y-axis):</b><br>
+    <select multiple size="8" name="left_plotlist[]">
+      <?php
+         // Creation of plotlist for left axis
+	 for($i=0;$i<count($individ_idlist);$i++){
+                       $selected = (in_array($individ_idlist[$i],$left_plotlist)) ? "selected" : "";
+                       echo("<option value=\"" . $individ_idlist[$i] . "\" " . $selected . ">" . $individ_datelist[$i] . ": " . $individ_labellist[$i] . "</option>\n");
+                       }
+		       ?>
+	 </select>
+  </div>
+  <div id="right_y">
+    <!--RIGHT Y COMPONENTS-->
+    <b>Select component (right y-axis):</b><br>
+    <select multiple size="8" name="right_plotlist[]" id="right_plotlist">
+      <?php
+         // Creation of plotlist for right axis
+	 for($i=0;$i<count($individ_idlist);$i++){
+                       $selected = (in_array($individ_idlist[$i],$right_plotlist)) ? "selected" : "";
+                       echo("<option value=\"" . $individ_idlist[$i] . "\" " . $selected . ">" . $individ_datelist[$i] . ": " . $individ_labellist[$i] . "</option>\n");
+                       }
+		       ?>
+	 </select>
+  </div>   
+</div>
           <div id="list_measurements">
            <!--LIST OF MEASUREMENTS-->
 	       <b>Select measurement:</b><br>
