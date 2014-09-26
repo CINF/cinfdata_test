@@ -433,16 +433,16 @@
     </ylabel>
     <!-- legend -->
     <legend>
-      <default>{mass_label}</default>
+      <default>{id} - {mass_label}</default>
       <column>mass_label</column>
-      <pattern0>
+      <!--<pattern0>
 	<reg_match>^Temperature$</reg_match>
 	<legend>Temp.</legend>
       </pattern0>
       <pattern1>
 	<reg_match>^Pressure$</reg_match>
 	<legend>Pres.</legend>
-      </pattern1>
+      </pattern1>-->
     </legend>
 
     <parameters>
