@@ -24,6 +24,10 @@ include("../common_functions_v2.php");
 
 $type = $_GET["type"];
 $settings = plot_settings($type);
+if (empty($settings)){
+  echo("Type \"$type\" not found in graphsettings.xml. Bailing out!");
+  exit(42);
+}
 
 $subscriptions = Array();
 $socket_defs = Array();
@@ -60,7 +64,7 @@ window.onload = function() {
     var socket_defs = JSON.parse('$socket_defs_json');
 
     // Setup websocket URI ...
-    var wsuri = "wss://kenni:9001";
+    var wsuri = "wss://cinf-wsserver.fysik.dtu.dk:9001";
     console.log("ws: URI: " + wsuri);
 
     // ... and work around Mozilla naming the websockets differently *GRR*
@@ -193,7 +197,7 @@ echo(html_header($root="../", $title="Data viewer", $includehead=$head_script));
 foreach($settings["fields"] as $field){
   $location = $socket_defs[(int) $field["socket"]];
   $id = $field["socket"] . "#" . $field["codename"];
-  echo("<p><b>$location ${field["name"]}</b></p>");
+  echo("<p><b>${field["name"]}</b> ($location)</p>");
   echo("<p id=\"$id\"></p>");
 }
 
@@ -207,12 +211,9 @@ foreach($settings["fields"] as $field){
 foreach($settings["fields"] as $field){
   $location = $socket_defs[(int) $field["socket"]];
   $id = $field["socket"] . "#" . $field["codename"] . "diff";
-  echo("<p><b>$location ${field["name"]}</b></p>");
+  echo("<p><b>${field["name"]}</b> ($location)</p>");
   echo("<p id=\"$id\"></p>");
 }
 ?>
-
-<p><a href="https://kenni:9001">Click me the first time</a>, to install the TLS certificate for the WebSockets endpoint.</p>
-
 
 <?php echo(html_footer());?>

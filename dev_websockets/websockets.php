@@ -60,7 +60,7 @@ window.onload = function() {
     var socket_defs = JSON.parse('$socket_defs_json');
 
     // Setup websocket ...
-    var wsuri = "wss://kenni:9001";
+    var wsuri = "wss://cinf-wsserver.fysik.dtu.dk:9001";
     console.log("ws: URI: " + wsuri);
 
     // ... and work around Mozilla naming the websockets differently *GRR*
