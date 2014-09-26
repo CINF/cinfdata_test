@@ -249,7 +249,70 @@
     -->
 
   </graph>
-
+  <graph type='websocket_simple1'>
+    <fields>
+      <field0>
+        <socket>0</socket>
+        <codename>B307_gasalarm_CO_051</codename>
+        <name>CO 051</name>
+      </field0>
+      <field1>
+        <socket>0</socket>
+        <codename>B307_gasalarm_H2_051</codename>
+        <name>H2 051</name>
+      </field1>
+      <field2>
+        <socket>0</socket>
+        <codename>B307_gasalarm_CO_055</codename>
+        <name>CO 055</name>
+      </field2>
+      <field3>
+        <socket>0</socket>
+        <codename>B307_gasalarm_H2_055</codename>
+        <name>H2 055</name>
+      </field3>
+      <field4>
+        <socket>0</socket>
+        <codename>B307_gasalarm_CO_059</codename>
+        <name>CO 059</name>
+      </field4>
+      <field5>
+        <socket>0</socket>
+        <codename>B307_gasalarm_H2_059</codename>
+        <name>H2 059</name>
+      </field5>
+      <field6>
+        <socket>0</socket>
+        <codename>B307_gasalarm_CO_061</codename>
+        <name>CO 061</name>
+      </field6>
+      <field7>
+        <socket>0</socket>
+        <codename>B307_gasalarm_H2_061</codename>
+        <name>H2 061</name>
+      </field7>
+      <field8>
+        <socket>0</socket>
+        <codename>B307_gasalarm_CO_42-43</codename>
+        <name>CO 42-43</name>
+      </field8>
+      <field9>
+        <socket>0</socket>
+        <codename>B307_gasalarm_H2_2sal</codename>
+        <name>H2 2sal</name>
+      </field9>
+      <field10>
+        <socket>0</socket>
+        <codename>B307_gasalarm_CO_932</codename>
+        <name>CO 932</name>
+      </field10>
+      <field11>
+        <socket>0</socket>
+        <codename>B307_gasalarm_H2_932</codename>
+        <name>H2 932</name>
+      </field11>
+    </fields>
+  </graph>
 
   <!-- GLOBAL SETTINGS -->
   <global_settings>
@@ -285,5 +348,8 @@
       <legend_fontsize>10</legend_fontsize>
       <label_fontsize>16</label_fontsize>
     </matplotlib_settings>
+    <sockets>
+      <socket0>rasppi34:8000</socket0>
+    </sockets>
   </global_settings>
 </graphs>

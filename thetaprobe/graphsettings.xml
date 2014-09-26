@@ -49,16 +49,6 @@
 	<codename>thetaprobe_pressure_uvgun</codename>
 	<name>Pressure UV gun</name>
       </field1>
-      <field2>
-	<socket>1</socket>
-	<codename>pressure</codename>
-	<name>Pressure in the Volvo</name>
-      </field2>
-      <field3>
-	<socket>1</socket>
-	<codename>temperature</codename>
-	<name>Temperature in the Volvo</name>
-      </field3>
     </fields>
   </graph>
 
@@ -167,7 +157,6 @@
     </matplotlib_settings>
     <sockets>
       <socket0>rasppi25:8000</socket0>
-      <socket1>rasppi04:8000</socket1>
     </sockets>
   </global_settings>
 </graphs>
