@@ -251,7 +251,7 @@ class dataBaseBackend():
         failed = False
         try:
             class_ = getattr(plugins, name)
-            plugin = class_(settings)
+            plugin = class_(settings, self.o)
             additions = plugin.run(self.data['left'], self.data['right'])
         # This nasty 'catch all' is by design, so its OK
         except Exception as exception:

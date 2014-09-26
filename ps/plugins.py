@@ -6,7 +6,7 @@ class MassSpectraOffset(object):
     found in all of the spectra to prevent errors when plotting on log scale
     """
 
-    def __init__(self, settings):
+    def __init__(self, settings, plot_options):
         self.settings = settings
         self.label_additions = {
             'xlabel_addition': '',
