@@ -255,61 +255,73 @@
         <socket>0</socket>
         <codename>B307_gasalarm_CO_051</codename>
         <name>CO 051</name>
+	<unit>ppm</unit>
       </field0>
       <field1>
         <socket>0</socket>
         <codename>B307_gasalarm_H2_051</codename>
         <name>H2 051</name>
+	<unit>%LEL</unit>
       </field1>
       <field2>
         <socket>0</socket>
         <codename>B307_gasalarm_CO_055</codename>
         <name>CO 055</name>
+	<unit>ppm</unit>
       </field2>
       <field3>
         <socket>0</socket>
         <codename>B307_gasalarm_H2_055</codename>
         <name>H2 055</name>
+	<unit>%LEL</unit>
       </field3>
       <field4>
         <socket>0</socket>
         <codename>B307_gasalarm_CO_059</codename>
         <name>CO 059</name>
+	<unit>ppm</unit>
       </field4>
       <field5>
         <socket>0</socket>
         <codename>B307_gasalarm_H2_059</codename>
         <name>H2 059</name>
+	<unit>%LEL</unit>
       </field5>
       <field6>
         <socket>0</socket>
         <codename>B307_gasalarm_CO_061</codename>
         <name>CO 061</name>
+	<unit>ppm</unit>
       </field6>
       <field7>
         <socket>0</socket>
         <codename>B307_gasalarm_H2_061</codename>
         <name>H2 061</name>
+	<unit>%LEL</unit>
       </field7>
       <field8>
         <socket>0</socket>
         <codename>B307_gasalarm_CO_42-43</codename>
         <name>CO 42-43</name>
+	<unit>ppm</unit>
       </field8>
       <field9>
         <socket>0</socket>
         <codename>B307_gasalarm_H2_2sal</codename>
         <name>H2 2sal</name>
+	<unit>%LEL</unit>
       </field9>
       <field10>
         <socket>0</socket>
         <codename>B307_gasalarm_CO_932</codename>
         <name>CO 932</name>
+	<unit>ppm</unit>
       </field10>
       <field11>
         <socket>0</socket>
         <codename>B307_gasalarm_H2_932</codename>
         <name>H2 932</name>
+	<unit>%LEL</unit>
       </field11>
     </fields>
   </graph>

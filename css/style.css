@@ -433,20 +433,26 @@ table.links td {
 table.nicetable{
     border: 1px solid black;
     border-collapse: collapse;
+    border-spacing: 0;
 }
 
 table.nicetable th{
     border: 1px solid black;
-    padding: 5px 10px;
-    background-color: #0C5DA5;
+    padding: 5px 12px;
+    background-color: #333333;
     color: white;
 }
 
 table.nicetable td{
-    padding: 2px 8px;
+    border: 1px solid black;
+    padding: 2px 12px;
 }
 
 table.nicetable td.alert{
     padding: 2px 8px;
     background-color: #FF0000;
+}
+
+.nobr{
+    white-space: nowrap;
 }

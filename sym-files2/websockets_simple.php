@@ -31,6 +31,7 @@ if (empty($settings)){
 
 $subscriptions = Array();
 $socket_defs = Array();
+
 foreach(array_keys($settings["sockets"]) as $socket_name){
   $socket_defs[] = $settings["sockets"][$socket_name];
   $socket_name = str_replace("socket", "", $socket_name);
@@ -147,12 +148,13 @@ window.onload = function() {
 	    var id = String(socket).concat("#", subscriptions[socket][n]);
 	    // Get a date object from unixtime
 	    var date = new Date(data[1][n][0] * 1000);
-	    var out = '<b>Time: </b>' + iso_time(date) +
-		' <b>Value: </b>' + data[1][n][1];
+	    var value = data[1][n][1];
+	    var time = iso_time(date);
 	    var now = new Date()
-	    var diff = 'Estimated time diff (milliseconds): ' + (now - date);
-	    document.getElementById(id).innerHTML = out;
+	    var diff = (now - date);
+	    document.getElementById(id).innerHTML = value;
 	    document.getElementById(id + 'diff').innerHTML = diff;
+	    document.getElementById(id + 'time').innerHTML = time;
 	}
 
     }
@@ -188,32 +190,30 @@ window.onload = function() {
 </script>
 EOD;
 
-echo(html_header($root="../", $title="Data viewer", $includehead=$head_script));
+echo(html_header($root="../", $title="Live Values", $includehead=$head_script));
 ?>
+<br>
+<table class="nicetable">
+<tr><th>Name</th><th>Time</th><th>Value</th><th>Delay [ms]</th><th>Measurement host</th></tr>
 
-<h1>Simple websocket page</h1>
 <?php
-
 foreach($settings["fields"] as $field){
   $location = $socket_defs[(int) $field["socket"]];
   $id = $field["socket"] . "#" . $field["codename"];
-  echo("<p><b>${field["name"]}</b> ($location)</p>");
-  echo("<p id=\"$id\"></p>");
-}
-
-?>
-
-<h1>Debug</h1>
-<h2>Raw return values</h2>
-<p id="raw"></p>
-<h2>Time delays</h2>
-<?php
-foreach($settings["fields"] as $field){
-  $location = $socket_defs[(int) $field["socket"]];
-  $id = $field["socket"] . "#" . $field["codename"] . "diff";
-  echo("<p><b>${field["name"]}</b> ($location)</p>");
-  echo("<p id=\"$id\"></p>");
+  $diff_id = $field["socket"] . "#" . $field["codename"] . "diff";
+  $time_id = $field["socket"] . "#" . $field["codename"] . "time";
+  echo("<tr>");
+  echo("<td>${field["name"]}</td>");
+  echo("<td id=\"$time_id\"></td>");
+  echo("<td class=\"nobr\"><b id=\"$id\"></b> <b>${field["unit"]}</b></td>");
+  echo("<td id=\"$diff_id\"></td>");
+  echo("<td>($location)</td>");
+  echo("</tr>");
 }
 ?>
 
+</table>
+
+<a href="javascript:toggle('raw')"><h2>Raw return values</h2></a></td><td>
+<p id="raw" style="display:none"></p>
 <?php echo(html_footer());?>
