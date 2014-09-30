@@ -43,11 +43,13 @@
 	<socket>0</socket>
 	<codename>thetaprobe_pressure_loadlock</codename>
 	<name>Pressure Load Lock</name>
+	<unit>mbar</unit>
       </field0>
       <field1>
 	<socket>0</socket>
 	<codename>thetaprobe_pressure_uvgun</codename>
 	<name>Pressure UV gun</name>
+	<unit>mbar</unit>
       </field1>
     </fields>
   </graph>
