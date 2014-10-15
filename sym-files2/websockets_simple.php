@@ -51,7 +51,7 @@ $socket_defs_json = json_encode($socket_defs);
   machine/subscription numbers and the codenames that will be used
   from that machine, e.g:
     [0, [codename0, codename1], 2, [codename2, codename3]]
-  And "socket_defs" will contain a list of hostname:ip e:g:
+  And "socket_defs" will contain a list of hostname:port e:g:
     ['hostname1:8000', 'hostname1:8000']
  */
 
@@ -77,15 +77,15 @@ window.onload = function() {
     }
 
     webSocket.onopen = function() {
-	/* On ws open subscribe for data from machines (hostname:ip) that are
+	/* On ws open subscribe for data from machines (hostname:port) that are
 	required for this page with the ws socket server.
         
         The ws server will respond with an echo of the request and the number
-        of the subscription (one per hostname:ip) and the sane interval. I.e.
+        of the subscription (one per hostname:port) and the sane interval. I.e.
         a request looks like:
-          subscribe#hostname:ip;codename0,codename1
+          subscribe#hostname:port;codename0,codename1
         and the response looks like:
-          subscribe#hostname:ip;codename0,codename1#0#0.2
+          subscribe#hostname:port;codename0,codename1#0#0.2
         */
 	console.log("ws: Connected!");
 	for (var n in subscriptions){
@@ -123,7 +123,7 @@ window.onload = function() {
     function parse_subscription(string) {
 	/* Parse a subscription return string on the form:
              subscribe#rasppi25:8000;codename0,codename1#0#0.2
-           where the last 0 and 1 are the subscription number and sane
+           where the last 0 and 0.2 are the subscription number and sane
            interval respectively
         */
 	var split = data.split("#");
