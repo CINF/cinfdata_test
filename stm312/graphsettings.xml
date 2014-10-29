@@ -274,7 +274,7 @@
     <dateplot4>
       <title>Temperature</title>
       <legend>Temperature</legend>
-      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312hp where temperature > -998 and time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 46 and value > -998 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>4</color>
     </dateplot4>
