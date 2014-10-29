@@ -1,0 +1,79 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+
+  <graph type='multidateplot'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <!-- Furnace 1 -->
+    <dateplot1>
+      <title>T, furnace 1</title>
+      <legend>T, furnace 1</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_furnaceroom307 where value > -999 and type=130 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>Setpoint, furnace 1</title>
+      <legend>Setpoint, furnace 1</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_furnaceroom307 where type=132 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <!-- Furnace 2 -->
+    <dateplot3>
+      <title>T, furnace 2</title>
+      <legend>T, furnace 2</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_furnaceroom307 where value > -999 and type=131 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>Setpoint, furnace 2</title>
+      <legend>Setpoint, furnace 2</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_furnaceroom307 where type=134 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+
+  </graph>
+
+  <global_settings>
+    <measurements_table>measurements_fr_307</measurements_table>
+    <xyvalues_table>xy_values_fr_307</xyvalues_table>
+    <sql_username>furnaceroom</sql_username>
+    <label_column>mass_label</label_column>
+    <image_format>png</image_format>
+    <mandatory_export_fields>
+      <field0>
+	<field>id</field>
+	<name>Id</name>
+      </field0>
+      <field1>
+	<field>type</field>
+	<name>Type</name>
+      </field1>
+      <field2>
+	<field>time</field>
+	<name>Recorded at</name>
+      </field2>
+      <field3>
+	<field>Comment</field>
+	<name>Comment</name>
+      </field3>
+    </mandatory_export_fields>
+  </global_settings>
+</graphs>
+
