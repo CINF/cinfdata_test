@@ -1,0 +1,72 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+
+  <graph type='multidateplot'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <!-- Chamber pressure -->
+    <dateplot1>
+      <title>Chamber pressure, ion gauge</title>
+      <legend>IG, chamber</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type=150 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <!-- Chamber pressure -->
+    <dateplot2>
+      <title>Chamber Pressure, pirani</title>
+      <legend>Pirani, chamber</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type=151 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <!-- Load Lock -->
+    <dateplot3>
+      <title>Load Lock Pressure, pirani</title>
+      <legend>Pirani, Load Lock</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type=152 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>3</color>
+    </dateplot3>
+  </graph>
+
+
+
+  <global_settings>
+    <measurements_table>measurements_pvd309</measurements_table>
+    <xyvalues_table>xy_values_pvd309</xyvalues_table>
+    <sql_username>pvd309</sql_username>
+    <label_column>mass_label</label_column>
+    <image_format>png</image_format>
+    <mandatory_export_fields>
+      <field0>
+	<field>id</field>
+	<name>Id</name>
+      </field0>
+      <field1>
+	<field>type</field>
+	<name>Type</name>
+      </field1>
+      <field2>
+	<field>time</field>
+	<name>Recorded at</name>
+      </field2>
+      <field3>
+	<field>comment</field>
+	<name>Comment</name>
+      </field3>
+    </mandatory_export_fields>
+  </global_settings>
+</graphs>
+

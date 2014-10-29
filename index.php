@@ -356,6 +356,28 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	   </ul>
           </td>
          </tr>
+
+         <tr>
+          <td><a href="javascript:toggle('pvd309')"><h2>PVD 309</h2></a></td>
+           <td>&nbsp;</td>
+           <td>&nbsp;</td>
+         </tr>
+
+         <tr>
+          <td>
+           <ul id="pvd309" style="display:none"> 
+	     <li><a href="pvd_309/dateplot.php?type=multidateplot&left_plotlist[]=1">Chamber Pressure</a></li>
+	   </ul>
+          </td>
+          <td>
+  &nbsp;
+	   </ul>
+          </td>
+          <td>
+  &nbsp;
+          </td>
+         </tr>
+
    </table>
 <?php
 echo(html_footer());
