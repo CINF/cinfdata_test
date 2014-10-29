@@ -260,7 +260,7 @@
 
     <parameters>
       <param0>
-	<field>SEM_voltage</field>
+	<field>sem_voltage</field>
 	<name>SEM Voltage / V</name>
       </param0>
       <param1>
