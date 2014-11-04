@@ -3,6 +3,7 @@
 
   <graph type="livegraph5">
     <page_width>1280</page_width>
+    <page_title>Live Plots Test</page_title> <!-- option page title -->
     <containers>
 
       <!-- Container 0, contains the first plot -->
