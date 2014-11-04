@@ -66,3 +66,21 @@ a:hover{
 	color:#0C5DA5;
 	text-decoration:underline;
 }
+
+table.datatable{
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table.datatable th{
+    border: 1px solid black;
+    padding: 5px 12px;
+    background-color: #333333;
+    color: white;
+}
+
+table.datatable td{
+    border: 1px solid black;
+    padding: 2px 12px;
+}
