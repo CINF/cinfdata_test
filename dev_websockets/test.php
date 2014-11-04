@@ -60,6 +60,8 @@ function make_figure_container($figure, $figurename, $width){
   echo("          <div id=\"$figurename\" style=\"height:{$height}px;width:{$width}\"></div>\n");
 }
 
+date_default_timezone_set("Europe/Copenhagen");
+
 # Get type and settings
 $type = $_GET["type"];
 include("graphsettings.php");
@@ -67,13 +69,17 @@ $settings = plot_settings($type);
 
 # Figure out which sockets are required
 $sockets = Array();
+$sockets_new = Array();
 foreach($settings["figures"] as $figure){
   foreach($figure["plots"] as $plot){
+    print_r($plot);
     if (!in_array($plot["socket"], $sockets)){
       array_push($sockets, $plot["socket"]);
     }
+    if
   }
 }
+print_r($sockets);
 
 # Produce header and layout
 echo(live_header($settings["page_width"] * 12));
@@ -82,6 +88,7 @@ make_container_divs($settings["layout"]);
 echo("
 <script type=\"text/javascript\">
 // Start master java script
+console.log(\"hallo\");
 
 function log(msg) {
     setTimeout(function() {
@@ -94,11 +101,12 @@ foreach($sockets as $socket){
   $name = "socket" . $socket;
   $socket_id = $settings["sockets"][$name];
   echo("
+console.log(\"Socket: $socket\");
 var ws_{$name}_sane_interval = 0;
 var ws_{$name}_last_data = new Object();
 var ws_{$name}_fields = new Array();
 
-var ws_{$name} = new WebSocket(\"ws://130.225.86.27:8888/websocket\");
+var ws_{$name} = new WebSocket(\"wss://cinf-wsserver.fysik.dtu.dk:9001\");
 ws_{$name}.onopen = function() {
     ws_{$name}.send(\"$socket_id;fields\");
     ws_{$name}.send(\"$socket_id;sane_interval\");
