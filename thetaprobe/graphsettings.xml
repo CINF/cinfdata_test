@@ -123,6 +123,81 @@
     </figures>
   </graph>
 
+  <graph type="livegraph5">
+    <page_width>1280</page_width>
+    <page_title>Live Plots Test</page_title> <!-- option page title -->
+    <containers>
+
+      <!-- Container 1, contains the second plot -->
+      <container0>
+	<type>figure</type>
+	<title>Theta Probe</title>
+	<update_interval>1.0</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>600</width>
+	<height>400</height>
+	<jump_ahead>0.8</jump_ahead>
+	<x_window>10</x_window>
+	<logscale>true</logscale>
+	<line_width>7</line_width>
+	<figure>
+	  <plot0>
+	    <socket>0</socket>
+	    <id>thetaprobe_pressure_loadlock</id>
+	    <label>Load lock pressure / [mbar]</label>
+	    <color>#FF0000</color>
+	  </plot0>
+	</figure>
+      </container0>
+
+      <!-- Container 1, contains the second plot -->
+      <container1>
+	<type>figure</type>
+	<title>Theta Probe</title>
+	<update_interval>1.0</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>600</width>
+	<height>400</height>
+	<jump_ahead>0.8</jump_ahead>
+	<x_window>10</x_window>
+	<logscale>true</logscale>
+	<line_width>7</line_width>
+	<figure>
+	  <plot0>
+	    <socket>0</socket>
+	    <id>thetaprobe_pressure_uvgun</id>
+	    <label>UV gun pressure / [mbar]</label>
+	    <color>#0000FF</color>
+	  </plot0>	  
+	</figure>
+      </container1>
+
+      <container2>
+	<type>data</type>
+	<!--<bgcolor>#FFFFFF</bgcolor>-->
+	<width>600</width>
+	<height>200</height>
+	<fontsize>24</fontsize>
+	<show_diff>true</show_diff>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>thetaprobe_pressure_loadlock</id>
+	    <label>Load lock / [mbar]</label>
+	    <color>#FF0000</color>
+	  </item0>
+	  <item1>
+	    <socket>0</socket>
+	    <id>thetaprobe_pressure_uvgun</id>
+	    <label>UV gun / [mbar]</label>
+	    <color>#0000FF</color>
+	  </item1>
+	</data>
+      </container2>
+    </containers>
+  </graph>
+
+
   <!-- GLOBAL SETTINGS -->
   <global_settings>
     <app_title>Theta probe</app_title>
