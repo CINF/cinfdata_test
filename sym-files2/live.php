@@ -1,7 +1,7 @@
 
 <?php
 
-function live_header($width){
+function live_header($width, $title="Live Plots"){
   $header = "";
   $header = $header . "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n";
   $header = $header . "<html>\n";
@@ -16,7 +16,7 @@ function live_header($width){
   $header = $header . "  <body>\n";
   $header = $header . "    <div class=\"container\" style=\"width:" . $width . "px\">\n";
   $header = $header . "      <div class=\"caption\">\n";
-  $header = $header . "        Live Plots\n";
+  $header = $header . "        $title\n";
   $header = $header . "        <a href=\"/\"><img class=\"logo\" src=\"../images/cinf_logo_beta_greek.png\" alt=\"CINF data viewer\"></a>\n";
   $header = $header . "          <div class=\"header_utilities\">\n";
   $header = $header . "            <a class=\"header_links\" href=\"https://cinfwiki.fysik.dtu.dk/cinfwiki/Software/DataWebPageUserDocumentation\">Help</a><br>\n";
@@ -96,7 +96,11 @@ include("graphsettings.php");
 $settings = plot_settings($type);
 
 # Produce header and layout
-echo(live_header($settings["page_width"]));
+if (isset($settings["page_title"])){
+  echo(live_header($settings["page_width"], $settings["page_title"]));
+} else {
+  echo(live_header($settings["page_width"]));
+}
 make_container_divs($settings["containers"]);
 
 # Get socket defs
