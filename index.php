@@ -147,6 +147,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
           <td>   
            <ul id="hall" style="display:none"> 
 	    <li><a href="hall/dateplot.php?type=temperature&matplotlib=checked&left_plotlist%5B%5D=1">Temperature</a></li>
+	    <li><a href="hall/live.php?type=live_values">Live Values</a></li>
 	   </ul>
           </td>
 
@@ -315,7 +316,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
           <td>
            <ul id="thetaprobe" style="display:none"> 
               <li><a href="thetaprobe/dateplot.php?type=multidateplot_pressures&matplotlib=checked&left_logscale=checked&right_logscale=checked&left_plotlist%5B%5D=1&right_plotlist%5B%5D=2">Pressure</a></li>
-              <li><a href="https://cinfdata.fysik.dtu.dk/thetaprobe/websockets_simple.php?type=websocket_simple1">Pressure Live</a></li>
+              <li><a href="https://cinfdata.fysik.dtu.dk/thetaprobe/live.php?type=live_pressures">Pressure Live</a></li>
           </td>
          </tr>
 
