@@ -75,6 +75,23 @@ function convert_boolean_string(string) {
     }
 }
 
+function format_data(value, format) {
+    /* Format a float into a string using format strings like .2f and .2e */
+    "use strict";
+
+    /* Since we don't support numbers before the decimal point, the number of
+       decimals is located at index [1: -1] */
+    var decimals = parseInt(format.substring(1, format.length - 1));
+
+    // The format type is just the last character
+    switch (format.substring(format.length - 1)) {
+    case "f":
+	return value.toFixed(decimals) ;
+    case "e":
+	return value.toExponential(decimals) ;
+    }
+}
+
 /* ### Figure (pseudo) CLASS definition */
 function MyFigure(name, definition) {
     /* Define a MyFigure object */
@@ -179,6 +196,12 @@ function MyFigure(name, definition) {
         } */
     }
 
+    /* EXPERIMENTAL, use yRangePad to fix bad y-axis ranges with log scale and
+       constant values */
+    if (definition.hasOwnProperty("yrangepad")) {
+	settings.yRangePad = definition.yrangepad;
+    }
+
     console.log("Make figure with updated Dygraph settings:",
                 JSON.stringify(settings));
     this.fig = new Dygraph(document.getElementById(name), this.data, settings);
@@ -250,7 +273,7 @@ function parse_data(data) {
     // Variable definitions
     var n, id_name, id, date, value, time, diff, el,
         value_elements, time_elements, diff_elements,
-        fig_sub_index, sub,
+        fig_sub_index, sub, format, unit,
         now = new Date(),
         socket = data[0];
 
@@ -268,7 +291,10 @@ function parse_data(data) {
         // Set all corresponding text elements, values, times and diffs
         value_elements = document.getElementsByClassName(id);
         for (el = 0; el < value_elements.length; el++) {
-            value_elements[el].innerHTML = value;
+	    format = value_elements[el].attributes["data-format"].value;
+	    unit = value_elements[el].attributes["data-unit"].value;
+            value_elements[el].innerHTML = format_data(value, format) +
+		"&thinsp;" + unit;
         }
         time_elements = document.getElementsByClassName(id + "_time");
         for (el = 0; el < time_elements.length; el++) {

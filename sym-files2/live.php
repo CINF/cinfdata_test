@@ -49,6 +49,9 @@ function make_container_divs($containers){
     if (array_key_exists("bgcolor", $container)){
       $style .= ";background-color:{$container['bgcolor']}";
     }
+    if (isset($container["padding"])){
+      $style .= ";padding:{$container['padding']}";
+    }
     echo("<!-- Container $container_name -->\n");
     echo("<div id=\"$container_name\" style=\"$style\">\n");
     # If it is a data div, create the data table
@@ -70,7 +73,21 @@ function make_container_divs($containers){
 	} else {
 	  echo("<tr><td></td>");
 	}
-	echo("<td>{$item['label']}</td><td class=\"{$id}_time\">-</td><td class=\"$id\">-</td>");
+	# Write the desired data format into the HTML tag, default to ".2e"
+	$format = ".2e";
+	if (isset($item["format"])){
+	  $format = $item["format"];
+	} else {
+	  $format = ".2e";
+	}
+
+	if (isset($item["unit"])){
+	  $unit = $item["unit"];
+	} else {
+	  $unit = "";
+	}
+	echo("<td>{$item['label']}</td><td class=\"{$id}_time\">-</td>");
+	echo("<td data-format=\"$format\" data-unit=\"$unit\" class=\"$id\">-</td>");
 	if ($show_diff == "true"){
 	  echo("<td class=\"{$id}_diff\">-</td>");
 	}	
