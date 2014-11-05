@@ -6,9 +6,6 @@
     <default_xscale>dat</default_xscale>
     <title>Temperature in the experimental hall</title>
     <ylabel>Temperature / C</ylabel>
-
-
-
     <dateplot1>
       <query>SELECT unix_timestamp(time), temperature FROM temperature_hall where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
@@ -16,7 +13,165 @@
       <legend>T. hall</legend>
       <color>1</color>
     </dateplot1>
+    <dateplot2>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_hall where type=160 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / Bar</ylabel>
+      <title>Cooling water pressure</title>
+      <legend>Pressure</legend>
+      <color>2</color>
+    </dateplot2>
+    <dateplot3>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_hall where type=161 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / Bar</ylabel>
+      <title>N5 argon pressure</title>
+      <legend>Pressure</legend>
+      <color>3</color>
+    </dateplot3>
+    <dateplot4>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_hall where type=162 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <title>Cooling water return temperature</title>
+      <legend>Temperature</legend>
+      <color>4</color>
+    </dateplot4>
+    <dateplot5>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_hall where type=163 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <title>Cooling water forward temperature</title>
+      <legend>Temperature</legend>
+      <color>5</color>
+    </dateplot5>
   </graph>
+
+  <graph type="live_values">
+    <page_width>1250</page_width>
+    <page_title>Hall Live Plots</page_title> <!-- option page title -->
+    <containers>
+
+      <!-- Container 1, contains the second plot -->
+      <container0>
+	<type>figure</type>
+	<title>Cooling Water Pressure</title>
+	<update_interval>1.9</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>625</width>
+	<height>400</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>120</x_window>
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<!-- <yrangepad>10</yrangepad> -->
+	<line_width>3</line_width>
+	<figure>
+	  <plot0>
+	    <socket>0</socket>
+	    <id>hall_coolingwater_pressure</id>
+	    <label>Cooling Water Pressure [bar]</label>
+	    <color>#990099</color>
+	  </plot0>
+	</figure>
+      </container0>
+
+      <!-- Container 1, contains the second plot -->
+      <container1>
+	<type>figure</type>
+	<title>N5 Argon Pressure</title>
+	<update_interval>1.9</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>625</width>
+	<height>400</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>120</x_window>
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<!-- <yrangepad>10</yrangepad> -->
+	<line_width>3</line_width>
+	<figure>
+	  <plot0>
+	    <socket>1</socket>
+	    <id>n5_argon_pressure</id>
+	    <label>N5 Argon Pressure [bar]</label>
+	    <color>#009900</color>
+	  </plot0>	  
+	</figure>
+      </container1>
+
+      <container2>
+	<type>figure</type>
+	<title>N5 Argon Pressure</title>
+	<update_interval>1.9</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>625</width>
+	<height>400</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>120</x_window>
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<!-- <yrangepad>10</yrangepad> -->
+	<line_width>3</line_width>
+	<figure>
+	  <plot0>
+	    <socket>2</socket>
+	    <id>cooling_water_hot</id>
+	    <label>Cooling water temp. hot</label>
+	    <color>#FF0000</color>
+	  </plot0>
+	  <plot1>
+	    <socket>2</socket>
+	    <id>cooling_water_cold</id>
+	    <label>Cooling water temp. cold</label>
+	    <color>#0000FF</color>
+	  </plot1>
+	</figure>
+      </container2>
+
+      <container3>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>570</width>
+	<height>200</height>
+	<fontsize>24</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size -->
+	<padding>40px 0px 0px 55px</padding>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>hall_coolingwater_pressure</id>
+	    <label>Cooling water pressure</label>
+	    <color>#990099</color>
+	    <format>.2f</format>
+	    <unit>bar</unit>
+	  </item0>
+	  <item1>
+	    <socket>1</socket>
+	    <id>n5_argon_pressure</id>
+	    <label>N5 Argon pressure</label>
+	    <color>#009900</color>
+	    <format>.2f</format>
+	    <unit>bar</unit>
+	  </item1>
+	  <item2>
+	    <socket>2</socket>
+	    <id>cooling_water_hot</id>
+	    <label>Cooling water temp. hot</label>
+	    <color>#FF0000</color>
+	    <format>.2f</format>
+	    <unit>C</unit>
+	  </item2>
+	  <item3>
+	    <socket>2</socket>
+	    <id>cooling_water_cold</id>
+	    <label>Cooling water temp. cold</label>
+	    <color>#0000FF</color>
+	    <format>.2f</format>
+	    <unit>C</unit>
+	  </item3>
+	</data>
+      </container3>
+    </containers>
+  </graph>
+
   
   <global_settings>
     <measurements_table>None</measurements_table>
@@ -24,6 +179,11 @@
     <sql_username>cinf_reader</sql_username>
     <label_column>None</label_column>
     <image_format>png</image_format>
+    <sockets>
+      <socket0>rasppi02:8000</socket0> <!-- Cooling water pressure -->
+      <socket1>rasppi39:8000</socket1> <!-- N5 Argon pressure -->
+      <socket2>rasppi23:8000</socket2> <!-- N5 Argon pressure -->
+    </sockets>
     <mandatory_export_fields>
       <field0>
 	<field>None</field>
