@@ -157,7 +157,7 @@
 	    <label>Cooling water temp. hot</label>
 	    <color>#FF0000</color>
 	    <format>.2f</format>
-	    <unit>C</unit>
+	    <unit>&amp;amp;deg;C</unit>
 	  </item2>
 	  <item3>
 	    <socket>2</socket>
@@ -165,7 +165,7 @@
 	    <label>Cooling water temp. cold</label>
 	    <color>#0000FF</color>
 	    <format>.2f</format>
-	    <unit>C</unit>
+	    <unit>&amp;amp;deg;C</unit>
 	  </item3>
 	</data>
       </container3>

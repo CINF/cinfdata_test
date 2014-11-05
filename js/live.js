@@ -151,7 +151,8 @@ function MyFigure(name, definition) {
         drawPoints: true,
         pointSize: 2,
         strokeWidth: 1.5,  // line width
-        logscale: false
+        logscale: false,
+	showLabelsOnHighlight: false
     };
     console.log("Default Dygraph settings:", JSON.stringify(settings));
 
@@ -293,13 +294,18 @@ function parse_data(data) {
         for (el = 0; el < value_elements.length; el++) {
 	    format = value_elements[el].attributes["data-format"].value;
 	    unit = value_elements[el].attributes["data-unit"].value;
-            value_elements[el].innerHTML = format_data(value, format) +
-		"&thinsp;" + unit;
+	    // Add small space before unit, if it is not degC
+	    if (unit !== "&deg;C"){
+		unit = "&thinsp;" + unit;
+	    }
+            value_elements[el].innerHTML = format_data(value, format) + unit;
         }
+	// Time elements
         time_elements = document.getElementsByClassName(id + "_time");
         for (el = 0; el < time_elements.length; el++) {
             time_elements[el].innerHTML = time;
         }
+	// Diff elements
         diff_elements = document.getElementsByClassName(id + "_diff");
         for (el = 0; el < diff_elements.length; el++) {
             diff_elements[el].innerHTML = diff;
