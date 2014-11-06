@@ -4,7 +4,7 @@
   <graph type='temperature'>
     <right_legend_suffix> (r)</right_legend_suffix>
     <default_xscale>dat</default_xscale>
-    <title>Temperature in the experimental hall</title>
+    <title>Status for experimental hall</title>
     <ylabel>Temperature / C</ylabel>
     <dateplot1>
       <query>SELECT unix_timestamp(time), temperature FROM temperature_hall where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query>
