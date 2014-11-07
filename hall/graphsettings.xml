@@ -57,7 +57,7 @@
 	<width>625</width>
 	<height>400</height>
 	<jump_ahead>0.3</jump_ahead>
-	<x_window>120</x_window>
+	<x_window>14400</x_window>
 	<!-- Experimental, to fix bad y-range selection with log plot and
 	     constant values -->
 	<!-- <yrangepad>10</yrangepad> -->
@@ -81,7 +81,7 @@
 	<width>625</width>
 	<height>400</height>
 	<jump_ahead>0.3</jump_ahead>
-	<x_window>120</x_window>
+	<x_window>14400</x_window>
 	<!-- Experimental, to fix bad y-range selection with log plot and
 	     constant values -->
 	<!-- <yrangepad>10</yrangepad> -->
@@ -104,7 +104,7 @@
 	<width>625</width>
 	<height>400</height>
 	<jump_ahead>0.3</jump_ahead>
-	<x_window>120</x_window>
+	<x_window>14400</x_window>
 	<!-- Experimental, to fix bad y-range selection with log plot and
 	     constant values -->
 	<!-- <yrangepad>10</yrangepad> -->
