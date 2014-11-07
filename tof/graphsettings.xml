@@ -63,7 +63,7 @@
     <xlabel>Time / Microseconds</xlabel>
     <image_format>png</image_format>
     <matplotlib_settings>
-      <width>2000</width>
+      <width>1600</width>
       <height>800</height>
     </matplotlib_settings>
     <flight_time_estimate>true</flight_time_estimate>
@@ -81,6 +81,10 @@
 	<title>Convert to approximate mass units</title>
 	<output>raw</output>
       </Massscale>
+      <Intensitymap>
+	<title>Intensity map</title>
+	<output>raw</output>
+      </Intensitymap>
     </plugins>
 
     <parameters>

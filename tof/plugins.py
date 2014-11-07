@@ -35,6 +35,9 @@ class Massscale(object):
 class Intensitymap(object):
     def __init__(self, settings, plot_options):
         self.settings = settings
+        self.range = plot_options['xscale_bounding']
+        if self.range is None:
+            self.range = [0,0]
         self.label_additions = {
             'xlabel_addition': '',
             'y_left_label_addition': '',
@@ -54,17 +57,26 @@ class Intensitymap(object):
                 coeff = tof_helpers.extrapolate()
                 dat['data'][:, 0] = ((dat['data'][:, 0]-0.31)/coeff[0])**(1/coeff[1])
 
-            old_size = dat['data'].shape[0]
-            new_size = 1000
-            ratio = old_size / new_size
+            if self.range[1] > self.range[0]:
+                start_index = numpy.argmax(dat['data'][:,0]>self.range[0])
+                end_index =  numpy.argmax(dat['data'][:,0]>self.range[1])
+            else:
+                start_index = 100 # Cut off the very first part of the spectrum
+                end_index = dat['data'].shape[0]
+            old_size = end_index - start_index
+            new_size = 800
+            ratio = (old_size / new_size)+1
             print 'Ratio: ' + str(ratio)
 
             new = numpy.zeros((new_size, 2))
-            for i in range(100, new_size):
-                values = dat['data'][ratio * i:ratio * (i + 1), 0]
+            for i in range(0, new_size):
+                values = dat['data'][start_index+(ratio * i):start_index+(ratio * (i + 1)), 0]
                 x_val = numpy.mean(values)
-                values = dat['data'][ratio * i:ratio * (i + 1), 1]
-                y_val = max(values)
+                values = dat['data'][start_index+(ratio * i):start_index+(ratio * (i + 1)), 1]
+                try:
+                    y_val = max(values)
+                except ValueError:
+                    y_val = 0
                 #print('Mass: ' + str(x_val) + ', value: ' + str(y_val))
                 new[i,0] = x_val
                 new[i,1] = y_val
