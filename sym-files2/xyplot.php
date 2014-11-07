@@ -182,7 +182,14 @@ $plot_php_line = 'plot.php?type=' . $type . $options_line . '&image_format=' . '
 $plot_php_line_graph = 'plot.php?type=' . $type . $options_line . '&image_format=' . $settings['image_format'];
 $export_php_line = 'export_data.php?type=' . $type . $options_line . '&image_format=' . 'png';
 
-echo(html_header());
+// Read page charset from graphsettings.xml
+if (isset($settings["charset"])){
+  $charset = $settings["charset"];
+} else {
+  $charset = "UTF-8";
+}
+
+echo(html_header($root="../", $title="Data viewer", $includehead="", $charset=$charset));
 
 if ($matplotlib == 'checked'){
    echo('<a href="' . $plot_php_line_graph . '">');

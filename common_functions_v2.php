@@ -111,11 +111,11 @@ function weed($str){
  *  @return string
  */
 
-function html_header($root="../", $title="Data viewer", $includehead=""){
+function html_header($root="../", $title="Data viewer", $includehead="", $charset="UTF-8"){
   if(date("n") != "12"){
-    $header = html_header_normal($root, $title, $includehead);
+    $header = html_header_normal($root, $title, $includehead, $charset);
   } else {
-    $header = html_header_x($root, $title, $includehead);
+    $header = html_header_x($root, $title, $includehead, $charset);
   }
   return $header;
 }
@@ -130,13 +130,13 @@ function html_footer(){
 }
 
 
-function html_header_normal($root, $title, $includehead){
+function html_header_normal($root, $title, $includehead, $charset){
 
   $header = "";
   $header = $header . "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n";
   $header = $header . "<html>\n";
   $header = $header . "  <head>\n";
-  $header = $header . "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n";
+  $header = $header . "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset={$charset}\">\n";
   $header = $header . "    <title>CINF data logging</title>\n";
   $header = $header . "    <link rel=\"StyleSheet\" href=\"{$root}css/style.css\" type=\"text/css\" media=\"screen\">\n";
   $header = $header . "    <script type=\"text/javascript\" src=\"dygraph/dygraph-dev.js\"></script>\n";
@@ -214,7 +214,7 @@ function html_code_header($file){
     return($header);
 }
 
-function html_header_x($root, $title, $includehead){
+function html_header_x($root, $title, $includehead, $charset){
   $files = Array();
   if ($handle = opendir("{$root}images/xmas-shift")) {
     while (false !== ($entry = readdir($handle))) {
@@ -231,7 +231,7 @@ function html_header_x($root, $title, $includehead){
   $header = $header . "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n";
   $header = $header . "<html>\n";
   $header = $header . "  <head>\n";
-  $header = $header . "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n";
+  $header = $header . "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset={$charset}\">\n";
   $header = $header . "    <title>CINF data logging</title>\n";
   $header = $header . "    <link rel=\"StyleSheet\" href=\"{$root}css/style.css\" type=\"text/css\" media=\"screen\">\n";
   if ($root == "../"){
