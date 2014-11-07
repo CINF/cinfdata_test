@@ -326,6 +326,247 @@
     </fields>
   </graph>
 
+  <graph type="live_values">
+    <page_width>1250</page_width>
+    <page_title>Gas Alarm b. 307 Live Plots</page_title> <!-- option page title -->
+    <containers>
+      <!-- Container 0, plot of all values CO values -->
+      <container0>
+	<type>figure</type>
+	<title>CO Detectors</title>
+	<update_interval>2</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>600</width>
+	<height>400</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>14400</x_window> <!-- 4 hours -->
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<yrangepad>10</yrangepad>
+	<line_width>3</line_width>
+	<figure>
+	  <plot0>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_CO_051</id>
+	    <label>CO 051</label>
+	    <color>#77583A</color>
+	  </plot0>
+	  <plot1>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_CO_055</id>
+	    <label>CO 055</label>
+	    <color>#FF0000</color>
+	  </plot1>
+	  <plot2>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_CO_059</id>
+	    <label>CO 059</label>
+	    <color>#009933</color>
+	  </plot2>
+	  <plot3>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_CO_061</id>
+	    <label>CO 061</label>
+	    <color>#0000FF</color>
+	  </plot3>
+	  <plot4>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_CO_42-43</id>
+	    <label>CO 42-43</label>
+	    <color>#CCCC00</color>
+	  </plot4>
+	  <plot5>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_CO_932</id>
+	    <label>CO 932</label>
+	    <color>#990099</color>
+	  </plot5>
+	</figure>
+      </container0>
+
+      <!-- Container 1, table with all CO values -->
+      <container1>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>600</width>
+	<height>400</height>
+	<fontsize>24</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size -->
+	<!--<padding>40px 0px 0px 55px</padding>-->
+	<show_diff>true</show_diff>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_CO_051</id>
+	    <label>CO 051</label>
+	    <color>#77583A</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item0>
+	  <item1>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_CO_055</id>
+	    <label>CO 055</label>
+	    <color>#FF0000</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item1>
+	  <item2>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_CO_059</id>
+	    <label>CO 059</label>
+	    <color>#009933</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item2>
+	  <item3>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_CO_061</id>
+	    <label>CO 061</label>
+	    <color>#0000FF</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item3>
+	  <item4>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_CO_42-43</id>
+	    <label>CO 42-43</label>
+	    <color>#CCCC00</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item4>
+	  <item5>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_CO_932</id>
+	    <label>CO 932</label>
+	    <color>#990099</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item5>
+	</data>
+      </container1>
+
+      <!-- Container 2, plot of all values H2 values -->
+      <container2>
+	<type>figure</type>
+	<title>CO Detectors</title>
+	<update_interval>2</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>600</width>
+	<height>400</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>14400</x_window> <!-- 4 hours -->
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<yrangepad>10</yrangepad>
+	<line_width>3</line_width>
+	<figure>
+	  <plot0>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_H2_051</id>
+	    <label>H2 051</label>
+	    <color>#77583A</color>
+	  </plot0>
+	  <plot1>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_H2_055</id>
+	    <label>H2 055</label>
+	    <color>#FF0000</color>
+	  </plot1>
+	  <plot2>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_H2_059</id>
+	    <label>H2 059</label>
+	    <color>#009933</color>
+	  </plot2>
+	  <plot3>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_H2_061</id>
+	    <label>H2 061</label>
+	    <color>#0000FF</color>
+	  </plot3>
+	  <plot4>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_H2_2sal</id>
+	    <label>H2 Second Floor</label>
+	    <color>#CCCC00</color>
+	  </plot4>
+	  <plot5>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_H2_932</id>
+	    <label>H2 932</label>
+	    <color>#990099</color>
+	  </plot5>
+	</figure>
+      </container2>
+
+      <!-- Container 3, table with all H2 values -->
+      <container3>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>600</width>
+	<height>400</height>
+	<fontsize>24</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size -->
+	<!--<padding>40px 0px 0px 55px</padding>-->
+	<show_diff>true</show_diff>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_H2_051</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; 051</label>
+	    <color>#77583A</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item0>
+	  <item1>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_H2_055</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; 055</label>
+	    <color>#FF0000</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item1>
+	  <item2>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_H2_059</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; 059</label>
+	    <color>#009933</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item2>
+	  <item3>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_H2_061</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; 061</label>
+	    <color>#0000FF</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item3>
+	  <item4>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_H2_2sal</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; Second Floor</label>
+	    <color>#CCCC00</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item4>
+	  <item5>
+	    <socket>0</socket>
+	    <id>B307_gasalarm_H2_932</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; 932</label>
+	    <color>#990099</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item5>
+	</data>
+      </container3>
+    </containers>
+  </graph>
+
+
   <!-- GLOBAL SETTINGS -->
   <global_settings>
     <measurements_table>measurements_b307gasalarm</measurements_table>
