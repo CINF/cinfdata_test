@@ -31,30 +31,30 @@
       <color>2</color>
     </dateplot2>
 
-    <!-- Date plot 3 - Turbo speed -->
+    <!-- Date plot 3 - Reactor pressure -->
     <dateplot3>
-      <title>Turbo, Main chamber, rotation</title>
-      <legend>MC, rotation</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 64 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Rotation speed / Hz</ylabel>
+      <title>Reactor pressure</title>
+      <legend>Reactor</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 69 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
       <color>3</color>
     </dateplot3>
 
-    <!-- Date plot 4 - Drive Current -->
+    <!-- Date plot 4 - Reactor temperature -->
     <dateplot4>
-      <title>Turbo, Main chamber, Current</title>
-      <legend>MC, Current</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 63 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Drive Current / A</ylabel>
+      <title>Reactor temperature</title>
+      <legend>TC</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 140 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
       <color>4</color>
     </dateplot4>
 
-    <!-- Date plot 5 - Drive Power -->
+    <!-- Date plot 5 - Reactor temperature -->
     <dateplot5>
-      <title>Turbo, Main chamber, Power</title>
-      <legend>MC, Power</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 68 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Drive Power / W</ylabel>
+      <title>RTD temperature</title>
+      <legend>RTD</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 141 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
       <color>5</color>
     </dateplot5>
 
@@ -94,14 +94,32 @@
       <color>9</color>
     </dateplot9>
 
-    <!-- Date plot 10 - Reactor pressure -->
+    <!-- Date plot 10 - Turbo speed -->
     <dateplot10>
-      <title>Reactor pressure</title>
-      <legend>Reactor</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 69 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Pressure / mbar</ylabel>
+      <title>Turbo, Main chamber, rotation</title>
+      <legend>MC, rotation</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 64 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Rotation speed / Hz</ylabel>
       <color>10</color>
     </dateplot10>
+
+    <!-- Date plot 11 - Drive Current -->
+    <dateplot11>
+      <title>Turbo, Main chamber, Current</title>
+      <legend>MC, Current</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 63 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Drive Current / A</ylabel>
+      <color>11</color>
+    </dateplot11>
+
+    <!-- Date plot 12 - Drive Power -->
+    <dateplot12>
+      <title>Turbo, Main chamber, Power</title>
+      <legend>MC, Power</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 68 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Drive Power / W</ylabel>
+      <color>12</color>
+    </dateplot12>
 
 
   </graph>
