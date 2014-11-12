@@ -360,7 +360,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
 
          <tr>
           <td><a href="javascript:toggle('pvd309')"><h2>PVD 309</h2></a></td>
-           <td>&nbsp;</td>
+           <td><a href="javascript:toggle('chemlab312')"><h2>Chemlab 312</h2></a></td>
            <td>&nbsp;</td>
          </tr>
 
@@ -371,7 +371,10 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	   </ul>
           </td>
           <td>
-  &nbsp;
+           <ul id="chemlab312" style="display:none"> 
+	     <li><a href="chemlab312/dateplot.php?type=multidateplot&left_plotlist[]=1">Chamber Pressure</a></li>
+	   </ul>
+
 	   </ul>
           </td>
           <td>
