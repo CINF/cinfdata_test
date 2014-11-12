@@ -71,7 +71,7 @@
     <dateplot1>
       <title>Temperature, water</title>
       <legend>Water / C</legend>
-      <query>SELECT unix_timestamp(time), temperature FROM chiller_sputterchamber_temperature where time between "{from}" and "{to}" and temperature > -9998 order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_sputterchamber where type = 202 and time between "{from}" and "{to}" and value > -9998 order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>1</color>
     </dateplot1>
@@ -79,7 +79,7 @@
     <dateplot2>
       <title>Temperature, ambient</title>
       <legend>Ambient / C</legend>
-      <query>SELECT unix_timestamp(time), temperature FROM chiller_sputterchamber_temperature_ambient where time between "{from}" and "{to}" and temperature > -9998 order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_sputterchamber where type = 204 and time between "{from}" and "{to}" and value > -9998 order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>2</color>
     </dateplot2>
@@ -87,7 +87,7 @@
     <dateplot3>
       <title>Temperature, setpoint</title>
       <legend>Setpoint / C</legend>
-      <query>SELECT unix_timestamp(time), temperature FROM chiller_sputterchamber_temperature_setpoint where time between "{from}" and "{to}" and temperature > -9998 order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_sputterchamber where type = 203 and time between "{from}" and "{to}" and value > -9998 order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>3</color>
     </dateplot3>
@@ -95,7 +95,7 @@
     <dateplot4>
       <title>Flow</title>
       <legend>Flow / LPM</legend>
-      <query>SELECT unix_timestamp(time), flow FROM chiller_sputterchamber_flow where time between "{from}" and "{to}" and flow > -9998 order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_sputterchamber where type = 200 and time between "{from}" and "{to}" and value > -9998 order by time</query>
       <ylabel>Flow rate / LPM</ylabel>
       <color>4</color>
     </dateplot4>
@@ -103,7 +103,7 @@
     <dateplot5>
       <title>Pressure</title>
       <legend>Pressure / bar</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM chiller_sputterchamber_pressure where time between "{from}" and "{to}" and pressure > -9998 order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_sputterchamber where type = 201 and time between "{from}" and "{to}" and value > -9998 order by time</query>
       <ylabel>Pressure / bar</ylabel>
       <color>5</color>
     </dateplot5>
