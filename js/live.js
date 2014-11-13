@@ -390,7 +390,12 @@ window.onload = function () {
         // Schedule a ws send of the subscription number once every sane
         // interval
         console.log("Subscription id:", split[2], "Sane interval", split[3]);
-        // Send the subscription number periodically every sane_interval
+        // Check for bad sane interval
+	if (isNaN(parseFloat(split[3]) * 1000)){
+	    alert("Bad sane interval on \"" + string +
+		  "\". The data from this socket will not be available.");
+	    throw new Error("Bad sane interval on subscription" + string);
+	}
         window.setInterval(
             function () {webSocket.send(split[2]); },
             parseFloat(split[3]) * 1000
