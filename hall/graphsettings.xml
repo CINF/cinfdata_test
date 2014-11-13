@@ -98,7 +98,7 @@
 
       <container2>
 	<type>figure</type>
-	<title>N5 Argon Pressure</title>
+	<title>Cooling Water Temperatures</title>
 	<update_interval>1.9</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
 	<width>625</width>
