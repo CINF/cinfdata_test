@@ -181,8 +181,8 @@
     <image_format>png</image_format>
     <sockets>
       <socket0>rasppi02:8000</socket0> <!-- Cooling water pressure -->
-      <socket1>rasppi39:8000</socket1> <!-- N5 Argon pressure -->
-      <socket2>rasppi23:8000</socket2> <!-- N5 Argon pressure -->
+      <socket1>rasppi45:8000</socket1> <!-- N5 Argon pressure -->
+      <socket2>rasppi23:8000</socket2> <!-- Cooling water temperature -->
     </sockets>
     <mandatory_export_fields>
       <field0>
