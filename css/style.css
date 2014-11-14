@@ -40,7 +40,7 @@
 
 .container{
     border: 0px solid red;
-	max-width:75%;/*950px*/
+	/*max-width:75%;*//*950px*/
 	margin-left:auto;
 	margin-right:auto;
 }
@@ -71,7 +71,8 @@ img.matplotlib{
 
 .copyright_decorations{
 	background:#0C5DA5;
-	background-image: url(../images/christmas-balls-40.png);
+	/* background-image: url(../images/christmas-balls-40.png); */
+	background-image: url(../images/christmas-balls-animation.gif);
 	background-repeat: repeat-x;
 	background-position: left;
 	background-size:auto 30px;

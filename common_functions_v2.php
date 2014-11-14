@@ -111,11 +111,16 @@ function weed($str){
  *  @return string
  */
 
-function html_header($root="../", $title="Data viewer", $includehead="", $charset="UTF-8"){
-  if(is_it_christmas()){
-    $header = html_header_x($root, $title, $includehead, $charset);
+function html_header($root="../", $title="Data viewer", $includehead="", $charset="UTF-8", $width=null){
+  if ($width != null){
+    $width = " style=\"width:{$width}px\" ";
   } else {
-    $header = html_header_normal($root, $title, $includehead, $charset);
+    $width = " style=\"max-width:75%\" ";
+  }
+  if(is_it_christmas()){
+    $header = html_header_x($root, $title, $includehead, $charset, $width);
+  } else {
+    $header = html_header_normal($root, $title, $includehead, $charset, $width);
   }
   return $header;
 }
@@ -130,7 +135,7 @@ function html_footer(){
 }
 
 
-function html_header_normal($root, $title, $includehead, $charset){
+function html_header_normal($root, $title, $includehead, $charset, $width){
 
   $header = "";
   $header = $header . "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n";
@@ -146,7 +151,7 @@ function html_header_normal($root, $title, $includehead, $charset){
   $header = $header . $includehead . "\n";
   $header = $header . "  </head>\n";
   $header = $header . "  <body>\n";
-  $header = $header . "    <div class=\"container\">\n";
+  $header = $header . "    <div class=\"container\" $width>\n";
   $header = $header . "    <div class=\"caption\">\n";
   $header = $header . "      {$title}\n";
   $header = $header . "      <a href=\"/\"><img class=\"logo\" src=\"{$root}images/cinf_logo_beta_greek.png\" alt=\"CINF data viewer\"></a>\n";
@@ -185,7 +190,7 @@ function header_v2(){
 function html_footer_normal(){
   $footer = "";
   $footer = $footer . "      </div>\n";
-  $footer = $footer . "      <div class=\"copyright\">...</div>\n";
+  $footer = $footer . "      <div class=\"copyright\" style=\"clear:both\">...</div>\n";
   $footer = $footer . "    </div>\n";
   $footer = $footer . "  </body>\n";
   $footer = $footer . "</html>\n";
@@ -214,7 +219,7 @@ function html_code_header($file){
     return($header);
 }
 
-function html_header_x($root, $title, $includehead, $charset){
+function html_header_x($root, $title, $includehead, $charset, $width){
   $files = Array();
   if ($handle = opendir("{$root}images/xmas-shift")) {
     while (false !== ($entry = readdir($handle))) {
@@ -243,7 +248,7 @@ function html_header_x($root, $title, $includehead, $charset){
   $header = $header . $includehead . "\n";
   $header = $header . "  </head>\n";
   $header = $header . "  <body>\n";
-  $header = $header . "    <div class=\"container\">\n";
+  $header = $header . "    <div class=\"container\" $width>\n";
   $header = $header . "    <div class=\"caption_alt\">\n";
 #  $header = $header . "      <img src=\"../images/fir_branch_with_cones.png\" height=\"42\" width=\"42\">\n";
   $header = $header . "      {$title}\n";
@@ -268,7 +273,7 @@ function html_header_x($root, $title, $includehead, $charset){
 function html_footer_x(){
   $footer = "";
   $footer = $footer . "      </div>\n";
-  $footer = $footer . "      <div class=\"copyright_decorations\"></div>\n";
+  $footer = $footer . "      <div class=\"copyright_decorations\" style=\"clear:both\"></div>\n";
   $footer = $footer . "    </div>\n";
   $footer = $footer . "  </body>\n";
   $footer = $footer . "</html>\n";

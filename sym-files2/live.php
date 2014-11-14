@@ -1,42 +1,25 @@
-
 <?php
 
-function live_header($width, $title="Live Plots"){
-  $header = "";
-  $header = $header . "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n";
-  $header = $header . "<html>\n";
-  $header = $header . "  <head>\n";
-  $header = $header . "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n";
-  $header = $header . "    <title>CINF Live Plots</title>\n";
-  $header = $header . "    <link rel=\"StyleSheet\" href=\"../css/live.css\" type=\"text/css\" media=\"screen\">\n";
-  $header = $header . "    <script type=\"text/javascript\" src=\"dygraph/dygraph-dev.js\"></script>\n";
-  $header = $header . "    <script type=\"text/javascript\" src=\"../js/update.js\"></script> \n";
-  $header = $header . "    <script type=\"text/javascript\" src=\"../js/toogle.js\"></script>\n";
-  $header = $header . "  </head>\n";
-  $header = $header . "  <body>\n";
-  $header = $header . "    <div class=\"container\" style=\"width:" . $width . "px\">\n";
-  $header = $header . "      <div class=\"caption\">\n";
-  $header = $header . "        $title\n";
-  $header = $header . "        <a href=\"/\"><img class=\"logo\" src=\"../images/cinf_logo_beta_greek.png\" alt=\"CINF data viewer\"></a>\n";
-  $header = $header . "          <div class=\"header_utilities\">\n";
-  $header = $header . "            <a class=\"header_links\" href=\"https://cinfwiki.fysik.dtu.dk/cinfwiki/Software/DataWebPageUserDocumentation\">Help</a><br>\n";
-  $header = $header . "            <a class=\"header_links\" href=\"test_configuration_file.php\">Config</a>\n";
-  $header = $header . "          </div>\n";
-  $header = $header . "      </div>\n";
-  $header = $header . "      <div class=\"liveplotcontainer\">\n\n";
+  /* 
+    Copyright (C) 2012 Robert Jensen, Thomas Andersen and Kenneth Nielsen
+    
+    The CINF Data Presentation Website is free software: you can
+    redistribute it and/or modify it under the terms of the GNU
+    General Public License as published by the Free Software
+    Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    The CINF Data Presentation Website is distributed in the hope
+    that it will be useful, but WITHOUT ANY WARRANTY; without even
+    the implied warranty of MERCHANTABILITY or FITNESS FOR A
+    PARTICULAR PURPOSE.  See the GNU General Public License for more
+    details.
+    
+    You should have received a copy of the GNU General Public License
+    along with The CINF Data Presentation Website.  If not, see
+    <http://www.gnu.org/licenses/>.
+  */
 
-  return($header);
-}
-
-function live_footer(){
-  $footer = "";
-  $footer = $footer . "      </div>\n";
-  $footer = $footer . "      <div class=\"copyright\" style=\"clear:both\">...</div>\n";
-  $footer = $footer . "    </div>\n";
-  $footer = $footer . "  </body>\n";
-  $footer = $footer . "</html>\n";
-  return($footer);
-}
 
 function make_container_divs($containers){
   $container_names = array_keys($containers);
@@ -108,15 +91,17 @@ function to_javascript($name, $data){
 date_default_timezone_set("Europe/Copenhagen");
 
 # Get type and settings
+include("../common_functions_v2.php");
 $type = $_GET["type"];
 include("graphsettings.php");
 $settings = plot_settings($type);
 
 # Produce header and layout
 if (isset($settings["page_title"])){
-  echo(live_header($settings["page_width"], $settings["page_title"]));
+  $include_head = "    <link rel=\"StyleSheet\" href=\"../css/live.css\" type=\"text/css\" media=\"screen\">";
+  echo(html_header($root="../", $title=$settings["page_title"], $includehead=$include_head, $charset="UTF-8", $width=$settings["page_width"]));
 } else {
-  echo(live_header($settings["page_width"]));
+  echo(html_header($root="../", $title="Live Plots", $includehead=$include_head, $charset="UTF-8", $width=$settings["page_width"]));
 }
 make_container_divs($settings["containers"]);
 
@@ -205,4 +190,4 @@ echo("</script>\n");
 echo("<script src=../js/live.js></script>");
 ?>
 
-<?php echo(live_footer()); ?>
+<?php echo(html_footer()); ?>
