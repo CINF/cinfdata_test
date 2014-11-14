@@ -112,19 +112,19 @@ function weed($str){
  */
 
 function html_header($root="../", $title="Data viewer", $includehead="", $charset="UTF-8"){
-  if(date("n") != "12"){
-    $header = html_header_normal($root, $title, $includehead, $charset);
-  } else {
+  if(is_it_christmas()){
     $header = html_header_x($root, $title, $includehead, $charset);
+  } else {
+    $header = html_header_normal($root, $title, $includehead, $charset);
   }
   return $header;
 }
 
 function html_footer(){
-  if(date("n") != "12"){
-    $footer = html_footer_normal();
-  } else {
+  if(is_it_christmas()){
     $footer = html_footer_x();
+  } else {
+    $footer = html_footer_normal();
   }
   return $footer;
 }
@@ -298,6 +298,25 @@ function right_float_menu($items, $indent){
 	 "  </table>\n" . 
 	 "</div>\n");
 
+}
+
+function is_it_christmas()
+{
+  /* It is x-mas from 14/11 to 31/12 */
+  $month = (int) date("n");
+  switch ($month){
+  case 12:
+    return true;
+  case 11:
+    $day = (int) date("d");
+    if ($day >=14){
+      return true;
+    } else {
+      return false;
+    }
+  default:
+    return false;
+  }
 }
 
 ?>
