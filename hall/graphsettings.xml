@@ -51,17 +51,22 @@
       <!-- Container 1, contains the second plot -->
       <container0>
 	<type>figure</type>
-	<title>Cooling Water Pressure</title>
+	<title>Cooling Water Pressure [bar]</title>
 	<update_interval>1.9</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
 	<width>625</width>
 	<height>400</height>
 	<jump_ahead>0.3</jump_ahead>
-	<x_window>14400</x_window>
+	<x_window>86400</x_window>
 	<!-- Experimental, to fix bad y-range selection with log plot and
 	     constant values -->
 	<!-- <yrangepad>10</yrangepad> -->
 	<line_width>3</line_width>
+	<!-- reduce the amount of points that gets plotted -->
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
 	<figure>
 	  <plot0>
 	    <socket>0</socket>
@@ -75,17 +80,21 @@
       <!-- Container 1, contains the second plot -->
       <container1>
 	<type>figure</type>
-	<title>N5 Argon Pressure</title>
+	<title>N5 Argon Pressure [bar]</title>
 	<update_interval>1.9</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
 	<width>625</width>
 	<height>400</height>
 	<jump_ahead>0.3</jump_ahead>
-	<x_window>14400</x_window>
+	<x_window>86400</x_window>
 	<!-- Experimental, to fix bad y-range selection with log plot and
 	     constant values -->
 	<!-- <yrangepad>10</yrangepad> -->
 	<line_width>3</line_width>
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
 	<figure>
 	  <plot0>
 	    <socket>1</socket>
@@ -98,17 +107,21 @@
 
       <container2>
 	<type>figure</type>
-	<title>Cooling Water Temperatures</title>
+	<title>Cooling Water Temperatures [&amp;deg;C]</title>
 	<update_interval>1.9</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
 	<width>625</width>
 	<height>400</height>
 	<jump_ahead>0.3</jump_ahead>
-	<x_window>14400</x_window>
+	<x_window>86400</x_window>
 	<!-- Experimental, to fix bad y-range selection with log plot and
 	     constant values -->
 	<!-- <yrangepad>10</yrangepad> -->
 	<line_width>3</line_width>
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
 	<figure>
 	  <plot0>
 	    <socket>2</socket>
