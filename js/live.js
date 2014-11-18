@@ -98,7 +98,7 @@ function MyFigure(name, definition) {
     "use strict";
 
     // Define variables
-    var key, settings, plot_number, labels = ["Date"], colors = [];
+    var key, settings, plot_number, labels = ["Date"], colors = [], i;
 
     console.log("### INSTANTIATE FIGURE START:", name);
     console.log("Figure definition from graphsetting:",
@@ -124,6 +124,22 @@ function MyFigure(name, definition) {
        template */
     this.data = [[new Date(0)]];
     this.data_template = [null];
+    // Reduction parameters
+    this.last_point_index = [];
+    this.new_temporary_point = [];
+    this.last_permanent_point_time = [];
+    this.last_permanent_point_value = [];
+    if (definition.hasOwnProperty("data_reduction")){
+	this.data_reduction = {};
+	var criterie_names = ["time", "absolute", "relative"];
+	for (i = 0; i < criterie_names.length; i++) {
+	    if (definition["data_reduction"].hasOwnProperty(criterie_names[i])){
+		this.data_reduction[criterie_names[i]] = parseFloat(definition["data_reduction"][criterie_names[i]]);
+	    }
+	}
+    } else {
+	this.data_reduction = null;
+    }
     for (key in definition.figure) {
         if (key.indexOf("plot") === 0) {
             plot_number = parseInt(key.replace("plot", ""), 10);
@@ -133,6 +149,11 @@ function MyFigure(name, definition) {
             // Initial "default" point
             this.data[0][plot_number + 1] = 1;
             this.data_template[plot_number + 1] = null;
+	    // Array with last plot index
+	    this.last_point_index[plot_number] = -1;
+	    this.last_permanent_point_time[plot_number] = new Date(0);
+	    this.last_permanent_point_value[plot_number] = 1.0E-100;
+	    this.new_temporary_point[plot_number] = true;
         }
     }
     console.log("Labels:", labels);
@@ -216,18 +237,38 @@ MyFigure.prototype.addPoint = function (plot_n, date, value) {
     "use strict";
 
     // Define variables
-    var i, cut, cutpoint, new_point = this.data_template.slice(0);
+    var i, cut, cutpoint, new_point = this.data_template.slice(0), last_index;
     new_point[0] = date;
     new_point[plot_n + 1] = value;
 
     // If it is the first call to draw, replace the dummy point and redraw
     if (this.first_call) {
-        this.first_call = false;
-        this.data[0] = new_point;
-        this.fig.updateOptions({ 'file':  this.data});
-    } else {
-        this.data.push(new_point);
+        this.data = [];
     }
+
+    if (this.data_reduction === null){  // No data reduction
+	this.data.push(new_point);
+    } else {  // Data reduction	
+	if (this.new_temporary_point[plot_n]){
+	    this.data.push(new_point);
+	    this.last_point_index[plot_n] = this.data.length - 1;
+	    this.new_temporary_point[plot_n] = false;
+	}
+	
+	last_index = this.last_point_index[plot_n];
+	this.data[last_index] = new_point;
+	if (this.time_to_add(plot_n, date, value)){
+	    this.last_permanent_point_time[plot_n] = date;
+	    this.last_permanent_point_value[plot_n] = value;
+	    this.new_temporary_point[plot_n] = true;
+	}
+    }
+
+    if (this.first_call) {
+        this.fig.updateOptions({'file':  this.data});	
+        this.first_call = false;
+    }
+    // this.log("Number of points: " + this.data.length);
 
     // If the new points is outside the plot window
     if (date.getTime() > this.x_end) {
@@ -254,14 +295,72 @@ MyFigure.prototype.addPoint = function (plot_n, date, value) {
         // Always force an update if the window has changed
         this.fig.updateOptions({dateWindow: [this.x_start, this.x_end]});
         this.last_update = date;
+	// Make sure to add a new temporary point
+	for (i = 0; i < this.new_temporary_point.length; i++){
+	    this.new_temporary_point[i] = true;
+	}
     }
 
     // Determine if it is time to update
     if (date - this.last_update > this.definition.update_interval * 1000) {
         this.last_update = date;
-        this.fig.updateOptions({'file':  this.data});
+        this.fig.updateOptions({'file': this.data});
     }
 };
+
+MyFigure.prototype.time_to_add = function (plot_n, date, value) {
+    /* Determine if it is time to add, if using data reduction. Function
+       attached to MyFigure prototype, so something like a virtual method
+    */
+    "use strict";
+    var last_time, last_value, ratio;
+
+    // Check time
+    if (this.data_reduction.hasOwnProperty("time")){
+	last_time = this.last_permanent_point_time[plot_n];
+	//this.log("Check time: " + (date.getTime() - last_time.getTime()));
+	if (date.getTime() - last_time.getTime() >
+	    this.data_reduction["time"] * 1000){ 
+	    //this.log("Check time true");
+	    return true;
+	}
+    }
+
+    // Check absolute
+    if (this.data_reduction.hasOwnProperty("absolute")){
+	last_value = this.last_permanent_point_value[plot_n];
+	//this.log("Check absolute: " + Math.abs(value - last_value));
+	if (Math.abs(value - last_value) > this.data_reduction["absolute"]){
+	    //this.log("Check absolute true");
+	    return true;
+	}
+    }
+
+    // Check relative
+    if (this.data_reduction.hasOwnProperty("relative")){
+	last_value = this.last_permanent_point_value[plot_n];
+	/* In Javascript you are allowed to divide by 0 !!!! Becomes Infinity
+	   which can be used for numerical comparisons */
+	ratio = last_value / value;
+	//this.log("Check relative: " + ratio);
+	if (ratio < 1 - this.data_reduction["relative"]
+	    ||
+	    1 + this.data_reduction["relative"] < ratio){
+	    //this.log("Check relative true");
+	    return true;
+	}
+    }
+
+    return false;
+}
+
+MyFigure.prototype.log = function (string) {
+    /* Figure log. Function attached to MyFigure prototype, so something like
+       a virtual method
+    */
+    "use strict";
+    console.log(this.name + " says: " + string);
+}
 
 // ### Functions used by the websocket callbacks
 function parse_data(data) {
