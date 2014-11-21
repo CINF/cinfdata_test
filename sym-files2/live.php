@@ -1,7 +1,7 @@
 <?php
 
   /* 
-    Copyright (C) 2012 Robert Jensen, Thomas Andersen and Kenneth Nielsen
+    Copyright (C) 2014 Robert Jensen, Thomas Andersen and Kenneth Nielsen
     
     The CINF Data Presentation Website is free software: you can
     redistribute it and/or modify it under the terms of the GNU
@@ -84,6 +84,8 @@ function make_container_divs($containers){
 
 function to_javascript($name, $data){
   $json_str = json_encode($data);
+  // Some kind of escaping issue
+  $json_str = str_replace("\\", "\\\\", $json_str);
   echo("var $name = JSON.parse('$json_str');\n");
 }
 
@@ -98,7 +100,8 @@ $settings = plot_settings($type);
 
 # Produce header and layout
 if (isset($settings["page_title"])){
-  $include_head = "    <link rel=\"StyleSheet\" href=\"../css/live.css\" type=\"text/css\" media=\"screen\">";
+  $include_head = "    <link rel=\"StyleSheet\" href=\"../css/live.css\" type=\"text/css\" media=\"screen\">\n" . 
+    "    <script type=\"text/javascript\" src=\"../js/js_query.js\"></script> ";
   echo(html_header($root="../", $title=$settings["page_title"], $includehead=$include_head, $charset="UTF-8", $width=$settings["page_width"]));
 } else {
   echo(html_header($root="../", $title="Live Plots", $includehead=$include_head, $charset="UTF-8", $width=$settings["page_width"]));
