@@ -73,6 +73,7 @@
 	    <id>hall_coolingwater_pressure</id>
 	    <label>Cooling Water Pressure [bar]</label>
 	    <color>#990099</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="hall_coolingwater_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	</figure>
       </container0>
@@ -101,6 +102,7 @@
 	    <id>n5_argon_pressure</id>
 	    <label>N5 Argon Pressure [bar]</label>
 	    <color>#009900</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="n5_argon_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>	  
 	</figure>
       </container1>
@@ -128,12 +130,14 @@
 	    <id>cooling_water_hot</id>
 	    <label>Cooling water temp. hot</label>
 	    <color>#FF0000</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="cooling_water_hot") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	  <plot1>
 	    <socket>2</socket>
 	    <id>cooling_water_cold</id>
 	    <label>Cooling water temp. cold</label>
 	    <color>#0000FF</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="cooling_water_cold") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot1>
 	</figure>
       </container2>
