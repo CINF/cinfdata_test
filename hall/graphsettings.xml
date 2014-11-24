@@ -145,12 +145,12 @@
       <container3>
 	<type>data</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
-	<width>570</width>
+	<width>610</width>
 	<height>200</height>
 	<fontsize>24</fontsize>
 	<!-- optional html padding string, remember to subtract the padding in
-	     the size -->
-	<padding>40px 0px 0px 55px</padding>
+	     the size top, right, bottom, top, right, bottom, left-->
+	<padding>40px 0px 0px 0px</padding>
 	<data>
 	  <item0>
 	    <socket>0</socket>
