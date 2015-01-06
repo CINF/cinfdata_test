@@ -160,7 +160,7 @@
   <graph type='masstime'>
     <default_xscale>lin</default_xscale>
     <type>5</type>
-    <xlabel>Time / s</xlabel>
+    <xlabel>Time / h</xlabel>
     <title>Mass vs. time</title>
     <grouping_column>time</grouping_column>
     <right_legend_suffix> (r)</right_legend_suffix>
@@ -172,7 +172,7 @@
     </dygraph_settings>
     <!-- queries -->
     <queries>
-      <default>SELECT x/1000,y  FROM xy_values_microreactor where measurement = {id} order by id</default>
+      <default>SELECT x/3600000, y  FROM xy_values_microreactor where measurement = {id} order by id</default>
       <column>mass_label</column>
     </queries>
     <!-- ylabel -->
@@ -239,10 +239,10 @@
       <ylabel_addition>diff</ylabel_addition>
     </diff_right_y>
     <linscale_x0>
-      <gui>X-axis in hours</gui>
-      <xlabel_addition>converted to hours</xlabel_addition>
+      <gui>X-axis in seconds</gui>
+      <xlabel_addition>converted to seconds</xlabel_addition>
       <!-- 1/3600 -->
-      <a>0.0002777777777777778</a>
+      <a>3600</a>
       <b>0</b>
     </linscale_x0>
     <!--
