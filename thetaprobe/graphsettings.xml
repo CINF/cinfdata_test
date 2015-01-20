@@ -51,7 +51,7 @@
 	<width>600</width>
 	<height>400</height>
 	<jump_ahead>0.3</jump_ahead>
-	<x_window>120</x_window>
+	<x_window>3600</x_window>
 	<logscale>true</logscale>
 	<!-- Experimental, to fix bad y-range selection with log plot and
 	     constant values -->
@@ -63,6 +63,7 @@
 	    <id>thetaprobe_pressure_loadlock</id>
 	    <label>Load lock pressure / [mbar]</label>
 	    <color>#FF0000</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_pressure_loadlock") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	</figure>
       </container0>
@@ -76,7 +77,7 @@
 	<width>600</width>
 	<height>400</height>
 	<jump_ahead>0.3</jump_ahead>
-	<x_window>120</x_window>
+	<x_window>3600</x_window>
 	<logscale>true</logscale>
 	<!-- Experimental, to fix bad y-range selection with log plot and
 	     constant values -->
@@ -88,6 +89,7 @@
 	    <id>thetaprobe_pressure_uvgun</id>
 	    <label>UV gun pressure / [mbar]</label>
 	    <color>#0000FF</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_pressure_uvgun") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>	  
 	</figure>
       </container1>
