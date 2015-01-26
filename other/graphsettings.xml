@@ -1,0 +1,114 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+  <graph type='fridays'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>720</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+    
+    <!-- Purchases -->
+    <dateplot1>
+      <title>Purchases</title>
+      <legend>purchases by day (negated)</legend>
+      <query>SELECT unix_timestamp(DATE(time)) + 16 * 3600, -SUM(`amount`) FROM fridays_transactions WHERE user_id &lt; 999999 and amount &lt; 0 and time between "{from}" and "{to}" GROUP BY DATE(time)</query>
+      <ylabel>Amount / DKK</ylabel>
+      <color>1</color>
+    </dateplot1>
+    <!-- Elbow pressure -->
+    <dateplot2>
+      <title>Deposits</title>
+      <legend>deposits by day</legend>
+      <query>SELECT unix_timestamp(DATE(time)) + 16 * 3600, SUM(`amount`) FROM fridays_transactions WHERE user_id &lt; 999999 and amount &gt; 0 and time between "{from}" and "{to}" GROUP BY DATE(time)</query>
+      <ylabel>Amount / DKK</ylabel>
+      <color>2</color>
+    </dateplot2>
+    <!-- Temperature -->
+    <dateplot3>
+      <title>Balance Change</title>
+      <legend>balance change per day</legend>
+      <query>SELECT unix_timestamp(DATE(time)) + 16 * 3600, SUM(`amount`) FROM fridays_transactions WHERE user_id &lt; 999999 and time between "{from}" and "{to}" GROUP BY DATE(time)</query>
+      <ylabel>Amount / DKK</ylabel>
+      <color>3</color>
+    </dateplot3>
+    <!-- Cumulated balance -->
+    <dateplot4>
+      <title>Balance</title>
+      <legend>balance</legend>
+      <query>SELECT UNIX_TIMESTAMP(fridays_transactions.`time`), @running_total := @running_total + fridays_transactions.amount AS cumulative_sum FROM fridays_transactions JOIN (SELECT @running_total := 0) r where user_id &lt; 999999 and time between "{from}" and "{to}"  order by time</query>
+      <ylabel>Amount / DKK</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <dateplot5>
+      <title>Number of items purchased</title>
+      <legend>n beers</legend>
+      <query>SELECT unix_timestamp(DATE(time)) + 16 * 3600, count(`amount`) FROM fridays_transactions WHERE user_id &lt; 999999 and amount &lt; 0 and time between "{from}" and "{to}" GROUP BY DATE(time)</query>
+      <ylabel>Amount / DKK</ylabel>
+      <color>5</color>
+    </dateplot5>
+
+
+  </graph>
+
+  <graph type='fridays_items'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>720</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <dateplot1>
+      <title>Number of items purchased</title>
+      <legend>n beers (by day)</legend>
+      <query>SELECT unix_timestamp(DATE(time)) + 16 * 3600, count(`amount`) FROM fridays_transactions WHERE user_id &lt; 999999 and amount &lt; 0 and time between "{from}" and "{to}" GROUP BY DATE(time)</query>
+      <ylabel>number / n</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>Accumulated sum of items</title>
+      <legend>accumulated sum of items purchased</legend>
+      <query>SELECT UNIX_TIMESTAMP(`time`), @running_total := @running_total + 1 FROM fridays_transactions JOIN (SELECT @running_total := 0) r where user_id &lt; 999999 and time between "{from}" and "{to}" order by time;</query>
+      <ylabel>number / n</ylabel>
+      <color>2</color>
+    </dateplot2>
+  </graph>
+
+  <global_settings>
+    <measurements_table>fridays</measurements_table>
+    <xyvalues_table>fridays</xyvalues_table>
+    <sql_username>fridays</sql_username>
+    <label_column>mass_label</label_column>
+    <image_format>png</image_format>
+    <mandatory_export_fields>
+      <field0>
+	<field>id</field>
+	<name>Id</name>
+      </field0>
+      <field1>
+	<field>type</field>
+	<name>Type</name>
+      </field1>
+      <field2>
+	<field>time</field>
+	<name>Recorded at</name>
+      </field2>
+      <field3>
+	<field>Comment</field>
+	<name>Comment</name>
+      </field3>
+    </mandatory_export_fields>
+  </global_settings>
+</graphs>
+
