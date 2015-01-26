@@ -39,21 +39,11 @@
     <!-- Cumulated balance -->
     <dateplot4>
       <title>Balance</title>
-      <legend>balance</legend>
+      <legend>balance per transaction</legend>
       <query>SELECT UNIX_TIMESTAMP(fridays_transactions.`time`), @running_total := @running_total + fridays_transactions.amount AS cumulative_sum FROM fridays_transactions JOIN (SELECT @running_total := 0) r where user_id &lt; 999999 and time between "{from}" and "{to}"  order by time</query>
       <ylabel>Amount / DKK</ylabel>
       <color>4</color>
     </dateplot4>
-
-    <dateplot5>
-      <title>Number of items purchased</title>
-      <legend>n beers</legend>
-      <query>SELECT unix_timestamp(DATE(time)) + 16 * 3600, count(`amount`) FROM fridays_transactions WHERE user_id &lt; 999999 and amount &lt; 0 and time between "{from}" and "{to}" GROUP BY DATE(time)</query>
-      <ylabel>Amount / DKK</ylabel>
-      <color>5</color>
-    </dateplot5>
-
-
   </graph>
 
   <graph type='fridays_items'>
@@ -70,7 +60,7 @@
 
     <dateplot1>
       <title>Number of items purchased</title>
-      <legend>n beers (by day)</legend>
+      <legend>n items purchased (by day)</legend>
       <query>SELECT unix_timestamp(DATE(time)) + 16 * 3600, count(`amount`) FROM fridays_transactions WHERE user_id &lt; 999999 and amount &lt; 0 and time between "{from}" and "{to}" GROUP BY DATE(time)</query>
       <ylabel>number / n</ylabel>
       <color>1</color>

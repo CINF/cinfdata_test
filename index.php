@@ -249,7 +249,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	     <li><a href="sym-files2/dateplot.php?type=multidateplot">Dateplot demo</a></li>
 	     <li><a href="sym-files2/xyplot.php?type=masstime">XY plot demo</a></li>
 	     <li><a href="other/dateplot.php?type=fridays&left_plotlist[]=1&left_plotlist[]=2&right_plotlist[]=3&right_plotlist[]=4&matplotlib=checked">Fridays</a></li>
-	     <li><a href="other/dateplot.php?type=fridays_items&left_plotlist[]=1&matplotlib=checked">Fridays Items</a></li>
+	     <li><a href="other/dateplot.php?type=fridays_items&left_plotlist[]=1&right_plotlist[]=2&matplotlib=checked">Fridays Items</a></li>
 	   </ul>
           </td>
          </tr>
