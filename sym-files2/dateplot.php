@@ -23,8 +23,18 @@ include("graphsettings.php");
 include("../common_functions_v2.php");
 $db = std_db();
 
+# Get the plot type
+$type = $_GET["type"];
+
+# Get the default time from an uninitialized version of the settings
+$uninit_settings = plot_settings($type);
+if (array_key_exists('default_time', $uninit_settings)){
+  $default_time = (int) $uninit_settings['default_time'];
+} else {
+  $default_time = 24;
+}
 # Get the default to and from to populate fields in the GUI
-$xscale = date_xscale(0,0);
+$xscale = date_xscale(0, 0, $default_time);
 
 # Remember settings after submitting
 $from              = isset($_GET["from"])               ? $_GET["from"]           : $xscale["from"];
@@ -39,7 +49,7 @@ $left_plotlist     = isset($_GET["left_plotlist"])      ? $_GET["left_plotlist"]
 $right_plotlist    = isset($_GET["right_plotlist"])     ? $_GET["right_plotlist"] : array();
 $matplotlib        = isset($_GET["matplotlib"])         ? "checked"               : "";
 
-$type = $_GET["type"];
+# Get the fully initialized version of the settings
 $settings = plot_settings($type, Array("from" => $from, "to" => $to));
 
 # Make a list of the all the graphs in the multiplot definition
