@@ -25,11 +25,12 @@ echo(html_header($root="", $title="Data logged at CINF"));
         <table class="frontpage">
           <tr>
            <td>      
-	    <a href="javascript:toggle('mwg')"><h2>Mobile gas wall</h2></a></td><td>
+	    <a href="javascript:toggle('mwg')"><h2>Palle</h2></a></td><td>
             <a href="javascript:toggle('stm312')"><h2>STM312</h2></a></td><td>
 	    <a href="javascript:toggle('volvo')"><h2>Volvo</h2></a></td></tr><tr><td>
             <ul id="mwg" style="display:none">
               <li><a href="mgw/dateplot.php?type=multidateplot&left_plotlist[]=1&right_plotlist[]=2">Pressure</a></li>
+              <li><a href="mgw/dateplot.php?type=multidateplot&left_plotlist[]=4&left_plotlist[]=6&left_plotlist[]=7&left_plotlist[]=8&left_plotlist[]=9&left_plotlist[]=10&left_plotlist[]=11&left_plotlist[]=12">Temperatures</a></li>
 	    </ul>
            </td>
            <td>
@@ -158,7 +159,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
          <tr>
           <td>
            <ul id="TOF" style="display:none"> 
-	    <li><a href="tof/dateplot.php?type=multidateplot&left_plotlist%5B%5D=1&left_plotlist%5B%5D=2&left_plotlist%5B%5D=3">Dateplots</a></li>
+	    <li><a href="tof/dateplot.php?type=multidateplot&matplotlib=checked&left_plotlist%5B%5D=2">Dateplots</a></li>
 	    <li><a href="tof/xyplot.php?type=tofspectrum&matplotlib=checked">TOF spectra</a></li>
 	    <li><a href="tof/xyplot.php?type=massspectrum">Mass spectra</a></li>
 	    <li><a href="tof/xyplot.php?type=masstime">Mass-time</a></li>
@@ -247,6 +248,8 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	     <li><a href="code-documentation/git_status.php">Git status</a></li>
 	     <li><a href="sym-files2/dateplot.php?type=multidateplot">Dateplot demo</a></li>
 	     <li><a href="sym-files2/xyplot.php?type=masstime">XY plot demo</a></li>
+	     <li><a href="other/dateplot.php?type=fridays&left_plotlist[]=1&left_plotlist[]=2&right_plotlist[]=3&right_plotlist[]=4&matplotlib=checked">Fridays</a></li>
+	     <li><a href="other/dateplot.php?type=fridays_items&left_plotlist[]=1&matplotlib=checked">Fridays Items</a></li>
 	   </ul>
           </td>
          </tr>
