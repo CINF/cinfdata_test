@@ -9,6 +9,11 @@
 
 /*jslint continue: true, forin: true, plusplus: true */
 
+
+/* BLA BLA */
+subscription_id_to_socket_id = {};
+
+
 function log_input() {
     /* Log the script input: socket_defs, measurement_ids, fig_data_subs and
        firgure_defs
@@ -18,28 +23,33 @@ function log_input() {
     "use strict";
 
     // Define variables
-    var key, i, j;
+    var key, key_a, i, j, socket_defs_tmp={};
 
     console.log("### DATA FROM PHP START");
+    // Make sure socket_defs is object
+    socket_defs = array_to_object(socket_defs);
     console.log("socket_defs:", socket_defs);
 
-    // measurement_ids
+    // measurement_ids, make sure measurement_ids is object
+    measurement_ids = array_to_object(measurement_ids);
     for (key in measurement_ids) {
         console.log('measurement_ids', key, ':', measurement_ids[key]);
     }
 
-    // fig_data_subs
-    for (i = 0; i < fig_data_subs.length; i++) {
-        for (key in fig_data_subs[i]) {
-            for (j = 0; j < fig_data_subs[i][key].length; j++) {
-                console.log("Figure data subscription at socket:", i, "id:",
+    // fig_data_subs, make sure measurement_ids is object
+    fig_data_subs = array_to_object(fig_data_subs);
+    for (key_a in fig_data_subs) {
+        for (key in fig_data_subs[key_a]) {
+            for (j = 0; j < fig_data_subs[key_a][key].length; j++) {
+                console.log("Figure data subscription at socket:", key_a, "id:",
                             key, "sub:",
-                            JSON.stringify(fig_data_subs[i][key][j]));
+                            JSON.stringify(fig_data_subs[key_a][key][j]));
             }
         }
     }
 
     // figure_defs
+    console.log("FFFF", figure_defs);
     for (key in figure_defs) {
         console.log("Figure definition for:", key, ":",
                     JSON.stringify(figure_defs[key]));
@@ -47,8 +57,23 @@ function log_input() {
     console.log("### DATA FROM PHP END\n\n");
 }
 
-
 /* ### Helper FUNCTIONS */
+function array_to_object(arr){
+    /* Returns an object from the array */
+    "use strict";
+
+    // Define variables
+    var i, tmp={};
+
+    if (Object.prototype.toString.call(arr) === "[object Array]"){
+	for (var i = 0; i < arr.length; ++i){
+	    tmp[i] = arr[i];
+	}
+	arr = tmp;
+    }
+    return arr;
+}
+
 function zeropad(number) {
     /* Retuns a padded version of a number less than 10
        NOTE: Return type is string if padded and int otherwise
@@ -276,9 +301,20 @@ MyFigure.prototype.addPoint = function (plot_n, date, value) {
     "use strict";
 
     // Define variables
-    var i, cut, cutpoint, new_point = this.data_template.slice(0), last_index;
+    var i, cut, cutpoint, new_point = this.data_template.slice(0), last_index,
+        now = new Date();
     new_point[0] = date;
     new_point[plot_n + 1] = value;
+
+    /* Some browsers plots a point that jumps backwards in time, so check if
+       it is relatively new */
+    /*if (now.getTime() - date.getTime() > 1000 * 3600 * 12) {
+	console.log("BUUUUUUUG");
+	console.log("plot_n", plot_n, "now", now, "date", date, "value", value);
+	return;
+	}*/
+    //console.log("NOW: " + now + "   Plot:" + plot_n + "   Date:" + date + "   Value:" + value);
+    
 
     // If it is the first call to draw, replace the dummy point and redraw
     if (this.first_call) {
@@ -433,7 +469,7 @@ function parse_data(data) {
         value_elements, time_elements, diff_elements,
         fig_sub_index, sub, format, unit,
         now = new Date(),
-        socket = data[0];
+        socket = subscription_id_to_socket_id[data[0]];
 
     // Loop over the number of codenames in subscriptions[socket]
     for (n in measurement_ids[socket]) {
@@ -522,11 +558,17 @@ window.onload = function () {
         */
 
         console.log("... WebSocket Connected!");
-        for (i = 0; i < socket_defs.length; i++) {
+	console.log(socket_defs);
+	for (key in socket_defs) {
+            msg = "subscribe#".concat(socket_defs[key], ";", measurement_ids[key].join(','));
+            console.log("Subscribe on machine: ".concat(msg));
+            webSocket.send(msg);
+	}
+        /*for (i = 0; i < socket_defs.length; i++) {
             msg = "subscribe#".concat(socket_defs[i], ";", measurement_ids[i].join(','));
             console.log("Subscribe on machine: ".concat(msg));
             webSocket.send(msg);
-        }
+	    }*/
     };
 
     webSocket.onclose = function (e) {
@@ -541,18 +583,30 @@ window.onload = function () {
            where the last 0 and 0.2 are the subscription number and sane
            interval respectively
         */
-        var split = string.split("#");
+        var socket_def, split = string.split("#");
 
         console.log("## Parse subscription reply START:", string);
-        // Schedule a ws send of the subscription number once every sane
-        // interval
         console.log("Subscription id:", split[2], "Sane interval", split[3]);
+
+	// Add an entry in the object that translates subscription ids to
+	// socket id numbers
+	socket_def = split[1].split(";")[0];
+	for (key in socket_defs){
+	    if (socket_def == socket_defs[key]){
+		subscription_id_to_socket_id[split[2]] = key;
+	    }
+	}
+	console.log("id_to_socket_id:", subscription_id_to_socket_id);
+
         // Check for bad sane interval
         if (isNaN(parseFloat(split[3]) * 1000)) {
             alert("Bad sane interval on \"" + string +
                   "\". The data from this socket will not be available.");
             throw new Error("Bad sane interval on subscription" + string);
         }
+
+        // Schedule a ws send of the subscription number once every sane
+        // interval
         window.setInterval(
             function () {webSocket.send(split[2]); },
             parseFloat(split[3]) * 1000
@@ -562,6 +616,7 @@ window.onload = function () {
 
     webSocket.onmessage = function (e) {
         /* ws onmessage: parse the message from JSON and act on it */
+	//console.log(e);
         var message, data = JSON.parse(e.data);
 
         if (typeof data === "string") {
