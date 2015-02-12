@@ -321,7 +321,7 @@
 	<name>Comment</name>
       </field3>
     </mandatory_export_fields>
-    <image_format>png</image_format>
+    <image_format>pdf</image_format>
 
   </global_settings>
 </graphs>
