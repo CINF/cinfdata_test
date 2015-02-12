@@ -65,8 +65,8 @@ echo(html_header($root="", $title="Data logged at CINF"));
          </tr>
          <tr>
           <td>      
-	   <a href="javascript:toggle('microreactor')"><h2>Microreactor</h2></a></td><td>
-           <a href="javascript:toggle('microreactorNG')"><h2>Microreactor NG</h2></a></td><td>
+           <a href="javascript:toggle('microreactor')"><h2>&micro;-reactor</h2></a></td><td>
+           <a href="javascript:toggle('microreactorNG')"><h2>&micro;-reactor NG</h2></a></td><td>
 	   <a href="javascript:toggle('omicron')"><h2>Omicron</h2></a>
           </td>
          </tr>
@@ -83,6 +83,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	    <li><a href="microreactor/xyplot.php?type=massspectrum">Massspectra</a></li>
             <li><a href="microreactor/modify_comment.php">Modify comments</a></li>
 	    <!--<li><a href="microreactor/manage_measurements.php">Manage measurements</a></li>-->
+	    <li><a href="microreactor/live.php?type=live_values">Live Values</a></li>
 	   </ul>
           </td>
           <td>
@@ -246,8 +247,10 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	     <li><a href="code-documentation/test_config_all.php">Test my configuration file</a></li>
 	     <li><a href="code-documentation/statistics.php">Statistics</a></li>
 	     <li><a href="code-documentation/git_status.php">Git status</a></li>
+	     <li><a href="other/dateplot.php?type=pylint&matplotlib=checked&left_plotlist%5B%5D=1&right_plotlist%5B%5D=2">PyExpLabSys Stats</a></li>
 	     <li><a href="sym-files2/dateplot.php?type=multidateplot">Dateplot demo</a></li>
 	     <li><a href="sym-files2/xyplot.php?type=masstime">XY plot demo</a></li>
+	     <li><a href="other/live.php?type=live_values_wss">Web-Socket Status</a></li>
 	     <li><a href="other/dateplot.php?type=fridays&left_plotlist[]=1&left_plotlist[]=2&right_plotlist[]=3&right_plotlist[]=4&matplotlib=checked">Fridays Amounts</a></li>
 	     <li><a href="other/dateplot.php?type=fridays_items&left_plotlist[]=1&right_plotlist[]=2&matplotlib=checked">Fridays Items</a></li>
 	     <li><a href="other/fridays_stats.php">Fridays Pies</a></li>

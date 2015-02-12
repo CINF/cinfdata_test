@@ -1,12 +1,120 @@
 <?xml version='1.0' standalone='yes'?>
 <graphs>
+  <graph type="live_values_wss">
+    <page_width>1250</page_width>
+    <page_title>Websocket Live Plots</page_title> <!-- option page title -->
+    <containers>
+
+      <!-- Container 1, contains the second plot -->
+      <container0>
+	<type>figure</type>
+	<title>Websocket Hosts</title>
+	<update_interval>1.0</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>625</width>
+	<height>400</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>86400</x_window>
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<!-- <yrangepad>10</yrangepad> -->
+	<line_width>3</line_width>
+	<!-- reduce the amount of points that gets plotted -->
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+	    <socket>0</socket>
+	    <id>wss_hosts_defined</id>
+	    <label>Websocket hosts</label>
+	    <color>#0000FF</color>
+	  </plot0>
+	  <plot0>
+	    <socket>0</socket>
+	    <id>wss_hosts</id>
+	    <label>Websocket hosts</label>
+	    <color>#FF0000</color>
+	  </plot0>
+	</figure>
+      </container0>
+
+      <!-- Container 1, contains the second plot -->
+      <container1>
+	<type>figure</type>
+	<title>Websocket Connections</title>
+	<update_interval>1.9</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>625</width>
+	<height>400</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>86400</x_window>
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<!-- <yrangepad>10</yrangepad> -->
+	<line_width>3</line_width>
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+	    <socket>0</socket>
+	    <id>wss_clients</id>
+	    <label>Websocket clients</label>
+	    <color>#009900</color>
+	  </plot0>	  
+	</figure>
+      </container1>
+
+      <container2>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>610</width>
+	<height>200</height>
+	<fontsize>24</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size top, right, bottom, top, right, bottom, left-->
+	<padding>40px 0px 0px 0px</padding>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>wss_hosts_defined</id>
+	    <label>Websocket Hosts Defined</label>
+	    <color>#0000FF</color>
+	    <format>.0f</format>
+	    <unit> </unit>
+	  </item0>
+	  <item1>
+	    <socket>0</socket>
+	    <id>wss_hosts</id>
+	    <label>Websocket Hosts Active</label>
+	    <color>#FF0000</color>
+	    <format>.0f</format>
+	    <unit> </unit>
+	  </item1>
+
+	  <item2>
+	    <socket>0</socket>
+	    <id>wss_clients</id>
+	    <label>Websocket Clients</label>
+	    <color>#009900</color>
+	    <format>.0f</format>
+	    <unit> </unit>
+	  </item2>
+	</data>
+      </container2>
+    </containers>
+  </graph>
+
   <graph type='fridays'>
     <default_xscale>dat</default_xscale>
     <xlabel>Date</xlabel>
     <right_legend_suffix> (r)</right_legend_suffix>
     <title>Multiple dateplots</title>
     <ylabel>Mixed</ylabel>
-    <default_time>720</default_time>
+    <default_time>2592000</default_time>
     <dygraph_settings>
       <roll_period>1</roll_period>
       <labels_side>true</labels_side>
@@ -75,6 +183,59 @@
     </dateplot2>
   </graph>
 
+  <graph type='pylint'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>720</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+    
+    <!-- Purchases -->
+    <dateplot1>
+      <title>Numer of pylint errors</title>
+      <legend>Pylint errors</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_hall WHERE type = (SELECT id FROM dateplots_descriptions where codename="pylint_errors") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>[n]</ylabel>
+      <color>1</color>
+    </dateplot1>
+    <!-- Elbow pressure -->
+    <dateplot2>
+      <title>Numer of lines of source code</title>
+      <legend>SLOC</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_hall WHERE type = (SELECT id FROM dateplots_descriptions where codename="lines_of_code") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>[n]</ylabel>
+      <color>2</color>
+    </dateplot2>
+    <!-- Temperature -->
+    <dateplot3>
+      <title>Pylint errors relative to SLOC</title>
+      <legend>Pylint errors relative to SLOC</legend>
+      <query>
+	select unix_timestamp(pylint_errors.time), (pylint_errors.value / number_of_lines.value) * 100 from
+
+	(SELECT time, value
+	FROM dateplots_hall
+	WHERE type = (SELECT id FROM dateplots_descriptions where codename="pylint_errors")
+	and time between "{from}" and "{to}") pylint_errors,
+
+	(SELECT time, value
+	FROM dateplots_hall
+	WHERE type = (SELECT id FROM dateplots_descriptions where codename="lines_of_code")
+	and time between "{from}" and "{to}") number_of_lines 
+
+	WHERE date(pylint_errors.time) = date(number_of_lines.time)
+      </query>
+      <ylabel>[%]</ylabel>
+      <color>3</color>
+    </dateplot3>
+  </graph>
+
+
   <global_settings>
     <measurements_table>fridays</measurements_table>
     <xyvalues_table>fridays</xyvalues_table>
@@ -99,6 +260,9 @@
 	<name>Comment</name>
       </field3>
     </mandatory_export_fields>
+    <sockets>
+      <socket0>localhost:8000</socket0> <!-- Websocket server -->
+    </sockets>
   </global_settings>
 </graphs>
 
