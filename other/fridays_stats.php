@@ -67,5 +67,24 @@ $pie_info['data'] = items_from_query($query, $type='float');
 $pie_json = JSON_encode($pie_info);
 echo('<img alt="Vertical bar chart" class="centered" width="800" height="500" src="pie.php?data=' . urlencode($pie_json) . '&decimals=2"/>' . "\n");
 
+
+?>
+
+<script>
+function checkMods(event){
+  if (event.shiftKey && event.ctrlKey) {
+    event.preventDefault();
+    window.location = "fridays_transactions.php";
+    return true;
+  } else {
+    return false;
+  }
+}
+</script>
+
+<?php
+# Secret link
+echo("<p style=\"text-align:right\"><a href=\"#\" onClick=\"return checkMods(event)\">&pi;</a></p>");
+
 echo(html_footer());
 ?>
