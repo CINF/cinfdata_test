@@ -43,11 +43,13 @@ per <u><a style=\"color:blue\" href=\"#errors\">error type</a></u>.</p>\n");
 
 
 # Files section
-$query = "select date(time), identifier, value from pylint where " .
-  "date(time)=(SELECT max(date(time)) FROM pylint) and isfile=1 " .
-  "order by value desc;";
+$query = "select time, identifier, value, commit from pylint " .
+  "where time=(SELECT max(time) FROM pylint) " .
+  "and commit=(SELECT commit FROM pylint order by time desc limit 1) " .
+  "and isfile=1 order by value desc";
 $files = items_from_query($query, Array(null, "int", null));
-echo("<h2 id=\"files\">File statistics: " . $files[0][0] . "</h2>\n");
+$commit = substr($files[0][3], 0, 7);
+echo("<h2 id=\"files\">File statistics for commit ($commit) from {$files[0][0]}</h2>\n");
 
 # Make table for files
 echo("<table class=\"nicetable\"\n");
@@ -59,11 +61,12 @@ echo("</table>\n");
 echo("\n");
 
 # Error type section
-$query = "select date(time), identifier, value from pylint where " .
-  "date(time)=(SELECT max(date(time)) FROM pylint) and isfile=0 " .
+$query = "select time, identifier, value from pylint where " .
+  "time=(SELECT max(time) FROM pylint) and isfile=0 " .
+  "and commit=(SELECT commit FROM pylint order by time desc limit 1) " .
   "order by value desc;";
 $errors = items_from_query($query, Array(null, "int", null));
-echo("<h2 id=\"errors\">Error statistics: " . $errors[0][0] . "</h2>\n");
+echo("<h2 id=\"errors\">Error statistics for commit ($commit) from {$errors[0][0]}</h2>\n");
 
 # Make table for errors
 echo("<table class=\"nicetable\"\n");
