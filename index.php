@@ -166,6 +166,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	    <li><a href="tof/xyplot.php?type=masstime">Mass-time</a></li>
 	    <li><a href="http://robertj">Flight Time Analysis</a></li>
 	    <li><a href="tof/mass_calc.html">Calc. mass deficiency</a></li>
+	    <li><a href="tof/live.php?type=live_values">Live Values</a></li>
 	   </ul>
           </td>
           <td>
@@ -247,7 +248,8 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	     <li><a href="code-documentation/test_config_all.php">Test my configuration file</a></li>
 	     <li><a href="code-documentation/statistics.php">Statistics</a></li>
 	     <li><a href="code-documentation/git_status.php">Git status</a></li>
-	     <li><a href="other/dateplot.php?type=pylint&matplotlib=checked&left_plotlist%5B%5D=1&right_plotlist%5B%5D=2">PyExpLabSys Stats</a></li>
+	     <li><a href="other/dateplot.php?type=pylint&matplotlib=checked&left_plotlist%5B%5D=1&right_plotlist%5B%5D=2">PyExpLabSys Stats Graphs</a></li>
+	     <li><a href="other/pels_pylint.php">PyExpLabSys Stats Tables</a></li>
 	     <li><a href="sym-files2/dateplot.php?type=multidateplot">Dateplot demo</a></li>
 	     <li><a href="sym-files2/xyplot.php?type=masstime">XY plot demo</a></li>
 	     <li><a href="other/live.php?type=live_values_wss">Web-Socket Status</a></li>
