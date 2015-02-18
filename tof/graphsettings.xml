@@ -17,7 +17,7 @@
       <ylabel>Pressure / mbar</ylabel>
       <legend>P main / mbar</legend>
       <color>1</color>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_tof where type = 'P_iongauge' and time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_tof where value between 2e-11 and 0.1 and type = 220 and time between "{from}" and "{to}" order by time</query>
     </dateplot1>
     <!-- PRESSURE, ION GAUGE FLIGHT TUBE -->
     <dateplot2>
@@ -25,7 +25,7 @@
       <ylabel>Pressure / mbar</ylabel>
       <legend>P flight tube / mbar</legend>
       <color>2</color>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_tof where type = 'P_flighttube' and time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_tof where value between 2e-11 and 0.1 and type = 221 and time between "{from}" and "{to}" order by time</query>
     </dateplot2>
     <!-- PRESSURE, SMALL ION PUMP -->
     <dateplot3>
@@ -33,7 +33,7 @@
       <ylabel>Pressure / mbar</ylabel>
       <legend>P small ion pump / mbar</legend>
       <color>3</color>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_tof where type = 'P_ionpump' and time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_tof where type = 222 and time between "{from}" and "{to}" order by time</query>
     </dateplot3>
     <!-- MORNING PRESSURE -->
     <dateplot4>
@@ -41,17 +41,111 @@
       <ylabel>Pressure / mbar</ylabel>
       <legend>P morning, main</legend>
       <color>4</color>
-      <query>SELECT unix_timestamp(time), avg(value) FROM dateplots_tof where type = 'P_iongauge' and hour(time) = 1 and minute(time) between 00 and 20 and time between "{from}" and "{to}" group by date(time) order by time desc limit 30</query>      
+      <query>SELECT unix_timestamp(time), avg(value) FROM dateplots_tof where type = 220 and hour(time) = 1 and minute(time) between 00 and 20 and time between "{from}" and "{to}" group by date(time) order by time desc limit 30</query>      
     </dateplot4>
-    <!-- TEMPERATURE -->
-    <dateplot5>
-      <title>Temperature of the TOF turbo</title>
-      <ylabel>Temperature / C</ylabel>
-      <legend>T TOF turbo</legend>
-      <color>5</color>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_tof where type = 'T_turbopump' and time between "{from}" and "{to}" order by time</query>
-    </dateplot5>
   </graph>
+
+
+  <graph type="live_values">
+    <page_width>1280</page_width>
+    <page_title>TOF</page_title>
+    <containers> 
+      <container0>
+	<type>figure</type>
+	<update_interval>2.5</update_interval> <!-- seconds -->
+	<x_window>1200</x_window> <!-- x axis interval, seconds -->
+	<width>550</width>
+	<height>400</height>
+	<!-- General plot options -->
+	<bgcolor>#CCCCCC</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Main Chamber [mbar]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!-- <ylabel>Temperature [&amp;deg;C]</ylabel> --><!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>true</logscale> <!-- optional bool, default false -->
+	<format>.1e</format>
+	<figure>
+	  <plot0>
+            <socket>0</socket> 
+            <color>#0000FF</color>
+            <id>tof_iongauge_main</id>
+            <label>Pressure / mbar</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_tof where type=(SELECT id FROM dateplots_descriptions where codename="tof_iongauge_main") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container0>
+      
+      <container1>
+	<type>figure</type>
+	<update_interval>2.5</update_interval> <!-- seconds -->
+	<x_window>1800</x_window> <!-- x axis interval, seconds -->
+	<width>550</width>
+	<height>400</height>
+	<axislabelwidth>150</axislabelwidth>
+	<!-- General plot options -->
+	<bgcolor>#DDDDDD</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Flight Tube [mbar]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>true</logscale> <!-- optional bool, default false -->
+	<format>.1e</format>
+	<figure>
+	  <plot0>
+            <socket>0</socket>
+            <color>#0000FF</color>
+            <id>tof_iongauge_ft</id>
+            <label>Pressure / mbar</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_tof where type=(SELECT id FROM dateplots_descriptions where codename="tof_iongauge_ft") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container1>
+
+      <container2>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>1100</width>
+	<height>600</height>
+	<fontsize>44</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size top, right, bottom, top, right, bottom, left-->
+	<padding>40px 0px 0px 0px</padding>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>tof_iongauge_main</id>
+	    <label>Main chamber</label>
+	    <color>#990099</color>
+	    <format>.2e</format>
+	    <unit>mbar</unit>
+	  </item0>
+	  <item1>
+	    <socket>0</socket>
+	    <id>tof_iongauge_ft</id>
+	    <label>Flight tube</label>
+	    <color>#009900</color>
+	    <format>.2e</format>
+	    <unit>mbar</unit>
+	  </item1>
+	</data>
+      </container2>
+    </containers>
+  </graph>
+
 
   <!-- TOF Spectrum -->
   <graph type='tofspectrum'>
@@ -86,6 +180,11 @@
 	<title>Intensity map</title>
 	<output>raw</output>
       </Intensitymap>
+      <PeakIntegrater>
+	<title>Peak Integration</title>
+	<input>Peak position</input>
+	<output>raw</output>
+      </PeakIntegrater>
     </plugins>
 
     <parameters>
@@ -245,5 +344,9 @@
         <name>Comment</name>
       </field3>
     </mandatory_export_fields>
+    <sockets>
+      <socket0>rasppi109:8000</socket0> <!-- Main Chamber pressure -->
+    </sockets>
   </global_settings>
+
 </graphs>
