@@ -17,7 +17,7 @@
     <dateplot1>
       <title>Chamber pressure</title>
       <legend>Pressure</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactorNG where time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactorNG where type = 58 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>1</color>
     </dateplot1>
@@ -80,7 +80,7 @@
     <dateplot8>
       <title>Sample Temperature</title>
       <legend>Temperature</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactorNG where type = 57 and value > -1000 and time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactorNG where type = 56 and value > -1000 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>8</color>
     </dateplot8>
@@ -95,6 +95,121 @@
     </dateplot9>
   </graph>
 
+
+  <graph type="live_values">
+    <page_width>1280</page_width>
+    <page_title>&amp;mu;-reactorNG</page_title>
+    <containers> 
+      <container0>
+	<type>figure</type>
+	<update_interval>1.2</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>800</width>
+	<height>400</height>
+	<!-- General plot options -->
+	<bgcolor>#FFFF00</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<!--<padding>40px 0px 0px 55px</padding>-->
+	<!-- title and labels -->
+	<title>Sample temperature [&amp;deg;C]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!-- <ylabel>Temperature [&amp;deg;C]</ylabel> --><!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>false</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<figure>
+	  <plot0>
+            <socket>0</socket>
+            <color>#0000FF</color>
+            <id>microreactorng_temp_sample</id>
+            <label>Temperature / [C]</label>
+	  </plot0>
+	</figure>
+      </container0>
+      
+      <container1>
+	<type>figure</type>
+	<update_interval>1.2</update_interval> <!-- seconds -->
+	<x_window>60</x_window> <!-- x axis interval, seconds -->
+	<width>400</width>
+	<height>400</height>
+	<!-- General plot options -->
+	<bgcolor>#00FFFF</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<!--<padding>40px 0px 0px 55px</padding>-->
+	<!-- title and labels -->
+	<title>Sample temperature [&amp;deg;C]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>false</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<figure>
+	  <plot0>
+            <socket>0</socket>
+            <color>#0000FF</color>
+            <id>microreactorng_temp_sample</id>
+            <label>Temperature / [C]</label>
+	  </plot0>
+	</figure>
+      </container1>
+      
+      <container2>
+	<type>figure</type>
+	<update_interval>1.2</update_interval> <!-- seconds -->
+	<x_window>60</x_window> <!-- x axis interval, seconds -->
+	<width>630</width>
+	<height>400</height>
+	<!-- General plot options -->
+	<bgcolor>#FF00FF</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<!--<padding>40px 0px 0px 55px</padding>-->
+	<!-- title and labels -->
+	<title>Sample temperature [&amp;deg;C]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>false</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<figure>
+	  <plot0>
+            <socket>0</socket>
+            <color>#0000FF</color>
+            <id>microreactorng_temp_sample</id>
+            <label>Temperature / [C]</label>
+	  </plot0>
+	</figure>
+      </container2>
+
+      <container3>
+	<type>data</type>
+	<bgcolor>#00FF00</bgcolor>
+	<width>650</width>
+	<height>200</height>
+	<fontsize>24</fontsize>
+	<data>
+	  <item0>
+	    <color>#0000FF</color>
+	    <socket>0</socket>
+	    <id>microreactorng_temp_sample</id>
+	    <label>Pressure / [mbar]</label>
+	    <format>.2e</format>
+	    <unit>mbar</unit>
+	  </item0>
+	</data>
+      </container3>
+
+    </containers>
+  </graph>
 
   <!-- MASSTIME -->
   <graph type='masstime'>
@@ -199,6 +314,14 @@
       <grid>True</grid>
     </matplotlib_settings>
     -->
+    <plugins>
+      <Normalizer>
+	<title>Normalizer</title>
+	<input>Normalize label</input>
+	<output>raw</output>
+	<debug>true</debug>
+      </Normalizer>
+    </plugins>
   </graph>
 
   <!-- MASSSPECTRUM -->
@@ -222,6 +345,7 @@
   <global_settings>
     <measurements_table>measurements_microreactorNG</measurements_table>
     <xyvalues_table>xy_values_microreactorNG</xyvalues_table>
+    <folder_name>microreactorNG</folder_name>
     <!--<chamber_name>microreactorNG</chamber_name>-->
     <sql_username>microreactorNG</sql_username>
     <image_format>png</image_format>
@@ -257,5 +381,8 @@
       <legend_fontsize>10</legend_fontsize>
       <label_fontsize>16</label_fontsize>
     </matplotlib_settings>
+    <sockets>
+      <socket0>rasppi12:8000</socket0> <!-- Sample temperature -->
+    </sockets>
   </global_settings>
 </graphs>
