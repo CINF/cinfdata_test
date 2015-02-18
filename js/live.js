@@ -233,6 +233,8 @@ function MyFigure(name, definition) {
         labels: labels,
         colors: colors,
         dateWindow: [this.x_start, this.x_end],
+	//width: parseInt(definition.width),
+	//height: parseInt(definition.height),
         // Optional
         drawPoints: true,
         pointSize: 2,
@@ -287,6 +289,20 @@ function MyFigure(name, definition) {
        constant values */
     if (definition.hasOwnProperty("yrangepad")) {
         settings.yRangePad = definition.yrangepad;
+    }
+
+    if (definition.hasOwnProperty("axislabelwidth")) {
+	settings.axisLabelWidth = parseInt(definition.axislabelwidth);
+    }
+
+    if (definition.hasOwnProperty("format")){
+	settings.axes = {
+	    "y": {
+		"axisLabelFormatter": function(y) {
+		    return format_data(y, definition.format);
+		}
+	    }
+	};
     }
 
     console.log("Make figure with updated Dygraph settings:",
