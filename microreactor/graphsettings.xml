@@ -17,7 +17,7 @@
     <dateplot1>
       <title>Chamber pressure</title>
       <legend>Pressure</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactor where time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactor where type=108 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>1</color>
     </dateplot1>
@@ -26,7 +26,7 @@
     <dateplot2>
       <title>Pirani, buffer volume</title>
       <legend>Buffer</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactor_pirani_buffervolume where time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactor where type = 109 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>2</color>
     </dateplot2>
@@ -62,7 +62,7 @@
     <dateplot6>
       <title>Sample temperature</title>
       <legend>Temperature sample</legend>
-      <query>SELECT unix_timestamp(time), temperature FROM temperature_microreactor where time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactor where type =107 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>6</color>
     </dateplot6>
@@ -155,6 +155,107 @@
       <color>7</color>
     </dateplot7>
   </graph>
+
+  <graph type="live_values">
+    <page_width>1280</page_width>
+    <page_title>&amp;mu;-reactor</page_title>
+    <containers> 
+      <container0>
+	<type>figure</type>
+	<update_interval>1.2</update_interval> <!-- seconds -->
+	<x_window>9000</x_window> <!-- x axis interval, seconds -->
+	<width>350</width>
+	<height>300</height>
+	<!-- General plot options -->
+	<bgcolor>#CCCCCC</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Sample temperature [&amp;deg;C]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!-- <ylabel>Temperature [&amp;deg;C]</ylabel> --><!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<figure>
+	  <plot0>
+            <socket>0</socket> 
+            <color>#0000FF</color>
+            <id>mr_sample_tc_temperature</id>
+            <label>Temperature / [C]</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_sample_tc_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container0>
+      
+      <container1>
+	<type>figure</type>
+	<update_interval>1.2</update_interval> <!-- seconds -->
+	<x_window>9000</x_window> <!-- x axis interval, seconds -->
+	<width>350</width>
+	<height>300</height>
+	<!-- General plot options -->
+	<bgcolor>#DDDDDD</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Ion Gauge Pressure [mbar]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>true</logscale> <!-- optional bool, default false -->
+	<figure>
+	  <plot0>
+            <socket>1</socket>
+            <color>#0000FF</color>
+            <id>mr_iongauge_pressure</id>
+            <label>Pressure / mbar</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_iongauge_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container1>
+
+      <container2>
+	<type>figure</type>
+	<update_interval>1.2</update_interval> <!-- seconds -->
+	<x_window>9000</x_window> <!-- x axis interval, seconds -->
+	<width>350</width>
+	<height>300</height>
+	<!-- General plot options -->
+	<bgcolor>#CCCCCC</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Buffer pressure [mbar]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>true</logscale> <!-- optional bool, default false -->
+	<figure>
+	  <plot0>
+            <socket>2</socket>
+            <color>#0000FF</color>
+            <id>mr_buffer_pressure</id>
+            <label>Pressure / mbar</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_buffer_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container2>
+      
+    </containers>
+  </graph>
+
 
   <!-- MASSTIME -->
   <graph type='masstime'>
@@ -312,5 +413,10 @@
       <legend_fontsize>10</legend_fontsize>
       <label_fontsize>16</label_fontsize>
     </matplotlib_settings>
+    <sockets>
+      <socket0>rasppi12:8000</socket0> <!-- Sample temperature -->
+      <socket1>rasppi07:8000</socket1> <!-- Buffer pressure -->
+      <socket2>rasppi102:8000</socket2> <!-- Ion Gauge -->
+    </sockets>
   </global_settings>
 </graphs>
