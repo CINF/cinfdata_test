@@ -5,7 +5,7 @@ import tof_model as tm
 import tof_helpers 
 
 class Massscale(object):
-    def __init__(self, settings, plot_options):
+    def __init__(self, settings, plot_options, ggs=None):
         self.settings = settings
         self.label_additions = {
             'xlabel_addition': '',
@@ -33,7 +33,7 @@ class Massscale(object):
 
 
 class Intensitymap(object):
-    def __init__(self, settings, plot_options):
+    def __init__(self, settings, plot_options, ggs=None):
         self.settings = settings
         self.range = plot_options['xscale_bounding']
         if self.range is None:
