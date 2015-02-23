@@ -108,8 +108,7 @@ class CheckAlarms(object):
         _db = dbmodule.connect(host='servcinf', user='cinf_reader',
                                passwd='cinf_reader', db='cinfdata')
         self._reader_cursor = _db.cursor()
-        self._smtp_server_address = 'servcinf'
-        self._smtp_server = None
+        self._smtp_server_address = '127.0.0.1'
 
     def check_alarms(self):
         """Checks the alarms and sends out emails if necessary"""
@@ -162,19 +161,17 @@ class CheckAlarms(object):
             else:
                 _LOG.debug("No alarm for chech string {0}".format(check_string))
 
-        #if self._smtp_server is not None:
-        #    self._smtp_server.quit()
-
     def _get_alarms(self):
         """Get the list of alarms to check"""
         _LOG.debug('_get_alarms()')
         fields = ('id', 'quiries_json', 'parameters_json', 'check',
-                  'no_repeat_interval', 'message', 'recipients_json')
+                  'no_repeat_interval', 'message', 'recipients_json',
+                  'subject')
         # Column names needs to be excaped with backticks, because
         # someone was stupid enough to pick one which is a reserved
         # word (check)
-        fields_string = ','.join(['`{0}`'.format(field) for field in fields])
-        query = 'SELECT {0} FROM alarm'.format(fields_string)
+        fields_string =' ,'.join(['`{0}`'.format(field) for field in fields])
+        query = 'SELECT {0} FROM alarm WHERE visible=1 AND active=1'.format(fields_string)
         self._alarm_cursor.execute(query)
 
         # Turns column names and rows into dict and decode json
@@ -226,7 +223,9 @@ class CheckAlarms(object):
             query = "INSERT INTO alarm_log (alarm_id) VALUES (%s)"
             self._alarm_cursor.execute(query, (alarm['id']))
 
-            subject = 'Surveillance alarm'
+            subject = alarm['subject']
+            if subject == '':
+                subject = 'Surveillance alarm'
             body = '{message}\n\nAUTO-GENERATED:\nThe check was: {check}\n'\
                    'and the check string was: {0}'.format(check_string, **alarm)
 
@@ -416,8 +415,7 @@ class CheckAlarms(object):
         """Sends an email with the specified content"""
         _LOG.debug('_send_email(subject="{0}", body="{1}...", recipients={2})'
                    ''.format(subject, body.split('\n')[0], recipients))
-        if self._smtp_server is None:
-            self._smtp_server = smtplib.SMTP('127.0.0.1')
+
         msg = MIMEText(body)
         # Header info
         msg['Subject'] = subject
@@ -426,7 +424,18 @@ class CheckAlarms(object):
         msg['Reply-To'] = ', '.join(recipients)
 
         # Send the message via our own SMTP server
-        self._smtp_server.sendmail('no-reply@fysik.dtu.dk', recipients, msg.as_string())
+        attempts = 0
+        while attempts < 3:
+            try:
+                smtp_server = smtplib.SMTP(self._smtp_server_address)
+                smtp_server.sendmail('no-reply@fysik.dtu.dk', recipients, msg.as_string())
+                smtp_server.quit()
+                break
+            except smtplib.SMTPException:
+                attempts += 1
+                time.sleep(10)
+        else:
+            raise IOError('Unable to send email')
 
 
 def main():
