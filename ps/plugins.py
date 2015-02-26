@@ -6,7 +6,7 @@ class MassSpectraOffset(object):
     found in all of the spectra to prevent errors when plotting on log scale
     """
 
-    def __init__(self, settings, plot_options):
+    def __init__(self, settings, plot_options, ggs=None):
         self.settings = settings
         self.label_additions = {
             'xlabel_addition': '',
@@ -40,3 +40,38 @@ class MassSpectraOffset(object):
 
         return self.label_additions
 
+
+class CutX(object):
+    """Plugin that cuts data of at a specific time (x-value)"""
+
+    def __init__(self, settings, plot_options, ggs=None):
+        self.settings = settings
+        self.label_additions = {
+            'xlabel_addition': '',
+            'y_left_label_addition': '',
+            'y_right_label_addition': '',
+        }
+
+    def run(self, left, right):
+        """The main run method"""
+        # Get the cut point from the input
+        try:
+            cutpoint = int(self.settings['input'])
+        except ValueError:
+            cutpoint = 1E9
+            message = 'No time given, using 1E9 for cut'
+            self.label_additions['y_left_label_addition'] += message
+            self.label_additions['y_right_label_addition'] += message
+
+        # Find the cutindex and cut the data
+        for data_set in left + right:
+            data = data_set['data']
+            cut_index = numpy.searchsorted(data[:, 0], cutpoint)
+            data_set['data'] = data[:cut_index, :]
+
+        # Set label additions to let the user know of the change
+        message = 'Cut at time {0} s'.format(cutpoint)
+        self.label_additions['y_left_label_addition'] += message
+        self.label_additions['y_right_label_addition'] += message
+
+        return self.label_additions

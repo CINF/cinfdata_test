@@ -295,6 +295,15 @@
       <a>1</a>
       <b>-273.15</b>
     </linscale_right_y0>
+
+    <plugins>
+      <CutX>
+	<title>Only increasing X</title>
+	<input>X cut time</input>
+	<output>raw</output>
+	<debug>true</debug>
+      </CutX>
+    </plugins>
   </graph>
 
   <global_settings>
