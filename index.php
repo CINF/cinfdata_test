@@ -245,6 +245,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
           <td>
            <ul id="other" style="display:none"> 
 	     <li><a href="todo.php">Floor Managers To Do list</a></li>
+	     <li><a href="other/alarms.php">Email alarms</a></li>
 	     <li><a href="code-documentation/test_config_all.php">Test my configuration file</a></li>
 	     <li><a href="code-documentation/statistics.php">Statistics</a></li>
 	     <li><a href="code-documentation/git_status.php">Git status</a></li>
