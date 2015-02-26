@@ -206,15 +206,15 @@
     <!-- Elbow pressure -->
     <dateplot2>
       <title>Numer of lines of source code</title>
-      <legend>SLOC</legend>
+      <legend>LOC</legend>
       <query>SELECT unix_timestamp(time), value FROM dateplots_hall WHERE type = (SELECT id FROM dateplots_descriptions where codename="lines_of_code") and time between "{from}" and "{to}" order by time</query>
       <ylabel>[n]</ylabel>
       <color>2</color>
     </dateplot2>
     <!-- Temperature -->
     <dateplot3>
-      <title>Pylint errors relative to SLOC</title>
-      <legend>Pylint errors relative to SLOC</legend>
+      <title>Pylint errors relative to LOC</title>
+      <legend>Pylint errors relative to LOC</legend>
       <query>
 	select unix_timestamp(pylint_errors.time), (pylint_errors.value / number_of_lines.value) * 100 from
 
@@ -228,7 +228,8 @@
 	WHERE type = (SELECT id FROM dateplots_descriptions where codename="lines_of_code")
 	and time between "{from}" and "{to}") number_of_lines 
 
-	WHERE date(pylint_errors.time) = date(number_of_lines.time)
+	WHERE pylint_errors.time = number_of_lines.time
+	ORDER BY pylint_errors.time
       </query>
       <ylabel>[%]</ylabel>
       <color>3</color>
