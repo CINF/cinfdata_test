@@ -157,22 +157,22 @@
   </graph>
 
   <graph type="live_values">
-    <page_width>1280</page_width>
+    <page_width>1240</page_width>
     <page_title>&amp;mu;-reactor</page_title>
     <containers> 
       <container0>
 	<type>figure</type>
 	<update_interval>1.2</update_interval> <!-- seconds -->
 	<x_window>9000</x_window> <!-- x axis interval, seconds -->
-	<width>350</width>
+	<width>410</width>
 	<height>300</height>
 	<!-- General plot options -->
-	<bgcolor>#CCCCCC</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!--<bgcolor>#CCCCCC</bgcolor>--> <!-- optional color, default #FFFFFF -->
 	<!-- optional html padding string, remember to subtract the padding
 	     in the size -->
 	<padding>0px 0px 0px 0px</padding>
 	<!-- title and labels -->
-	<title>Sample temperature [&amp;deg;C]</title> <!-- optional (escaped) html-->
+	<title>Thermol Couple [&amp;deg;C]</title> <!-- optional (escaped) html-->
 	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
 	<!-- <ylabel>Temperature [&amp;deg;C]</ylabel> --><!-- optional (escaped) html -->
 	<!-- Plot drawing fine tuning -->
@@ -195,10 +195,10 @@
 	<type>figure</type>
 	<update_interval>1.2</update_interval> <!-- seconds -->
 	<x_window>9000</x_window> <!-- x axis interval, seconds -->
-	<width>350</width>
+	<width>410</width>
 	<height>300</height>
 	<!-- General plot options -->
-	<bgcolor>#DDDDDD</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!--<bgcolor>#00FFFF</bgcolor>--> <!-- optional color, default #FFFFFF -->
 	<!-- optional html padding string, remember to subtract the padding
 	     in the size -->
 	<padding>0px 0px 0px 0px</padding>
@@ -211,6 +211,7 @@
 	<point_size>2</point_size> <!-- optional int, default 2 -->
 	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
 	<logscale>true</logscale> <!-- optional bool, default false -->
+	<format>.1e</format>
 	<figure>
 	  <plot0>
             <socket>1</socket>
@@ -226,10 +227,10 @@
 	<type>figure</type>
 	<update_interval>1.2</update_interval> <!-- seconds -->
 	<x_window>9000</x_window> <!-- x axis interval, seconds -->
-	<width>350</width>
+	<width>410</width>
 	<height>300</height>
 	<!-- General plot options -->
-	<bgcolor>#CCCCCC</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!--<bgcolor>#FF00FF</bgcolor>--> <!-- optional color, default #FFFFFF -->
 	<!-- optional html padding string, remember to subtract the padding
 	     in the size -->
 	<padding>0px 0px 0px 0px</padding>
@@ -253,6 +254,46 @@
 	</figure>
       </container2>
       
+
+      <container3>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>1100</width>
+	<height>300</height>
+	<fontsize>44</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size top, right, bottom, top, right, bottom, left-->
+	<padding>20px 0px 0px 0px</padding>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>mr_sample_tc_temperature</id>
+	    <label>Thermol Couple</label>
+	    <color>#0000FF</color>
+	    <format>.1f</format>
+	    <unit>&amp;deg;C</unit>
+	  </item0>
+	  <item1>
+	    <socket>1</socket>
+	    <id>mr_iongauge_pressure</id>
+	    <label>Ion Gauge Pressure</label>
+	    <color>#0000FF</color>
+	    <format>.2e</format>
+	    <unit>mbar</unit>
+	  </item1>
+	  <item2>
+	    <socket>2</socket>
+	    <id>mr_buffer_pressure</id>
+	    <label>Buffer Pressure</label>
+	    <color>#0000FF</color>
+	    <format>.2e</format>
+	    <unit>mbar</unit>
+	  </item2>
+	</data>
+      </container3>
+
+
+
     </containers>
   </graph>
 
