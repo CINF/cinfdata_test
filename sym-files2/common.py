@@ -36,20 +36,20 @@ class Color:
     def __init__(self):
         """The init method. Initilalises the color list and the plot counter."""
         self.n_plots = -1
-        self.colors = ['b', 'r', 'k', 'm', 'g', 'c', 'y']
+        self.colors = ['b', 'r', '#777777', 'm', 'g', '#00B0B0', 'y']
         self.c = matplotlib.colors.ColorConverter()
 
     def get_color(self):
         """Return the next color for the graph line."""
         self.n_plots += 1
-        if self.n_plots < 7:
+        if self.n_plots < len(self.colors):
             return self.colors[self.n_plots]
         else:
             # If we run out of predefined color use a randomly generated one
             return (random.random(), random.random(), random.random())
 
     def get_color_hex(self):
-        """ Get color in hes """
+        """Get color in hex"""
         color = self.get_color()
         return matplotlib.colors.rgb2hex(self.c.to_rgb(color))
         
