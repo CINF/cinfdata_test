@@ -59,7 +59,8 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	    <li><a href="volvo/xyplot.php?type=iss">ISS-data</a></li>
 	    <li><a href="volvo/xyplot.php?type=massspectrum">Mass spectrums</a></li>
 	    <li><a href="volvo/xyplot_group.php?type=masstime">Mass-time</a></li>
-	    <li><a href="volvo/x.php?type=morning_pressure&from=2009-01-01&to=2012-01-01&manualscale=checked&ymax=1E-5&ymin=1E-11&xsize=1000&ysize=750">Morning pressure - Beta!</a></li>
+	    <li><a href="volvo/x.php?type=morning_pressure&from=2009-01-01&to=2012-01-01&manualscale=checked&ymax=1E-5&ymin=1E-11&xsize=1000&ysize=750">Morning pressure - Beta!</a></li
+	    <li><a href="volvo/live.php?type=live_values">Live Values</a></li>
 	   </ul>
           </td>
          </tr>
@@ -245,6 +246,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
           <td>
            <ul id="other" style="display:none"> 
 	     <li><a href="todo.php">Floor Managers To Do list</a></li>
+	     <li><a href="https://cinfdata.fysik.dtu.dk/cinf_common/host_checker.php">Host checker</a></li>
 	     <li><a href="other/alarms.php">Email alarms</a></li>
 	     <li><a href="code-documentation/test_config_all.php">Test my configuration file</a></li>
 	     <li><a href="code-documentation/statistics.php">Statistics</a></li>
