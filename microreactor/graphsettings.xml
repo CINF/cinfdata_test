@@ -457,7 +457,7 @@
     <sockets>
       <socket0>rasppi12:8000</socket0> <!-- Sample temperature -->
       <socket1>rasppi07:8000</socket1> <!-- Buffer pressure -->
-      <socket2>rasppi102:8000</socket2> <!-- Ion Gauge -->
+      <socket2>rasppi36:8000</socket2> <!-- Ion Gauge -->
     </sockets>
   </global_settings>
 </graphs>
