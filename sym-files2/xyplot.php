@@ -204,7 +204,7 @@ if ($matplotlib == 'checked'){
   } else {
     echo('<div id="graphdiv" class="dydiv"> </div>');
   }
-  echo('<script type="text/javascript" src=' . $plot_php_line . '></script>');
+  echo('<script type="text/javascript" src="' . $plot_php_line . '"></script>');
 #echo('<div id="graphdiv" class="dydiv"> </div>');
 #echo('<script type="text/javascript" src=' . $plot_php_line . '></script>');
 
