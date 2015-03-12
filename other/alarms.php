@@ -31,12 +31,12 @@ function existing_alarms(){
   echo("<form action=\"alarms.php#edit_alarm\">\n");
   echo("<table border=\"1\" class=\"nicetable\">\n");
   echo("<tr>\n");
-  echo("<th>ID<br>Description</th>" .
+  echo("<th>ID<br><br>Description</th>" .
        "<th>Quiries</th>" .
-       "<th>Parameters<br>Check</th>" .
-       "<th>No repeat int.<br>Active</th>" .
+       "<th>Parameters<br><br>Check</th>" .
+       "<th style=\"width:100px\">No repeat interval<br><br>Active</th>" .
        "<th>Message</th>" .
-       "<th>Subject/<br>Recipients</th>" .
+       "<th>Subject<br><br>Recipients</th>" .
        "<th>Action</th>\n");
   echo("  </tr>\n");
 
