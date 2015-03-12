@@ -322,16 +322,6 @@ MyFigure.prototype.addPoint = function (plot_n, date, value) {
     new_point[0] = date;
     new_point[plot_n + 1] = value;
 
-    /* Some browsers plots a point that jumps backwards in time, so check if
-       it is relatively new */
-    /*if (now.getTime() - date.getTime() > 1000 * 3600 * 12) {
-	console.log("BUUUUUUUG");
-	console.log("plot_n", plot_n, "now", now, "date", date, "value", value);
-	return;
-	}*/
-    //console.log("NOW: " + now + "   Plot:" + plot_n + "   Date:" + date + "   Value:" + value);
-    
-
     // If it is the first call to draw, replace the dummy point and redraw
     if (this.first_call) {
         this.data = [];
@@ -370,12 +360,13 @@ MyFigure.prototype.addPoint = function (plot_n, date, value) {
            changing the plot window. The cut criteria is defined as:
                new_point_time - x_window * (1 - jump_ahead_fraction)
         */
-        // Sort the data if we use data reduction, because that introduces slight disorder
+        // Sort the data if we use data reduction, because that introduces
+	// slight disorder
         if (this.data_reduction !== null) {
-            this.data.sort();
+            this.sort();
             this.log("Sort in data reduction");
         }
-        
+
         // Calculate the point from which older data is discarded and save it
         // as this.x_start
         this.x_start = new Date(date.getTime() - this.definition.x_window *
