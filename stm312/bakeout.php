@@ -47,7 +47,7 @@ $start_time = date('Y-m-d+H:i', strtotime($row[0]));
 $now = date('Y-m-d+H:i');
 
 # Get the latest temperature point
-$query = "SELECT time, temperature FROM temperature_stm312 ORDER BY TIME DESC LIMIT 1";
+$query = "SELECT time, value FROM dateplots_stm312 where type = 49 ORDER BY TIME DESC LIMIT 1";
 $result  = mysql_query($query,$db);
 $temperature = mysql_fetch_array($result);
 $temperature['temperature'] = round($temperature['temperature'], 2);
@@ -56,12 +56,12 @@ $temperature['temperature'] = round($temperature['temperature'], 2);
 $temperature['time_url'] = date('Y-m-d+H:i', strtotime($temperature['time']) + 60);
 
 # Get latest pressure from the main chamber
-$query = "SELECT time, pressure FROM pressure_stm312 ORDER BY TIME DESC LIMIT 1";
+$query = "SELECT time, value FROM dateplots_stm312 where type = 47 ORDER BY TIME DESC LIMIT 1";
 $result  = mysql_query($query,$db);  
 $pressure = mysql_fetch_array($result);
 
 # Get latest pressure from the prep chamber (called elbow!)
-$query = "SELECT time, pressure FROM pressure_stm312_elbow ORDER BY TIME DESC LIMIT 1";
+$query = "SELECT time, value FROM dateplots_stm312 where type = 48 ORDER BY TIME DESC LIMIT 1";
 $result  = mysql_query($query,$db);  
 $pressure_elbow = mysql_fetch_array($result);
 
@@ -72,7 +72,7 @@ if (strtotime($pressure['time']) > strtotime($pressure_elbow['time'])){
   $pressure_url_to = date('Y-m-d+H:i', strtotime($pressure_elbow['time']) + 60);
 }
 
-$query = "SELECT UNIX_TIMESTAMP(time), temperature FROM temperature_stm312 order by time desc limit 5";
+$query = "SELECT UNIX_TIMESTAMP(time), value FROM dateplots_stm312 where type = 49 order by time desc limit 5";
 $result  = mysql_query($query,$db);
 while ($row = mysql_fetch_array($result)){
         $ydata[] = $row[1];
