@@ -58,70 +58,131 @@
       <color>5</color>
     </dateplot5>
 
-    <!-- Date plot 6 - temp_motor -->
+   <!-- Tube-temperature ch01 -->
     <dateplot6>
+      <title>T, Ch01</title>
+      <legend>T, Ch01</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 210 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>6</color>
+    </dateplot6>
+
+   <!-- Tube-temperature ch02 -->
+    <dateplot7>
+      <title>T, Ch02</title>
+      <legend>T, Ch02</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 211 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>7</color>
+    </dateplot7>
+
+   <!-- Tube-temperature ch03 -->
+    <dateplot8>
+      <title>T, Ch03</title>
+      <legend>T, Ch03</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 212 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>8</color>
+    </dateplot8>
+
+   <!-- Tube-temperature ch04 -->
+    <dateplot9>
+      <title>T, Ch04</title>
+      <legend>T, Ch04</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 213 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>9</color>
+    </dateplot9>
+
+   <!-- Tube-temperature ch05 -->
+    <dateplot10>
+      <title>T, Ch05</title>
+      <legend>T, Ch05</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 214 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>10</color>
+    </dateplot10>
+
+   <!-- Tube-temperature ch06 -->
+    <dateplot11>
+      <title>T, Ch06</title>
+      <legend>T, Ch06</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 215 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>11</color>
+    </dateplot11>
+
+   <!-- Tube-temperature ch07 -->
+    <dateplot12>
+      <title>T, Ch07</title>
+      <legend>T, Ch07</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 216 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>12</color>
+    </dateplot12>
+
+    <!-- Date plot 6 - temp_motor -->
+    <dateplot13>
       <title>Turbo, Main Chamber, Motor Temp</title>
       <legend>MC, Motor Temp</legend>
       <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 62 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Motor Temperature / C</ylabel>
       <color>6</color>
-    </dateplot6>
+    </dateplot13>
 
     <!-- Date plot 7 - temp_electronics -->
-    <dateplot7>
+    <dateplot14>
       <title>Turbo, Main Chamber, Electronics Temp</title>
       <legend>MC, Electronics Temp</legend>
       <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 67 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Electronics Temperature / C</ylabel>
       <color>7</color>
-    </dateplot7>
+    </dateplot14>
 
     <!-- Date plot 8 - temp_bottom -->
-    <dateplot8>
+    <dateplot15>
       <title>Turbo, Main Chamber, Temp Bottom</title>
       <legend>MC, Temp Bottom</legend>
       <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 65 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature Bottom/ C</ylabel>
       <color>8</color>
-    </dateplot8>
+    </dateplot15>
 
     <!-- Date plot 9 - temp_bearings -->
-    <dateplot9>
+    <dateplot16>
       <title>Turbo, Main Chamber, Bearings Temp</title>
       <legend>MC, Bearings Temp</legend>
       <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 66 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Bearings Temperature / C</ylabel>
       <color>9</color>
-    </dateplot9>
+    </dateplot16>
 
     <!-- Date plot 10 - Turbo speed -->
-    <dateplot10>
+    <dateplot17>
       <title>Turbo, Main chamber, rotation</title>
       <legend>MC, rotation</legend>
       <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 64 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Rotation speed / Hz</ylabel>
       <color>10</color>
-    </dateplot10>
+    </dateplot17>
 
     <!-- Date plot 11 - Drive Current -->
-    <dateplot11>
+    <dateplot18>
       <title>Turbo, Main chamber, Current</title>
       <legend>MC, Current</legend>
       <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 63 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Drive Current / A</ylabel>
       <color>11</color>
-    </dateplot11>
+    </dateplot18>
 
     <!-- Date plot 12 - Drive Power -->
-    <dateplot12>
+    <dateplot19>
       <title>Turbo, Main chamber, Power</title>
       <legend>MC, Power</legend>
       <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 68 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Drive Power / W</ylabel>
       <color>12</color>
-    </dateplot12>
-
-
+    </dateplot19>
   </graph>
 
   <!-- MASSTIME -->
