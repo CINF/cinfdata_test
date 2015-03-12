@@ -53,7 +53,7 @@
       <container0>
 	<type>figure</type>
 	<update_interval>2.5</update_interval> <!-- seconds -->
-	<x_window>1200</x_window> <!-- x axis interval, seconds -->
+	<x_window>1800</x_window> <!-- x axis interval, seconds -->
 	<width>550</width>
 	<height>400</height>
 	<!-- General plot options -->
