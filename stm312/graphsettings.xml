@@ -15,67 +15,67 @@
 
     <!-- Chamber pressure -->
     <dateplot1>
-      <title>Chamber pressure</title>
-      <legend>Chamber pressure</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM pressure_stm312 where time between "{from}" and "{to}" order by time</query>
+      <title>Chamber Pressure</title>
+      <legend>Chamber Pressure</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 47 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / torr</ylabel>
       <color>1</color>
     </dateplot1>
     <!-- Elbow pressure -->
     <dateplot2>
-      <title>Elbow pressure</title>
-      <legend>Elbow pressure</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM pressure_stm312_elbow where time between "{from}" and "{to}" order by time</query>
+      <title>Prep Pressure</title>
+      <legend>Prep Pressure</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 48 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / torr</ylabel>
       <color>2</color>
     </dateplot2>
     <!-- Temperature -->
     <dateplot3>
-      <title>Sample temperature</title>
-      <legend>Sample temperature</legend>
-      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312 where temperature between -1 and 1600 and time between "{from}" and "{to}" order by time</query>
+      <title>Sample Temperature</title>
+      <legend>Sample Temperature</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 49 and value between -1 and 1600 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>3</color>
     </dateplot3>
-    <!-- Pressure big turbo prepump -->
+
     <dateplot4>
-      <title>Big turbo prepump pressure</title>
-      <legend>Big turbo prepump p.</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM pressure_stm312_prepumpbigturbo where time between "{from}" and "{to}" order by time</query>
-      <ylabel>Pressure / torr</ylabel>
-      <color>1</color>
-    </dateplot4>
-    <!-- Pressure ? prepump -->
-    <dateplot5>
-      <title>Gashandling prepump pressure</title>
-      <legend>Gashandling prepump p.</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM pressure_stm312_prepumpgashandling where time between "{from}" and "{to}" order by time</query>
-      <ylabel>Pressure / torr</ylabel>
-      <color>2</color>
-    </dateplot5>
-    <!-- Pressure diff prepump -->
-    <dateplot6>
-      <title>Diff prepump pressure</title>
-      <legend>Diff prepump p.</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM pressure_stm312_prepumpdiff where time between "{from}" and "{to}" order by time</query>
-      <ylabel>Pressure / torr</ylabel>
-      <color>3</color>
-    </dateplot6>
-    <!-- Combined pressure -->
-    <dateplot7>
-      <title>Pressure</title>
-      <legend>Pressure combined</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM pressure_stm312 where time between "{from}" and "{to}" order by time</query>
-      <ylabel>Pressure / torr</ylabel>
+      <title>Filament Bias</title>
+      <legend>Filament Bias</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 187 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Filament bias / V</ylabel>
       <color>4</color>
-    </dateplot7>
-    <!-- Temperature STM -->
-    <dateplot8>
-      <title>STM Temperature</title>
-      <legend>STM Temperature</legend>
-      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312_stm where temperature > -998 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Temperature / C</ylabel>
+    </dateplot4>
+
+    <dateplot5>
+      <title>Filament Current</title>
+      <legend>Filament Current</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 188 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Current / A</ylabel>
       <color>5</color>
+    </dateplot5>
+
+    <dateplot6>
+      <title>HV Bias</title>
+      <legend>HV Bias</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 190 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>HV Bias/ V</ylabel>
+      <color>6</color>
+    </dateplot6>
+
+    <dateplot7>
+      <title>HV Emmision Current</title>
+      <legend>HV Emmision</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 189 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Emmision Current / mA</ylabel>
+      <color>7</color>
+    </dateplot7>
+
+   <dateplot8>
+      <title>X-ray Water Flow</title>
+      <legend>Flow</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 45 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Water Flow / L/min</ylabel>
+      <color>8</color>
     </dateplot8>
   </graph>
 
@@ -96,7 +96,7 @@
     <dateplot1>
       <title>Big turbo temperatur</title>
       <legend>Big turbo temperatur</legend>
-      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312_big_turbo where time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 183 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>1</color>
     </dateplot1>
@@ -104,7 +104,7 @@
     <dateplot2>
       <title>Gas handling turbo temperatur</title>
       <legend>Gas handling turbo temperatur</legend>
-      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312_gas_handling where time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 184 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>2</color>
     </dateplot2>
@@ -112,81 +112,35 @@
     <dateplot3>
       <title>Sputter gun turbo temperatur</title>
       <legend>Sputter gun turbo temperatur</legend>
-      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312_sputter_gun where time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 185 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>3</color>
     </dateplot3>
-  </graph>
 
-  <graph type='multidateplot_heating'>
-    <default_xscale>dat</default_xscale>
-    <xlabel>Date</xlabel>
-    <right_legend_suffix> (r)</right_legend_suffix>
-    <title>Multiple dateplots</title>
-    <ylabel>Mixed</ylabel>
-    <default_time>24</default_time>
-    <dygraph_settings>
-      <roll_period>1</roll_period>
-      <labels_side>true</labels_side>
-    </dygraph_settings>
-
-    <!-- Filament bias -->
-    <dateplot1>
-      <title>Sample temperature</title>
-      <legend>Sample temperature</legend>
-      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312 where temperature between -1 and 1600 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Temperature / C</ylabel>
-      <color>1</color>
-    </dateplot1>
-
-    <dateplot2>
-      <title>Filament Bias</title>
-      <legend>Filament bias</legend>
-      <query>SELECT unix_timestamp(time), value FROM stm312_filament_bias where time between "{from}" and "{to}" order by time</query>
-      <ylabel>Filament bias / V</ylabel>
-      <color>2</color>
-    </dateplot2>
-
-    <dateplot3>
-      <title>Filament Current</title>
-      <legend>Filament Current</legend>
-      <query>SELECT unix_timestamp(time), value FROM stm312_filament_current where time between "{from}" and "{to}" order by time</query>
-      <ylabel>Current / A</ylabel>
-      <color>3</color>
-    </dateplot3>
-
+    <!-- Pressure big turbo prepump -->
     <dateplot4>
-      <title>Filament Power</title>
-      <legend>Filament Power</legend>
-      <query>SELECT unix_timestamp(time), value FROM stm312_filament_power where time between "{from}" and "{to}" order by time</query>
-      <ylabel>Power / W</ylabel>
-      <color>4</color>
+      <title>Big turbo prepump pressure</title>
+      <legend>Big turbo prepump p.</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 180 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / torr</ylabel>
+      <color>1</color>
     </dateplot4>
-
+    <!-- Pressure ? prepump -->
     <dateplot5>
-      <title>HV Bias</title>
-      <legend>HV Bias</legend>
-      <query>SELECT unix_timestamp(time), value FROM stm312_HV_bias where time between "{from}" and "{to}" order by time</query>
-      <ylabel>HV Bias/ V</ylabel>
-      <color>5</color>
+      <title>Gashandling prepump pressure</title>
+      <legend>Gashandling prepump p.</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 182 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / torr</ylabel>
+      <color>2</color>
     </dateplot5>
-
+    <!-- Pressure diff prepump -->
     <dateplot6>
-      <title>HV Emmision Current</title>
-      <legend>HV Emmision</legend>
-      <query>SELECT unix_timestamp(time), value FROM stm312_HV_emmision_current where time between "{from}" and "{to}" order by time</query>
-      <ylabel>Emmision Current / mA</ylabel>
-      <color>6</color>
+      <title>Diff prepump pressure</title>
+      <legend>Diff prepump p.</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_stm312 where type = 181 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / torr</ylabel>
+      <color>3</color>
     </dateplot6>
-
-    <dateplot7>
-      <title>HV Power</title>
-      <legend>HV Power</legend>
-      <query>SELECT unix_timestamp(time), value FROM stm312_HV_power where time between "{from}" and "{to}" order by time</query>
-      <ylabel>HV Power / W</ylabel>
-      <color>7</color>
-    </dateplot7>
-
 
   </graph>
 
@@ -270,7 +224,6 @@
       <color>3</color>
     </dateplot3>
 
-
     <dateplot4>
       <title>Temperature</title>
       <legend>Temperature</legend>
@@ -294,16 +247,6 @@
       <ylabel>Current / A</ylabel>
       <color>6</color>
     </dateplot6>
-
-    <dateplot7>
-      <title>Sample temperature</title>
-      <legend>Sample temperature</legend>
-      <query>SELECT unix_timestamp(time), temperature FROM temperature_stm312 where temperature between -1 and 1600 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Temperature / C</ylabel>
-      <color>7</color>
-    </dateplot7>
-
-
   </graph>
 
   <!-- MASSSPECTRUM -->
