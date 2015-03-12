@@ -31,6 +31,109 @@
     </dateplot2>
   </graph>
 
+
+  <graph type="live_values">
+    <page_width>1280</page_width>
+    <page_title>Volvo</page_title>
+    <containers> 
+      <container0>
+	<type>figure</type>
+	<update_interval>2.5</update_interval> <!-- seconds -->
+	<x_window>7200</x_window> <!-- x axis interval, seconds -->
+	<width>550</width>
+	<height>400</height>
+	<!-- General plot options -->
+	<bgcolor>#CCCCCC</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Main Chamber [mbar]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!-- <ylabel>Temperature [&amp;deg;C]</ylabel> --><!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>true</logscale> <!-- optional bool, default false -->
+	<format>.1e</format>
+	<figure>
+	  <plot0>
+            <socket>0</socket> 
+            <color>#0000FF</color>
+            <id>volvo_pressure</id>
+            <label>Pressure / mbar</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_volvo where type=(SELECT id FROM dateplots_descriptions where codename="volvo_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container0>
+      
+      <container1>
+	<type>figure</type>
+	<update_interval>2.5</update_interval> <!-- seconds -->
+	<x_window>7200</x_window> <!-- x axis interval, seconds -->
+	<width>550</width>
+	<height>400</height>
+	<axislabelwidth>150</axislabelwidth>
+	<!-- General plot options -->
+	<bgcolor>#DDDDDD</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Temperature [C]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>true</logscale> <!-- optional bool, default false -->
+	<format>.1e</format>
+	<figure>
+	  <plot0>
+            <socket>0</socket>
+            <color>#0000FF</color>
+            <id>volvo_temperature</id>
+            <label>Temperature</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_volvo where type=(SELECT id FROM dateplots_descriptions where codename="volvo_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container1>
+
+      <container2>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>1100</width>
+	<height>600</height>
+	<fontsize>44</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size top, right, bottom, top, right, bottom, left-->
+	<padding>40px 0px 0px 0px</padding>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>volvo_pressure</id>
+	    <label>Main chamber</label>
+	    <color>#990099</color>
+	    <format>.2e</format>
+	    <unit>mbar</unit>
+	  </item0>
+	  <item1>
+	    <socket>0</socket>
+	    <id>volvo_temperature</id>
+	    <label>Temperature</label>
+	    <color>#009900</color>
+	    <format>.2f</format>
+	    <unit>C</unit>
+	  </item1>
+	</data>
+      </container2>
+    </containers>
+  </graph>
+
+
+
   <!-- MASSSPECTRUM -->
   <graph type="massspectra">
     <default_xscale>lin</default_xscale>
@@ -300,6 +403,10 @@
 	<name>Comment</name>
       </field3>
     </mandatory_export_fields>
+    <sockets>
+      <socket0>rasppi04:8000</socket0> <!-- Temperature and pressure -->
+    </sockets>
+
   </global_settings>
 </graphs>
 
