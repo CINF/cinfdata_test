@@ -31,10 +31,10 @@ $query = "" .
   "fridays_transactions.item_barcode IS NOT NULL " .
   "group by fridays_transactions.item_barcode " . 
   "order by item_count desc, fridays_transactions.id desc;";
-$pie_info = Array("title" => 'Items');
+$pie_info = Array("title" => 'Top 10 items');
 $pie_info['data'] = items_from_query($query);
 $pie_json = JSON_encode($pie_info);
-echo('<img alt="Vertical bar chart" class="centered" width="800" height="500" src="pie.php?data=' . urlencode($pie_json) . '&simplify_level=2"/>' . "\n");
+echo('<img alt="Vertical bar chart" class="centered" width="800" height="500" src="pie.php?data=' . urlencode($pie_json) . '&element_count=10"/>' . "\n");
 
 
 echo("<h1>Revenue by item</h1>\n");
@@ -46,11 +46,11 @@ $query = "" .
   "INNER JOIN fridays_items " .
   "ON fridays_transactions.item_barcode=fridays_items.barcode " .
   "where fridays_transactions.user_id < 999999 and fridays_transactions.item_barcode IS NOT NULL group by fridays_transactions.item_barcode order by item_count desc, fridays_transactions.id desc;";
-$pie_info = Array("title" => 'Revenue by item');
+$pie_info = Array("title" => 'Top 10 revenue by item');
 $pie_info['data'] = items_from_query($query);
 $pie_json = JSON_encode($pie_info);
 
-echo('<img alt="Vertical bar chart" class="centered" width="800" height="500" src="pie.php?data=' . urlencode($pie_json) . '&simplify_level=2"/>' . "\n");
+echo('<img alt="Vertical bar chart" class="centered" width="800" height="500" src="pie.php?data=' . urlencode($pie_json) . '&element_count=10"/>' . "\n");
 
 echo("<h1>Volume by item</h1>\n");
 $query = "" . 
@@ -62,10 +62,10 @@ $query = "" .
   "fridays_transactions.item_barcode IS NOT NULL " .
   "group by fridays_transactions.item_barcode " . 
   "order by item_count desc, fridays_transactions.id desc;";
-$pie_info = Array("title" => 'Items');
+$pie_info = Array("title" => 'Top 10 volume by item');
 $pie_info['data'] = items_from_query($query, $type='float');
 $pie_json = JSON_encode($pie_info);
-echo('<img alt="Vertical bar chart" class="centered" width="800" height="500" src="pie.php?data=' . urlencode($pie_json) . '&simplify_level=2&decimals=2"/>' . "\n");
+echo('<img alt="Vertical bar chart" class="centered" width="800" height="500" src="pie.php?data=' . urlencode($pie_json) . '&element_count=10&decimals=2"/>' . "\n");
 
 
 ?>
