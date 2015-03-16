@@ -34,7 +34,7 @@ $query = "" .
 $pie_info = Array("title" => 'Items');
 $pie_info['data'] = items_from_query($query);
 $pie_json = JSON_encode($pie_info);
-echo('<img alt="Vertical bar chart" class="centered" width="800" height="500" src="pie.php?data=' . urlencode($pie_json) . '"/>' . "\n");
+echo('<img alt="Vertical bar chart" class="centered" width="800" height="500" src="pie.php?data=' . urlencode($pie_json) . '&simplify_level=2"/>' . "\n");
 
 
 echo("<h1>Revenue by item</h1>\n");
@@ -50,7 +50,7 @@ $pie_info = Array("title" => 'Revenue by item');
 $pie_info['data'] = items_from_query($query);
 $pie_json = JSON_encode($pie_info);
 
-echo('<img alt="Vertical bar chart" class="centered" width="800" height="500" src="pie.php?data=' . urlencode($pie_json) . '"/>' . "\n");
+echo('<img alt="Vertical bar chart" class="centered" width="800" height="500" src="pie.php?data=' . urlencode($pie_json) . '&simplify_level=2"/>' . "\n");
 
 echo("<h1>Volume by item</h1>\n");
 $query = "" . 
@@ -65,7 +65,7 @@ $query = "" .
 $pie_info = Array("title" => 'Items');
 $pie_info['data'] = items_from_query($query, $type='float');
 $pie_json = JSON_encode($pie_info);
-echo('<img alt="Vertical bar chart" class="centered" width="800" height="500" src="pie.php?data=' . urlencode($pie_json) . '&decimals=2"/>' . "\n");
+echo('<img alt="Vertical bar chart" class="centered" width="800" height="500" src="pie.php?data=' . urlencode($pie_json) . '&simplify_level=2&decimals=2"/>' . "\n");
 
 
 ?>
