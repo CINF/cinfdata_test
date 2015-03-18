@@ -164,6 +164,12 @@
         <legend>Freq. {id}</legend>
       </pattern1>
     </legend>
+    <parameters>
+      <param0>
+	<field>comment</field>
+	<name>Comment</name>
+      </param0>
+    </parameters>
   </graph>
 
   <!-- MASSSPECTRUM -->
@@ -198,13 +204,17 @@
     <title>Mass Spectrum</title>
     <parameters>
       <param0>
-	<field>sem_voltage</field>
-	<name>SEM Voltage / V</name>
+	<field>comment</field>
+	<name>Comment</name>
       </param0>
       <param1>
+	<field>sem_voltage</field>
+	<name>SEM Voltage / V</name>
+      </param1>
+      <param2>
 	<field>preamp_range</field>
 	<name>Range</name>
-      </param1>
+      </param2>
     </parameters>
   </graph>
 
@@ -260,13 +270,17 @@
 
     <parameters>
       <param0>
-	<field>sem_voltage</field>
-	<name>SEM Voltage / V</name>
+	<field>comment</field>
+	<name>Comment</name>
       </param0>
       <param1>
+	<field>sem_voltage</field>
+	<name>SEM Voltage / V</name>
+      </param1>
+      <param2>
 	<field>preamp_range</field>
 	<name>Range</name>
-      </param1>
+      </param2>
     </parameters>
 
     <!-- data treatment -->
@@ -306,6 +320,130 @@
     </plugins>
   </graph>
 
+  <!-- XPS -->
+  <graph type="xps">
+    <default_xscale>lin</default_xscale>
+    <type>2</type>
+    <label_column>name</label_column>
+    <charset>latin-1</charset>
+    <grouping_column>file_name</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <queries>
+      <default>SELECT x,y  FROM xy_values_ps where measurement = {id} order by id</default>
+    </queries>
+    <xlabel>Binding energy / eV</xlabel>
+    <ylabel>
+      <default>Counts per second / n</default>
+    </ylabel>
+    <legend>
+      <default>{id}-{name}</default>
+    </legend>
+    <title>XPS</title>
+    <flip_x>
+      <gui>Flip X-scale</gui>
+    </flip_x>
+    <linscale_x0>
+      <gui>Switch to kinetic energy</gui>
+      <xlabel_addition>Binding->Kinetic</xlabel_addition>
+      <a>-1</a>
+      <b>{excitation_energy}</b>
+    </linscale_x0>
+    <parameters>
+      <param0>
+	<field>name</field>
+	<name>Name</name>
+      </param0>
+      <param1>
+	<field>group_name</field>
+	<name>Group name</name>
+      </param1>
+      <param2>
+	<field>energy_step</field>
+	<name>Energy step / eV</name>
+      </param2>
+      <param3>
+	<field>file_name</field>
+	<name>File name</name>
+      </param3>
+      <param4>
+	<field>dwell_time</field>
+	<name>Dwell time / s</name>
+      </param4>
+      <param5>
+	<field>pass_energy</field>
+	<name>Pass energy / eV</name>
+      </param5>
+      <param7>
+	<field>analyzer_lens</field>
+	<name>Analyzer lens</name>
+      </param7>
+      <param8>
+	<field>excitation_energy</field>
+	<name>Excitation energy / eV</name>
+      </param8>
+      <param9>
+	<field>number_of_scans</field>
+	<name>Number of scans / n</name>
+      </param9>
+    </parameters>
+  </graph>
+
+  <!-- ISS -->
+  <graph type="iss">
+    <default_xscale>lin</default_xscale>
+    <type>3</type>
+    <label_column>name</label_column>
+    <charset>latin-1</charset>
+    <grouping_column>file_name</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <queries>
+      <default>SELECT x,y  FROM xy_values_ps where measurement = {id} order by id</default>
+    </queries>
+    <xlabel>Kinetic energy / eV</xlabel>
+    <ylabel>
+      <default>Counts per second / n</default>
+    </ylabel>
+    <legend>
+      <default>{id}-{name}</default>
+    </legend>
+    <title>ISS</title>
+    <parameters>
+      <param0>
+	<field>excitation_energy</field>
+	<name>Excitation energy / eV</name>
+      </param0>
+      <param1>
+	<field>number_of_scans</field>
+	<name>Number of scans</name>
+      </param1>
+      <param2>
+	<field>energy_step</field>
+	<name>energy step [eV]</name>
+      </param2>
+      <param3>
+	<field>file_name</field>
+	<name>File name</name>
+      </param3>
+      <param4>
+	<field>dwell_time</field>
+	<name>Dwell time</name>
+      </param4>
+      <param5>
+	<field>pass_energy</field>
+	<name>Pass energy / eV</name>
+      </param5>
+      <param6>
+	<field>name</field>
+	<name>Name</name>
+      </param6>
+      <param7>
+	<field>analyzer_lens</field>
+	<name>Analyzer lens</name>
+      </param7>
+    </parameters>
+
+  </graph>
+
   <global_settings>
     <measurements_table>measurements_ps</measurements_table>
     <xyvalues_table>xy_values_ps</xyvalues_table>
@@ -325,10 +463,6 @@
 	<field>time</field>
 	<name>Recorded at</name>
       </field2>
-      <field3>
-	<field>comment</field>
-	<name>Comment</name>
-      </field3>
     </mandatory_export_fields>
     <image_format>pdf</image_format>
 

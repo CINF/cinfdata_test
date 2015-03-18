@@ -162,7 +162,8 @@ echo(html_header($root="", $title="Data logged at CINF"));
           <td>
            <ul id="TOF" style="display:none"> 
 	    <li><a href="tof/dateplot.php?type=multidateplot&matplotlib=checked&left_plotlist%5B%5D=2">Dateplots</a></li>
-	    <li><a href="tof/xyplot.php?type=tofspectrum&matplotlib=checked">TOF spectra</a></li>
+	    <li><a href="tof/xyplot.php?type=tofspectrum_small&matplotlib=checked">TOF spectra, small</a></li>
+	    <li><a href="tof/xyplot.php?type=tofspectrum_wide&matplotlib=checked">TOF spectra, wide</a></li>
 	    <li><a href="tof/xyplot.php?type=massspectrum">Mass spectra</a></li>
 	    <li><a href="tof/xyplot.php?type=masstime">Mass-time</a></li>
 	    <li><a href="http://robertj">Flight Time Analysis</a></li>
@@ -183,6 +184,8 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	    <li><a href="ps/xyplot.php?type=deposition">Deposition</a></li>
             <li><a href="ps/xyplot.php?type=massspectra&left_logscale=checked&plugin_settings[MassSpectraOffset][activate]=checked">Mass spectra</a></li>
 	    <li><a href="ps/xyplot.php?type=masstime">Mass-time</a></li>
+	    <li><a href="ps/xyplot.php?type=xps&flip_x=checked&matplotlib=checked">XPS</a></li>
+	    <li><a href="ps/xyplot.php?type=iss">ISS</a></li>
             <li><a href="ps/modify_comment.php">Modify comments</a></li>
 
 	   </ul>

@@ -5,7 +5,9 @@
   <graph type="xps">
     <default_xscale>lin</default_xscale>
     <type>2</type>
-    <grouping_column>time</grouping_column>
+    <label_column>name</label_column>
+    <charset>latin-1</charset>
+    <grouping_column>file_name</grouping_column>
     <right_legend_suffix> (r)</right_legend_suffix>
     <queries>
       <default>SELECT x,y  FROM xy_values_dummy where measurement = {id} order by id</default>
@@ -15,7 +17,7 @@
       <default>Counts per second / n</default>
     </ylabel>
     <legend>
-      <default>{name}</default>
+      <default>{is}-{name}</default>
     </legend>
     <title>XPS</title>
     <flip_x>
@@ -37,22 +39,86 @@
 	<name>Number of scans</name>
       </param1>
       <param2>
-	<field>project</field>
-	<name>Project</name>
+	<field>energy_step</field>
+	<name>energy step [eV]</name>
       </param2>
       <param3>
 	<field>file_name</field>
 	<name>File name</name>
       </param3>
       <param4>
-	<field>timestep</field>
-	<name>Timestep</name>
+	<field>dwell_time</field>
+	<name>Dwell time</name>
       </param4>
       <param5>
 	<field>pass_energy</field>
 	<name>Pass energy / eV</name>
       </param5>
+      <param6>
+	<field>name</field>
+	<name>Name</name>
+      </param6>
+      <param7>
+	<field>analyzer_lens</field>
+	<name>Analyzer lens</name>
+      </param7>
     </parameters>
+  </graph>
+
+  <!-- ISS -->
+  <graph type="iss">
+    <default_xscale>lin</default_xscale>
+    <type>3</type>
+    <label_column>name</label_column>
+    <charset>latin-1</charset>
+    <grouping_column>file_name</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <queries>
+      <default>SELECT x,y  FROM xy_values_dummy where measurement = {id} order by id</default>
+    </queries>
+    <xlabel>Kinetic energy / eV</xlabel>
+    <ylabel>
+      <default>Counts per second / n</default>
+    </ylabel>
+    <legend>
+      <default>{id}-{name}</default>
+    </legend>
+    <title>ISS</title>
+    <parameters>
+      <param0>
+	<field>excitation_energy</field>
+	<name>Excitation energy / eV</name>
+      </param0>
+      <param1>
+	<field>number_of_scans</field>
+	<name>Number of scans</name>
+      </param1>
+      <param2>
+	<field>energy_step</field>
+	<name>energy step [eV]</name>
+      </param2>
+      <param3>
+	<field>file_name</field>
+	<name>File name</name>
+      </param3>
+      <param4>
+	<field>dwell_time</field>
+	<name>Dwell time</name>
+      </param4>
+      <param5>
+	<field>pass_energy</field>
+	<name>Pass energy / eV</name>
+      </param5>
+      <param6>
+	<field>name</field>
+	<name>Name</name>
+      </param6>
+      <param7>
+	<field>analyzer_lens</field>
+	<name>Analyzer lens</name>
+      </param7>
+    </parameters>
+
   </graph>
 
 
