@@ -1,3 +1,4 @@
+#!/bin/bash
 # Script used to make a new chamber folder
 
 # Prompt for a reply of whether to continue or not
