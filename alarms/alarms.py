@@ -34,6 +34,7 @@ q0 < p0 and q1 > p1
 
 from __future__ import print_function
 import re
+import os
 import sys
 import json
 import time
@@ -43,6 +44,7 @@ from collections import defaultdict, namedtuple
 import logging
 from logging.handlers import RotatingFileHandler
 import numpy as np
+import psutil
 import MySQLdb
 
 # Regular expression used to match the check, which are in the form:
@@ -88,7 +90,9 @@ def get_logger(name, level='INFO', terminal_log=True, file_log=False,
     return logger
 
 
-_LOG = get_logger(__file__, level='debug', file_log=True, file_name='alarm_log')
+_LOG = get_logger(__file__, level='debug', file_log=True,
+                  file_name='/var/www/cinfdata/alarms/alarm_log',
+                  terminal_log=False)
 
 
 class ErrorDuringCheck(Exception):
@@ -268,7 +272,7 @@ class CheckAlarms(object):
             if token in ['and', 'or']:
                 tokens.append(token)
                 continue
-            print("###", token)
+            _LOG.debug("### {0}".format(token))
             match = CHECK_RE.match(token)
             if match:
                 # Append dict for the matches
@@ -441,15 +445,34 @@ class CheckAlarms(object):
 def main():
     """Main method"""
     _LOG.info('Script started')
-    while True:
-        check_alarms = CheckAlarms()
-        try:
-            while True:
-                check_alarms.check_alarms()
-                time.sleep(60)
-        except Exception as exp:
-            _LOG.exception("An error occoured during alarm script")
-            check_alarms._send_email("Alarm script generated error", str(exp.message), ['knielsen@fysik.dtu.dk'])
+    start_time = time.time()
+
+    try:
+        with open('/tmp/alarms-already-running') as file_:
+            old_pid = int(file_.read().strip())
+    except (IOError, ValueError):
+        old_pid = -1
+
+    # Check whether the last instance has finished
+    if psutil.pid_exists(old_pid):
+        _LOG.info('Old instance with pid {0} still running, abort!'.format(old_pid))
+        return
+
+    # Write the lock file
+    with open('/tmp/alarms-already-running', 'w') as file_:
+        pid = os.getpid()
+        _LOG.debug('Writing pid file with pid: {0}'.format(pid))
+        file_.write(str(pid))
+
+
+    check_alarms = CheckAlarms()
+    try:
+        check_alarms.check_alarms()
+    except Exception as exp:
+        _LOG.exception("An error occoured during alarm script")
+        check_alarms._send_email("Alarm script generated error", str(exp.message), ['knielsen@fysik.dtu.dk'])
+
+    _LOG.debug('Execution time: {0}'.format(time.time() - start_time))
 
 if __name__ == '__main__':
     main()
