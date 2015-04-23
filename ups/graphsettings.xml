@@ -1,169 +1,320 @@
 <?xml version='1.0' standalone='yes'?>
 <graphs>
 
-  <!-- kVA UPS -->
-  <graph type='kVA'>
-    <query>SELECT unix_timestamp(time), value FROM ups_kVAPh1 where time between "{from}" and "{to}" order by time</query>
-    <query1>SELECT unix_timestamp(time), value FROM ups_kVAPh2 where time between "{from}" and "{to}" order by time</query1>
-    <query2>SELECT unix_timestamp(time), value FROM ups_kVAPh3 where time between "{from}" and "{to}" order by time</query2>
-    <ordering>left|green,left|blue,left|red</ordering>
-    <ylabel>Power / VA</ylabel>
-    <title>Power drawn from the UPS</title>
-    <default_yscale>lin</default_yscale>
+  <!-- MULTI DATEPLOT -->
+  <graph type='multidateplot'>
     <default_xscale>dat</default_xscale>
-    <image_format>pdf</image_format>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- Fall back settings -->
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+    </dygraph_settings>
+
+    <dateplot1>
+      <title>kVA Ph1</title>
+      <legend>kVA Ph1</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=251 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>kVA / kW</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>kVA Ph2</title>
+      <legend>kVA Ph2</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=252 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>kVA / kW</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <dateplot3>
+      <title>kVA Ph3</title>
+      <legend>kVA Ph3</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=253 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>kVA / kW</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>Iout Ph1</title>
+      <legend>Iout Ph1</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=254 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>I / A</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <dateplot5>
+      <title>Iout Ph2</title>
+      <legend>Iout Ph2</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=255 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>I / A</ylabel>
+      <color>5</color>
+    </dateplot5>
+
+    <dateplot6>
+      <title>Iout Ph3</title>
+      <legend>Iout Ph3</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=256 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>I / A</ylabel>
+      <color>6</color>
+    </dateplot6>
+
+    <dateplot7>
+      <title>Input Frequency</title>
+      <legend>Input Frequency</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=257 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Frequency / Hz</ylabel>
+      <color>7</color>
+    </dateplot7>
+
+    <dateplot8>
+      <title>Vin Ph1</title>
+      <legend>Vin Ph1</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=258 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Vin / V</ylabel>
+      <color>8</color>
+    </dateplot8>
+
+    <dateplot9>
+      <title>Vin Ph2</title>
+      <legend>Vin Ph2</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=259 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Vin / V</ylabel>
+      <color>9</color>
+    </dateplot9>
+
+    <dateplot10>
+      <title>Vin Ph3</title>
+      <legend>Vin Ph3</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=260 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Vin / V</ylabel>
+      <color>10</color>
+    </dateplot10>
+
+    <dateplot11>
+      <title>Vout Ph1</title>
+      <legend>Vout Ph1</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=261 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Vout / V</ylabel>
+      <color>11</color>
+    </dateplot11>
+
+    <dateplot12>
+      <title>Vout Ph2</title>
+      <legend>Vout Ph2</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=262 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Vout / V</ylabel>
+      <color>12</color>
+    </dateplot12>
+
+    <dateplot13>
+      <title>Vout Ph3</title>
+      <legend>Vout Ph3</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=263 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Vout / V</ylabel>
+      <color>13</color>
+    </dateplot13>
+
+    <dateplot14>
+      <title>Battery Voltage</title>
+      <legend>Battery Voltage</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=264 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Vbat / V</ylabel>
+      <color>14</color>
+    </dateplot14>
+
+    <dateplot15>
+      <title>Battery Current</title>
+      <legend>Battery Current</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=265 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Ibat / A</ylabel>
+      <color>15</color>
+    </dateplot15>
+
+    <dateplot16>
+      <title>Battery Charge</title>
+      <legend>Battery Charge</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=266 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Charge</ylabel>
+      <color>16</color>
+    </dateplot16>
+
+    <dateplot17>
+      <title>Output Frequency</title>
+      <legend>Output Frequency</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=267 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Frequency / Hz</ylabel>
+      <color>17</color>
+    </dateplot17>
+
+    <dateplot18>
+      <title>Temperature</title>
+      <legend>Temperature</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ups_b312 where type=250 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>18</color>
+    </dateplot18>
   </graph>
 
-  <!-- UPS POWER OVERVIEW -->
-  <graph type='power'>
-    <query>SELECT unix_timestamp(time), value FROM ups_WPh1 where time between "{from}" and "{to}" order by time</query>
-    <query1>SELECT unix_timestamp(time), value FROM ups_WPh2 where time between "{from}" and "{to}" order by time</query1>
-    <query2>SELECT unix_timestamp(time), value FROM ups_WPh3 where time between "{from}" and "{to}" order by time</query2>
-    <ordering>left|blue,left|red,left|green</ordering>
-    <ylabel>Power / W</ylabel>
-    <right_ylabel>Power / W</right_ylabel>
-    <title>Power drawn from the UPS</title>
-    <default_yscale>lin</default_yscale>
-    <right_yscale>lin</right_yscale>
-    <default_xscale>dat</default_xscale>
+
+  <graph type="live_values">
+    <page_width>1240</page_width>
+    <page_title>UPS, b312</page_title>
+    <containers> 
+      <container0>
+	<type>figure</type>
+	<update_interval>1.2</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>410</width>
+	<height>300</height>
+	<!-- General plot options -->
+	<!--<bgcolor>#CCCCCC</bgcolor>--> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>kVA [kW]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!-- <ylabel>Temperature [&amp;deg;C]</ylabel> --><!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<data_reduction>
+	  <time>10</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+            <socket>0</socket> 
+            <color>#000000</color>
+            <id>b312_ups_kVAPh1</id>
+            <label>kVA / Ph1</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_ups_b312 where type=(SELECT id FROM dateplots_descriptions where codename="b312_ups_kVAPh1") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	  <plot1>
+            <socket>0</socket> 
+            <color>#0000FF</color>
+            <id>b312_ups_kVAPh2</id>
+            <label>kVA / Ph2</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_ups_b312 where type=(SELECT id FROM dateplots_descriptions where codename="b312_ups_kVAPh2") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+	  <plot2>
+            <socket>0</socket> 
+            <color>#FF0000</color>
+            <id>b312_ups_kVAPh3</id>
+            <label>kVA / Ph3</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_ups_b312 where type=(SELECT id FROM dateplots_descriptions where codename="b312_ups_kVAPh3") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot2>
+	</figure>
+      </container0>
+
+      <container1>
+	<type>figure</type>
+	<update_interval>1.2</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>410</width>
+	<height>300</height>
+	<!-- General plot options -->
+	<!--<bgcolor>#CCCCCC</bgcolor>--> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Battery Current [A]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!-- <ylabel>Temperature [&amp;deg;C]</ylabel> --><!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<data_reduction>
+	  <time>10</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+            <socket>0</socket> 
+            <color>#00FFFF</color>
+            <id>b312_ups_battery_current</id>
+            <label>Temperature / [C]</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_ups_b312 where type=(SELECT id FROM dateplots_descriptions where codename="b312_ups_battery_current") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container1>
+      
+
+      <container2>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>400</width>
+	<height>300</height>
+	<fontsize>14</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size top, right, bottom, top, right, bottom, left-->
+	<padding>20px 0px 0px 0px</padding>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>b312_ups_kVAPh1</id>
+	    <label>kVA Ph1</label>
+	    <color>#000000</color>
+	    <format>.1f</format>
+	    <unit>kW</unit>
+	  </item0>
+	  <item1>
+	    <socket>0</socket>
+	    <id>b312_ups_kVAPh2</id>
+	    <label>kVA Ph2</label>
+	    <color>#0000FF</color>
+	    <format>.1f</format>
+	    <unit>kW</unit>
+	  </item1>
+	  <item2>
+	    <socket>0</socket>
+	    <id>b312_ups_kVAPh3</id>
+	    <label>kVA Ph3</label>
+	    <color>#FF0000</color>
+	    <format>.1f</format>
+	    <unit>kW</unit>
+	  </item2>
+	  <item3>
+	    <socket>0</socket>
+	    <id>b312_ups_battery_current</id>
+	    <label>Battery Current</label>
+	    <color>#00FFFF</color>
+	    <format>.1f</format>
+	    <unit>A</unit>
+	  </item3>
+	</data>
+      </container2>
+    </containers>
   </graph>
 
-  <!-- UPS CURRENT OVERVIEW -->
-  <graph type='current'>
-    <query>SELECT unix_timestamp(time), value FROM ups_currentPh1 where time between "{from}" and "{to}" order by time</query>
-    <query1>SELECT unix_timestamp(time), value FROM ups_currentPh2 where time between "{from}" and "{to}" order by time</query1>
-    <query2>SELECT unix_timestamp(time), value FROM ups_currentPh3 where time between "{from}" and "{to}" order by time</query2>
-    <ordering>left|blue,left|red,left|green</ordering>
-    <ylabel>Current / A</ylabel>
-    <!--<right_ylabel>Power / W</right_ylabel>-->
-    <title>Output current from the UPS</title>
-    <default_yscale>lin</default_yscale>
-    <!--<right_yscale>lin</right_yscale>-->
-    <default_xscale>dat</default_xscale>
-  </graph>
 
-  <!-- UPS VOLTAGE OVERVIEW -->
-  <graph type='voltage_output'>
-    <query>SELECT unix_timestamp(time), value FROM ups_voltagePh1 where time between "{from}" and "{to}" order by time</query>
-    <query1>SELECT unix_timestamp(time), value FROM ups_voltagePh2 where time between "{from}" and "{to}" order by time</query1>
-    <query2>SELECT unix_timestamp(time), value FROM ups_voltagePh3 where time between "{from}" and "{to}" order by time</query2>
-    <ordering>left|blue,left|red,left|green</ordering>
-    <ylabel>Voltage / V</ylabel>
-    <!--<right_ylabel>Power / W</right_ylabel>-->
-    <title>Output voltage from the UPS</title>
-    <default_yscale>lin</default_yscale>
-    <!--<right_yscale>lin</right_yscale>-->
-    <default_xscale>dat</default_xscale>
-  </graph>
-
-  <!-- UPS VOLTAGE INPUT OVERVIEW -->
-  <graph type='voltage_input'>
-    <query>SELECT unix_timestamp(time), value FROM ups_voltage1NormalInput where time between "{from}" and "{to}" order by time</query>
-    <query1>SELECT unix_timestamp(time), value FROM ups_voltage2NormalInput where time between "{from}" and "{to}" order by time</query1>
-    <query2>SELECT unix_timestamp(time), value FROM ups_voltage3NormalInput where time between "{from}" and "{to}" order by time</query2>
-    <ordering>left|blue,left|red,left|green</ordering>
-    <ylabel>Voltage / V</ylabel>
-    <!--<right_ylabel>Power / W</right_ylabel>-->
-    <title>Input voltage to the UPS</title>
-    <default_yscale>lin</default_yscale>
-    <!--<right_yscale>lin</right_yscale>-->
-    <default_xscale>dat</default_xscale>
-  </graph>
-
-  <!-- UPS FREQUENCY -->
-  <graph type='frequency'>
-    <query>SELECT unix_timestamp(time), value FROM ups_frequencyNormalInput where time between "{from}" and "{to}" order by time</query>
-    <ordering>left|blue,right|red</ordering>
-    <ylabel>Voltage / V</ylabel>
-    <!--<right_ylabel>Power / W</right_ylabel>-->
-    <title>Input freqency</title>
-    <default_yscale>lin</default_yscale>
-    <right_yscale>lin</right_yscale>
-    <default_xscale>dat</default_xscale>
-  </graph>
-  
-  <!-- UPS BATTERY TEMP -->
-  <graph type='batt_temperature'>
-    <query>SELECT unix_timestamp(time), value FROM ups_batteryTemperatureLevel where time between "{from}" and "{to}" order by time</query>
-    <ordering>left|blue,right|red</ordering>
-    <ylabel>Voltage / V</ylabel>
-    <!--<right_ylabel>Power / W</right_ylabel>-->
-    <title>Battery temperature</title>
-    <default_yscale>lin</default_yscale>
-    <right_yscale>lin</right_yscale>
-    <default_xscale>dat</default_xscale>
-  </graph>
-
-  <!-- TURBO TEMPERATURES -->
-  <graph type='temperature_turbos'>
-    <query>SELECT unix_timestamp(time), temperature FROM temperature_microreactorNG_chamberturbo where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query>
-    <query1>SELECT unix_timestamp(time), temperature FROM temperature_microreactorNG_bufferturbo where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query1>
-    <query2>SELECT unix_timestamp(time), temperature FROM temperature_hall_microreactors where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query2>
-    <ordering>left|green,left|blue,left|red</ordering>
-    <ylabel>Temperature / C</ylabel>
-    <title>Temperature of the turbos 
-(chamber, green; buffer, blue;ambient, red)</title>
-    <default_yscale>lin</default_yscale>
-    <default_xscale>dat</default_xscale>
-    <image_format>pdf</image_format>
-  </graph>
-
-  <!-- SAMPLE TEMPERATURES -->
-  <graph type='temperature_sample'>
-    <query>SELECT unix_timestamp(time), temperature FROM temperature_microreactorNG where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query>
-    <ylabel>Temperature / C</ylabel>
-    <title>Temperature of the sample</title>
-    <default_yscale>lin</default_yscale>
-    <default_xscale>dat</default_xscale>
-    <image_format>pdf</image_format>
-  </graph>
-
-  <!-- MASSSPECTRUM -->
-  <graph type='massspectrum'>
-    <query>SELECT x,y  FROM xy_values_microreactorNG where measurement = {id} order by id</query>
-    <offset_query>SELECT min(y) FROM xy_values_microreactorNG where measurement = {id}</offset_query>
-    <type>4</type>
-    <xlabel>Mass / amu</xlabel>
-    <ylabel>SEM current / A</ylabel>
-    <title>Mass Spectrum</title>
-    <default_xscale>lin</default_xscale>
-    <default_yscale>lin</default_yscale>
-    <param0_field>sem_voltage</param0_field>
-    <param0_name>SEM Voltage / V</param0_name>
-    <param1_field>preamp_range</param1_field>
-    <param1_name>Range</param1_name>
-  </graph>
-
-  <!-- MASSTIME -->
-  <graph type='masstime'>
-    <query>SELECT x/1000,y  FROM xy_values_microreactorNG where measurement = {id} order by id</query>
-    <t_query>SELECT x/1000,y FROM xy_values_microreactorNG where measurement = {t_id} order by id</t_query>
-    <type>5</type>
-    <image_format>png</image_format>
-    <xlabel>Time / s</xlabel>
-    <t_xlabel>Temp / </t_xlabel>
-    <temperature_unit>C</temperature_unit>
-    <ylabel>SEM current / A</ylabel>
-    <title>Mass vs. time</title>
-    <t_title>Mass vs. temperature</t_title>
-    <legend_field_name>mass_label</legend_field_name>
-    <right_y_axis_field_name>mass_label</right_y_axis_field_name>
-    <right_y_axis_field_value>RTD temperature,Flow 1,Flow 2,Flow 3, Flow 4</right_y_axis_field_value>
-    <right_yscale>lin</right_yscale>
-    <right_ylabel>Temperature / C</right_ylabel>
-    <default_xscale>lin</default_xscale>
-    <default_yscale>lin</default_yscale>
-    <param0_field>sem_voltage</param0_field>
-    <param0_name>SEM Voltage / V</param0_name>
-    <param1_field>preamp_range</param1_field>
-    <param1_name>Range</param1_name>
-    <legend_field_name>mass_label</legend_field_name>
-  </graph>
-
+  <!-- GLOBAL SETTINGS -->
   <global_settings>
-    <measurements_table>measurements_microreactorNG</measurements_table>
-    <xyvalues_table>xy_values_microreactorNG</xyvalues_table>
-    <chamber_name>microreactorNG</chamber_name>
-    <sql_username>microreactorNG</sql_username>
+    <measurements_table>measurements_ups</measurements_table>
+    <xyvalues_table>xy_values_ups</xyvalues_table>
+    <!--<chamber_name>microreactorNG</chamber_name>-->
+    <sql_username>ups</sql_username>
+    <image_format>png</image_format>
+    <label_column>mass_label</label_column>
+    <matplotlib_settings>
+      <width>900</width>
+      <height>600</height>
+      <title_size>24</title_size>
+      <xtick_labelsize>12</xtick_labelsize>
+      <ytick_labelsize>12</ytick_labelsize>
+      <legend_fontsize>10</legend_fontsize>
+      <label_fontsize>16</label_fontsize>
+    </matplotlib_settings>
+    <sockets>
+      <socket0>rasppi14:8000</socket0> <!-- UPS -->
+    </sockets>
   </global_settings>
 </graphs>

@@ -1,1 +1,1 @@
-/var/www/cinfdata/sym-files/modify_comment.php
+../sym-files2/modify_comment.php

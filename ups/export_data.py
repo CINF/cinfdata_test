@@ -1,1 +1,1 @@
-/var/www/cinfdata/sym-files/export_data.py
+../sym-files2/export_data.py

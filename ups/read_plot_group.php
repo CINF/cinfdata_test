@@ -1,1 +1,0 @@
-/var/www/cinfdata/sym-files/read_plot_group.php

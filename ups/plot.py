@@ -1,1 +1,1 @@
-/var/www/cinfdata/sym-files/plot.py
+../sym-files2/plot.py
