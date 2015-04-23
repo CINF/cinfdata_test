@@ -53,9 +53,11 @@ echo("<h2 id=\"files\">File statistics for commit ($commit) from {$files[0][0]}<
 
 # Make table for files
 echo("<table class=\"nicetable\"\n");
-echo("<tr><th>File</th><th>Number of errors</th></tr>\n");
+echo("<tr><th>#</th><th>File</th><th>Number of errors</th></tr>\n");
+$number = 1;
 foreach($files as $file){
-  echo("<tr><td>{$file[1]}</td><td>{$file[2]}</td></tr>\n");
+  echo("<tr><td>$number</td><td>{$file[1]}</td><td>{$file[2]}</td></tr>\n");
+  $number += 1;
 }
 echo("</table>\n");
 echo("\n");
