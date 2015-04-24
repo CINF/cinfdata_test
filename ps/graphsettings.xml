@@ -119,6 +119,85 @@
     </dateplot7>
   </graph>
 
+
+  <graph type="live_values">
+    <page_width>1240</page_width>
+    <page_title>Parallel Screening</page_title>
+    <containers> 
+      <container0>
+	<type>figure</type>
+	<update_interval>0.5</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>700</width>
+	<height>500</height>
+	<!-- General plot options -->
+	<!--<bgcolor>#00FFFF</bgcolor>--> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>QMS and Main Chamber [mbar]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>true</logscale> <!-- optional bool, default false -->
+	<format>.1e</format>
+	<data_reduction>
+	  <time>10</time>
+	  <relative>1</relative>
+	</data_reduction>
+	<figure>
+	  <plot0>
+            <socket>0</socket>
+            <color>#0000FF</color>
+            <id>ps_chamber_pressure</id>
+            <label>Chamber Pressure / mbar</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_ps where type=(SELECT id FROM dateplots_descriptions where codename="ps_chamber_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	  <plot1>
+            <socket>0</socket>
+            <color>#FF0000</color>
+            <id>ps_qms_pressure</id>
+            <label>QMS Pressure / mbar</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_ps where type=(SELECT id FROM dateplots_descriptions where codename="ps_qms_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+	</figure>
+      </container0>
+      
+      <container1>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>900</width>
+	<height>500</height>
+	<fontsize>36</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size top, right, bottom, top, right, bottom, left-->
+	<padding>20px 0px 0px 0px</padding>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>ps_chamber_pressure</id>
+	    <label>Chamber Pressure</label>
+	    <color>#0000FF</color>
+	    <format>.2e</format>
+	    <unit>mbar</unit>
+	  </item0>
+	  <item1>
+	    <socket>0</socket>
+	    <id>ps_qms_pressure</id>
+	    <label>QMS</label>
+	    <color>#FF0000</color>
+	    <format>.3e</format>
+	    <unit>mbar</unit>
+	  </item1>
+	</data>
+      </container1>
+    </containers>
+  </graph>
+
   <!-- DEPOSITION -->
   <graph type='deposition'>
     <default_xscale>lin</default_xscale>
@@ -466,5 +545,9 @@
     </mandatory_export_fields>
     <image_format>pdf</image_format>
 
+    <sockets>
+      <socket0>rasppi28:8000</socket0> <!-- Ion Gauge Pressure -->
+    </sockets>
   </global_settings>
+
 </graphs>
