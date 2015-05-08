@@ -223,7 +223,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
          </tr>
          <tr>
           <td>
-           <a href="javascript:toggle('photomicroreactor')"><h2>Photo-microreactor</h2></a></td><td>
+           <a href="javascript:toggle('photomicroreactor')"><h2>Photo-&micro;-reactor</h2></a></td><td>
            <a href="javascript:toggle('ups')"><h2>UPS</h2></a></td><td>
            <a href="javascript:toggle('other')"><h2>Other</h2></a>
           </td>
