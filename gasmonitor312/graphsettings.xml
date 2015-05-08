@@ -1,0 +1,876 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+
+  <!-- MULTI DATEPLOT -->
+  <graph type='multidateplot_h2'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- Fall back settings -->
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <dygraph_settings>
+      <roll_period>5</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <dateplot1>
+      <title>H2 pump room</title>
+      <legend>H2 pump room</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_pumproom") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>H2 hall west</title>
+      <legend>H2 hall west</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_hall_west") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <dateplot3>
+      <title>H2 hall east</title>
+      <legend>H2 hall east</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_hall_east") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>H2 chem lab</title>
+      <legend>H2 chem lab</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_chemlab") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <dateplot5>
+      <title>H2 microscopy west</title>
+      <legend>H2 microscopy west</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_microscopy_west") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>5</color>
+    </dateplot5>
+
+    <dateplot6>
+      <title>H2 vent</title>
+      <legend>H2 vent</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_vent") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>6</color>
+    </dateplot6>
+
+  </graph>
+
+
+  <!-- MULTI DATEPLOT -->
+  <graph type='multidateplot_co'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- Fall back settings -->
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <dygraph_settings>
+      <roll_period>5</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <dateplot1>
+      <title>CO pump room</title>
+      <legend>CO pump room</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_pumproom") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>CO hall west</title>
+      <legend>CO hall west</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_hall_west") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <dateplot3>
+      <title>CO hall east</title>
+      <legend>CO hall east</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_hall_east") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>CO chem lab</title>
+      <legend>CO chem lab</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_chemlab") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <dateplot5>
+      <title>CO microscopy west</title>
+      <legend>CO microscopy west</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_microscopy_west") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>5</color>
+    </dateplot5>
+
+    <dateplot6>
+      <title>CO microscopy east</title>
+      <legend>CO microscopy east</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_microscopy_east") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>6</color>
+    </dateplot6>
+
+  </graph>
+
+
+  <!-- MULTI DATEPLOT -->
+  <graph type='multidateplot'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- Fall back settings -->
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <dygraph_settings>
+      <roll_period>5</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <dateplot1>
+      <title>H2 pump room</title>
+      <legend>H2 pump room</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_pumproom") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>H2 hall west</title>
+      <legend>H2 hall west</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_hall_west") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <dateplot3>
+      <title>H2 hall east</title>
+      <legend>H2 hall east</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_hall_east") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>H2 chem lab</title>
+      <legend>H2 chem lab</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_chemlab") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <dateplot5>
+      <title>CO pump room</title>
+      <legend>CO pump room</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_pumproom") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>5</color>
+    </dateplot5>
+
+    <dateplot6>
+      <title>CO hall west</title>
+      <legend>CO hall west</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_hall_west") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>6</color>
+    </dateplot6>
+
+    <dateplot7>
+      <title>CO hall east</title>
+      <legend>CO hall east</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_hall_east") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>7</color>
+    </dateplot7>
+
+    <dateplot8>
+      <title>CO chem lab</title>
+      <legend>CO chem lab</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_chemlab") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>8</color>
+    </dateplot8>
+
+    <dateplot9>
+      <title>H2 microscopy west</title>
+      <legend>H2 microscopy west</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_microscopy_west") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>9</color>
+    </dateplot9>
+
+    <dateplot10>
+      <title>H2 vent</title>
+      <legend>H2 vent</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_vent") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / % of low explosion level</ylabel>
+      <color>10</color>
+    </dateplot10>
+
+    <dateplot11>
+      <title>CO microscopy west</title>
+      <legend>CO microscopy west</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_microscopy_west") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>11</color>
+    </dateplot11>
+
+    <dateplot12>
+      <title>CO microscopy east</title>
+      <legend>CO microscopy east</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_b312gasalarm WHERE type = (SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_microscopy_east") and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Gas level / ppm</ylabel>
+      <color>12</color>
+    </dateplot12>
+
+    <!-- insert -->
+
+  </graph>
+  <graph type='websocket_simple1'>
+    <fields>
+      <field0>
+        <socket>0</socket>
+        <codename>B312_gasalarm_H2_pumproom</codename>
+        <name>H2 pump room</name>
+	<unit>%LEL</unit>
+      </field0>
+      <field1>
+        <socket>0</socket>
+        <codename>B312_gasalarm_H2_hall_west</codename>
+        <name>H2 hall west</name>
+	<unit>%LEL</unit>
+      </field1>
+      <field2>
+        <socket>0</socket>
+        <codename>B312_gasalarm_H2_hall_east</codename>
+        <name>H2 hall east</name>
+	<unit>%LEL</unit>
+      </field2>
+      <field3>
+        <socket>0</socket>
+        <codename>B312_gasalarm_H2_chemlab</codename>
+        <name>H2 chem lab</name>
+	<unit>%LEL</unit>
+      </field3>
+      <field4>
+        <socket>0</socket>
+        <codename>B312_gasalarm_CO_pumproom</codename>
+        <name>CO pump room</name>
+	<unit>ppm</unit>
+      </field4>
+      <field5>
+        <socket>0</socket>
+        <codename>B312_gasalarm_CO_hall_west</codename>
+        <name>CO hall west</name>
+	<unit>ppm</unit>
+      </field5>
+      <field6>
+        <socket>0</socket>
+        <codename>B312_gasalarm_CO_hall_east</codename>
+        <name>CO hall east</name>
+	<unit>ppm</unit>
+      </field6>
+      <field7>
+        <socket>0</socket>
+        <codename>B312_gasalarm_CO_chemlab</codename>
+        <name>CO chem lab</name>
+	<unit>ppm</unit>
+      </field7>
+      <field8>
+        <socket>0</socket>
+        <codename>B312_gasalarm_H2_microscopy_west</codename>
+        <name>H2 microscopy west</name>
+	<unit>%LEL</unit>
+      </field8>
+      <field9>
+        <socket>0</socket>
+        <codename>B312_gasalarm_H2_vent</codename>
+        <name>H2 vent</name>
+	<unit>%LEL</unit>
+      </field9>
+      <field10>
+        <socket>0</socket>
+        <codename>B312_gasalarm_CO_microscopy_west</codename>
+        <name>CO microscopy west</name>
+	<unit>ppm</unit>
+      </field10>
+      <field11>
+        <socket>0</socket>
+        <codename>B312_gasalarm_CO_microscopy_east</codename>
+        <name>CO microscopy east</name>
+	<unit>ppm</unit>
+      </field11>
+    </fields>
+  </graph>
+
+  <graph type="live_values">
+    <page_width>1250</page_width>
+    <page_title>Gas Alarm b. 312 Live Plots</page_title> <!-- option page title -->
+    <containers>
+      <!-- Container 0, plot of all values CO values -->
+      <container0>
+	<type>figure</type>
+	<title>CO Detectors</title>
+	<update_interval>2</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>600</width>
+	<height>400</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>86400</x_window> <!-- 1 day -->
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<yrangepad>10</yrangepad>
+	<line_width>3</line_width>
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.15</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_pumproom</id>
+	    <label>CO pump room</label>
+	    <color>#77583A</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_pumproom") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	  <plot1>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_hall_west</id>
+	    <label>CO hall west</label>
+	    <color>#FF0000</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_hall_west") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+	  <plot2>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_hall_east</id>
+	    <label>CO hall east</label>
+	    <color>#009933</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_hall_east") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot2>
+	  <plot3>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_chemlab</id>
+	    <label>CO chem lab</label>
+	    <color>#0000FF</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_chemlab") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot3>
+	  <plot4>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_microscopy_west</id>
+	    <label>CO microscopy west</label>
+	    <color>#CCCC00</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_microscopy_west") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot4>
+	  <plot5>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_microscopy_east</id>
+	    <label>CO microscopy east</label>
+	    <color>#990099</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_microscopy_east") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot5>
+	</figure>
+      </container0>
+
+      <!-- Container 1, table with all CO values -->
+      <container1>
+	<type>data</type>
+	<!--<bgcolor>#00FF00</bgcolor>-->
+	<width>600</width>
+	<height>364</height>
+	<fontsize>24</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size -->
+	<padding>36px 0px 0px 0px</padding>
+	<show_diff>true</show_diff>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_pumproom</id>
+	    <label>CO pump room</label>
+	    <color>#77583A</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item0>
+	  <item1>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_hall_west</id>
+	    <label>CO hall west</label>
+	    <color>#FF0000</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item1>
+	  <item2>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_hall_east</id>
+	    <label>CO hall east</label>
+	    <color>#009933</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item2>
+	  <item3>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_chemlab</id>
+	    <label>CO chem lab</label>
+	    <color>#0000FF</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item3>
+	  <item4>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_microscopy_west</id>
+	    <label>CO microscopy west</label>
+	    <color>#CCCC00</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item4>
+	  <item5>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_microscopy_east</id>
+	    <label>CO microscopy east</label>
+	    <color>#990099</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item5>
+	</data>
+      </container1>
+
+
+      <!-- Container 2, plot of all values H2 values -->
+      <container2>
+	<type>figure</type>
+	<title>H&#60;sub&#62;2&#60;&#47;sub&#62; Detectors</title>
+	<update_interval>2</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>600</width>
+	<height>400</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>86400</x_window> <!-- 1 day -->
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<yrangepad>10</yrangepad>
+	<line_width>3</line_width>
+	<figure>
+	  <plot0>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_pumproom</id>
+	    <label>H2 pump room</label>
+	    <color>#77583A</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_pumproom") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	  <plot1>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_hall_west</id>
+	    <label>H2 hall west</label>
+	    <color>#FF0000</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_hall_west") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+	  <plot2>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_hall_east</id>
+	    <label>H2 hall east</label>
+	    <color>#009933</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_hall_east") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot2>
+	  <plot3>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_chemlab</id>
+	    <label>H2 chem lab</label>
+	    <color>#0000FF</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_chemlab") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot3>
+	  <plot4>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_microscopy_west</id>
+	    <label>H2 microscopy west</label>
+	    <color>#CCCC00</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_microscopy_west") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot4>
+	  <plot5>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_vent</id>
+	    <label>H2 vent</label>
+	    <color>#990099</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_vent") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot5>
+	</figure>
+      </container2>
+
+      <!-- Container 3, table with all H2 values -->
+      <container3>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>640</width>
+	<height>364</height>
+	<fontsize>24</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size -->
+	<padding>36px 0px 0px 0px</padding>
+	<show_diff>true</show_diff>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_pumproom</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; pump room</label>
+	    <color>#77583A</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item0>
+	  <item1>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_hall_west</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; hall west</label>
+	    <color>#FF0000</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item1>
+	  <item2>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_hall_east</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; hall east</label>
+	    <color>#009933</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item2>
+	  <item3>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_chemlab</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; chem lab</label>
+	    <color>#0000FF</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item3>
+	  <item4>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_microscopy_west</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; microscopy west</label>
+	    <color>#CCCC00</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item4>
+	  <item5>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_vent</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; vent</label>
+	    <color>#990099</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item5>
+	</data>
+      </container3>
+
+    </containers>
+  </graph>
+
+  <graph type="live_values_pager">
+    <page_width>1250</page_width>
+    <page_title>Gas Alarm b. 312 Live Plots</page_title> <!-- option page title -->
+
+    <containers>
+      <!-- Container 0, plot of all values CO values -->
+      <container0>
+	<type>figure</type>
+	<title>CO Detectors</title>
+	<update_interval>2</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>600</width>
+	<height>400</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>86400</x_window> <!-- 1 day -->
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<yrangepad>10</yrangepad>
+	<line_width>3</line_width>
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.15</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_pumproom</id>
+	    <label>CO pump room</label>
+	    <color>#77583A</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_pumproom") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	  <plot1>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_hall_west</id>
+	    <label>CO hall west</label>
+	    <color>#FF0000</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_hall_west") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+	  <plot2>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_hall_east</id>
+	    <label>CO hall east</label>
+	    <color>#009933</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_hall_east") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot2>
+	  <plot3>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_chemlab</id>
+	    <label>CO chem lab</label>
+	    <color>#0000FF</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_chemlab") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot3>
+	  <plot4>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_microscopy_west</id>
+	    <label>CO microscopy west</label>
+	    <color>#CCCC00</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_microscopy_west") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot4>
+	  <plot5>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_microscopy_east</id>
+	    <label>CO microscopy east</label>
+	    <color>#990099</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_CO_microscopy_east") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot5>
+	</figure>
+      </container0>
+
+      <!-- Container 1, table with all CO values -->
+      <container1>
+	<type>data</type>
+	<!--<bgcolor>#00FF00</bgcolor>-->
+	<width>600</width>
+	<height>364</height>
+	<fontsize>24</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size -->
+	<padding>36px 0px 0px 0px</padding>
+	<show_diff>true</show_diff>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_pumproom</id>
+	    <label>CO pump room</label>
+	    <color>#77583A</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item0>
+	  <item1>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_hall_west</id>
+	    <label>CO hall west</label>
+	    <color>#FF0000</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item1>
+	  <item2>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_hall_east</id>
+	    <label>CO hall east</label>
+	    <color>#009933</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item2>
+	  <item3>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_chemlab</id>
+	    <label>CO chem lab</label>
+	    <color>#0000FF</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item3>
+	  <item4>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_microscopy_west</id>
+	    <label>CO microscopy west</label>
+	    <color>#CCCC00</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item4>
+	  <item5>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_CO_microscopy_east</id>
+	    <label>CO microscopy east</label>
+	    <color>#990099</color>
+	    <format>.1f</format>
+	    <unit>ppm</unit>
+	  </item5>
+	</data>
+      </container1>
+
+      <!-- Container 2, plot of all values H2 values -->
+      <container2>
+	<type>figure</type>
+	<title>H&#60;sub&#62;2&#60;&#47;sub&#62; Detectors</title>
+	<update_interval>2</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>600</width>
+	<height>400</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>86400</x_window> <!-- 1 day -->
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<yrangepad>10</yrangepad>
+	<line_width>3</line_width>
+	<figure>
+	  <plot0>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_pumproom</id>
+	    <label>H2 pump room</label>
+	    <color>#77583A</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_pumproom") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	  <plot1>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_hall_west</id>
+	    <label>H2 hall west</label>
+	    <color>#FF0000</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_hall_west") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+	  <plot2>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_hall_east</id>
+	    <label>H2 hall east</label>
+	    <color>#009933</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_hall_east") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot2>
+	  <plot3>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_chemlab</id>
+	    <label>H2 chem lab</label>
+	    <color>#0000FF</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_chemlab") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot3>
+	  <plot4>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_microscopy_west</id>
+	    <label>H2 microscopy west</label>
+	    <color>#CCCC00</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_microscopy_west") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot4>
+	  <plot5>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_vent</id>
+	    <label>H2 vent</label>
+	    <color>#990099</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_b312gasalarm where type=(SELECT id FROM dateplots_descriptions where codename="B312_gasalarm_H2_vent") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot5>
+	</figure>
+      </container2>
+
+      <!-- Container 3, table with all H2 values -->
+      <container3>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>640</width>
+	<height>364</height>
+	<fontsize>24</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size -->
+	<padding>36px 0px 0px 0px</padding>
+	<show_diff>true</show_diff>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_pumproom</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; pump room</label>
+	    <color>#77583A</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item0>
+	  <item1>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_hall_west</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; hall west</label>
+	    <color>#FF0000</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item1>
+	  <item2>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_hall_east</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; hall east</label>
+	    <color>#009933</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item2>
+	  <item3>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_chemlab</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; chem lab</label>
+	    <color>#0000FF</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item3>
+	  <item4>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_microscopy_west</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; microscopy west</label>
+	    <color>#CCCC00</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item4>
+	  <item5>
+	    <socket>0</socket>
+	    <id>B312_gasalarm_H2_vent</id>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; vent</label>
+	    <color>#990099</color>
+	    <format>.1f</format>
+	    <unit>%LEL</unit>
+	  </item5>
+	</data>
+      </container3>
+    </containers>
+  </graph>
+
+
+
+  <!-- GLOBAL SETTINGS -->
+  <global_settings>
+    <measurements_table>measurements_b312gasalarm</measurements_table>
+    <xyvalues_table>xy_values_b312gasalarm</xyvalues_table>
+    <!--<chamber_name>microreactorNG</chamber_name>-->
+    <sql_username>b312gasalarm</sql_username>
+    <image_format>png</image_format>
+    <mandatory_export_fields>
+      <field0>
+	<field>id</field>
+	<name>Id</name>
+      </field0>
+      <field1>
+	<field>type</field>
+	<name>Type</name>
+      </field1>
+      <field2>
+	<field>time</field>
+	<name>Recorded at</name>
+      </field2>
+      <field3>
+	<field>comment</field>
+	<name>Comment</name>
+      </field3>
+    </mandatory_export_fields>
+    <matplotlib_settings>
+      <width>900</width>
+      <height>600</height>
+      <title_size>24</title_size>
+      <xtick_labelsize>12</xtick_labelsize>
+      <ytick_labelsize>12</ytick_labelsize>
+      <legend_fontsize>10</legend_fontsize>
+      <label_fontsize>16</label_fontsize>
+    </matplotlib_settings>
+    <sockets>
+      <socket0>rasppi15:8000</socket0>
+    </sockets>
+  </global_settings>
+</graphs>

@@ -187,7 +187,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	    <li><a href="ps/xyplot.php?type=xps&flip_x=checked&matplotlib=checked">XPS</a></li>
 	    <li><a href="ps/xyplot.php?type=iss">ISS</a></li>
             <li><a href="ps/modify_comment.php">Modify comments</a></li>
-
+	    <li><a href="ps/live.php?type=live_values">Live Values</a></li>
 	   </ul>
           </td>
          </tr>
@@ -237,13 +237,8 @@ echo(html_header($root="", $title="Data logged at CINF"));
           </td>
           <td>
            <ul id="ups" style="display:none"> 
-	     <li><a href="ups/read_dateplot.php?type=kVA">VA</a></li>
-	     <li><a href="ups/read_dateplot.php?type=power">Power</a></li>
-	     <li><a href="ups/read_dateplot.php?type=current">Current</a></li>
-	     <li><a href="ups/read_dateplot.php?type=voltage_output">Voltage output</a></li>
-	     <li><a href="ups/read_dateplot.php?type=voltage_input">Voltage input</a></li>
-	     <li><a href="ups/read_dateplot.php?type=frequency">Input frequency</a></li>
-	     <li><a href="ups/read_dateplot.php?type=batt_temperature">Battery temperature</a></li>
+	     <li><a href="ups/dateplot.php?type=multidateplot&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3">All Measurements</a></li>
+	    <li><a href="ups/live.php?type=live_values">Live Values</a></li>
 	   </ul>
           </td>
           <td>
@@ -300,17 +295,20 @@ echo(html_header($root="", $title="Data logged at CINF"));
          </tr>
          <tr>
           <td>
-           <a href="javascript:toggle('gasmonitor')"><h2>Gasmonitor</h2></a></td><td>
+           <a href="javascript:toggle('gasalarm312')"><h2>Gas alarm, 312</h2></a></td><td>
            <a href="javascript:toggle('chillers')"><h2>Chillers</h2></a></td><td>
            <a href="javascript:toggle('thetaprobe')"><h2>Theta probe</h2></a></td><td>
           </td>
          </tr>
          <tr>
           <td>
-           <ul id="gasmonitor" style="display:none"> 
-              <li><a href="gasmonitor/dateplot.php?type=multidateplot_ch4&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&left_plotlist[]=4&left_plotlist[]=5&left_plotlist[]=6&left_plotlist[]=7&right_ymin=0&right_ymax=0">Gas levels - CH<sub>4</sub></a></li>
-              <li><a href="gasmonitor/dateplot.php?type=multidateplot_co&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&left_plotlist[]=4&left_plotlist[]=5&left_plotlist[]=6&right_ymin=0&right_ymax=0">Gas levels - CO</sub></a></li>
-              <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor/dateplot.php?type=multidateplot&matplotlib=checked&from=2013-09-10+15%3A52&to=2013-09-11+15%3A53&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&left_plotlist[]=4&left_plotlist[]=5&left_plotlist[]=6&left_plotlist[]=7&left_plotlist[]=8&left_plotlist[]=9&left_plotlist[]=10&left_plotlist[]=11&left_plotlist[]=12&left_plotlist[]=13&right_ymin=0&right_ymax=0">Gas levels - All</sub></a></li>
+           <ul id="gasalarm312" style="display:none">
+             <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor312/system_status.php">System Status</a></li>
+             <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor312/websockets_simple.php?type=websocket_simple1">Live Values</a></li>
+             <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor312/live.php?type=live_values">Live Plots</a></li>
+             <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor312/dateplot.php?type=multidateplot&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist%5B%5D=1&left_plotlist%5B%5D=2&left_plotlist%5B%5D=3&left_plotlist%5B%5D=4&left_plotlist%5B%5D=9&left_plotlist%5B%5D=10&right_ymin=0&right_ymax=0&right_plotlist%5B%5D=5&right_plotlist%5B%5D=6&right_plotlist%5B%5D=7&right_plotlist%5B%5D=8&right_plotlist%5B%5D=11&right_plotlist%5B%5D=12">All detectors</a></li>
+             <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor312/dateplot.php?type=multidateplot_h2&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&left_plotlist[]=4&left_plotlist[]=5&left_plotlist[]=6&right_ymin=0&right_ymax=0">All H2 detectors</a></li>
+             <li><a href="https://cinfdata.fysik.dtu.dk/gasmonitor312/dateplot.php?type=multidateplot_co&matplotlib=checked&left_ymin=0&left_ymax=0&left_plotlist[]=1&left_plotlist[]=2&left_plotlist[]=3&left_plotlist[]=4&left_plotlist[]=5&left_plotlist[]=6&right_ymin=0&right_ymax=0">All CO detectors</a></li>
 	   </ul>
           </td>
           <td>
@@ -369,7 +367,7 @@ echo(html_header($root="", $title="Data logged at CINF"));
          <tr>
           <td><a href="javascript:toggle('pvd309')"><h2>PVD 309</h2></a></td>
            <td><a href="javascript:toggle('chemlab312')"><h2>Chemlab 312</h2></a></td>
-           <td>&nbsp;</td>
+           <td><a href="javascript:toggle('sniffer')"><h2>sniffer</h2></a></td>
          </tr>
 
          <tr>
@@ -386,7 +384,12 @@ echo(html_header($root="", $title="Data logged at CINF"));
 	   </ul>
           </td>
           <td>
-  &nbsp;
+           <ul id="sniffer" style="display:none">
+	    <li><a href="sniffer/dateplot.php?type=multidateplot&left_ymin=0&left_ymax=0&left_plotlist[]=1&right_ymin=0&right_ymax=0">Chamber pressure</a></li>
+	    <li><a href="sniffer/xyplot.php?type=masstime&matplotlib=checked">Mass-time</a></li>
+	    <li><a href="sniffer/xyplot.php?type=massspectrum">Massspectra</a></li>
+	    <li><a href="sniffer/live.php?type=live_values">Live Values</a></li>
+	   </ul>
           </td>
          </tr>
 
