@@ -577,7 +577,7 @@
   </graph>
 
   <graph type="live_values_pager">
-    <page_width>1250</page_width>
+    <page_width>1650</page_width>
     <page_title>Gas Alarm b. 312 Live Plots</page_title> <!-- option page title -->
 
     <containers>
@@ -649,7 +649,7 @@
       <container1>
 	<type>data</type>
 	<!--<bgcolor>#00FF00</bgcolor>-->
-	<width>600</width>
+	<width>800</width>
 	<height>364</height>
 	<fontsize>24</fontsize>
 	<!-- optional html padding string, remember to subtract the padding in
@@ -692,7 +692,7 @@
 	  <item4>
 	    <socket>0</socket>
 	    <id>B312_gasalarm_CO_microscopy_west</id>
-	    <label>CO microscopy west</label>
+	    <label>CO microscopy W</label>
 	    <color>#CCCC00</color>
 	    <format>.1f</format>
 	    <unit>ppm</unit>
@@ -700,7 +700,7 @@
 	  <item5>
 	    <socket>0</socket>
 	    <id>B312_gasalarm_CO_microscopy_east</id>
-	    <label>CO microscopy east</label>
+	    <label>CO microscopy E</label>
 	    <color>#990099</color>
 	    <format>.1f</format>
 	    <unit>ppm</unit>
@@ -772,7 +772,7 @@
       <container3>
 	<type>data</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
-	<width>640</width>
+	<width>840</width>
 	<height>364</height>
 	<fontsize>24</fontsize>
 	<!-- optional html padding string, remember to subtract the padding in
@@ -815,7 +815,7 @@
 	  <item4>
 	    <socket>0</socket>
 	    <id>B312_gasalarm_H2_microscopy_west</id>
-	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; microscopy west</label>
+	    <label>H&#60;sub&#62;2&#60;&#47;sub&#62; microscopy W</label>
 	    <color>#CCCC00</color>
 	    <format>.1f</format>
 	    <unit>%LEL</unit>
