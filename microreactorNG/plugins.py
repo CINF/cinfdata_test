@@ -142,8 +142,9 @@ class Normalizer(object):
             # NOTE. For measurement types where there are more than one query,
             # this will need to be replaced with code that picks the correct
             # query, see the databasebackend for an example of this algorithm
-            query = 'select x / 1000, y from xy_values_microreactorNG '\
+            query = 'select x / 1000, y from {0} '\
                 'where measurement = %s order by id'
+            query = query.format(dat['lgs']['xyvalues_table'])
             self.cursor.execute(query, (id_))
             data = numpy.array(self.cursor.fetchall())
 
