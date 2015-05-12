@@ -185,6 +185,10 @@
 	<field>preamp_range</field>
 	<name>Range</name>
       </param1>
+      <param2>
+	<field>actual_mass</field>
+	<name>Actual Mass</name>
+      </param2>
     </parameters>
     <!-- data treatment -->
     <flip_x>
@@ -290,6 +294,21 @@
     <legend>
       <default>{id} - {time}</default>
     </legend>
+   <parameters>
+      <param0>
+	<field>comment</field>
+	<name>Comment</name>
+      </param0>
+      <param1>
+	<field>sem_voltage</field>
+	<name>SEM Voltage / V</name>
+      </param1>
+      <param2>
+	<field>preamp_range</field>
+	<name>Range</name>
+      </param2>
+    </parameters>
+
   </graph>
 
 

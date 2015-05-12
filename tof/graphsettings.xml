@@ -148,7 +148,7 @@
 
 
   <!-- TOF Spectrum -->
-  <graph type='tofspectrum'>
+  <graph type='tofspectrum_small'>
     <default_xscale>lin</default_xscale>
     <type>11</type>
     <grouping_column>time</grouping_column>
@@ -158,7 +158,7 @@
     <image_format>png</image_format>
     <charset>ISO-8859-1</charset>
     <matplotlib_settings>
-      <width>1600</width>
+      <width>1200</width>
       <height>800</height>
     </matplotlib_settings>
     <flight_time_estimate>true</flight_time_estimate>
@@ -185,6 +185,135 @@
 	<input>Peak position</input>
 	<output>raw</output>
       </PeakIntegrater>
+    </plugins>
+
+    <parameters>
+      <param0>
+	<field>tof_pulse_voltage</field>
+	<name>Pulse Voltage / V</name>
+      </param0>
+      <param1>
+	<field>tof_liner_voltage</field>
+	<name>Liner Voltage / V</name>
+      </param1>
+      <param2>
+	<field>tof_lens_A</field>
+	<name>Lens A Voltage / V</name>
+      </param2>
+      <param3>
+	<field>tof_lens_B</field>
+	<name>Lens B Voltage / V</name>
+      </param3>
+      <param4>
+	<field>tof_lens_C</field>
+	<name>Lens C Voltage / V</name>
+      </param4>
+      <param5>
+	<field>tof_lens_D</field>
+	<name>Lens D Voltage / V</name>
+      </param5>
+      <param6>
+	<field>tof_lens_E</field>
+	<name>Lens E Voltage / V</name>
+      </param6>
+      <param7>
+	<field>tof_ion_energy</field>
+	<name>Ion energy / eV</name>
+      </param7>
+      <param8>
+	<field>tof_R1_voltage</field>
+	<name>R1 voltage / V</name>
+      </param8>
+      <param9>
+	<field>tof_R2_voltage</field>
+	<name>R2 voltage / V</name>
+      </param9>
+      <param10>
+	<field>tof_iterations</field>
+	<name># interations</name>
+      </param10>
+      <param11>
+	<field>sem_voltage</field>
+	<name>MCP voltage / V</name>
+      </param11>
+      <param12>
+	<field>tof_focus_voltage</field>
+	<name>Focus Voltage / V</name>
+      </param12>
+      <param13>
+	<field>tof_deflection_voltage</field>
+	<name>Deflection Voltage / V</name>
+      </param13>
+      <param14>
+	<field>sample_temperature</field>
+	<name>Sample temperature</name>
+      </param14>
+    </parameters>
+  </graph>
+
+  <!-- MASSSPECTRUM -->
+  <graph type='massspectrum'>
+    <title>Mass Spectrum</title>
+    <default_xscale>lin</default_xscale>
+    <type>4</type>
+    <xlabel>Mass / amu</xlabel>
+    <grouping_column>time</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <gas_analysis>true</gas_analysis>
+    <ylabel>
+      <default>SEM current / A</default>
+    </ylabel>
+    <queries>
+      <default>SELECT x,y  FROM xy_values_tof where measurement = {id} order by id</default>
+    </queries>
+    <legend>
+      <default>{id}</default>
+    </legend>
+    <parameters>
+      <param0>
+	<field>sem_voltage</field>
+	<name>SEM Voltage / V</name>
+      </param0>
+      <param1>
+	<field>preamp_range</field>
+	<name>Range</name>
+      </param1>
+    </parameters>
+  </graph>
+
+  <!-- TOF Spectrum -->
+  <graph type='tofspectrum_wide'>
+    <default_xscale>lin</default_xscale>
+    <type>11</type>
+    <grouping_column>time</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>TOF Spectrum</title>
+    <xlabel>Time / Microseconds</xlabel>
+    <image_format>png</image_format>
+    <charset>ISO-8859-1</charset>
+    <matplotlib_settings>
+      <width>2700</width>
+      <height>1000</height>
+    </matplotlib_settings>
+    <flight_time_estimate>true</flight_time_estimate>
+    <queries>
+      <default>SELECT x*1000000,y  FROM xy_values_tof where measurement = {id} order by id</default>
+    </queries>
+    <ylabel>
+      <default>Response / V</default>
+    </ylabel>
+    <legend>
+      <default>{id}</default>
+    </legend>
+    <plugins>
+      <Massscale>
+	<title>Convert to approximate mass units</title>
+	<output>raw</output>
+      </Massscale>
+      <Intensitymap_wide>
+	<title>Intensity map</title>
+	<output>raw</output>
+      </Intensitymap_wide>
     </plugins>
 
     <parameters>

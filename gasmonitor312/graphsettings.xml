@@ -841,6 +841,7 @@
     <xyvalues_table>xy_values_b312gasalarm</xyvalues_table>
     <!--<chamber_name>microreactorNG</chamber_name>-->
     <sql_username>b312gasalarm</sql_username>
+    <folder_name>gasmonitor312</folder_name>
     <image_format>png</image_format>
     <mandatory_export_fields>
       <field0>

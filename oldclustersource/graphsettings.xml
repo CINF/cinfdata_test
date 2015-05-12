@@ -60,6 +60,7 @@ orange (magnetron, outlet), purple (atmosphere)</title>
     <xyvalues_table>xy_values_oldclustersource</xyvalues_table>
     <chamber_name>oldclustersource</chamber_name>
     <sql_username>oldclustersource</sql_username>
+    <folder_name>oldclustersource</folder_name>
   </global_settings>
 </graphs>
     

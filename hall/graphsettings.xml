@@ -195,6 +195,7 @@
     <sql_username>cinf_reader</sql_username>
     <label_column>None</label_column>
     <image_format>png</image_format>
+    <folder_name>hall</folder_name>
     <sockets>
       <socket0>rasppi02:8000</socket0> <!-- Cooling water pressure -->
       <socket1>rasppi45:8000</socket1> <!-- N5 Argon pressure -->

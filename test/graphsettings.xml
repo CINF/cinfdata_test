@@ -144,6 +144,7 @@
     <xyvalues_table>xy_values_stm312</xyvalues_table>
     <chamber_name>stm312</chamber_name>
     <sql_username>stm312</sql_username>
+    <folder_name>test</folder_name>
   </global_settings>
 </graphs>
 

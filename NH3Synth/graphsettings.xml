@@ -196,6 +196,7 @@
     <sql_username>NH3Synth</sql_username>
     <image_format>png</image_format>
     <label_column>mass_label</label_column>
+    <folder_name>NH3Synth</folder_name>
     <mandatory_export_fields>
       <field0>
 	<field>id</field>

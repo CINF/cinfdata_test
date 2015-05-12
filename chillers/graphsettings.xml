@@ -110,6 +110,61 @@
   </graph>
 
   <!-- MULTI DATEPLOT -->
+  <graph type='multidateplot_xrd'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- Fall back settings -->
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <dygraph_settings>
+      <roll_period>5</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <dateplot1>
+      <title>Temperature, water</title>
+      <legend>Water / C</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_xrd where type = 302 and time between "{from}" and "{to}" and value > -9998 order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>Temperature, ambient</title>
+      <legend>Ambient / C</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_xrd where type = 304 and time between "{from}" and "{to}" and value > -9998 order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <dateplot3>
+      <title>Temperature, setpoint</title>
+      <legend>Setpoint / C</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_xrd where type = 303 and time between "{from}" and "{to}" and value > -9998 order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>Flow</title>
+      <legend>Flow / LPM</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_xrd where type = 300 and time between "{from}" and "{to}" and value > -9998 order by time</query>
+      <ylabel>Flow rate / LPM</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <dateplot5>
+      <title>Pressure</title>
+      <legend>Pressure / bar</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_xrd where type = 301 and time between "{from}" and "{to}" and value > -9998 order by time</query>
+      <ylabel>Pressure / bar</ylabel>
+      <color>5</color>
+    </dateplot5>
+  </graph>
+
+
+  <!-- MULTI DATEPLOT -->
   <graph type='multidateplot_thetaprobe'>
     <default_xscale>dat</default_xscale>
     <xlabel>Date</xlabel>
@@ -164,12 +219,175 @@
   </graph>
 
 
+  <!-- MULTI DATEPLOT -->
+  <graph type='multidateplot_ps'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- Fall back settings -->
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <dygraph_settings>
+      <roll_period>5</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <dateplot1>
+      <title>Temperature, water</title>
+      <legend>Water / C</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ps where type = 312 and time between "{from}" and "{to}" and value > -9998 order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>Temperature, ambient</title>
+      <legend>Ambient / C</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ps where type = 314 and time between "{from}" and "{to}" and value > -9998 order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <dateplot3>
+      <title>Temperature, setpoint</title>
+      <legend>Setpoint / C</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ps where type = 313 and time between "{from}" and "{to}" and value > -9998 order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>Flow</title>
+      <legend>Flow / LPM</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ps where type = 310 and time between "{from}" and "{to}" and value > -9998 order by time</query>
+      <ylabel>Flow rate / LPM</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <dateplot5>
+      <title>Pressure</title>
+      <legend>Pressure / bar</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_ps where type = 311 and time between "{from}" and "{to}" and value > -9998 order by time</query>
+      <ylabel>Pressure / bar</ylabel>
+      <color>5</color>
+    </dateplot5>
+  </graph>
+
+  <graph type="live_values">
+    <page_width>1280</page_width>
+    <page_title>Volvo</page_title>
+    <containers> 
+      <container0>
+	<type>figure</type>
+	<update_interval>2.5</update_interval> <!-- seconds -->
+	<x_window>7200</x_window> <!-- x axis interval, seconds -->
+	<width>550</width>
+	<height>400</height>
+	<!-- General plot options -->
+	<bgcolor>#CCCCCC</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Main Chamber [mbar]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!-- <ylabel>Temperature [&amp;deg;C]</ylabel> --><!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>true</logscale> <!-- optional bool, default false -->
+	<format>.1e</format>
+	<figure>
+	  <plot0>
+            <socket>0</socket> 
+            <color>#0000FF</color>
+            <id>volvo_pressure</id>
+            <label>Pressure / mbar</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_volvo where type=(SELECT id FROM dateplots_descriptions where codename="volvo_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container0>
+      
+      <container1>
+	<type>figure</type>
+	<update_interval>2.5</update_interval> <!-- seconds -->
+	<x_window>7200</x_window> <!-- x axis interval, seconds -->
+	<width>550</width>
+	<height>400</height>
+	<axislabelwidth>150</axislabelwidth>
+	<!-- General plot options -->
+	<bgcolor>#DDDDDD</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Temperature [C]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>true</logscale> <!-- optional bool, default false -->
+	<format>.1e</format>
+	<figure>
+	  <plot0>
+            <socket>0</socket>
+            <color>#0000FF</color>
+            <id>volvo_temperature</id>
+            <label>Temperature</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_volvo where type=(SELECT id FROM dateplots_descriptions where codename="volvo_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container1>
+
+      <container2>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>1100</width>
+	<height>600</height>
+	<fontsize>44</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size top, right, bottom, top, right, bottom, left-->
+	<padding>40px 0px 0px 0px</padding>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>volvo_pressure</id>
+	    <label>Main chamber</label>
+	    <color>#990099</color>
+	    <format>.2e</format>
+	    <unit>mbar</unit>
+	  </item0>
+	  <item1>
+	    <socket>0</socket>
+	    <id>volvo_temperature</id>
+	    <label>Temperature</label>
+	    <color>#009900</color>
+	    <format>.2f</format>
+	    <unit>C</unit>
+	  </item1>
+	  <item2>
+	    <socket>1</socket>
+	    <id>xrd_chiller_temperature</id>
+	    <label>XRD Temperature</label>
+	    <color>#009900</color>
+	    <format>.2f</format>
+	    <unit>C</unit>
+	  </item2>
+	</data>
+      </container2>
+    </containers>
+  </graph>
+
+
   <!-- GLOBAL SETTINGS -->
   <global_settings>
     <measurements_table>measurements_gasmonitor</measurements_table>
     <xyvalues_table>xy_values_gasmonitor</xyvalues_table>
-    <!--<chamber_name>microreactorNG</chamber_name>-->
-    <sql_username>gasmonitor</sql_username>
+    <sql_username>cinf_reader</sql_username>
+    <label_column>mass_label</label_column>
     <image_format>png</image_format>
     <mandatory_export_fields>
       <field0>
@@ -198,5 +416,11 @@
       <legend_fontsize>10</legend_fontsize>
       <label_fontsize>16</label_fontsize>
     </matplotlib_settings>
+    <sockets>
+      <socket0>rasppi04:8000</socket0> <!-- Temperature and pressure -->
+      <socket1>rasppi60:8000</socket1> <!-- XRD -->
+      <socket2>rasppi21:8000</socket2> <!-- Sputter Chamber -->
+    </sockets>
+
   </global_settings>
 </graphs>

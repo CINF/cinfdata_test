@@ -104,15 +104,15 @@
 	<type>figure</type>
 	<update_interval>1.2</update_interval> <!-- seconds -->
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
-	<width>800</width>
-	<height>400</height>
+	<width>410</width>
+	<height>300</height>
 	<!-- General plot options -->
-	<bgcolor>#FFFF00</bgcolor> <!-- optional color, default #FFFFFF -->
+	<bgcolor>#FFFFFF</bgcolor> <!-- optional color, default #FFFFFF -->
 	<!-- optional html padding string, remember to subtract the padding
 	     in the size -->
 	<!--<padding>40px 0px 0px 55px</padding>-->
 	<!-- title and labels -->
-	<title>Sample temperature [&amp;deg;C]</title> <!-- optional (escaped) html-->
+	<title>TC [&amp;deg;C]</title> <!-- optional (escaped) html-->
 	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
 	<!-- <ylabel>Temperature [&amp;deg;C]</ylabel> --><!-- optional (escaped) html -->
 	<!-- Plot drawing fine tuning -->
@@ -123,33 +123,39 @@
 	<figure>
 	  <plot0>
             <socket>0</socket>
-            <color>#0000FF</color>
+            <color>#000000</color>
             <id>microreactorng_temp_sample</id>
             <label>Temperature / [C]</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactorNG where type=(SELECT id FROM dateplots_descriptions where codename="microreactorng_temp_sample") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	</figure>
       </container0>
-      
+
       <container1>
 	<type>figure</type>
-	<update_interval>1.2</update_interval> <!-- seconds -->
-	<x_window>60</x_window> <!-- x axis interval, seconds -->
-	<width>400</width>
-	<height>400</height>
+	<update_interval>0.5</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>410</width>
+	<height>300</height>
 	<!-- General plot options -->
-	<bgcolor>#00FFFF</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!--<bgcolor>#00FFFF</bgcolor>--> <!-- optional color, default #FFFFFF -->
 	<!-- optional html padding string, remember to subtract the padding
 	     in the size -->
-	<!--<padding>40px 0px 0px 55px</padding>-->
+	<padding>0px 0px 0px 0px</padding>
 	<!-- title and labels -->
-	<title>Sample temperature [&amp;deg;C]</title> <!-- optional (escaped) html-->
+	<title>Chamber and Buffer [mbar]</title> <!-- optional (escaped) html-->
 	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
 	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
 	<!-- Plot drawing fine tuning -->
-	<draw_points>false</draw_points> <!-- optional bool, default true -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
 	<point_size>2</point_size> <!-- optional int, default 2 -->
 	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
-	<logscale>false</logscale> <!-- optional bool, default false -->
+	<logscale>true</logscale> <!-- optional bool, default false -->
+	<format>.1e</format>
+	<data_reduction>
+	  <time>10</time>
+	  <relative>1</relative>
+	</data_reduction>
 	<figure>
 	  <plot0>
             <socket>0</socket>
@@ -157,57 +163,231 @@
             <id>microreactorng_temp_sample</id>
             <label>Temperature / [C]</label>
 	  </plot0>
+<!--
+            <socket>1</socket>
+            <color>#0000FF</color>
+            <id>mr_iongauge_pressure</id>
+            <label>IG Pressure / mbar</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_iongauge_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	  <plot1>
+            <socket>2</socket>
+            <color>#FF0000</color>
+            <id>mr_buffer_pressure</id>
+            <label>Buf Pressure / mbar</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_buffer_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+-->
 	</figure>
       </container1>
       
       <container2>
-	<type>figure</type>
-	<update_interval>1.2</update_interval> <!-- seconds -->
-	<x_window>60</x_window> <!-- x axis interval, seconds -->
-	<width>630</width>
-	<height>400</height>
-	<!-- General plot options -->
-	<bgcolor>#FF00FF</bgcolor> <!-- optional color, default #FFFFFF -->
-	<!-- optional html padding string, remember to subtract the padding
-	     in the size -->
-	<!--<padding>40px 0px 0px 55px</padding>-->
-	<!-- title and labels -->
-	<title>Sample temperature [&amp;deg;C]</title> <!-- optional (escaped) html-->
-	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
-	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
-	<!-- Plot drawing fine tuning -->
-	<draw_points>false</draw_points> <!-- optional bool, default true -->
-	<point_size>2</point_size> <!-- optional int, default 2 -->
-	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
-	<logscale>false</logscale> <!-- optional bool, default false -->
-	<figure>
-	  <plot0>
-            <socket>0</socket>
-            <color>#0000FF</color>
-            <id>microreactorng_temp_sample</id>
-            <label>Temperature / [C]</label>
-	  </plot0>
-	</figure>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>400</width>
+	<height>300</height>
+	<fontsize>14</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size top, right, bottom, top, right, bottom, left-->
+	<padding>20px 0px 0px 0px</padding>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>microreactorng_temp_sample</id>
+	    <label>TC</label>
+	    <color>#000000</color>
+	    <format>.1f</format>
+	    <unit>&amp;deg;C</unit>
+	  </item0>
+<!--
+	  <item1>
+	    <socket>0</socket>
+	    <id>mr_iongauge_pressure</id>
+	    <label>Ion Gauge</label>
+	    <color>#0000FF</color>
+	    <format>.2e</format>
+	    <unit>mbar</unit>
+	  </item1>
+	  <item2>
+	    <socket>0</socket>
+	    <id>mr_buffer_pressure</id>
+	    <label>Buffer</label>
+	    <color>#FF0000</color>
+	    <format>.3e</format>
+	    <unit>mbar</unit>
+	  </item2>
+-->
+	</data>
       </container2>
 
       <container3>
-	<type>data</type>
-	<bgcolor>#00FF00</bgcolor>
-	<width>650</width>
-	<height>200</height>
-	<fontsize>24</fontsize>
-	<data>
-	  <item0>
-	    <color>#0000FF</color>
-	    <socket>0</socket>
-	    <id>microreactorng_temp_sample</id>
-	    <label>Pressure / [mbar]</label>
-	    <format>.2e</format>
-	    <unit>mbar</unit>
-	  </item0>
-	</data>
+	<type>figure</type>
+	<update_interval>1.2</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>410</width>
+	<height>300</height>
+	<!-- General plot options -->
+	<!--<bgcolor>#FF00FF</bgcolor>--> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Sample Pressure [Bar]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<data_reduction>
+	  <time>10</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+            <socket>1</socket>
+            <color>#000000</color>
+            <id>M11213502A</id>
+            <label>Sample pressure</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactorNG where type=(SELECT id FROM dateplots_descriptions where codename="microreactorng_pressure_reactor") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
       </container3>
 
+      <container4>
+	<type>figure</type>
+	<update_interval>1.2</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>410</width>
+	<height>300</height>
+	<!-- General plot options -->
+	<!--<bgcolor>#FF00FF</bgcolor>--> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>MFC Flow [mL/min]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<data_reduction>
+	  <time>10</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+            <socket>1</socket>
+            <color>#0000FF</color>
+            <id>M11200362A</id>
+            <label>Flow 2</label>
+	  </plot0>
+	  <plot1>
+            <socket>1</socket>
+            <color>#00AA00</color>
+            <id>M11200362C</id>
+            <label>Flow 1</label>
+	  </plot1>
+	  <plot2>
+            <socket>1</socket>
+            <color>#FF0000</color>
+            <id>M11200362E</id>
+            <label>Flow 3</label>
+	  </plot2>
+	  <plot3>
+            <socket>1</socket>
+            <color>#FF00FF</color>
+            <id>M11200362D</id>
+            <label>Flow 4</label>
+	  </plot3>
+	  <plot4>
+            <socket>1</socket>
+            <color>#00FFFF</color>
+            <id>M11210022B</id>
+            <label>Flow 5</label>
+	  </plot4>
+	  <plot5>
+            <socket>1</socket>
+            <color>#CCFF00</color>
+            <id>M11200362G</id>
+            <label>Flow 6</label>
+	  </plot5>
+	</figure>
+      </container4>
+
+      <container5>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>400</width>
+	<height>300</height>
+	<fontsize>14</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size top, right, bottom, top, right, bottom, left-->
+	<padding>20px 0px 0px 0px</padding>
+	<data>
+	  <item0>
+	    <socket>1</socket>
+	    <id>M11213502A</id>
+	    <label>Sample pressure</label>
+	    <color>#000000</color>
+	    <format>.3f</format>
+	    <unit>Bar</unit>
+	  </item0>
+	  <item1>
+            <socket>1</socket>
+            <color>#00AA00</color>
+            <id>M11200362C</id>
+            <label>Flow 1</label>
+	    <format>.3f</format>
+	    <unit>mL/min</unit>
+	  </item1>
+	  <item2>
+	    <socket>1</socket>
+            <color>#0000FF</color>
+            <id>M11200362A</id>
+            <label>Flow 2</label>
+	    <color>#0000FF</color>
+	    <format>.3f</format>
+	    <unit>mL/min</unit>
+	  </item2>
+	  <plot3>
+            <socket>1</socket>
+            <color>#FF0000</color>
+            <id>M11200362E</id>
+            <label>Flow 3</label>
+	    <unit>mL/min</unit>
+	    <format>.3f</format>
+	  </plot3>
+	  <plot4>
+            <socket>1</socket>
+            <color>#FF00FF</color>
+            <id>M11200362D</id>
+            <label>Flow 4</label>
+	    <unit>mL/min</unit>
+	    <format>.3f</format>
+	  </plot4>
+	  <plot5>
+            <socket>1</socket>
+            <color>#00FFFF</color>
+            <id>M11210022B</id>
+            <label>Flow 5</label>
+	    <unit>mL/min</unit>
+	    <format>.3f</format>
+	  </plot5>
+	  <plot6>
+            <socket>1</socket>
+            <color>#CCFF00</color>
+            <id>M11200362G</id>
+            <label>Flow 6</label>
+	    <unit>mL/min</unit>
+	    <format>.3f</format>
+	  </plot6>
+	</data>
+      </container5>
     </containers>
   </graph>
 
@@ -383,6 +563,7 @@
     </matplotlib_settings>
     <sockets>
       <socket0>rasppi12:8000</socket0> <!-- Sample temperature -->
+      <socket1>rasppi16:8000</socket1> <!-- Flows -->
     </sockets>
   </global_settings>
 </graphs>

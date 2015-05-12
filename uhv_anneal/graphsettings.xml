@@ -56,6 +56,7 @@
     <sql_username>uhvanneal</sql_username>
     <image_format>png</image_format>
     <label_column>mass_label</label_column>
+    <folder_name>uhv_anneal</folder_name>
     <mandatory_export_fields>
       <field0>
 	<field>id</field>

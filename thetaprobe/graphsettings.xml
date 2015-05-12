@@ -131,6 +131,7 @@
     <xyvalues_table>xy_values_thetaprobe</xyvalues_table>
     <sql_username>thetaprobe</sql_username>
     <image_format>png</image_format>
+    <folder_name>thetaprobe</folder_name>
     <mandatory_export_fields>
       <field0>
 	<field>id</field>

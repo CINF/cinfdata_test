@@ -117,6 +117,7 @@
     <!--<chamber_name>microreactorNG</chamber_name>-->
     <sql_username>gasmonitor</sql_username>
     <image_format>png</image_format>
+    <folder_name>sym-files2</folder_name>
     <mandatory_export_fields>
       <field0>
 	<field>id</field>

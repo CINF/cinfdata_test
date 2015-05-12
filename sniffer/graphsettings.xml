@@ -300,6 +300,10 @@
     <grouping_column>time</grouping_column>
     <right_legend_suffix> (r)</right_legend_suffix>
     <label_column>id</label_column>
+    <xlabel>Mass / amu</xlabel>
+    <ylabel>
+      <default>SEM current / A</default>
+    </ylabel>
     <!-- queries -->
     <queries>
       <default>SELECT x,y  FROM xy_values_sniffer where measurement = {id} order by id</default>
@@ -308,10 +312,18 @@
     <legend>
       <default>{id} - {time}</default>
     </legend>
+    <!-- plugins -->
+    <plugins>
+      <MassSpectraOffset>
+	<title>Offset the spectra to avoid negative values</title>
+	<output>raw</output>
+      </MassSpectraOffset>
+    </plugins>
   </graph>
 
   <!-- GLOBAL SETTINGS -->
   <global_settings>
+    <folder_name>sniffer</folder_name>
     <measurements_table>measurements_sniffer</measurements_table>
     <xyvalues_table>xy_values_sniffer</xyvalues_table>
     <sql_username>sniffer</sql_username>

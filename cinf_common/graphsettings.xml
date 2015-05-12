@@ -309,6 +309,7 @@
     <!-- These tables obviusely don't exist. Setting them to non-existing values just makes it easier to trouble shoot if they are actually used somewhere as table names where they shouldn't -->
     <measurements_table>measurements_cinf_common</measurements_table>
     <xyvalues_table>xy_values_cinf_common</xyvalues_table>
+    <folder_name>cinf_common</folder_name>
   </global_settings>
 </graphs>
 

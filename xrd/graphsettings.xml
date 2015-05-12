@@ -33,6 +33,7 @@
     <xyvalues_table>none</xyvalues_table>
     <chamber_name>xrd</chamber_name>
     <sql_username>xrd</sql_username>
+    <folder_name>xrd</folder_name>
   </global_settings>
 </graphs>
 

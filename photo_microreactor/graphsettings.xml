@@ -50,5 +50,6 @@
     <xyvalues_table>xy_values_photo_microreactor</xyvalues_table>
     <chamber_name>Photo Microreactor</chamber_name>
     <sql_username>photo_micro</sql_username>
+    <folder_name>photo_microreactor</folder_name>
   </global_settings>
 </graphs>

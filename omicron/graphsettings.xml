@@ -209,6 +209,7 @@
     <xyvalues_table>xy_values_omicron</xyvalues_table>
     <chamber_name>omicron</chamber_name>
     <sql_username>omicron</sql_username>
+    <folder_name>omicron</folder_name>
   </global_settings>
 </graphs>
     

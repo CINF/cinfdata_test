@@ -35,7 +35,7 @@
     <dateplot3>
       <title>Reactor pressure</title>
       <legend>Reactor</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactor_reactor where time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_microreactor where type = 230 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>3</color>
     </dateplot3>
@@ -163,7 +163,7 @@
       <container0>
 	<type>figure</type>
 	<update_interval>1.2</update_interval> <!-- seconds -->
-	<x_window>9000</x_window> <!-- x axis interval, seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
 	<height>300</height>
 	<!-- General plot options -->
@@ -172,7 +172,7 @@
 	     in the size -->
 	<padding>0px 0px 0px 0px</padding>
 	<!-- title and labels -->
-	<title>Thermol Couple [&amp;deg;C]</title> <!-- optional (escaped) html-->
+	<title>TC [&amp;deg;C]</title> <!-- optional (escaped) html-->
 	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
 	<!-- <ylabel>Temperature [&amp;deg;C]</ylabel> --><!-- optional (escaped) html -->
 	<!-- Plot drawing fine tuning -->
@@ -180,10 +180,14 @@
 	<point_size>2</point_size> <!-- optional int, default 2 -->
 	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
 	<logscale>false</logscale> <!-- optional bool, default false -->
+	<data_reduction>
+	  <time>10</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
 	<figure>
 	  <plot0>
             <socket>0</socket> 
-            <color>#0000FF</color>
+            <color>#000000</color>
             <id>mr_sample_tc_temperature</id>
             <label>Temperature / [C]</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_sample_tc_temperature") and unix_timestamp(time) > {from}</old_data_query>
@@ -193,8 +197,8 @@
       
       <container1>
 	<type>figure</type>
-	<update_interval>1.2</update_interval> <!-- seconds -->
-	<x_window>9000</x_window> <!-- x axis interval, seconds -->
+	<update_interval>0.5</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
 	<height>300</height>
 	<!-- General plot options -->
@@ -203,7 +207,7 @@
 	     in the size -->
 	<padding>0px 0px 0px 0px</padding>
 	<!-- title and labels -->
-	<title>Ion Gauge Pressure [mbar]</title> <!-- optional (escaped) html-->
+	<title>Chamber and Buffer [mbar]</title> <!-- optional (escaped) html-->
 	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
 	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
 	<!-- Plot drawing fine tuning -->
@@ -212,21 +216,69 @@
 	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
 	<logscale>true</logscale> <!-- optional bool, default false -->
 	<format>.1e</format>
+	<data_reduction>
+	  <time>10</time>
+	  <relative>1</relative>
+	</data_reduction>
 	<figure>
 	  <plot0>
             <socket>1</socket>
             <color>#0000FF</color>
             <id>mr_iongauge_pressure</id>
-            <label>Pressure / mbar</label>
+            <label>IG Pressure / mbar</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_iongauge_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
+	  <plot1>
+            <socket>2</socket>
+            <color>#FF0000</color>
+            <id>mr_buffer_pressure</id>
+            <label>Buf Pressure / mbar</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_buffer_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
 	</figure>
       </container1>
 
       <container2>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>400</width>
+	<height>300</height>
+	<fontsize>14</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size top, right, bottom, top, right, bottom, left-->
+	<padding>20px 0px 0px 0px</padding>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>mr_sample_tc_temperature</id>
+	    <label>TC</label>
+	    <color>#000000</color>
+	    <format>.1f</format>
+	    <unit>&amp;deg;C</unit>
+	  </item0>
+	  <item1>
+	    <socket>1</socket>
+	    <id>mr_iongauge_pressure</id>
+	    <label>Ion Gauge</label>
+	    <color>#0000FF</color>
+	    <format>.2e</format>
+	    <unit>mbar</unit>
+	  </item1>
+	  <item2>
+	    <socket>2</socket>
+	    <id>mr_buffer_pressure</id>
+	    <label>Buffer</label>
+	    <color>#FF0000</color>
+	    <format>.3e</format>
+	    <unit>mbar</unit>
+	  </item2>
+	</data>
+      </container2>
+
+      <container3>
 	<type>figure</type>
 	<update_interval>1.2</update_interval> <!-- seconds -->
-	<x_window>9000</x_window> <!-- x axis interval, seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
 	<height>300</height>
 	<!-- General plot options -->
@@ -235,65 +287,162 @@
 	     in the size -->
 	<padding>0px 0px 0px 0px</padding>
 	<!-- title and labels -->
-	<title>Buffer pressure [mbar]</title> <!-- optional (escaped) html-->
+	<title>Sample Pressure [Bar]</title> <!-- optional (escaped) html-->
 	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
 	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
 	<!-- Plot drawing fine tuning -->
 	<draw_points>true</draw_points> <!-- optional bool, default true -->
 	<point_size>2</point_size> <!-- optional int, default 2 -->
 	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
-	<logscale>true</logscale> <!-- optional bool, default false -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<data_reduction>
+	  <time>10</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>2</socket>
-            <color>#0000FF</color>
-            <id>mr_buffer_pressure</id>
-            <label>Pressure / mbar</label>
-	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_buffer_pressure") and unix_timestamp(time) > {from}</old_data_query>
+            <socket>4</socket>
+            <color>#000000</color>
+            <id>M13201551A</id>
+            <label>Sample pressure</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_reactor_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	</figure>
-      </container2>
-      
+      </container3>
 
-      <container3>
+      <container4>
+	<type>figure</type>
+	<update_interval>1.2</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>410</width>
+	<height>300</height>
+	<!-- General plot options -->
+	<!--<bgcolor>#FF00FF</bgcolor>--> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>MFC Flow [mL/min]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<data_reduction>
+	  <time>10</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+            <socket>4</socket>
+            <color>#0000FF</color>
+            <id>M11200362F</id>
+            <label>Flow 2</label>
+	  </plot0>
+	  <plot1>
+            <socket>4</socket>
+            <color>#00AA00</color>
+            <id>M8203814B</id>
+            <label>Flow 1</label>
+	  </plot1>
+	  <plot2>
+            <socket>3</socket>
+            <color>#FF0000</color>
+            <id>21984839</id>
+            <label>Flow 3</label>
+	  </plot2>
+	  <plot3>
+            <socket>3</socket>
+            <color>#FF00FF</color>
+            <id>21984838</id>
+            <label>Flow 4</label>
+	  </plot3>
+	  <plot4>
+            <socket>4</socket>
+            <color>#00FFFF</color>
+            <id>M8203814A</id>
+            <label>Flow 5</label>
+	  </plot4>
+	  <plot5>
+            <socket>5</socket>
+            <color>#999999</color>
+            <id>1</id>
+            <label>0</label>
+	  </plot5>
+	</figure>
+      </container4>
+
+      <container5>
 	<type>data</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
-	<width>1100</width>
+	<width>400</width>
 	<height>300</height>
-	<fontsize>44</fontsize>
+	<fontsize>14</fontsize>
 	<!-- optional html padding string, remember to subtract the padding in
 	     the size top, right, bottom, top, right, bottom, left-->
 	<padding>20px 0px 0px 0px</padding>
 	<data>
 	  <item0>
-	    <socket>0</socket>
-	    <id>mr_sample_tc_temperature</id>
-	    <label>Thermol Couple</label>
-	    <color>#0000FF</color>
-	    <format>.1f</format>
-	    <unit>&amp;deg;C</unit>
+	    <socket>4</socket>
+	    <id>M13201551A</id>
+	    <label>Sample pressure</label>
+	    <color>#000000</color>
+	    <format>.3f</format>
+	    <unit>Bar</unit>
 	  </item0>
 	  <item1>
-	    <socket>1</socket>
-	    <id>mr_iongauge_pressure</id>
-	    <label>Ion Gauge Pressure</label>
-	    <color>#0000FF</color>
-	    <format>.2e</format>
-	    <unit>mbar</unit>
+            <socket>5</socket>
+            <color>#999999</color>
+            <id>1</id>
+            <label>Flow 0</label>
+	    <format>.3f</format>
+	    <unit>mL/min</unit>
 	  </item1>
 	  <item2>
-	    <socket>2</socket>
-	    <id>mr_buffer_pressure</id>
-	    <label>Buffer Pressure</label>
-	    <color>#0000FF</color>
-	    <format>.2e</format>
-	    <unit>mbar</unit>
+            <socket>4</socket>
+            <color>#00AA00</color>
+            <id>M8203814B</id>
+            <label>Flow 1</label>
+	    <format>.3f</format>
+	    <unit>mL/min</unit>
 	  </item2>
+	  <item3>
+	    <socket>4</socket>
+            <color>#0000FF</color>
+            <id>M11200362F</id>
+            <label>Flow 2</label>
+	    <color>#0000FF</color>
+	    <format>.3f</format>
+	    <unit>mL/min</unit>
+	  </item3>
+	  <plot4>
+            <socket>3</socket>
+            <color>#FF0000</color>
+            <id>21984839</id>
+            <label>Flow 3</label>
+	    <unit>mL/min</unit>
+	    <format>.3f</format>
+	  </plot4>
+	  <plot5>
+            <socket>3</socket>
+            <color>#FF00FF</color>
+            <id>21984838</id>
+            <label>Flow 4</label>
+	    <unit>mL/min</unit>
+	    <format>.3f</format>
+	  </plot5>
+	  <plot6>
+            <socket>4</socket>
+            <color>#00FFFF</color>
+            <id>M8203814A</id>
+            <label>Flow 5</label>
+	    <unit>mL/min</unit>
+	    <format>.3f</format>
+	  </plot6>
 	</data>
-      </container3>
-
-
-
+      </container5>
     </containers>
   </graph>
 
@@ -427,6 +576,7 @@
     <sql_username>microreactor</sql_username>
     <image_format>png</image_format>
     <label_column>mass_label</label_column>
+    <folder_name>microreactor</folder_name>
     <mandatory_export_fields>
       <field0>
 	<field>id</field>
@@ -456,8 +606,11 @@
     </matplotlib_settings>
     <sockets>
       <socket0>rasppi12:8000</socket0> <!-- Sample temperature -->
-      <socket1>rasppi07:8000</socket1> <!-- Buffer pressure -->
-      <socket2>rasppi36:8000</socket2> <!-- Ion Gauge -->
+      <socket1>rasppi07:8000</socket1> <!-- Ion Gauge -->
+      <socket2>rasppi36:8000</socket2> <!-- Buffer pressure -->
+      <socket3>rasppi37:8000</socket3> <!-- MKS Flow controllers -->
+      <socket4>rasppi24:8000</socket4> <!-- Bronkhorst Flow controllers -->
+      <socket5>rasppi26:8000</socket5> <!-- Analog Flow controller -->
     </sockets>
   </global_settings>
 </graphs>

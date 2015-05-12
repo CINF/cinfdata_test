@@ -115,6 +115,7 @@
     <sql_username>stm312</sql_username>
     <label_column>mass_label</label_column>
     <image_format>png</image_format>
+    <folder_name>dev_websockets</folder_name>
     <mandatory_export_fields>
       <field0>
 	<field>id</field>
