@@ -1,0 +1,786 @@
+<setups>
+
+  <!-- REMEMBER to quote these characters in the xml
+       
+       "   &quot;
+       '   &apos;
+       <   &lt;  # For embedding html e.g. sub in title
+       >   &gt;  # For embedding html e.g. sub in title
+       &   &amp;  # For & in links
+	 
+	 -->
+	  
+  <!--Palle-->
+  <setup codename="mgw">
+    <setup_title>Palle</setup_title>
+    <link>
+      <title>Pressure</title>
+      <ref>mgw/dateplot.php?type=multidateplot&amp;left_plotlist[]=1&amp;right_plotlist[]=2</ref>
+    </link>
+    <link>
+      <title>Temperatures</title>
+      <ref>mgw/dateplot.php?type=multidateplot&amp;left_plotlist[]=4&amp;left_plotlist[]=6&amp;left_plotlist[]=7&amp;left_plotlist[]=8&amp;left_plotlist[]=9&amp;left_plotlist[]=10&amp;left_plotlist[]=11&amp;left_plotlist[]=12</ref>
+    </link>
+  </setup>
+
+  <!--STM312-->
+  <setup codename="stm312">
+    <setup_title>STM312</setup_title>
+    <link>
+      <title>Main Chamber</title>
+      <ref>stm312/dateplot.php?type=multidateplot&amp;left_logscale=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;left_plotlist[]=2&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Turbo Status</title>
+      <ref>stm312/dateplot.php?type=multidateplot_tt&amp;left_ymax=0&amp;left_plotlist[]=1&amp;left_plotlist[]=2&amp;left_plotlist[]=3&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>HP Cell Pressure</title>
+      <ref>stm312/dateplot.php?type=multidateplot_hp&amp;left_plotlist[]=1</ref>
+    </link>
+    <link>
+      <title>STM Images</title>
+      <ref>stm312/stm_overview.php</ref>
+    </link>
+    <link>
+      <title>Mass spectra</title>
+      <ref>stm312/xyplot.php?type=massspectra&amp;left_logscale=checked</ref>
+    </link>
+    <link>
+      <title>Mass-time</title>
+      <ref>stm312/xyplot.php?type=masstime</ref>
+    </link>
+    <link>
+      <title>XPS-data</title>
+      <ref>stm312/xyplot.php?type=xps&amp;flip_x=checked&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>Chiller control</title>
+      <ref>stm312/chiller.php</ref>
+    </link>
+    <link>
+      <title>Bakeout</title>
+      <ref>stm312/bakeout.php</ref>
+    </link>
+    <link>
+      <title>Modify comments</title>
+      <ref>stm312/modify_comment.php</ref>
+    </link>
+  </setup>
+
+  <!--Volvo-->
+  <setup codename="volvo">
+    <setup_title>Volvo</setup_title>
+    <link>
+      <title>Pressure and temperature</title>
+      <ref>volvo/dateplot.php?type=multidateplot&amp;left_logscale=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;right_plotlist[]=2&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>IT-curves</title>
+      <ref>volvo/xyplot.php?type=it</ref>
+    </link>
+    <link>
+      <title>IV-curves</title>
+      <ref>volvo/xyplot.php?type=iv</ref>
+    </link>
+    <link>
+      <title>XPS-data</title>
+      <ref>volvo/xyplot.php?type=xps</ref>
+    </link>
+    <link>
+      <title>ISS-data</title>
+      <ref>volvo/xyplot.php?type=iss</ref>
+    </link>
+    <link>
+      <title>Mass spectrums</title>
+      <ref>volvo/xyplot.php?type=massspectrum</ref>
+    </link>
+    <link>
+      <title>Mass-time</title>
+      <ref>volvo/xyplot_group.php?type=masstime</ref>
+    </link>
+    <link>
+      <title>Morning pressure - Beta!</title>
+      <ref>volvo/x.php?type=morning_pressure&amp;from=2009-01-01&amp;to=2012-01-01&amp;manualscale=checked&amp;ymax=1E-5&amp;ymin=1E-11&amp;xsize=1000&amp;ysize=750</ref>
+    </link>
+  </setup>
+
+  <!--&#181;-reactor-->
+  <setup codename="microreactor">
+    <setup_title>&#181;-reactor</setup_title>
+    <link>
+      <title>Chamber pressure</title>
+      <ref>microreactor/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Pirani buffer volume</title>
+      <ref>microreactor/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=2&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Reactor pressure</title>
+      <ref>microreactor/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=3&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Backing pressure, turbos</title>
+      <ref>microreactor/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=4&amp;left_plotlist[]=5&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Sample temperature</title>
+      <ref>microreactor/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=6&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Turbo temperatures</title>
+      <ref>microreactor/dateplot.php?type=multidateplot_turbos&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;left_plotlist[]=2&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Mass-time</title>
+      <ref>microreactor/xyplot.php?type=masstime&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>Massspectra</title>
+      <ref>microreactor/xyplot.php?type=massspectrum</ref>
+    </link>
+    <link>
+      <title>Modify comments</title>
+      <ref>microreactor/modify_comment.php</ref>
+    </link>
+    <link>
+      <title>Live Values</title>
+      <ref>microreactor/live.php?type=live_values</ref>
+    </link>
+  </setup>
+
+  <!--&#181;-reactor NG-->
+  <setup codename="microreactorNG">
+    <setup_title>&#181;-reactor NG</setup_title>
+    <link>
+      <title>Chamber pressure</title>
+      <ref>microreactorNG/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Buffer and containment volume</title>
+      <ref>microreactorNG/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=2&amp;right_ymin=0&amp;right_ymax=0&amp;right_plotlist[]=3</ref>
+    </link>
+    <link>
+      <title>Reactor pressure</title>
+      <ref>microreactorNG/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=5&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Sample temperature</title>
+      <ref>microreactorNG/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=8&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Backing pressure, buffer turbo</title>
+      <ref>microreactorNG/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=6&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Backing pressure, chamber turbo</title>
+      <ref>microreactorNG/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=7&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Turbo temperatures</title>
+      <ref>microreactorNG/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=9&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Mass spectra</title>
+      <ref>microreactorNG/xyplot.php?type=massspectrum</ref>
+    </link>
+    <link>
+      <title>Mass-time</title>
+      <ref>microreactorNG/xyplot.php?type=masstime&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>Modify comments</title>
+      <ref>microreactorNG/modify_comment.php</ref>
+    </link>
+    <link>
+      <title>Live Values</title>
+      <ref>microreactorNG/live.php?type=live_values</ref>
+    </link>
+  </setup>
+
+  <!--Omicron-->
+  <setup codename="omicron">
+    <setup_title>Omicron</setup_title>
+    <link>
+      <title>Temperature</title>
+      <ref>omicron/read_dateplot.php?type=temperature</ref>
+    </link>
+    <link>
+      <title>Temperature, aggregation</title>
+      <ref>omicron/read_dateplot.php?type=temperature_aggregation</ref>
+    </link>
+    <link>
+      <title>Pressure, analytical chamber</title>
+      <ref>omicron/read_dateplot.php?type=pressure_ana</ref>
+    </link>
+    <link>
+      <title>Heating Power</title>
+      <ref>omicron/read_dateplot.php?type=heating_power</ref>
+    </link>
+    <link>
+      <title>Pressure, prep chamber</title>
+      <ref>omicron/read_dateplot.php?type=pressure_prep</ref>
+    </link>
+    <link>
+      <title>Pressure, nanobeam</title>
+      <ref>omicron/read_dateplot.php?type=pressure_nanobeam</ref>
+    </link>
+    <link>
+      <title>Morning pressure, analytical chamber</title>
+      <ref>omicron/plot.php?type=morning_pressure_ana&amp;from=2009-01-01&amp;to=2012-01-01&amp;manualscale=checked&amp;ymax=1E-8&amp;ymin=1E-12&amp;xsize=1000&amp;ysize=750</ref>
+    </link>
+    <link>
+      <title>Morning pressure, prep chamber</title>
+      <ref>omicron/plot.php?type=morning_pressure_prep&amp;from=2009-01-01&amp;to=2012-01-01&amp;manualscale=checked&amp;ymax=1E-8&amp;ymin=1E-12&amp;xsize=1000&amp;ysize=750</ref>
+    </link>
+    <link>
+      <title>Deposition</title>
+      <ref>omicron/read_plot_group.php?type=deposition</ref>
+    </link>
+    <link>
+      <title>Mass-time</title>
+      <ref>omicron/read_plot_group.php?type=masstime</ref>
+    </link>
+    <link>
+      <title>Mass spectrums</title>
+      <ref>omicron/read_plot.php?type=massspectrum</ref>
+    </link>
+    <link>
+      <title>Cluster deposition</title>
+      <ref>omicron/read_plot_group.php?type=cluster_deposition</ref>
+    </link>
+    <link>
+      <title>Modify comments</title>
+      <ref>omicron/modify_comment.php</ref>
+    </link>
+  </setup>
+
+  <!--XRD-->
+  <setup codename="xrd">
+    <setup_title>XRD</setup_title>
+    <link>
+      <title>Pressure status</title>
+      <ref>xrd/status.php</ref>
+    </link>
+    <link>
+      <title>Pressure asg</title>
+      <ref>xrd/read_dateplot.php?type=pressure_asg</ref>
+    </link>
+    <link>
+      <title>Pressure wrg</title>
+      <ref>xrd/read_dateplot.php?type=pressure_wrg</ref>
+    </link>
+    <link>
+      <title>Pressure wrgms</title>
+      <ref>xrd/read_dateplot.php?type=pressure_wrgms</ref>
+    </link>
+  </setup>
+
+  <!--Hall-->
+  <setup codename="hall">
+    <setup_title>Hall</setup_title>
+    <link>
+      <title>Temperature</title>
+      <ref>hall/dateplot.php?type=temperature&amp;matplotlib=checked&amp;left_plotlist%5B%5D=1</ref>
+    </link>
+    <link>
+      <title>Live Values</title>
+      <ref>hall/live.php?type=live_values</ref>
+    </link>
+  </setup>
+
+  <!--Booking-->
+  <setup codename="booking">
+    <setup_title>Booking</setup_title>
+    <link>
+      <title>Building 307</title>
+      <ref>booking/b307.php</ref>
+    </link>
+  </setup>
+
+  <!--TOF-->
+  <setup codename="TOF">
+    <setup_title>TOF</setup_title>
+    <link>
+      <title>Dateplots</title>
+      <ref>tof/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist%5B%5D=2</ref>
+    </link>
+    <link>
+      <title>TOF spectra, small</title>
+      <ref>tof/xyplot.php?type=tofspectrum_small&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>TOF spectra, wide</title>
+      <ref>tof/xyplot.php?type=tofspectrum_wide&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>Mass spectra</title>
+      <ref>tof/xyplot.php?type=massspectrum</ref>
+    </link>
+    <link>
+      <title>Mass-time</title>
+      <ref>tof/xyplot.php?type=masstime</ref>
+    </link>
+    <link>
+      <title>Flight Time Analysis</title>
+      <ref>http://robertj</ref>
+    </link>
+    <link>
+      <title>Calc. mass deficiency</title>
+      <ref>tof/mass_calc.html</ref>
+    </link>
+    <link>
+      <title>Live Values</title>
+      <ref>tof/live.php?type=live_values</ref>
+    </link>
+  </setup>
+
+  <!--The Tower-->
+  <setup codename="tower">
+    <setup_title>The Tower</setup_title>
+    <link>
+      <title>Pressure and temperature</title>
+      <ref>tower/dateplot.php?type=multidateplot&amp;left_plotlist%5B%5D=1&amp;right_plotlist%5B%5D=2&amp;left_logscale=checked</ref>
+    </link>
+    <link>
+      <title>Deposition</title>
+      <ref>tower/xyplot.php?type=deposition</ref>
+    </link>
+  </setup>
+
+  <!--Parallel Screening-->
+  <setup codename="ps">
+    <setup_title>Parallel Screening</setup_title>
+    <link>
+      <title>Chamber status</title>
+      <ref>ps/dateplot.php?type=multidateplot_chamber&amp;left_plotlist[]=1&amp;left_plotlist[]=2&amp;right_plotlist[]=3</ref>
+    </link>
+    <link>
+      <title>Turbo status</title>
+      <ref>ps/dateplot.php?type=multidateplot_turbo&amp;left_plotlist[]=1&amp;right_plotlist[]=2</ref>
+    </link>
+    <link>
+      <title>Deposition</title>
+      <ref>ps/xyplot.php?type=deposition</ref>
+    </link>
+    <link>
+      <title>Mass spectra</title>
+      <ref>ps/xyplot.php?type=massspectra&amp;left_logscale=checked&amp;plugin_settings[MassSpectraOffset][activate]=checked</ref>
+    </link>
+    <link>
+      <title>Mass-time</title>
+      <ref>ps/xyplot.php?type=masstime</ref>
+    </link>
+    <link>
+      <title>XPS</title>
+      <ref>ps/xyplot.php?type=xps&amp;flip_x=checked&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>ISS</title>
+      <ref>ps/xyplot.php?type=iss</ref>
+    </link>
+    <link>
+      <title>Modify comments</title>
+      <ref>ps/modify_comment.php</ref>
+    </link>
+    <link>
+      <title>Live Values</title>
+      <ref>ps/live.php?type=live_values</ref>
+    </link>
+  </setup>
+
+  <!--Shortlinks-->
+  <setup codename="shortlinks">
+    <setup_title>Shortlinks</setup_title>
+    <link>
+      <title>Show previous shortlinks</title>
+      <ref>links/show_links.php</ref>
+    </link>
+  </setup>
+
+  <!--Dummy-->
+  <setup codename="dummy">
+    <setup_title>Dummy</setup_title>
+    <link>
+      <title>Mass-time</title>
+      <ref>dummy/xyplot.php?type=masstime&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>Mass spectrums</title>
+      <ref>dummy/xyplot.php?type=massspectrum</ref>
+    </link>
+    <link>
+      <title>XPS</title>
+      <ref>dummy/xyplot.php?type=xps</ref>
+    </link>
+    <link>
+      <title>Current/Temperature</title>
+      <ref>dummy/xyplot.php?type=it&amp;matplotlib=checked</ref>
+    </link>
+  </setup>
+
+  <!--Old cluster source-->
+  <setup codename="oldclustersource">
+    <setup_title>Old cluster source</setup_title>
+    <link>
+      <title>Pressure</title>
+      <ref>oldclustersource/read_dateplot.php?type=pressure</ref>
+    </link>
+    <link>
+      <title>Cluster deposition</title>
+      <ref>oldclustersource/read_plot_group.php?type=clusterdeposition</ref>
+    </link>
+    <link>
+      <title>Temperatures</title>
+      <ref>oldclustersource/read_dateplot.php?type=temperatures</ref>
+    </link>
+    <link>
+      <title>Backing pressures</title>
+      <ref>oldclustersource/read_dateplot.php?type=backingpressure</ref>
+    </link>
+  </setup>
+
+  <!--Photo-&#181;-reactor-->
+  <setup codename="photomicroreactor">
+    <setup_title>Photo-&#181;-reactor</setup_title>
+    <link>
+      <title>Mass-time</title>
+      <ref>photo_microreactor/read_plot_group.php?type=masstime</ref>
+    </link>
+    <link>
+      <title>Mass spectra</title>
+      <ref>photo_microreactor/read_plot.php?type=massspectrum</ref>
+    </link>
+  </setup>
+
+  <!--UPS-->
+  <setup codename="ups">
+    <setup_title>UPS</setup_title>
+    <link>
+      <title>All Measurements</title>
+      <ref>ups/dateplot.php?type=multidateplot&amp;left_plotlist[]=1&amp;left_plotlist[]=2&amp;left_plotlist[]=3</ref>
+    </link>
+    <link>
+      <title>Live Values</title>
+      <ref>ups/live.php?type=live_values</ref>
+    </link>
+  </setup>
+
+  <!--Other-->
+  <setup codename="other">
+    <setup_title>Other</setup_title>
+    <link>
+      <title>Floor Managers To Do list</title>
+      <ref>todo.php</ref>
+    </link>
+    <link>
+      <title>Host checker</title>
+      <ref>https://cinfdata.fysik.dtu.dk/cinf_common/host_checker.php</ref>
+    </link>
+    <link>
+      <title>Email alarms</title>
+      <ref>other/alarms.php</ref>
+    </link>
+    <link>
+      <title>Test my configuration file</title>
+      <ref>code-documentation/test_config_all.php</ref>
+    </link>
+    <link>
+      <title>Statistics</title>
+      <ref>code-documentation/statistics.php</ref>
+    </link>
+    <link>
+      <title>Git status</title>
+      <ref>code-documentation/git_status.php</ref>
+    </link>
+    <link>
+      <title>PyExpLabSys Stats Graphs</title>
+      <ref>other/dateplot.php?type=pylint&amp;matplotlib=checked&amp;left_plotlist%5B%5D=1&amp;right_plotlist%5B%5D=2</ref>
+    </link>
+    <link>
+      <title>PyExpLabSys Stats Tables</title>
+      <ref>other/pels_pylint.php</ref>
+    </link>
+    <link>
+      <title>Dateplot demo</title>
+      <ref>sym-files2/dateplot.php?type=multidateplot</ref>
+    </link>
+    <link>
+      <title>XY plot demo</title>
+      <ref>sym-files2/xyplot.php?type=masstime</ref>
+    </link>
+    <link>
+      <title>Web-Socket Status</title>
+      <ref>other/live.php?type=live_values_wss</ref>
+    </link>
+    <link>
+      <title>Fridays Amounts</title>
+      <ref>other/dateplot.php?type=fridays&amp;left_plotlist[]=1&amp;left_plotlist[]=2&amp;right_plotlist[]=3&amp;right_plotlist[]=4&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>Fridays Items</title>
+      <ref>other/dateplot.php?type=fridays_items&amp;left_plotlist[]=1&amp;right_plotlist[]=2&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>Fridays Pies</title>
+      <ref>other/fridays_stats.php</ref>
+    </link>
+  </setup>
+
+  <!--NH3 Synthesis-->
+  <setup codename="NH3Synth">
+    <setup_title>NH&lt;sub&gt;3&lt;/sub&gt; Synthesis</setup_title>
+    <link>
+      <title>Pressure, iongauge</title>
+      <ref>NH3Synth/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=3&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Ammonia Concentration (IR)</title>
+      <ref>NH3Synth/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Temperatures</title>
+      <ref>NH3Synth/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=4&amp;left_plotlist[]=5&amp;left_plotlist[]=6&amp;left_plotlist[]=7&amp;left_plotlist[]=8&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Mass spectra</title>
+      <ref>NH3Synth/xyplot.php?type=massspectrum&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>Mass-time</title>
+      <ref>NH3Synth/xyplot.php?type=masstime&amp;matplotlib=checked</ref>
+    </link>
+  </setup>
+
+  <!--Sputter chamber-->
+  <setup codename="sputterchamber">
+    <setup_title>Sputter chamber</setup_title>
+    <link>
+      <title>Pressure</title>
+      <ref>sputterchamber/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>QCM Frequency</title>
+      <ref>sputterchamber/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=2&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>QCM Thickness</title>
+      <ref>sputterchamber/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=3&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>QCM Life Time</title>
+      <ref>sputterchamber/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=4&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Chiller Flow</title>
+      <ref>sputterchamber/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=5&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+  </setup>
+
+  <!--Furnace room-->
+  <setup codename="furnaceroom">
+    <setup_title>Furnace room</setup_title>
+    <link>
+      <title>Temperature, furnace 1</title>
+      <ref>furnaceroom/dateplot.php?type=multidateplot&amp;left_plotlist[]=1</ref>
+    </link>
+    <link>
+      <title>Temperature, furnace 2</title>
+      <ref>furnaceroom/dateplot.php?type=multidateplot&amp;left_plotlist[]=2</ref>
+    </link>
+  </setup>
+
+  <!--Gas alarm, 312-->
+  <setup codename="gasalarm312">
+    <setup_title>Gas alarm, 312</setup_title>
+    <link>
+      <title>System Status</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor312/system_status.php</ref>
+    </link>
+    <link>
+      <title>Live Values</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor312/websockets_simple.php?type=websocket_simple1</ref>
+    </link>
+    <link>
+      <title>Live Plots</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor312/live.php?type=live_values</ref>
+    </link>
+    <link>
+      <title>All detectors</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor312/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist%5B%5D=1&amp;left_plotlist%5B%5D=2&amp;left_plotlist%5B%5D=3&amp;left_plotlist%5B%5D=4&amp;left_plotlist%5B%5D=9&amp;left_plotlist%5B%5D=10&amp;right_ymin=0&amp;right_ymax=0&amp;right_plotlist%5B%5D=5&amp;right_plotlist%5B%5D=6&amp;right_plotlist%5B%5D=7&amp;right_plotlist%5B%5D=8&amp;right_plotlist%5B%5D=11&amp;right_plotlist%5B%5D=12</ref>
+    </link>
+    <link>
+      <title>All H2 detectors</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor312/dateplot.php?type=multidateplot_h2&amp;matplotlib=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;left_plotlist[]=2&amp;left_plotlist[]=3&amp;left_plotlist[]=4&amp;left_plotlist[]=5&amp;left_plotlist[]=6&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>All CO detectors</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor312/dateplot.php?type=multidateplot_co&amp;matplotlib=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;left_plotlist[]=2&amp;left_plotlist[]=3&amp;left_plotlist[]=4&amp;left_plotlist[]=5&amp;left_plotlist[]=6&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+  </setup>
+
+  <!--Chillers-->
+  <setup codename="chillers">
+    <setup_title>Chillers</setup_title>
+    <link>
+      <title>Chiller STM312</title>
+      <ref>chillers/dateplot.php?type=multidateplot_stm312&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;left_plotlist[]=2&amp;left_plotlist[]=3&amp;right_plotlist[]=4&amp;right_plotlist[]=5&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Chiller Sputterchamber</title>
+      <ref>chillers/dateplot.php?type=multidateplot_sputterchamber&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;left_plotlist[]=2&amp;left_plotlist[]=3&amp;right_plotlist[]=4&amp;right_plotlist[]=5&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Chiller XRD</title>
+      <ref>chillers/dateplot.php?type=multidateplot_xrd&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;left_plotlist[]=2&amp;left_plotlist[]=3&amp;right_plotlist[]=4&amp;right_plotlist[]=5&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Chiller PS</title>
+      <ref>chillers/dateplot.php?type=multidateplot_ps&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;left_plotlist[]=2&amp;left_plotlist[]=3&amp;right_plotlist[]=4&amp;right_plotlist[]=5&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Chiller Thetaprobe</title>
+      <ref>chillers/dateplot.php?type=multidateplot_thetaprobe&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;left_plotlist[]=2&amp;left_plotlist[]=3&amp;right_plotlist[]=4&amp;right_plotlist[]=5&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Live Values</title>
+      <ref>chillers/live.php?type=live_values</ref>
+    </link>
+  </setup>
+
+  <!--Theta probe-->
+  <setup codename="thetaprobe">
+    <setup_title>Theta probe</setup_title>
+    <link>
+      <title>Pressure</title>
+      <ref>thetaprobe/dateplot.php?type=multidateplot_pressures&amp;matplotlib=checked&amp;left_logscale=checked&amp;right_logscale=checked&amp;left_plotlist%5B%5D=1&amp;right_plotlist%5B%5D=2</ref>
+    </link>
+    <link>
+      <title>Pressure Live</title>
+      <ref>https://cinfdata.fysik.dtu.dk/thetaprobe/live.php?type=live_pressures</ref>
+    </link>
+  </setup>
+
+  <!--VHP Setup-->
+  <setup codename="vhp_setup">
+    <setup_title>VHP Setup</setup_title>
+    <link>
+      <title>Chamber Pressure</title>
+      <ref>vhp_setup/dateplot.php?type=multidateplot&amp;left_plotlist[]=1</ref>
+    </link>
+    <link>
+      <title>Mass spectrums</title>
+      <ref>vhp_setup/xyplot.php?type=massspectra</ref>
+    </link>
+    <link>
+      <title>Mass-time</title>
+      <ref>vhp_setup/xyplot.php?type=masstime</ref>
+    </link>
+  </setup>
+
+  <!--Chemlab, 307-->
+  <setup codename="chemlab307">
+    <setup_title>Chemlab, 307</setup_title>
+    <link>
+      <title>Temperature, Muffle furnace</title>
+      <ref>chemlab307/dateplot.php?type=multidateplot&amp;left_plotlist[]=1</ref>
+    </link>
+  </setup>
+
+  <!--Gas alarm, 307-->
+  <setup codename="gasalarm307">
+    <setup_title>Gas alarm, 307</setup_title>
+    <link>
+      <title>System Status</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor307/system_status.php</ref>
+    </link>
+    <link>
+      <title>Live Values</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor307/websockets_simple.php?type=websocket_simple1</ref>
+    </link>
+    <link>
+      <title>Live Plots</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor307/live.php?type=live_values</ref>
+    </link>
+    <link>
+      <title>All detectors</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;left_plotlist[]=3&amp;left_plotlist[]=5&amp;left_plotlist[]=7&amp;left_plotlist[]=9&amp;left_plotlist[]=11&amp;right_ymin=0&amp;right_ymax=0&amp;right_plotlist[]=2&amp;right_plotlist[]=4&amp;right_plotlist[]=6&amp;right_plotlist[]=8&amp;right_plotlist[]=10&amp;right_plotlist[]=12</ref>
+    </link>
+    <link>
+      <title>All CO detectors</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot_co&amp;matplotlib=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;left_plotlist[]=2&amp;left_plotlist[]=3&amp;left_plotlist[]=4&amp;left_plotlist[]=5&amp;left_plotlist[]=6&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>All H2 detectors</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot_h2&amp;matplotlib=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;left_plotlist[]=2&amp;left_plotlist[]=3&amp;left_plotlist[]=4&amp;left_plotlist[]=5&amp;left_plotlist[]=6&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>CO and H2 051</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;right_ymin=0&amp;right_ymax=0&amp;right_plotlist[]=2</ref>
+    </link>
+    <link>
+      <title>CO and H2 055</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=3&amp;right_ymin=0&amp;right_ymax=0&amp;right_plotlist[]=4</ref>
+    </link>
+    <link>
+      <title>CO and H2 059</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=5&amp;right_ymin=0&amp;right_ymax=0&amp;right_plotlist[]=6</ref>
+    </link>
+    <link>
+      <title>CO and H2 061</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=7&amp;right_ymin=0&amp;right_ymax=0&amp;right_plotlist[]=8</ref>
+    </link>
+    <link>
+      <title>CO and H2 932</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=11&amp;right_ymin=0&amp;right_ymax=0&amp;right_plotlist[]=12</ref>
+    </link>
+    <link>
+      <title>CO 42-43</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=9&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>H2 2.Floor</title>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor307/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=10&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+  </setup>
+
+  <!--PVD 309-->
+  <setup codename="pvd309">
+    <setup_title>PVD 309</setup_title>
+    <link>
+      <title>Chamber Pressure</title>
+      <ref>pvd_309/dateplot.php?type=multidateplot&amp;left_plotlist[]=1</ref>
+    </link>
+  </setup>
+
+  <!--Chemlab 312-->
+  <setup codename="chemlab312">
+    <setup_title>Chemlab 312</setup_title>
+    <link>
+      <title>Chamber Pressure</title>
+      <ref>chemlab312/dateplot.php?type=multidateplot&amp;left_plotlist[]=1</ref>
+    </link>
+  </setup>
+
+  <!--sniffer-->
+  <setup codename="sniffer">
+    <setup_title>sniffer</setup_title>
+    <link>
+      <title>Chamber pressure</title>
+      <ref>sniffer/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;right_ymin=0&amp;right_ymax=0</ref>
+    </link>
+    <link>
+      <title>Mass-time</title>
+      <ref>sniffer/xyplot.php?type=masstime&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>Massspectra</title>
+      <ref>sniffer/xyplot.php?type=massspectrum</ref>
+    </link>
+    <link>
+      <title>Live Values</title>
+      <ref>sniffer/live.php?type=live_values</ref>
+    </link>
+  </setup>
+</setups>
