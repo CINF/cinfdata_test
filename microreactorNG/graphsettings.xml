@@ -395,8 +395,8 @@
   <graph type='masstime'>
     <default_xscale>lin</default_xscale>
     <type>5</type>
-    <xlabel>Time / s</xlabel>
-    <title>Mass vs. time</title>
+    <xlabel>Time / h</xlabel>
+    <!--<title></title>-->
     <grouping_column>time</grouping_column>
     <right_legend_suffix> (r)</right_legend_suffix>
     <!-- dygraph -->
@@ -408,7 +408,7 @@
     </dygraph_settings>
     <!-- queries -->
     <queries>
-      <default>SELECT x/1000,y  FROM xy_values_microreactorNG where y > -9000 and measurement = {id} order by id</default>
+      <default>SELECT x/3600000,y  FROM xy_values_microreactorNG where y > -9000 and measurement = {id} order by id</default>
       <column>mass_label</column>
     </queries>
     <!-- ylabel -->
@@ -424,17 +424,22 @@
 	<ylabel>Temperature / C</ylabel>
       </pattern1>
       <pattern2>
-	<reg_match>^.*pressure$|^Pirani.*$</reg_match>
-	<ylabel>Pressure / mbar</ylabel>
+	<!--\s matches any single whitespace character -->
+	<reg_match>^Reactor\spressure$|^Sample\sPressure$</reg_match>
+	<ylabel>Pressure / bar</ylabel>
       </pattern2>
       <pattern3>
-	<reg_match>^Input power$</reg_match>
-	<ylabel>Power / W</ylabel>
+	<reg_match>^Chamber\spressure$|^Pirani.*$</reg_match>
+	<ylabel>Pressure / mbar</ylabel>
       </pattern3>
       <pattern4>
+	<reg_match>^Input power$</reg_match>
+	<ylabel>Power / W</ylabel>
+      </pattern4>
+      <pattern5>
 	<reg_match>^Flow [0-9]$</reg_match>
 	<ylabel>Flow / mL/min</ylabel>
-      </pattern4>
+      </pattern5>
     </ylabel>
     <!-- legend -->
     <legend>
@@ -475,10 +480,10 @@
       <ylabel_addition>diff</ylabel_addition>
     </diff_right_y>
     <linscale_x0>
-      <gui>X-axis in hours</gui>
-      <xlabel_addition>converted to hours</xlabel_addition>
+      <gui>X-axis in seconds</gui>
+      <xlabel_addition>converted to seconds</xlabel_addition>
       <!-- 1/3600 -->
-      <a>0.0002777777777777778</a>
+      <a>3600</a>
       <b>0</b>
     </linscale_x0>
     <!--
