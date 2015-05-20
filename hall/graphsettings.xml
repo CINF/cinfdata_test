@@ -198,8 +198,8 @@
     <folder_name>hall</folder_name>
     <sockets>
       <socket0>rasppi02:8000</socket0> <!-- Cooling water pressure -->
-      <socket1>rasppi45:8000</socket1> <!-- N5 Argon pressure -->
-      <socket2>rasppi23:8000</socket2> <!-- Cooling water temperature -->
+      <socket1>rasppi01:8000</socket1> <!-- N5 Argon pressure -->
+      <socket2>rasppi61:8000</socket2> <!-- Cooling water temperature -->
     </sockets>
     <mandatory_export_fields>
       <field0>
