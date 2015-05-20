@@ -283,15 +283,16 @@
 	<x_window>7200</x_window> <!-- x axis interval, seconds -->
 	<width>550</width>
 	<height>400</height>
+	<axislabelwidth>150</axislabelwidth>
 	<!-- General plot options -->
-	<bgcolor>#CCCCCC</bgcolor> <!-- optional color, default #FFFFFF -->
+	<bgcolor>#DDDDDD</bgcolor> <!-- optional color, default #FFFFFF -->
 	<!-- optional html padding string, remember to subtract the padding
 	     in the size -->
 	<padding>0px 0px 0px 0px</padding>
 	<!-- title and labels -->
-	<title>Main Chamber [mbar]</title> <!-- optional (escaped) html-->
+	<title>Flow [L/min]</title> <!-- optional (escaped) html-->
 	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
-	<!-- <ylabel>Temperature [&amp;deg;C]</ylabel> --><!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
 	<!-- Plot drawing fine tuning -->
 	<draw_points>true</draw_points> <!-- optional bool, default true -->
 	<point_size>2</point_size> <!-- optional int, default 2 -->
@@ -300,15 +301,30 @@
 	<format>.1e</format>
 	<figure>
 	  <plot0>
-            <socket>0</socket> 
+            <socket>3</socket>
             <color>#0000FF</color>
-            <id>volvo_pressure</id>
-            <label>Pressure / mbar</label>
-	    <old_data_query>select unix_timestamp(time), value from dateplots_volvo where type=(SELECT id FROM dateplots_descriptions where codename="volvo_pressure") and unix_timestamp(time) > {from}</old_data_query>
+            <id>thetaprobe_chiller_temperature</id>
+            <label>Thetaprobe Temperature</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
+
+	  <plot1>
+            <socket>1</socket>
+            <color>#0000FF</color>
+            <id>xrd_chiller_temperature</id>
+            <label>XRD Temperature</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_xrd where type=(SELECT id FROM dateplots_descriptions where codename="xrd_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+	  <plot2>
+            <socket>2</socket>
+            <color>#0000FF</color>
+            <id>sputterchamber_chiller_temperature</id>
+            <label>Sputterchamber Temperature</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot2>
 	</figure>
       </container0>
-      
+
       <container1>
 	<type>figure</type>
 	<update_interval>2.5</update_interval> <!-- seconds -->
@@ -333,12 +349,27 @@
 	<format>.1e</format>
 	<figure>
 	  <plot0>
-            <socket>0</socket>
+            <socket>3</socket>
             <color>#0000FF</color>
-            <id>volvo_temperature</id>
-            <label>Temperature</label>
-	    <old_data_query>select unix_timestamp(time), value from dateplots_volvo where type=(SELECT id FROM dateplots_descriptions where codename="volvo_temperature") and unix_timestamp(time) > {from}</old_data_query>
+            <id>thetaprobe_chiller_temperature</id>
+            <label>Thetaprobe Temperature</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
+
+	  <plot1>
+            <socket>1</socket>
+            <color>#0000FF</color>
+            <id>xrd_chiller_temperature</id>
+            <label>XRD Temperature</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_xrd where type=(SELECT id FROM dateplots_descriptions where codename="xrd_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+	  <plot2>
+            <socket>2</socket>
+            <color>#0000FF</color>
+            <id>sputterchamber_chiller_temperature</id>
+            <label>Sputterchamber Temperature</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot2>
 	</figure>
       </container1>
 
@@ -417,9 +448,10 @@
       <label_fontsize>16</label_fontsize>
     </matplotlib_settings>
     <sockets>
-      <socket0>rasppi04:8000</socket0> <!-- Temperature and pressure -->
+      <socket0>rasppi04:8000</socket0> <!-- Temperature and pressure, volvo --> <!--Reserved for PS -->
       <socket1>rasppi60:8000</socket1> <!-- XRD -->
       <socket2>rasppi21:8000</socket2> <!-- Sputter Chamber -->
+      <socket3>rasppi57:8000</socket3> <!-- Theta Probe -->
     </sockets>
 
   </global_settings>
