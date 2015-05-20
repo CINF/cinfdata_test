@@ -111,34 +111,38 @@ function weed($str){
  *  @return string
  */
 
-function html_header($root="../", $title="Data viewer", $includehead="", $charset="UTF-8", $width=null){
+function html_header($root="../", $title="Data viewer", $includehead="", $charset="UTF-8", $width=null, $html5=false){
   if ($width != null){
     $width = " style=\"width:{$width}px\" ";
   } else {
     $width = " style=\"max-width:75%\" ";
   }
   if(is_it_christmas()){
-    $header = html_header_x($root, $title, $includehead, $charset, $width);
+    $header = html_header_x($root, $title, $includehead, $charset, $width, $html5);
   } else {
-    $header = html_header_normal($root, $title, $includehead, $charset, $width);
+    $header = html_header_normal($root, $title, $includehead, $charset, $width, $html5);
   }
   return $header;
 }
 
-function html_footer(){
+function html_footer($root="../", $valid_html5=false){
   if(is_it_christmas()){
-    $footer = html_footer_x();
+    $footer = html_footer_x($root, $valid_html5);
   } else {
-    $footer = html_footer_normal();
+    $footer = html_footer_normal($root, $valid_html5);
   }
   return $footer;
 }
 
 
-function html_header_normal($root, $title, $includehead, $charset, $width){
+function html_header_normal($root, $title, $includehead, $charset, $width, $html5){
 
   $header = "";
-  $header = $header . "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n";
+  if ($html5){
+    $header = $header . "<!DOCTYPE html>\n";
+  } else {
+    $header = $header . "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n";
+  }
   $header = $header . "<html>\n";
   $header = $header . "  <head>\n";
   $header = $header . "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset={$charset}\">\n";
@@ -187,13 +191,24 @@ function header_v2(){
   return($header);
 }
 
-function html_footer_normal(){
+function html_footer_normal($root, $valid_html5){
   $footer = "";
   $footer = $footer . "      </div>\n";
-  $footer = $footer . "      <div class=\"copyright\" style=\"clear:both\">...</div>\n";
+  if ($valid_html5){
+    $footer = $footer . "      <div class=\"copyright\" style=\"clear:both\">\n";
+    $footer = $footer . "        <div style=\"float:left;width:100px\">&nbsp;</div>\n";
+    $footer = $footer . "        <div style=\"float:right;width:100px\"><img src=\"{$root}images/badge-w3c-valid-html5_h30.png\" height=\"20\" style=\"padding:5px\" alt=\"Valid HTML5\" title=\"Valid HTML5\"></div>\n";
+    $footer = $footer . "        <div style=\"margin:0 auto;width:100px\">...</div>\n";
+    $footer = $footer . "      </div>\n";
+  } else {
+    $footer = $footer . "      <div class=\"copyright\" style=\"clear:both\">...</div>\n";
+  }
   $footer = $footer . "    </div>\n";
   $footer = $footer . "  </body>\n";
   $footer = $footer . "</html>\n";
+
+#
+
   return($footer);
 }
 
@@ -219,7 +234,7 @@ function html_code_header($file){
     return($header);
 }
 
-function html_header_x($root, $title, $includehead, $charset, $width){
+function html_header_x($root, $title, $includehead, $charset, $width, $html5){
   $files = Array();
   if ($handle = opendir("{$root}images/xmas-shift")) {
     while (false !== ($entry = readdir($handle))) {
@@ -270,7 +285,7 @@ function html_header_x($root, $title, $includehead, $charset, $width){
 }
 
 
-function html_footer_x(){
+function html_footer_x($root, $valid_html5){
   $footer = "";
   $footer = $footer . "      </div>\n";
   $footer = $footer . "      <div class=\"copyright_decorations\" style=\"clear:both\"></div>\n";
