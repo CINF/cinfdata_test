@@ -38,6 +38,9 @@ class Normalizer(object):
         self.left = None
         self.right = None
 
+        # Save global graph settings
+        self.ggs = ggs
+
     def run(self, left, right):
         """Normalizes each of the data sets on the left y-axis"""
         self.left = left
@@ -142,10 +145,9 @@ class Normalizer(object):
             # NOTE. For measurement types where there are more than one query,
             # this will need to be replaced with code that picks the correct
             # query, see the databasebackend for an example of this algorithm
-            query = 'select x / 1000, y from {0} '\
-                'where measurement = %s order by id'
-            query = query.format(dat['lgs']['xyvalues_table'])
-            self.cursor.execute(query, (id_))
+            query = self.ggs['queries']['default']
+            query = query.format(id=id_)
+            self.cursor.execute(query)
             data = numpy.array(self.cursor.fetchall())
 
         # If there is too little data
