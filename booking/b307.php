@@ -27,7 +27,7 @@ echo(html_header());
     </ul>
 </div>
 
-<iframe id="muffle-funace" src="https://www.google.com/calendar/embed?src=m5i0cdcnke6blohn61b52vd5gs%40group.calendar.google.com&ctz=Europe/Copenhagen" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+<iframe id="muffle-furnace" src="https://www.google.com/calendar/embed?src=3mls7s9aln7irh3ah4rqkn79so%40group.calendar.google.com&ctz=Europe/Copenhagen" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 <iframe id="tube-furnace" src="https://www.google.com/calendar/embed?src=m5i0cdcnke6blohn61b52vd5gs%40group.calendar.google.com&ctz=Europe/Copenhagen" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 <iframe id="RDE1-FH1-left" src="https://www.google.com/calendar/embed?src=s2nlolppnqactrfdahvuflepis%40group.calendar.google.com&ctz=Europe/Copenhagen" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 <iframe id="RDE2-FH1-middle" src="https://www.google.com/calendar/embed?src=3t8h842m1956i8hb4or9pc5m58%40group.calendar.google.com&ctz=Europe/Copenhagen" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
