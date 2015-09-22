@@ -297,6 +297,10 @@
       <title>Building 307</title>
       <ref>booking/b307.php</ref>
     </link>
+    <link>
+      <title>Building 312</title>
+      <ref>booking/b312.php</ref>
+    </link>
   </setup>
 
   <!--TOF-->
@@ -477,6 +481,10 @@
     <link>
       <title>Host checker</title>
       <ref>https://cinfdata.fysik.dtu.dk/cinf_common/host_checker.php</ref>
+    </link>
+    <link>
+      <title>Dateplots Descriptions</title>
+      <ref>https://cinfdata.fysik.dtu.dk/cinf_common/dateplots_descriptions.php</ref>
     </link>
     <link>
       <title>Email alarms</title>
@@ -752,6 +760,11 @@
       <title>Chamber Pressure</title>
       <ref>pvd_309/dateplot.php?type=multidateplot&amp;left_plotlist[]=1</ref>
     </link>
+    <link>
+      <title>Live Values</title>
+      <ref>pvd_309/live.php?type=live_values</ref>
+    </link>
+
   </setup>
 
   <!--Chemlab 312-->
