@@ -9,7 +9,6 @@ echo(html_header());
   <b>You have to be looged into the Google account that you use to make reservations with, to see the content of the calendars</b>
   <ul>
     <li><a href="#thetaprobe">Thetaprobe</a></li>
-    <li><a href="#xrd">XRD</a></li>
   </ul>
 </div>
 
@@ -22,8 +21,6 @@ echo(html_header());
 </div>
 
 <iframe id="thetaprobe" src="https://www.google.com/calendar/embed?src=dmq8ag678l31f0dec0r1s29rmk%40group.calendar.google.com&ctz=Europe/Copenhagen" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-
-<iframe id="xrd" src="https://www.google.com/calendar/embed?src=871mk5tfg0qg9c9h4l1t7sc084%40group.calendar.google.com&ctz=Europe/Copenhagen" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 
 <?php
 include("../common_functions_v2.php");
