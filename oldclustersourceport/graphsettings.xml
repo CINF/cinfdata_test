@@ -1,0 +1,183 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+
+  <graph type='backing_pressures'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple pressures</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <!-- Pressure Oldclustersource Rough Aggregationzone -->
+    <dateplot1>
+      <title>Pressure Rough Aggregationzone</title>
+      <legend>p rough aggregation zone</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_oldclustersource_rough_aggregationzone where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>1</color>
+    </dateplot1>
+    <!-- Pressure Oldclustersource Rough Quadropole -->
+    <dateplot2>
+      <title>Pressure Oldclustersource Rough Quadropole</title>
+      <legend>p oldclustersource rough quadropole</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_oldclustersource_rough_quadropole where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>2</color>
+    </dateplot2>
+    <!-- Pressure Oldclustersource Rough Loadlock -->
+    <dateplot3>
+      <title>Pressure Oldclustersource Rough Loadlock</title>
+      <legend>p oldclustersource rough loadlock</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_oldclustersource_rough_loadlock where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>3</color>
+    </dateplot3>
+  </graph>
+
+  <!-- Pressure -->
+  <graph type='pressure'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple pressures</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <!-- Main Pressure -->
+    <dateplot1>
+      <title>Pressure</title>
+      <legend>pressure</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_oldclustersource where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>1</color>
+    </dateplot1>
+  </graph>
+
+  <!-- Cluster Deposition -->
+  <graph type="clusterdeposition">
+    <default_xscale>lin</default_xscale>
+    <type>10</type>
+    <grouping_column>time</grouping_column>
+    <label_column>mass_label</label_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <gas_analysis>true</gas_analysis>
+    <dygraph_settings>
+      <series_highlight>true</series_highlight>
+      <labels_side>true</labels_side>
+      <labels_newline>true</labels_newline>
+    </dygraph_settings>
+    <queries>
+      <default>SELECT x,y  FROM xy_values_oldclustersource where measurement = {id} order by id</default>
+    </queries>
+    <xlabel>Mass / amu</xlabel>
+    <ylabel>
+      <default>SEM current / A</default>
+    </ylabel>
+    <legend>
+      <default>{id}</default>
+    </legend>
+    <title>Mass Spectrum</title>
+    <parameters>
+      <param0>
+	<field>sem_voltage</field>
+	<name>SEM Voltage / V</name>
+      </param0>
+      <param1>
+	<field>preamp_range</field>
+	<name>Range</name>
+      </param1>
+    </parameters>
+  </graph>
+
+  <!-- Temperatures -->
+  <graph type='temperatures'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Turbo temperatures</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <!-- Main Pressure -->
+    <dateplot1>
+      <title>Temperature Manifold Inlet</title>
+      <legend>temp. manifold inlet</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_oldclustersource_manifold_inlet where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>Temperature Manifold Outlet</title>
+      <legend>temp. manifold outlet</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_oldclustersource_manifold_outlet where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <dateplot3>
+      <title>Temperature Magnetron Inlet</title>
+      <legend>temp. magnetron inlet</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_oldclustersource_magnetron_inlet where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>Temperature Magnetron Outlet</title>
+      <legend>temp. magnetron outlet</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_oldclustersource_magnetron_outlet where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <dateplot5>
+      <title>Temperature Atmosphere</title>
+      <legend>temp. atmosphere</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_oldclustersource where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>5</color>
+    </dateplot5>
+  </graph>
+
+  <global_settings> 
+    <measurements_table>measurements_oldclustersource</measurements_table>
+    <xyvalues_table>xy_values_oldclustersource</xyvalues_table>
+    <sql_username>oldclustersource</sql_username>
+    <label_column>mass_label</label_column>
+    <image_format>png</image_format>
+    <folder_name>oldclustersourceport</folder_name>
+    <mandatory_export_fields>
+      <field0>
+	<field>id</field>
+	<name>Id</name>
+      </field0>
+      <field1>
+	<field>type</field>
+	<name>Type</name>
+      </field1>
+      <field2>
+	<field>time</field>
+	<name>Recorded at</name>
+      </field2>
+      <field3>
+	<field>comment</field>
+	<name>Comment</name>
+      </field3>
+    </mandatory_export_fields>
+  </global_settings>
+</graphs>
+    
