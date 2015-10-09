@@ -66,7 +66,12 @@ for ($i=0;$i<sizeof($output)-2;$i++){
   echo("<td>" . $row[7] . "</td>");
   echo("<td>" . $row[8] . "</td>");
   echo("<td>" . $row[10] . "</td>");
+  if (strpos($row[9], '(') == True){
+    echo("<td>" . substr($row[9],0, strpos($row[9], '(')) . "</td>");
+    }
+    else{
   echo("<td>" . $row[9] . "</td>");
+    }
   echo("</tr>\n");
 }
 echo("</tbody></table>");
