@@ -2,12 +2,17 @@
 <graphs>
   <!-- TEMPERATURE -->
   <graph type='temperature'>
+    <matplotlib_settings>
+      <width>1400</width>
+      <height>800</height>
+    </matplotlib_settings>
+
     <right_legend_suffix> (r)</right_legend_suffix>
     <default_xscale>dat</default_xscale>
     <title>Status for experimental hall</title>
     <ylabel>Temperature / C</ylabel>
     <dateplot1>
-      <query>SELECT unix_timestamp(time), temperature FROM temperature_hall where temperature between -1 and 1300 and time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_hall where type = 166 and value between -1 and 1300 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
       <title>Temperature in the experimental hall</title>
       <legend>T. hall</legend>
@@ -41,6 +46,13 @@
       <legend>Temperature</legend>
       <color>5</color>
     </dateplot5>
+    <dateplot7>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_hall where type = 167 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / Pa</ylabel>
+      <title>Ventilation pressure</title>
+      <legend>P. ventilation</legend>
+      <color>7</color>
+    </dateplot7>
   </graph>
 
   <graph type="live_values">
@@ -54,8 +66,8 @@
 	<title>Cooling Water Pressure [bar]</title>
 	<update_interval>1.9</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
-	<width>625</width>
-	<height>400</height>
+	<width>400</width>
+	<height>350</height>
 	<jump_ahead>0.3</jump_ahead>
 	<x_window>86400</x_window>
 	<!-- Experimental, to fix bad y-range selection with log plot and
@@ -84,8 +96,8 @@
 	<title>N5 Argon Pressure [bar]</title>
 	<update_interval>1.9</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
-	<width>625</width>
-	<height>400</height>
+	<width>400</width>
+	<height>350</height>
 	<jump_ahead>0.3</jump_ahead>
 	<x_window>86400</x_window>
 	<!-- Experimental, to fix bad y-range selection with log plot and
@@ -112,8 +124,8 @@
 	<title>Cooling Water Temperatures [&amp;deg;C]</title>
 	<update_interval>1.9</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
-	<width>625</width>
-	<height>400</height>
+	<width>400</width>
+	<height>350</height>
 	<jump_ahead>0.3</jump_ahead>
 	<x_window>86400</x_window>
 	<!-- Experimental, to fix bad y-range selection with log plot and
@@ -143,11 +155,64 @@
       </container2>
 
       <container3>
+	<type>figure</type>
+	<title>Hall Temperature [&amp;deg;C]</title>
+	<update_interval>1.9</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>400</width>
+	<height>350</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>86400</x_window>
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<!-- <yrangepad>10</yrangepad> -->
+	<line_width>3</line_width>
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+	    <socket>3</socket>
+	    <id>hall_temperature</id>
+	    <label>Hall Temperature</label>
+	    <color>#FF0000</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where value > -100 and type=(SELECT id FROM dateplots_descriptions where codename="hall_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container3>
+
+      <container4>
+	<type>figure</type>
+	<title>Ventilation Pressure [Pa]</title>
+	<update_interval>1.9</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>400</width>
+	<height>350</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>86400</x_window>
+	<line_width>3</line_width>
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+	    <socket>3</socket>
+	    <id>hall_ventilation_pressure</id>
+	    <label>Ventilation Pressure</label>
+	    <color>#009999</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="hall_ventilation_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container4>
+
+      <container5>
 	<type>data</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
-	<width>610</width>
+	<width>450</width>
 	<height>200</height>
-	<fontsize>24</fontsize>
+	<fontsize>17</fontsize>
 	<!-- optional html padding string, remember to subtract the padding in
 	     the size top, right, bottom, top, right, bottom, left-->
 	<padding>40px 0px 0px 0px</padding>
@@ -155,7 +220,7 @@
 	  <item0>
 	    <socket>0</socket>
 	    <id>hall_coolingwater_pressure</id>
-	    <label>Cooling water pressure</label>
+	    <label>CW pressure</label>
 	    <color>#990099</color>
 	    <format>.2f</format>
 	    <unit>bar</unit>
@@ -165,13 +230,13 @@
 	    <id>n5_argon_pressure</id>
 	    <label>N5 Argon pressure</label>
 	    <color>#009900</color>
-	    <format>.2f</format>
+	    <format>.1f</format>
 	    <unit>bar</unit>
 	  </item1>
 	  <item2>
 	    <socket>2</socket>
 	    <id>cooling_water_hot</id>
-	    <label>Cooling water temp. hot</label>
+	    <label>CW hot</label>
 	    <color>#FF0000</color>
 	    <format>.2f</format>
 	    <unit>&amp;amp;deg;C</unit>
@@ -179,15 +244,391 @@
 	  <item3>
 	    <socket>2</socket>
 	    <id>cooling_water_cold</id>
-	    <label>Cooling water temp. cold</label>
+	    <label>CW cold</label>
 	    <color>#0000FF</color>
 	    <format>.2f</format>
 	    <unit>&amp;amp;deg;C</unit>
 	  </item3>
+	  <item4>
+	    <socket>3</socket>
+	    <id>hall_temperature</id>
+	    <label>Hall temperature</label>
+	    <color>#0000FF</color>
+	    <format>.2f</format>
+	    <unit>&amp;amp;deg;C</unit>
+	  </item4>
+	  <item5>
+	    <socket>3</socket>
+	    <id>hall_ventilation_pressure</id>
+	    <label>Ventilation pressure</label>
+	    <color>#009999</color>
+	    <format>.1f</format>
+	    <unit>Pa</unit>
+	  </item5>
 	</data>
-      </container3>
+      </container5>
     </containers>
   </graph>
+
+  <graph type="live_values_fm">
+    <page_width>1450</page_width>
+    <page_title>Hall Live Plots</page_title> <!-- option page title -->
+    <containers>
+
+      <!-- Container 1, contains the second plot -->
+      <container0>
+	<type>figure</type>
+	<title>Cooling Water Pressure [bar]</title>
+	<update_interval>1.9</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>480</width>
+	<height>200</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>86400</x_window>
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<!-- <yrangepad>10</yrangepad> -->
+	<line_width>3</line_width>
+	<!-- reduce the amount of points that gets plotted -->
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+	    <socket>0</socket>
+	    <id>hall_coolingwater_pressure</id>
+	    <label>Cooling Water Pressure [bar]</label>
+	    <color>#990099</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="hall_coolingwater_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container0>
+
+      <!-- Container 1, contains the second plot -->
+      <container1>
+	<type>figure</type>
+	<title>N5 Argon, Hall Temperature</title>
+	<update_interval>1.9</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>480</width>
+	<height>200</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>86400</x_window>
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<!-- <yrangepad>10</yrangepad> -->
+	<line_width>3</line_width>
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+	    <socket>1</socket>
+	    <id>n5_argon_pressure</id>
+	    <label>N5 Argon Pressure [bar]</label>
+	    <color>#009900</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="n5_argon_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	  <plot1>
+	    <socket>3</socket>
+	    <id>hall_temperature</id>
+	    <label>Hall Temperature</label>
+	    <color>#FF0000</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where value > -100 and type=(SELECT id FROM dateplots_descriptions where codename="hall_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>	  
+	</figure>
+      </container1>
+
+      <container2>
+	<type>figure</type>
+	<title>Cooling Water Temperatures [&amp;deg;C]</title>
+	<update_interval>1.9</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>480</width>
+	<height>200</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>86400</x_window>
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<!-- <yrangepad>10</yrangepad> -->
+	<line_width>3</line_width>
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+	    <socket>2</socket>
+	    <id>cooling_water_hot</id>
+	    <label>Cooling water temp. hot</label>
+	    <color>#FF0000</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="cooling_water_hot") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	  <plot1>
+	    <socket>2</socket>
+	    <id>cooling_water_cold</id>
+	    <label>Cooling water temp. cold</label>
+	    <color>#0000FF</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="cooling_water_cold") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+	</figure>
+      </container2>
+
+      <container3>
+	<type>figure</type>
+	<update_interval>2.5</update_interval> <!-- seconds -->
+	<x_window>86400</x_window> <!-- x axis interval, seconds -->
+	<width>480</width>
+	<height>200</height>
+	<axislabelwidth>100</axislabelwidth>
+	<!-- General plot options -->
+	<bgcolor>#ffffff</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Chiller Temperature [C]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<format>.1f</format>
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.2</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+            <socket>7</socket>
+            <color>#0000FF</color>
+            <id>thetaprobe_chiller_temperature</id>
+            <label>Thetaprobe Temperature</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	  <plot1>
+            <socket>5</socket>
+            <color>#00FF00</color>
+            <id>xrd_chiller_temperature</id>
+            <label>XRD Temperature</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_xrd where type=(SELECT id FROM dateplots_descriptions where codename="xrd_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+	  <plot2>
+            <socket>6</socket>
+            <color>#FF0000</color>
+            <id>sputterchamber_chiller_temperature</id>
+            <label>Sputterchamber Temperature</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot2>
+	  <plot3>
+            <socket>4</socket>
+            <color>#990099</color>
+            <id>ps_chiller_temperature</id>
+            <label>PS Temperature</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_ps where type=(SELECT id FROM dateplots_descriptions where codename="ps_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot3>
+	</figure>
+      </container3>
+
+      <container4>
+	<type>figure</type>
+	<update_interval>2.5</update_interval> <!-- seconds -->
+	<x_window>86400</x_window> <!-- x axis interval, seconds -->
+	<width>480</width>
+	<height>200</height>
+	<axislabelwidth>150</axislabelwidth>
+	<!-- General plot options -->
+	<bgcolor>#ffffff</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Chiller Pressure [Bar]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<format>.1f</format>
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+            <socket>7</socket>
+            <color>#0000FF</color>
+            <id>thetaprobe_chiller_pressure</id>
+            <label>Thetaprobe Pressure</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_chiller_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	  <plot1>
+            <socket>5</socket>
+            <color>#00FF00</color>
+            <id>xrd_chiller_pressure</id>
+            <label>XRD Pressure</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_xrd where type=(SELECT id FROM dateplots_descriptions where codename="xrd_chiller_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+	  <plot2>
+            <socket>6</socket>
+            <color>#FF0000</color>
+            <id>sputterchamber_chiller_pressure</id>
+            <label>Sputterchamber Pressure</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot2>
+	  <plot3>
+            <socket>4</socket>
+            <color>#990099</color>
+            <id>ps_chiller_pressure</id>
+            <label>PS Pressure</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_ps where type=(SELECT id FROM dateplots_descriptions where codename="ps_chiller_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot3>
+	</figure>
+      </container4>
+
+      <container5>
+	<type>figure</type>
+	<title>Ventilation Pressure [Pa]</title>
+	<update_interval>1.9</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>480</width>
+	<height>200</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>86400</x_window>
+	<line_width>3</line_width>
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+	    <socket>3</socket>
+	    <id>hall_ventilation_pressure</id>
+	    <label>Ventilation Pressure</label>
+	    <color>#009999</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="hall_ventilation_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container5>
+
+      <container6>
+	<type>figure</type>
+	<update_interval>1.2</update_interval> <!-- seconds -->
+	<x_window>86400</x_window> <!-- x axis interval, seconds -->
+	<width>450</width>
+	<height>200</height>
+	<!-- General plot options -->
+	<!--<bgcolor>#CCCCCC</bgcolor>--> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>kVA [kW]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!-- <ylabel>Temperature [&amp;deg;C]</ylabel> --><!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.2</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+            <socket>8</socket> 
+            <color>#000000</color>
+            <id>b312_ups_kVAPh1</id>
+            <label>kVA / Ph1</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_ups_b312 where type=(SELECT id FROM dateplots_descriptions where codename="b312_ups_kVAPh1") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	  <plot1>
+            <socket>8</socket> 
+            <color>#0000FF</color>
+            <id>b312_ups_kVAPh2</id>
+            <label>kVA / Ph2</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_ups_b312 where type=(SELECT id FROM dateplots_descriptions where codename="b312_ups_kVAPh2") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+	  <plot2>
+            <socket>8</socket> 
+            <color>#FF0000</color>
+            <id>b312_ups_kVAPh3</id>
+            <label>kVA / Ph3</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_ups_b312 where type=(SELECT id FROM dateplots_descriptions where codename="b312_ups_kVAPh3") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot2>
+	</figure>
+      </container6>
+
+      <container7>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>450</width>
+	<height>200</height>
+	<fontsize>17</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size top, right, bottom, top, right, bottom, left-->
+	<padding>40px 0px 0px 0px</padding>
+	<data>
+	  <item0>
+	    <socket>0</socket>
+	    <id>hall_coolingwater_pressure</id>
+	    <label>CW pressure</label>
+	    <color>#990099</color>
+	    <format>.2f</format>
+	    <unit>bar</unit>
+	  </item0>
+	  <item1>
+	    <socket>1</socket>
+	    <id>n5_argon_pressure</id>
+	    <label>N5 Argon pressure</label>
+	    <color>#009900</color>
+	    <format>.1f</format>
+	    <unit>bar</unit>
+	  </item1>
+	  <item2>
+	    <socket>2</socket>
+	    <id>cooling_water_hot</id>
+	    <label>CW hot</label>
+	    <color>#FF0000</color>
+	    <format>.2f</format>
+	    <unit>&amp;amp;deg;C</unit>
+	  </item2>
+	  <item3>
+	    <socket>2</socket>
+	    <id>cooling_water_cold</id>
+	    <label>CW cold</label>
+	    <color>#0000FF</color>
+	    <format>.2f</format>
+	    <unit>&amp;amp;deg;C</unit>
+	  </item3>
+	  <item4>
+	    <socket>3</socket>
+	    <id>hall_temperature</id>
+	    <label>Hall temperature</label>
+	    <color>#0000FF</color>
+	    <format>.2f</format>
+	    <unit>&amp;amp;deg;C</unit>
+	  </item4>
+	  <item5>
+	    <socket>3</socket>
+	    <id>hall_ventilation_pressure</id>
+	    <label>Ventilation pressure</label>
+	    <color>#009999</color>
+	    <format>.1f</format>
+	    <unit>Pa</unit>
+	  </item5>
+	</data>
+      </container7>
+    </containers>
+  </graph>
+
   
   <global_settings>
     <measurements_table>None</measurements_table>
@@ -200,6 +641,13 @@
       <socket0>rasppi02:8000</socket0> <!-- Cooling water pressure -->
       <socket1>rasppi01:8000</socket1> <!-- N5 Argon pressure -->
       <socket2>rasppi61:8000</socket2> <!-- Cooling water temperature -->
+      <socket3>rasppi66:8000</socket3> <!-- Ventilation and hall temperature -->
+      <socket4>rasppi20:8000</socket4> <!--PS -->
+      <socket5>rasppi60:8000</socket5> <!-- XRD -->
+      <socket6>rasppi21:8000</socket6> <!-- Sputter Chamber -->
+      <socket7>rasppi57:8000</socket7> <!-- Theta Probe -->
+      <socket8>rasppi14:8000</socket8> <!-- UPS -->
+
     </sockets>
     <mandatory_export_fields>
       <field0>

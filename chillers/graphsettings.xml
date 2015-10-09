@@ -275,13 +275,67 @@
 
   <graph type="live_values">
     <page_width>1280</page_width>
-    <page_title>Volvo</page_title>
+    <page_title>Chiller Status</page_title>
     <containers> 
       <container0>
 	<type>figure</type>
 	<update_interval>2.5</update_interval> <!-- seconds -->
-	<x_window>7200</x_window> <!-- x axis interval, seconds -->
-	<width>550</width>
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>440</width>
+	<height>400</height>
+	<axislabelwidth>150</axislabelwidth>
+	<!-- General plot options -->
+	<bgcolor>#DDDDDD</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Water Temperature [C]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<format>.1f</format>
+	<figure>
+	  <plot0>
+            <socket>3</socket>
+            <color>#0000FF</color>
+            <id>thetaprobe_chiller_temperature</id>
+            <label>Thetaprobe Temperature</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	  <plot1>
+            <socket>1</socket>
+            <color>#00FF00</color>
+            <id>xrd_chiller_temperature</id>
+            <label>XRD Temperature</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_xrd where type=(SELECT id FROM dateplots_descriptions where codename="xrd_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+	  <plot2>
+            <socket>2</socket>
+            <color>#FF0000</color>
+            <id>sputterchamber_chiller_temperature</id>
+            <label>Sputterchamber Temperature</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot2>
+	  <plot3>
+            <socket>0</socket>
+            <color>#990099</color>
+            <id>ps_chiller_temperature</id>
+            <label>PS Temperature</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_ps where type=(SELECT id FROM dateplots_descriptions where codename="ps_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot3>
+	</figure>
+      </container0>
+
+      <container1>
+	<type>figure</type>
+	<update_interval>2.5</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>440</width>
 	<height>400</height>
 	<axislabelwidth>150</axislabelwidth>
 	<!-- General plot options -->
@@ -297,39 +351,122 @@
 	<draw_points>true</draw_points> <!-- optional bool, default true -->
 	<point_size>2</point_size> <!-- optional int, default 2 -->
 	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
-	<logscale>true</logscale> <!-- optional bool, default false -->
-	<format>.1e</format>
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<format>.1f</format>
 	<figure>
 	  <plot0>
             <socket>3</socket>
             <color>#0000FF</color>
-            <id>thetaprobe_chiller_temperature</id>
-            <label>Thetaprobe Temperature</label>
-	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+            <id>thetaprobe_chiller_flow</id>
+            <label>Thetaprobe Flow</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_chiller_flow") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
-
 	  <plot1>
             <socket>1</socket>
-            <color>#0000FF</color>
-            <id>xrd_chiller_temperature</id>
-            <label>XRD Temperature</label>
-	    <old_data_query>select unix_timestamp(time), value from dateplots_xrd where type=(SELECT id FROM dateplots_descriptions where codename="xrd_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+            <color>#00FF00</color>
+            <id>xrd_chiller_flow</id>
+            <label>XRD Flow</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_xrd where type=(SELECT id FROM dateplots_descriptions where codename="xrd_chiller_flow") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot1>
 	  <plot2>
             <socket>2</socket>
-            <color>#0000FF</color>
-            <id>sputterchamber_chiller_temperature</id>
-            <label>Sputterchamber Temperature</label>
-	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+            <color>#FF0000</color>
+            <id>sputterchamber_chiller_flow</id>
+            <label>Sputterchamber Flow</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_flow") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot2>
+	  <plot3>
+            <socket>0</socket>
+            <color>#990099</color>
+            <id>ps_chiller_flow</id>
+            <label>PS Flow</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_ps where type=(SELECT id FROM dateplots_descriptions where codename="ps_chiller_flow") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot3>
 	</figure>
-      </container0>
+      </container1>
 
-      <container1>
+      <container2>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>400</width>
+	<height>400</height>
+	<fontsize>16</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size top, right, bottom, top, right, bottom, left-->
+	<padding>0px 0px 0px 0px</padding>
+	<data>
+	  <item0>
+	    <socket>3</socket>
+	    <id>thetaprobe_chiller_temperature</id>
+	    <label>θ-probe Temp.</label>
+	    <color>#0000FF</color>
+	    <format>.2f</format>
+	    <unit>C</unit>
+	  </item0>
+	  <item1>
+	    <socket>1</socket>
+	    <id>xrd_chiller_temperature</id>
+	    <label>XRD Temp.</label>
+	    <color>#00FF00</color>
+	    <format>.2f</format>
+	    <unit>C</unit>
+	  </item1>
+	  <item2>
+	    <socket>2</socket>
+	    <id>sputterchamber_chiller_temperature</id>
+	    <label>SC Temp.</label>
+	    <color>#FF0000</color>
+	    <format>.2f</format>
+	    <unit>C</unit>
+	  </item2>
+	  <item3>
+	    <socket>0</socket>
+	    <id>ps_chiller_temperature</id>
+	    <label>PS Temp.</label>
+	    <color>#990099</color>
+	    <format>.2f</format>
+	    <unit>C</unit>
+	  </item3>
+	  <item4>
+	    <socket>3</socket>
+	    <id>thetaprobe_chiller_flow</id>
+	    <label>θ-probe Flow</label>
+	    <color>#0000FF</color>
+	    <format>.2f</format>
+	    <unit>L/min</unit>
+	  </item4>
+	  <item5>
+	    <socket>1</socket>
+	    <id>xrd_chiller_flow</id>
+	    <label>XRD Flow</label>
+	    <color>#00FF00</color>
+	    <format>.2f</format>
+	    <unit>L/min</unit>
+	  </item5>
+	  <item6>
+	    <socket>2</socket>
+	    <id>sputterchamber_chiller_flow</id>
+	    <label>SC Flow</label>
+	    <color>#FF0000</color>
+	    <format>.2f</format>
+	    <unit>L/min</unit>
+	  </item6>
+	  <item7>
+	    <socket>0</socket>
+	    <id>ps_chiller_flow</id>
+	    <label>PS Flow</label>
+	    <color>#990099</color>
+	    <format>.2f</format>
+	    <unit>L/min</unit>
+	  </item7>
+	</data>
+      </container2>
+
+      <container3>
 	<type>figure</type>
 	<update_interval>2.5</update_interval> <!-- seconds -->
-	<x_window>7200</x_window> <!-- x axis interval, seconds -->
-	<width>550</width>
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>440</width>
 	<height>400</height>
 	<axislabelwidth>150</axislabelwidth>
 	<!-- General plot options -->
@@ -338,77 +475,178 @@
 	     in the size -->
 	<padding>0px 0px 0px 0px</padding>
 	<!-- title and labels -->
-	<title>Temperature [C]</title> <!-- optional (escaped) html-->
+	<title>Pressure [Bar]</title> <!-- optional (escaped) html-->
 	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
 	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
 	<!-- Plot drawing fine tuning -->
 	<draw_points>true</draw_points> <!-- optional bool, default true -->
 	<point_size>2</point_size> <!-- optional int, default 2 -->
 	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
-	<logscale>true</logscale> <!-- optional bool, default false -->
-	<format>.1e</format>
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<format>.1f</format>
 	<figure>
 	  <plot0>
             <socket>3</socket>
             <color>#0000FF</color>
-            <id>thetaprobe_chiller_temperature</id>
-            <label>Thetaprobe Temperature</label>
-	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+            <id>thetaprobe_chiller_pressure</id>
+            <label>Thetaprobe Pressure</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_chiller_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
-
 	  <plot1>
             <socket>1</socket>
-            <color>#0000FF</color>
-            <id>xrd_chiller_temperature</id>
-            <label>XRD Temperature</label>
-	    <old_data_query>select unix_timestamp(time), value from dateplots_xrd where type=(SELECT id FROM dateplots_descriptions where codename="xrd_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+            <color>#00FF00</color>
+            <id>xrd_chiller_pressure</id>
+            <label>XRD Pressure</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_xrd where type=(SELECT id FROM dateplots_descriptions where codename="xrd_chiller_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot1>
 	  <plot2>
             <socket>2</socket>
-            <color>#0000FF</color>
-            <id>sputterchamber_chiller_temperature</id>
-            <label>Sputterchamber Temperature</label>
-	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
+            <color>#FF0000</color>
+            <id>sputterchamber_chiller_pressure</id>
+            <label>Sputterchamber Pressure</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot2>
+	  <plot3>
+            <socket>0</socket>
+            <color>#990099</color>
+            <id>ps_chiller_pressure</id>
+            <label>PS Pressure</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_ps where type=(SELECT id FROM dateplots_descriptions where codename="ps_chiller_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot3>
 	</figure>
-      </container1>
+      </container3>
 
-      <container2>
+      <container4>
+	<type>figure</type>
+	<update_interval>2.5</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>440</width>
+	<height>400</height>
+	<axislabelwidth>150</axislabelwidth>
+	<!-- General plot options -->
+	<bgcolor>#DDDDDD</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Ambient Temperature [C]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<format>.1f</format>
+	<figure>
+	  <plot0>
+            <socket>3</socket>
+            <color>#0000FF</color>
+            <id>thetaprobe_chiller_temperature_ambient</id>
+            <label>Thetaprobe Ambient Temperature</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_chiller_temperature_ambient") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	  <plot1>
+            <socket>1</socket>
+            <color>#00FF00</color>
+            <id>xrd_chiller_temperature_ambient</id>
+            <label>XRD temperature_ambient</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_xrd where type=(SELECT id FROM dateplots_descriptions where codename="xrd_chiller_temperature_ambient") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+	  <plot2>
+            <socket>2</socket>
+            <color>#FF0000</color>
+            <id>sputterchamber_chiller_temperature_ambient</id>
+            <label>Sputterchamber temperature_ambient</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_temperature_ambient") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot2>
+	  <plot3>
+            <socket>0</socket>
+            <color>#990099</color>
+            <id>ps_chiller_temperature_ambient</id>
+            <label>PS temperature_ambient</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_ps where type=(SELECT id FROM dateplots_descriptions where codename="ps_chiller_temperature_ambient") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot3>
+	</figure>
+      </container4>
+
+      <container5>
 	<type>data</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
-	<width>1100</width>
-	<height>600</height>
-	<fontsize>44</fontsize>
+	<width>400</width>
+	<height>400</height>
+	<fontsize>16</fontsize>
 	<!-- optional html padding string, remember to subtract the padding in
 	     the size top, right, bottom, top, right, bottom, left-->
-	<padding>40px 0px 0px 0px</padding>
+	<padding>0px 0px 0px 0px</padding>
 	<data>
 	  <item0>
-	    <socket>0</socket>
-	    <id>volvo_pressure</id>
-	    <label>Main chamber</label>
-	    <color>#990099</color>
-	    <format>.2e</format>
-	    <unit>mbar</unit>
+	    <socket>3</socket>
+	    <id>thetaprobe_chiller_pressure</id>
+	    <label>θ-probe Pressure</label>
+	    <color>#0000FF</color>
+	    <format>.1f</format>
+	    <unit>Bar</unit>
 	  </item0>
 	  <item1>
-	    <socket>0</socket>
-	    <id>volvo_temperature</id>
-	    <label>Temperature</label>
-	    <color>#009900</color>
-	    <format>.2f</format>
-	    <unit>C</unit>
+	    <socket>1</socket>
+	    <id>xrd_chiller_pressure</id>
+	    <label>XRD Pressure</label>
+	    <color>#00FF00</color>
+	    <format>.1f</format>
+	    <unit>Bar</unit>
 	  </item1>
 	  <item2>
-	    <socket>1</socket>
-	    <id>xrd_chiller_temperature</id>
-	    <label>XRD Temperature</label>
-	    <color>#009900</color>
-	    <format>.2f</format>
-	    <unit>C</unit>
+	    <socket>2</socket>
+	    <id>sputterchamber_chiller_pressure</id>
+	    <label>SC Pressure</label>
+	    <color>#FF0000</color>
+	    <format>.1f</format>
+	    <unit>Bar</unit>
 	  </item2>
+	  <item3>
+	    <socket>0</socket>
+	    <id>ps_chiller_pressure</id>
+	    <label>PS Pressure</label>
+	    <color>#990099</color>
+	    <format>.1f</format>
+	    <unit>Bar</unit>
+	  </item3>
+	  <item4>
+	    <socket>3</socket>
+	    <id>thetaprobe_chiller_temperature_ambient</id>
+	    <label>θ-probe Ambient</label>
+	    <color>#0000FF</color>
+	    <format>.1f</format>
+	    <unit>C</unit>
+	  </item4>
+	  <item5>
+	    <socket>1</socket>
+	    <id>xrd_chiller_temperature_ambient</id>
+	    <label>XRD Ambint</label>
+	    <color>#00FF00</color>
+	    <format>.1f</format>
+	    <unit>C</unit>
+	  </item5>
+	  <item6>
+	    <socket>2</socket>
+	    <id>sputterchamber_chiller_temperature_ambient</id>
+	    <label>SC Ambient</label>
+	    <color>#FF0000</color>
+	    <format>.1f</format>
+	    <unit>C</unit>
+	  </item6>
+	  <item7>
+	    <socket>0</socket>
+	    <id>ps_chiller_temperature_ambient</id>
+	    <label>PS Ambient</label>
+	    <color>#990099</color>
+	    <format>.1f</format>
+	    <unit>C</unit>
+	  </item7>
 	</data>
-      </container2>
+      </container5>
+
     </containers>
   </graph>
 
@@ -448,7 +686,7 @@
       <label_fontsize>16</label_fontsize>
     </matplotlib_settings>
     <sockets>
-      <socket0>rasppi04:8000</socket0> <!-- Temperature and pressure, volvo --> <!--Reserved for PS -->
+      <socket0>rasppi20:8000</socket0> <!--PS -->
       <socket1>rasppi60:8000</socket1> <!-- XRD -->
       <socket2>rasppi21:8000</socket2> <!-- Sputter Chamber -->
       <socket3>rasppi57:8000</socket3> <!-- Theta Probe -->

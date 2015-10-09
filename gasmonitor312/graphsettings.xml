@@ -392,7 +392,7 @@
 	<!--<bgcolor>#00FF00</bgcolor>-->
 	<width>600</width>
 	<height>364</height>
-	<fontsize>24</fontsize>
+	<fontsize>17</fontsize>
 	<!-- optional html padding string, remember to subtract the padding in
 	     the size -->
 	<padding>36px 0px 0px 0px</padding>
@@ -516,7 +516,7 @@
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>640</width>
 	<height>364</height>
-	<fontsize>24</fontsize>
+	<fontsize>17</fontsize>
 	<!-- optional html padding string, remember to subtract the padding in
 	     the size -->
 	<padding>36px 0px 0px 0px</padding>

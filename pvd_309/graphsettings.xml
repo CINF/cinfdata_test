@@ -1,54 +1,448 @@
 <?xml version='1.0' standalone='yes'?>
 <graphs>
 
+  <!-- MULTI DATEPLOT -->
   <graph type='multidateplot'>
     <default_xscale>dat</default_xscale>
     <xlabel>Date</xlabel>
     <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- Fall back settings -->
     <title>Multiple dateplots</title>
     <ylabel>Mixed</ylabel>
-    <default_time>24</default_time>
     <dygraph_settings>
       <roll_period>1</roll_period>
-      <labels_side>true</labels_side>
     </dygraph_settings>
 
-    <!-- Chamber pressure -->
+    <!-- Date plot 1 - DCA Temperature -->
     <dateplot1>
-      <title>Chamber pressure, ion gauge</title>
-      <legend>IG, chamber</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type=150 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Pressure / mbar</ylabel>
+      <title>Temperature, DCA Cell</title>
+      <legend>Temp. DCA</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type = 154 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
       <color>1</color>
     </dateplot1>
 
-    <!-- Chamber pressure -->
+    <!-- Date plot 2 - MAI Temperature -->
     <dateplot2>
-      <title>Chamber Pressure, pirani</title>
-      <legend>Pirani, chamber</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type=151 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Pressure / mbar</ylabel>
+      <title>Temperature, MAI Cell</title>
+      <legend>Temp, MAI</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type = 155 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
       <color>2</color>
     </dateplot2>
 
-    <!-- Load Lock -->
+    <!-- Date plot 3 - Main Chamber Ion Gauge -->
     <dateplot3>
-      <title>Load Lock Pressure, pirani</title>
-      <legend>Pirani, Load Lock</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type=152 and time between "{from}" and "{to}" order by time</query>
+      <title>IG Pressure, MC</title>
+      <legend>Pressure, IG, MC</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type = 150 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>3</color>
     </dateplot3>
+
+    <!-- Date plot 4 - Load Lock Ion Gauge -->
+    <dateplot4>
+      <title>IG Pressure, LL</title>
+      <legend>Pressure, IG, LL</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type = 156 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <!-- Date plot 5 - Main Chamber Pirani -->
+    <dateplot5>
+      <title>Pirani Pressure, Main</title>
+      <legend>Pressure, Pirani, MC</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type = 151 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>5</color>
+    </dateplot5>
+
+    <!-- Date plot 6 - LL Pirani -->
+    <dateplot6>
+      <title>Pirani Pressure, LL</title>
+      <legend>Pressure, Pirani, LL</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type = 152 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>6</color>
+    </dateplot6>
+
+    <!-- Date plot 7 LL Roughing-->
+    <dateplot7>
+      <title>Pirani Pressure, LL, Roughing</title>
+      <legend>Pressure, Pirani, LL Rough</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type = 157 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>7</color>
+    </dateplot7>
+
+    <!-- Date plot 8 - Cryo Roughing -->
+    <dateplot8>
+      <title>Pirani Pressure, Cryo, Roughing</title>
+      <legend>Pressure, Pirani, Cryo Rough</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type = 158 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>8</color>
+    </dateplot8>
+
+    <!-- Date plot 9 - QCM1 Rate -->
+    <dateplot9>
+      <title>QCM1 Rate</title>
+      <legend>QCM1 Rate</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type = 320 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Rate / nm/s</ylabel>
+      <color>5</color>
+    </dateplot9>
+
+    <!-- Date plot 10 - QCM1 Rate -->
+    <dateplot10>
+      <title>QCM1 Thickness</title>
+      <legend>QCM1 Thickness</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type = 321 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Thickness / nm</ylabel>
+      <color>6</color>
+    </dateplot10>
+
+    <!-- Date plot 11 - QCM1 Frequency -->
+    <dateplot11>
+      <title>QCM1 Frequency</title>
+      <legend>QCM1 Frequency</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type = 322 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Frequency / Hz</ylabel>
+      <color>7</color>
+    </dateplot11>
+
+    <!-- Date plot 12 - QCM2 Rate -->
+    <dateplot12>
+      <title>QCM2 Rate</title>
+      <legend>QCM1 Rate</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type = 323 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Rate / Å/s</ylabel>
+      <color>1</color>
+    </dateplot12>
+
+    <!-- Date plot 13 - QCM Rate -->
+    <dateplot13>
+      <title>QCM2 Thickness</title>
+      <legend>QCM2 Thickness</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type = 324 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Thickness / kÅ</ylabel>
+      <color>2</color>
+    </dateplot13>
+
+    <!-- Date plot 14 - QCM Frequency -->
+    <dateplot14>
+      <title>QCM2 Frequency</title>
+      <legend>QCM2 Frequency</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type = 325 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Frequency / Hz</ylabel>
+      <color>3</color>
+    </dateplot14>
   </graph>
 
 
+  <graph type="live_values_qcm">
+    <page_width>1280</page_width>
+    <page_title>PVD309</page_title>
+    <containers> 
+      <container0>
+	<type>figure</type>
+	<update_interval>2.5</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>550</width>
+	<height>400</height>
+	<!-- General plot options -->
+	<bgcolor>#CCCCCC</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>QCM1 Rate [nm/s]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!-- <ylabel>Temperature [&amp;deg;C]</ylabel> --><!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<format>.2f</format>
+	<figure>
+	  <plot0>
+            <socket>0</socket> 
+            <color>#FF0000</color>
+            <id>pvd309_qcm1_rate</id>
+            <label>QCM1 Rate</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_pvd309 where type=(SELECT id FROM dateplots_descriptions where codename="pvd309_qcm1_rate") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container0>
+      
+      <container1>
+	<type>figure</type>
+	<update_interval>2</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>550</width>
+	<height>400</height>
+	<axislabelwidth>150</axislabelwidth>
+	<!-- General plot options -->
+	<bgcolor>#DDDDDD</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>QCM1 Thickness [nm]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<format>.1f</format>
+	<figure>
+	  <plot0>
+            <socket>0</socket>
+            <color>#0000FF</color>
+            <id>pvd309_qcm1_thickness</id>
+            <label>Main / mbar</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_pvd309 where type=(SELECT id FROM dateplots_descriptions where codename="pvd309_qcm1_thickness") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container1>
 
+      <container2>
+	<type>figure</type>
+	<update_interval>2</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>550</width>
+	<height>400</height>
+	<axislabelwidth>150</axislabelwidth>
+	<!-- General plot options -->
+	<bgcolor>#DDDDDD</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>QCM1 Frequency [nm]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<format>.2e</format>
+	<figure>
+	  <plot0>
+            <socket>0</socket>
+            <color>#990099</color>
+            <id>pvd309_qcm1_frequency</id>
+            <label>Frequency, QCM1</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_pvd309 where type=(SELECT id FROM dateplots_descriptions where codename="pvd309_qcm1_frequency") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container2>
+
+     <container3>
+        <type>data</type>
+        <width>600</width>
+        <height>400</height>
+        <fontsize>22</fontsize>
+        <padding>40px 0px 0px 0px</padding>
+        <data>
+          <item0>
+            <socket>0</socket>
+            <id>pvd309_qcm1_rate</id>
+            <label>QCM1 Rate</label>
+            <color>#FF0000</color>
+            <format>.4f</format>
+            <unit>nm/s</unit>
+          </item0>
+          <item1>
+            <socket>0</socket>
+            <id>pvd309_qcm1_thickness</id>
+            <label>QCM1 Thickness</label>
+            <color>#0000FF</color>
+            <format>.4f</format>
+            <unit>nm</unit>
+          </item1>
+          <item2>
+            <socket>0</socket>
+            <id>pvd309_qcm1_frequency</id>
+            <label>QCM1 Frequency</label>
+            <color>#990099</color>
+            <format>.1f</format>
+            <unit>Hz</unit>
+          </item2>
+        </data>
+      </container3>
+
+    </containers>
+  </graph>
+
+
+  <graph type="live_values">
+    <page_width>1280</page_width>
+    <page_title>PVD309</page_title>
+    <containers> 
+      <container0>
+	<type>figure</type>
+	<update_interval>2.5</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>550</width>
+	<height>400</height>
+	<!-- General plot options -->
+	<bgcolor>#CCCCCC</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Effusion Cell Temperatures [C]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!-- <ylabel>Temperature [&amp;deg;C]</ylabel> --><!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<format>.1f</format>
+	<figure>
+	  <plot0>
+            <socket>1</socket> 
+            <color>#0000FF</color>
+            <id>pvd309_temp_dca_cell</id>
+            <label>Temp DCA</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_pvd309 where type=(SELECT id FROM dateplots_descriptions where codename="pvd309_temp_dca_cell") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	  <plot1>
+            <socket>1</socket> 
+            <color>#FF0000</color>
+            <id>pvd309_temp_mai_cell</id>
+            <label>Temp MAI</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_pvd309 where type=(SELECT id FROM dateplots_descriptions where codename="pvd309_temp_mai_cell") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+	</figure>
+      </container0>
+      
+      <container1>
+	<type>figure</type>
+	<update_interval>2</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>550</width>
+	<height>400</height>
+	<axislabelwidth>150</axislabelwidth>
+	<!-- General plot options -->
+	<bgcolor>#DDDDDD</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Ion Gauges [mbar]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>true</logscale> <!-- optional bool, default false -->
+	<format>.1e</format>
+	<figure>
+	  <plot0>
+            <socket>0</socket>
+            <color>#990099</color>
+            <id>pvd309_main_chamber_ig</id>
+            <label>Main / mbar</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_pvd309 where type=(SELECT id FROM dateplots_descriptions where codename="pvd309_main_chamber_ig") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	  <plot1>
+            <socket>0</socket>
+            <color>#009900</color>
+            <id>pvd309_load_lock_ig</id>
+            <label>LL / mbar</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_pvd309 where type=(SELECT id FROM dateplots_descriptions where codename="pvd309_load_lock_ig") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+	</figure>
+      </container1>
+
+      <container2>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>600</width>
+	<height>400</height>
+	<fontsize>22</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size top, right, bottom, top, right, bottom, left-->
+	<padding>40px 0px 0px 0px</padding>
+	<data>
+	  <item0>
+	    <socket>1</socket>
+	    <id>pvd309_temp_mai_cell</id>
+	    <label>Temp MAI</label>
+	    <color>#FF0000</color>
+	    <format>.1f</format>
+	    <unit>C</unit>
+	  </item0>
+	  <item1>
+	    <socket>1</socket>
+	    <id>pvd309_temp_dca_cell</id>
+	    <label>Temp DCA</label>
+	    <color>#0000FF</color>
+	    <format>.1f</format>
+	    <unit>C</unit>
+	  </item1>
+	  <item2>
+	    <socket>0</socket>
+	    <id>pvd309_main_chamber_ig</id>
+	    <label>Main chamber</label>
+	    <color>#990099</color>
+	    <format>.2e</format>
+	    <unit>mbar</unit>
+	  </item2>
+	  <item3>
+	    <socket>0</socket>
+	    <id>pvd309_load_lock_ig</id>
+	    <label>Load Lock</label>
+	    <color>#009900</color>
+	    <format>.2e</format>
+	    <unit>mbar</unit>
+	  </item3>
+	  <item4>
+	    <socket>0</socket>
+	    <id>pvd309_load_lock_pirani</id>
+	    <label>Load Lock, Pirani</label>
+	    <color>#000000</color>
+	    <format>.2e</format>
+	    <unit>mbar</unit>
+	  </item4>
+	  <item5>
+	    <socket>2</socket>
+	    <id>pvd309_qcm1_rate</id>
+	    <label>Rate (Old controller)</label>
+	    <color>#CCCCCC</color>
+	    <format>.3f</format>
+	    <unit>nm/s</unit>
+	  </item5>
+	  <item6>
+	    <socket>2</socket>
+	    <id>pvd309_qcm2_rate</id>
+	    <label>Rate (Inficon)</label>
+	    <color>#CCCCCC</color>
+	    <format>.3f</format>
+	    <unit>Å/s</unit>
+	  </item6>
+	</data>
+      </container2>
+    </containers>
+  </graph>
+
+
+  <!-- GLOBAL SETTINGS -->
   <global_settings>
     <measurements_table>measurements_pvd309</measurements_table>
-    <xyvalues_table>xy_values_pvd309</xyvalues_table>
+    <xyvalues_table>xy_values_pvd_309</xyvalues_table>
     <sql_username>pvd309</sql_username>
-    <label_column>mass_label</label_column>
     <image_format>png</image_format>
+    <label_column>mass_label</label_column>
     <mandatory_export_fields>
       <field0>
 	<field>id</field>
@@ -67,6 +461,19 @@
 	<name>Comment</name>
       </field3>
     </mandatory_export_fields>
+    <matplotlib_settings>
+      <width>900</width>
+      <height>600</height>
+      <title_size>24</title_size>
+      <xtick_labelsize>12</xtick_labelsize>
+      <ytick_labelsize>12</ytick_labelsize>
+      <legend_fontsize>10</legend_fontsize>
+      <label_fontsize>16</label_fontsize>
+    </matplotlib_settings>
+    <sockets>
+      <socket0>rasppi51:8000</socket0> <!-- Pressure Measurements -->
+      <socket1>rasppi112:8000</socket1> <!-- Effusion Cells -->
+      <socket2>rasppi106:8000</socket2> <!-- QCMs -->
+    </sockets>
   </global_settings>
 </graphs>
-

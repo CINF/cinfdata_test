@@ -165,7 +165,7 @@
 	<update_interval>1.2</update_interval> <!-- seconds -->
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
-	<height>300</height>
+	<height>250</height>
 	<!-- General plot options -->
 	<!--<bgcolor>#CCCCCC</bgcolor>--> <!-- optional color, default #FFFFFF -->
 	<!-- optional html padding string, remember to subtract the padding
@@ -200,7 +200,7 @@
 	<update_interval>0.5</update_interval> <!-- seconds -->
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
-	<height>300</height>
+	<height>250</height>
 	<!-- General plot options -->
 	<!--<bgcolor>#00FFFF</bgcolor>--> <!-- optional color, default #FFFFFF -->
 	<!-- optional html padding string, remember to subtract the padding
@@ -242,7 +242,7 @@
 	<type>data</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>400</width>
-	<height>300</height>
+	<height>250</height>
 	<fontsize>14</fontsize>
 	<!-- optional html padding string, remember to subtract the padding in
 	     the size top, right, bottom, top, right, bottom, left-->
@@ -280,7 +280,7 @@
 	<update_interval>1.2</update_interval> <!-- seconds -->
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
-	<height>300</height>
+	<height>250</height>
 	<!-- General plot options -->
 	<!--<bgcolor>#FF00FF</bgcolor>--> <!-- optional color, default #FFFFFF -->
 	<!-- optional html padding string, remember to subtract the padding
@@ -315,7 +315,7 @@
 	<update_interval>1.2</update_interval> <!-- seconds -->
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
-	<height>300</height>
+	<height>250</height>
 	<!-- General plot options -->
 	<!--<bgcolor>#FF00FF</bgcolor>--> <!-- optional color, default #FFFFFF -->
 	<!-- optional html padding string, remember to subtract the padding
@@ -378,7 +378,7 @@
 	<type>data</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>400</width>
-	<height>300</height>
+	<height>250</height>
 	<fontsize>14</fontsize>
 	<!-- optional html padding string, remember to subtract the padding in
 	     the size top, right, bottom, top, right, bottom, left-->
@@ -417,42 +417,193 @@
 	    <format>.3f</format>
 	    <unit>mL/min</unit>
 	  </item3>
-	  <plot4>
+	  <item4>
             <socket>3</socket>
             <color>#FF0000</color>
             <id>21984839</id>
             <label>Flow 3</label>
 	    <unit>mL/min</unit>
 	    <format>.3f</format>
-	  </plot4>
-	  <plot5>
+	  </item4>
+	  <item5>
             <socket>3</socket>
             <color>#FF00FF</color>
             <id>21984838</id>
             <label>Flow 4</label>
 	    <unit>mL/min</unit>
 	    <format>.3f</format>
-	  </plot5>
-	  <plot6>
+	  </item5>
+	  <item6>
             <socket>4</socket>
             <color>#00FFFF</color>
             <id>M8203814A</id>
             <label>Flow 5</label>
 	    <unit>mL/min</unit>
 	    <format>.3f</format>
-	  </plot6>
+	  </item6>
 	</data>
       </container5>
+
+      <container6>
+	<type>figure</type>
+	<update_interval>1.2</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>410</width>
+	<height>250</height>
+	<!-- General plot options -->
+	<!--<bgcolor>#FF00FF</bgcolor>--> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Turbo Current [A]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<data_reduction>
+	  <time>10</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+            <socket>6</socket>
+            <color>#0000FF</color>
+            <id>mr_chamber_turbo_current</id>
+            <label>Turbo current</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_chamber_turbo_current") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container6>
+
+      <container7>
+	<type>figure</type>
+	<update_interval>1.2</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>410</width>
+	<height>250</height>
+	<!-- General plot options -->
+	<!--<bgcolor>#FF00FF</bgcolor>--> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Turbo Temperature [&amp;deg;C]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<data_reduction>
+	  <time>10</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+            <socket>6</socket>
+            <color>#FF0000</color>
+            <id>mr_chamber_turbo_temp_motor</id>
+            <label>Turbo Temp Motor</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_chamber_turbo_temp_motor") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	  <plot1>
+            <socket>6</socket>
+            <color>#00FF00</color>
+            <id>mr_chamber_turbo_temp_bottom</id>
+            <label>Turbo Temp Bottom</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_chamber_turbo_temp_bottom") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot1>
+	  <plot2>
+            <socket>6</socket>
+            <color>#FF00FF</color>
+            <id>mr_chamber_turbo_temp_bearings</id>
+            <label>Turbo Temp Bearings</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_chamber_turbo_temp_bearings") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot2>
+	  <plot3>
+            <socket>6</socket>
+            <color>#00FFFF</color>
+            <id>mr_chamber_turbo_temp_electronics</id>
+            <label>Turbo Temp Electronics</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_chamber_turbo_temp_electronics") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot3>
+	</figure>
+      </container7>
+
+      <container8>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>400</width>
+	<height>250</height>
+	<fontsize>14</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size top, right, bottom, top, right, bottom, left-->
+	<padding>20px 0px 0px 0px</padding>
+	<data>
+	  <item0>
+	    <socket>6</socket>
+	    <id>mr_chamber_turbo_speed</id>
+	    <label>Rotaion Speed</label>
+	    <color>#000000</color>
+	    <format>.1f</format>
+	    <unit>Hz</unit>
+	  </item0>
+	  <item1>
+	    <socket>6</socket>
+	    <id>mr_chamber_turbo_current</id>
+	    <label>Current</label>
+	    <color>#0000FF</color>
+	    <format>.2f</format>
+	    <unit>A</unit>
+	  </item1>
+	  <item2>
+	    <socket>6</socket>
+	    <id>mr_chamber_turbo_temp_motor</id>
+	    <label>Motor Temperature</label>
+	    <color>#FF0000</color>
+	    <format>.0f</format>
+	    <unit>&amp;deg;C</unit>
+	  </item2>
+	  <item3>
+	    <socket>6</socket>
+	    <id>mr_chamber_turbo_temp_electronics</id>
+	    <label>Electronics</label>
+	    <color>#00FFFF</color>
+	    <format>.0f</format>
+	    <unit>&amp;deg;C</unit>
+	  </item3>
+	  <item4>
+	    <socket>6</socket>
+	    <id>mr_chamber_turbo_temp_bearings</id>
+	    <label>Bearings</label>
+	    <color>#FF00FF</color>
+	    <format>.0f</format>
+	    <unit>&amp;deg;C</unit>
+	  </item4>
+	  <item5>
+	    <socket>6</socket>
+	    <id>mr_chamber_turbo_temp_bottom</id>
+	    <label>Bearings</label>
+	    <color>#00FF00</color>
+	    <format>.0f</format>
+	    <unit>&amp;deg;C</unit>
+	  </item5>
+	</data>
+      </container8>
     </containers>
   </graph>
-
 
   <!-- MASSTIME -->
   <graph type='masstime'>
     <default_xscale>lin</default_xscale>
     <type>5</type>
     <xlabel>Time / h</xlabel>
-    <title>Mass vs. time</title>
+    <!--<title>Mass vs. time</title>-->
     <grouping_column>time</grouping_column>
     <right_legend_suffix> (r)</right_legend_suffix>
     <!-- dygraph -->
@@ -611,6 +762,7 @@
       <socket3>rasppi37:8000</socket3> <!-- MKS Flow controllers -->
       <socket4>rasppi24:8000</socket4> <!-- Bronkhorst Flow controllers -->
       <socket5>rasppi26:8000</socket5> <!-- Analog Flow controller -->
+      <socket6>rasppi100:8000</socket6> <!-- Turbo Pump -->
     </sockets>
   </global_settings>
 </graphs>

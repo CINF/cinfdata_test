@@ -40,7 +40,7 @@
       <color>3</color>
     </dateplot3>
 
-    <!-- Date plot 3 - BACKING PRESSURE, QMS -->
+    <!-- Date plot 4 - BACKING PRESSURE, QMS -->
     <dateplot4>
       <title>Backing pressure, QMS</title>
       <legend>Backing, QMS</legend>
@@ -48,6 +48,15 @@
       <ylabel>Pressure / mbar</ylabel>
       <color>4</color>
     </dateplot4>
+
+    <!-- Date plot 5 - Gas Inlet Pressure -->
+    <dateplot5>
+      <title>Gas Inlet Pressure</title>
+      <legend>Gas Inlet</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_sniffer where type = 244 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>5</color>
+    </dateplot5>
   </graph>
 
   <graph type="live_values">
@@ -117,7 +126,7 @@
 	<point_size>2</point_size> <!-- optional int, default 2 -->
 	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
 	<logscale>true</logscale> <!-- optional bool, default false -->
-	<format>.1e</format>
+ 	<format>.1e</format>
 	<data_reduction>
 	  <time>10</time>
 	  <relative>1</relative>
@@ -185,6 +194,105 @@
 	  </item3>
 	</data>
       </container2>
+
+      <container3>
+	<type>figure</type>
+	<update_interval>1.2</update_interval> <!-- seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<width>410</width>
+	<height>300</height>
+	<!-- General plot options -->
+	<!--<bgcolor>#FF00FF</bgcolor>--> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>MFC Flow [mL/min]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+ 	<format>.2f</format>
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<data_reduction>
+	  <time>10</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+            <socket>1</socket>
+            <color>#0000FF</color>
+            <id>21984878</id>
+            <label>Flow 1</label>
+	  </plot0>
+	  <plot1>
+            <socket>1</socket>
+            <color>#00AA00</color>
+            <id>21984877</id>
+            <label>Flow 2</label>
+	  </plot1>
+	  <plot2>
+            <socket>1</socket>
+            <color>#FF0000</color>
+            <id>21984876</id>
+            <label>Flow 3</label>
+	  </plot2>
+	  <plot3>
+            <socket>1</socket>
+            <color>#FF00FF</color>
+            <id>21984879</id>
+            <label>Flow 4</label>
+	  </plot3>
+	</figure>
+      </container3>
+
+      <container4>
+	<type>data</type>
+	<!--<bgcolor>#FF0000</bgcolor>-->
+	<width>400</width>
+	<height>300</height>
+	<fontsize>14</fontsize>
+	<!-- optional html padding string, remember to subtract the padding in
+	     the size top, right, bottom, top, right, bottom, left-->
+	<padding>20px 0px 0px 0px</padding>
+	<data>
+	  <item0>
+            <socket>1</socket>
+            <color>#0000FF</color>
+            <id>21984878</id>
+            <label>Flow 1</label>
+	    <format>.3f</format>
+	    <unit>mL/min</unit>
+	  </item0>
+	  <item1>
+            <socket>1</socket>
+            <color>#00AA00</color>
+            <id>21984877</id>
+            <label>Flow 2</label>
+	    <format>.3f</format>
+	    <unit>mL/min</unit>
+	  </item1>
+	  <item2>
+	    <socket>1</socket>
+            <color>#FF0000</color>
+            <id>21984876</id>
+            <label>Flow 3</label>
+	    <format>.3f</format>
+	    <unit>mL/min</unit>
+	  </item2>
+	  <item3>
+            <socket>1</socket>
+            <color>#FF00FF</color>
+            <id>21984879</id>
+            <label>Flow 4</label>
+	    <unit>mL/min</unit>
+	    <format>.3f</format>
+	  </item3>
+	</data>
+      </container4>
+
     </containers>
   </graph>
 
@@ -205,7 +313,7 @@
     </dygraph_settings>
     <!-- queries -->
     <queries>
-      <default>SELECT x/3600000, y  FROM xy_values_sniffer where measurement = {id} order by id</default>
+      <default>SELECT x/3600000, y  FROM xy_values_sniffer where y &lt; 1 and measurement = {id} order by id</default>
       <column>mass_label</column>
     </queries>
     <!-- ylabel -->
@@ -321,6 +429,7 @@
     </plugins>
   </graph>
 
+
   <!-- GLOBAL SETTINGS -->
   <global_settings>
     <folder_name>sniffer</folder_name>
@@ -358,6 +467,7 @@
     </matplotlib_settings>
     <sockets>
       <socket0>rasppi107:8000</socket0> <!-- Pressures -->
+      <socket1>rasppi37:8000</socket1> <!-- MKS Flow controllers -->
     </sockets>
   </global_settings>
 </graphs>

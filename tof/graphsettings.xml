@@ -27,22 +27,30 @@
       <color>2</color>
       <query>SELECT unix_timestamp(time), value FROM dateplots_tof where value between 2e-11 and 0.1 and type = 221 and time between "{from}" and "{to}" order by time</query>
     </dateplot2>
-    <!-- PRESSURE, SMALL ION PUMP -->
+    <!-- Emission value -->
     <dateplot3>
+      <title>Emission current</title>
+      <ylabel>Emission / mA</ylabel>
+      <legend>Emission current / mA</legend>
+      <color>3</color>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_tof where type = 224 and time between "{from}" and "{to}" order by time</query>
+    </dateplot3>
+    <!-- PRESSURE, SMALL ION PUMP -->
+    <dateplot4>
       <title>Pressure in the TOF (small ion pump)</title>
       <ylabel>Pressure / mbar</ylabel>
       <legend>P small ion pump / mbar</legend>
-      <color>3</color>
+      <color>4</color>
       <query>SELECT unix_timestamp(time), value FROM dateplots_tof where type = 222 and time between "{from}" and "{to}" order by time</query>
-    </dateplot3>
+    </dateplot4>
     <!-- MORNING PRESSURE -->
-    <dateplot4>
+    <dateplot5>
       <title>Pressure at 1 am in the TOF</title>
       <ylabel>Pressure / mbar</ylabel>
       <legend>P morning, main</legend>
-      <color>4</color>
+      <color>5</color>
       <query>SELECT unix_timestamp(time), avg(value) FROM dateplots_tof where type = 220 and hour(time) = 1 and minute(time) between 00 and 20 and time between "{from}" and "{to}" group by date(time) order by time desc limit 30</query>      
-    </dateplot4>
+    </dateplot5>
   </graph>
 
 
@@ -84,7 +92,7 @@
       
       <container1>
 	<type>figure</type>
-	<update_interval>2.5</update_interval> <!-- seconds -->
+	<update_interval>2</update_interval> <!-- seconds -->
 	<x_window>1800</x_window> <!-- x axis interval, seconds -->
 	<width>550</width>
 	<height>400</height>
@@ -141,6 +149,14 @@
 	    <format>.2e</format>
 	    <unit>mbar</unit>
 	  </item1>
+	  <item2>
+	    <socket>1</socket>
+	    <id>emission</id>
+	    <label>Emission</label>
+	    <color>#009900</color>
+	    <format>.4f</format>
+	    <unit>mAr</unit>
+	  </item2>
 	</data>
       </container2>
     </containers>
@@ -172,6 +188,15 @@
       <default>{id}</default>
     </legend>
     <plugins>
+      <Smooth>
+	<title>Smooth signal</title>
+	<input>Smooth length</input>
+	<output>raw</output>
+      </Smooth>
+      <Normalize>
+	<title>Normalize to count number</title>
+	<output>raw</output>
+      </Normalize>
       <Massscale>
 	<title>Convert to approximate mass units</title>
 	<output>raw</output>
@@ -180,11 +205,6 @@
 	<title>Intensity map</title>
 	<output>raw</output>
       </Intensitymap>
-      <PeakIntegrater>
-	<title>Peak Integration</title>
-	<input>Peak position</input>
-	<output>raw</output>
-      </PeakIntegrater>
     </plugins>
 
     <parameters>
@@ -248,6 +268,10 @@
 	<field>sample_temperature</field>
 	<name>Sample temperature</name>
       </param14>
+      <param15>
+	<field>tof_emission_current</field>
+	<name>Emission Current / mA</name>
+      </param15>
     </parameters>
   </graph>
 
@@ -306,6 +330,15 @@
       <default>{id}</default>
     </legend>
     <plugins>
+      <Smooth>
+	<title>Smooth signal</title>
+	<input>Smooth length</input>
+	<output>raw</output>
+      </Smooth>
+      <Normalize>
+	<title>Normalize to count number</title>
+	<output>raw</output>
+      </Normalize>
       <Massscale>
 	<title>Convert to approximate mass units</title>
 	<output>raw</output>
@@ -475,6 +508,7 @@
     </mandatory_export_fields>
     <sockets>
       <socket0>rasppi109:8000</socket0> <!-- Main Chamber pressure -->
+      <socket1>rasppi49:8000</socket1> <!-- Emission current -->
     </sockets>
   </global_settings>
 
