@@ -47,7 +47,7 @@ foreach($chosen_group as $group){
 $sql_groups = trim($sql_groups, ",");  // Remove the trailing comma
 
 // Create the list of individual components of the chosen measurements
-$query = "SELECT id, time," . $settings["label_column"] .  " FROM " .  $settings["measurements_table"] . " where " . $settings["grouping_column"] . " in (" . $sql_groups . ") order by time desc, id limit 800";
+$query = "SELECT id, time," . $settings["label_column"] .  " FROM " .  $settings["measurements_table"] . " where " . $settings["grouping_column"] . " in (" . $sql_groups . ") and type = " . $settings["type"] . " order by time desc, id limit 800";
 $result  = $dbi->query($query);
 while ($row = $result->fetch_array()) {
   # Unpack $row and append its elements to the id, date and label lists
