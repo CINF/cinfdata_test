@@ -85,7 +85,7 @@
     <sql_username>tower</sql_username>
     <image_format>png</image_format>
     <label_column>mass_label</label_column>
-    <folder_name>tower<tower/folder_name>
+    <folder_name>tower</folder_name>
     <mandatory_export_fields>
       <field0>
         <field>id</field>
