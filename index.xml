@@ -407,8 +407,20 @@
   <setup codename="dummy">
     <setup_title>Dummy</setup_title>
     <link>
+      <title>Dateplots</title>
+      <ref>dummy/dateplot.php?type=multidateplot&amp;left_plotlist[]=1&amp;left_plotlist[]=2</ref>
+    </link>
+    <link>
       <title>Mass-time</title>
       <ref>dummy/xyplot.php?type=masstime&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>GC</title>
+      <ref>dummy/xyplot.php?type=gc&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>GC Raw</title>
+      <ref>dummy/xyplot.php?type=gc_raw&amp;matplotlib=checked</ref>
     </link>
     <link>
       <title>Mass spectrums</title>
@@ -774,6 +786,11 @@
       <title>Chamber Pressure</title>
       <ref>chemlab312/dateplot.php?type=multidateplot&amp;left_plotlist[]=1</ref>
     </link>
+    <link>
+      <title>Picture Logbook</title>
+      <ref>picture_logbook/pictures.php?setup=ChemLab312</ref>
+    </link>
+
   </setup>
 
   <!--sniffer-->
