@@ -40,7 +40,7 @@ function make_container_divs($containers){
     # If it is a data div, create the data table
     if ($container["type"] == "data"){
       echo("<table class=\"datatable\" style=\"font-size:{$container['fontsize']}px\">\n");
-      echo("<tr><th>#</th><th>Measurement</th><th>Time</th><th>Value</th>");
+      echo("<tr><th>#</th><th>Name</th><th>Time</th><th>Value</th>");
       $show_diff = isset($container["show_diff"]) ? $container["show_diff"] : "false";
       if ($show_diff == "true"){
 	echo("<th>Diff [ms]</th>");
