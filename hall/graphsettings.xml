@@ -53,6 +53,13 @@
       <legend>P. ventilation</legend>
       <color>7</color>
     </dateplot7>
+    <dateplot8>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_hall where type = 168 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Humidity / %</ylabel>
+      <title>Humidity</title>
+      <legend>Humidity</legend>
+      <color>8</color>
+    </dateplot8>
   </graph>
 
   <graph type="live_values">
@@ -567,6 +574,31 @@
       </container6>
 
       <container7>
+	<type>figure</type>
+	<title>Humidity [%]</title>
+	<update_interval>1.9</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>480</width>
+	<height>200</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>86400</x_window>
+	<line_width>3</line_width>
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.1</absolute>
+	</data_reduction>
+	<figure>
+	  <plot0>
+	    <socket>3</socket>
+	    <id>hall_humidity</id>
+	    <label>Humidity</label>
+	    <color>#009999</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="hall_humidity") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container7>
+
+      <container8>
 	<type>data</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>450</width>
@@ -625,7 +657,7 @@
 	    <unit>Pa</unit>
 	  </item5>
 	</data>
-      </container7>
+      </container8>
     </containers>
   </graph>
 
