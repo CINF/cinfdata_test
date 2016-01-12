@@ -1,8 +1,68 @@
 <?xml version='1.0' standalone='yes'?>
 <graphs>
 
+  <graph type='multidateplot'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <!-- Dummy 1 -->
+    <dateplot1>
+      <title>Dummy 1</title>
+      <legend>Dummy 1</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_dummy where type = 0 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>n</ylabel>
+      <color>1</color>
+    </dateplot1>
+    <!-- Dummy 2 -->
+    <dateplot2>
+      <title>Dummy 2</title>
+      <legend>Dummy 2</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_dummy where type = 1 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>n</ylabel>
+      <color>2</color>
+    </dateplot2>
+  </graph>
+
+
   <!-- XPS -->
-  <graph type="xps">
+  <graph type='xps'>
+    <default_xscale>lin</default_xscale>
+    <type>2</type>
+    <grouping_column>time</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <label_column>id</label_column>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x,y  FROM xy_values_dummy where measurement = {id} order by id</default>
+    </queries>
+    <!-- legend -->
+    <legend>
+      <default>{id} - {time}</default>
+    </legend>
+    <flip_x>
+      <gui>Flip X-scale</gui>
+    </flip_x>
+
+   <parameters>
+      <param0>
+	<field>comment</field>
+	<name>Comment</name>
+      </param0>
+    </parameters>
+
+  </graph>
+
+
+  <!-- XPS -->
+  <graph type="xps_old">
     <default_xscale>lin</default_xscale>
     <type>2</type>
     <label_column>name</label_column>
@@ -216,6 +276,156 @@
       <b>0</b>
     </linscale_x0>
   </graph>
+
+
+
+
+  <!-- MASSTIME -->
+  <graph type='gc'>
+    <default_xscale>lin</default_xscale>
+    <type>20</type>
+    <xlabel>Time / s</xlabel>
+    <title>Mass vs. time</title>
+    <grouping_column>relative_path</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <label_column>label</label_column>
+    <!-- dygraph -->
+    <dygraph_settings>
+      <labels_newline>true</labels_newline>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x, y FROM xy_values_dummy where measurement = {id} order by id</default>
+      <column>mass_label</column>
+    </queries>
+    <!-- ylabel -->
+    <ylabel>
+      <default>Mixed units</default>
+    </ylabel>
+
+    <!-- legend -->
+    <legend>
+      <default>{relative_path}-{label}</default>
+    </legend>
+
+    <!-- parameters -->
+    <parameters>
+      <param0>
+	<field>sem_voltage</field>
+	<name>SEM Voltage / V</name>
+      </param0>
+      <param1>
+	<field>preamp_range</field>
+	<name>Range</name>
+      </param1>
+      <param2>
+	<field>actual_mass</field>
+	<name>Actual Mass</name>
+      </param2>
+    </parameters>
+    <!-- data treatment -->
+    <flip_x>
+      <gui>Flip x-scale</gui>
+    </flip_x>
+    <as_function_of>
+      <gui>As function of T</gui>
+      <column>mass_label</column>
+      <reg_match>RTD temperature</reg_match>
+      <xlabel>Temperature / C</xlabel>
+    </as_function_of>
+    <diff_left_y>
+      <gui>Diff. left y-axis</gui>
+      <ylabel_addition>diff</ylabel_addition>
+    </diff_left_y>
+    <diff_right_y>
+      <gui>Diff. right y-axis</gui>
+      <ylabel_addition>diff</ylabel_addition>
+    </diff_right_y>
+    <linscale_x0>
+      <gui>X-axis in hours</gui>
+      <xlabel_addition>convert to hours</xlabel_addition>
+      <!-- 1/3600 -->
+      <a>0.0002777777777777778</a>
+      <b>0</b>
+    </linscale_x0>
+  </graph>
+
+  <!-- MASSTIME -->
+  <graph type='gc_raw'>
+    <default_xscale>lin</default_xscale>
+    <type>21</type>
+    <xlabel>Time / min</xlabel>
+    <title>Mass vs. time</title>
+    <grouping_column>relative_path</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <label_column>label</label_column>
+    <!-- dygraph -->
+    <dygraph_settings>
+      <labels_newline>true</labels_newline>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x, y FROM xy_values_dummy where measurement = {id} order by id</default>
+      <column>mass_label</column>
+    </queries>
+    <!-- ylabel -->
+    <ylabel>
+      <default>Mixed units</default>
+    </ylabel>
+
+    <!-- legend -->
+    <legend>
+      <default>{relative_path}-{label}</default>
+    </legend>
+
+    <!-- parameters -->
+    <parameters>
+      <param0>
+	<field>sem_voltage</field>
+	<name>SEM Voltage / V</name>
+      </param0>
+      <param1>
+	<field>preamp_range</field>
+	<name>Range</name>
+      </param1>
+      <param2>
+	<field>actual_mass</field>
+	<name>Actual Mass</name>
+      </param2>
+    </parameters>
+    <!-- data treatment -->
+    <flip_x>
+      <gui>Flip x-scale</gui>
+    </flip_x>
+    <as_function_of>
+      <gui>As function of T</gui>
+      <column>mass_label</column>
+      <reg_match>RTD temperature</reg_match>
+      <xlabel>Temperature / C</xlabel>
+    </as_function_of>
+    <diff_left_y>
+      <gui>Diff. left y-axis</gui>
+      <ylabel_addition>diff</ylabel_addition>
+    </diff_left_y>
+    <diff_right_y>
+      <gui>Diff. right y-axis</gui>
+      <ylabel_addition>diff</ylabel_addition>
+    </diff_right_y>
+    <linscale_x0>
+      <gui>X-axis in hours</gui>
+      <xlabel_addition>convert to hours</xlabel_addition>
+      <!-- 1/3600 -->
+      <a>0.0002777777777777778</a>
+      <b>0</b>
+    </linscale_x0>
+  </graph>
+
+
+
 
 
   <!-- IT -->
