@@ -115,7 +115,7 @@ function html_header($root="../", $title="Data viewer", $includehead="", $charse
   if ($width != null){
     $width = " style=\"width:{$width}px\" ";
   } else {
-    $width = " style=\"max-width:75%\" ";
+    $width = " style=\"max-width:95%\" ";
   }
   if(is_it_christmas()){
     $header = html_header_x($root, $title, $includehead, $charset, $width, $html5);
