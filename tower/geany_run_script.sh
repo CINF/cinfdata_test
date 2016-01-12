@@ -1,1 +1,0 @@
-../sym-files2/geany_run_script.sh
