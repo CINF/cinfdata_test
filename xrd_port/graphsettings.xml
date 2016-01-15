@@ -1,0 +1,51 @@
+<?xml version='1.0' standalone='yes'?>
+
+<graphs>
+  <graph type='multidateplot'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple pressures</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <!-- PRESSURE_XRDGAS_ASG -->
+    <dateplot1>
+      <title>Pressure asg</title>
+      <legend>asg</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_xrdgas_asg where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <dateplot2>
+      <title>Pressure wrg</title>
+      <legend>wrg</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_xrdgas_wrg where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>2</color>
+    </dateplot2>
+
+    <dateplot3>
+      <title>Pressure wrgms</title>
+      <legend>wrgms</legend>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_xrdgas_wrgms where time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>3</color>
+    </dateplot3>
+  </graph>
+
+  <global_settings>
+    <measurements_table>none</measurements_table>
+    <xyvalues_table>none</xyvalues_table>
+    <chamber_name>xrd</chamber_name>
+    <sql_username>xrd</sql_username>
+    <folder_name>xrd</folder_name>
+    <image_format>png</image_format>
+  </global_settings>
+</graphs>
+
