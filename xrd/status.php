@@ -28,7 +28,7 @@ $current_pressure_wrgms = $row[1];
 <?php echo(new_html_header())?>
   <div class="graph">
   <h2>Pressure history asg</h2>
-		<a href="read_dateplot.php?type=pressure_asg"><img src="plot.php?type=pressure_asg&xsize=700&ysize=300&small_plot=1"></a>
+  <a href="dateplot.php?type=multidateplot&matplotlib=checked&left_plotlist[]=1"><img src="plot.php?type=multidateplot&left_logscale=checked&matplotlib=checked&left_plotlist[]=1&image_format=png"></a>y
   </div>
 
   <div class="graph">
@@ -38,7 +38,7 @@ $current_pressure_wrgms = $row[1];
 
   <div class="graph">
   <h2>Pressure history wrg</h2>
-		<a href="read_dateplot.php?type=pressure_wrg"><img src="plot.php?type=pressure_wrg&xsize=700&ysize=300&small_plot=1"></a>
+  <a href="dateplot.php?type=multidateplot&matplotlib=checked&left_plotlist[]=2"><img src="plot.php?type=multidateplot&left_logscale=checked&matplotlib=checked&left_plotlist[]=2&image_format=png"></a>
   </div>
 
   <div class="graph">
@@ -48,7 +48,7 @@ $current_pressure_wrgms = $row[1];
 
   <div class="graph">
   <h2>Pressure history wrgms</h2>
-		<a href="read_dateplot.php?type=pressure_wrgms"><img src="plot.php?type=pressure_wrgms&xsize=700&ysize=300&small_plot=1"></a>
+  <a href="dateplot.php?type=multidateplot&matplotlib=checked&left_plotlist[]=3"><img src="plot.php?type=multidateplot&left_logscale=checked&matplotlib=checked&left_plotlist[]=3&image_format=png"></a>
   </div>
 
   <div class="graph">
