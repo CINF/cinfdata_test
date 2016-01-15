@@ -265,15 +265,15 @@
     </link>
     <link>
       <title>Pressure asg</title>
-      <ref>xrd/read_dateplot.php?type=pressure_asg</ref>
+      <ref>xrd/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_logscale=checked&amp;left_plotlist[]=1</ref>
     </link>
     <link>
       <title>Pressure wrg</title>
-      <ref>xrd/read_dateplot.php?type=pressure_wrg</ref>
+      <ref>xrd/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_logscale=checked&amp;left_plotlist[]=2</ref>
     </link>
     <link>
       <title>Pressure wrgms</title>
-      <ref>xrd/read_dateplot.php?type=pressure_wrgms</ref>
+      <ref>xrd/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_logscale=checked&amp;left_plotlist[]=3</ref>
     </link>
   </setup>
 
