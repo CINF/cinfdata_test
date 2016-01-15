@@ -415,14 +415,6 @@
       <ref>dummy/xyplot.php?type=masstime&amp;matplotlib=checked</ref>
     </link>
     <link>
-      <title>GC</title>
-      <ref>dummy/xyplot.php?type=gc&amp;matplotlib=checked</ref>
-    </link>
-    <link>
-      <title>GC Raw</title>
-      <ref>dummy/xyplot.php?type=gc_raw&amp;matplotlib=checked</ref>
-    </link>
-    <link>
       <title>Mass spectrums</title>
       <ref>dummy/xyplot.php?type=massspectrum</ref>
     </link>
@@ -696,6 +688,14 @@
     <link>
       <title>Mass-time</title>
       <ref>vhp_setup/xyplot.php?type=masstime</ref>
+    </link>
+    <link>
+      <title>GC</title>
+      <ref>vhp_setup/xyplot.php?type=gc&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>GC Raw</title>
+      <ref>vhp_setup/xyplot.php?type=gc_raw&amp;matplotlib=checked</ref>
     </link>
   </setup>
 
