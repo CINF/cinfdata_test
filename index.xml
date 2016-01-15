@@ -429,23 +429,23 @@
   </setup>
 
   <!--Old cluster source port to new files -->
-  <setup codename="oldclustersourceport">
-    <setup_title>Old cluster source (port to version 2)</setup_title>
+  <setup codename="oldclustersource">
+    <setup_title>Old cluster source</setup_title>
     <link>
       <title>Pressure</title>
-      <ref>oldclustersourceport/dateplot.php?type=pressure&amp;left_plotlist%5B%5D=1</ref>
+      <ref>oldclustersource/dateplot.php?type=pressure&amp;left_plotlist%5B%5D=1</ref>
     </link>
     <link>
       <title>Cluster deposition</title>
-      <ref>oldclustersourceport/xyplot.php?type=clusterdeposition</ref>
+      <ref>oldclustersource/xyplot.php?type=clusterdeposition</ref>
     </link>
     <link>
       <title>Temperatures</title>
-      <ref>oldclustersourceport/dateplot.php?type=temperatures&amp;left_plotlist%5B%5D=5</ref>
+      <ref>oldclustersource/dateplot.php?type=temperatures&amp;left_plotlist%5B%5D=5</ref>
     </link>
     <link>
       <title>Backing pressures</title>
-      <ref>oldclustersourceport/dateplot.php?type=backing_pressures&amp;left_logscale=checked&amp;left_plotlist%5B%5D=1&amp;left_plotlist%5B%5D=2&amp;left_plotlist%5B%5D=3</ref>
+      <ref>oldclustersource/dateplot.php?type=backing_pressures&amp;left_logscale=checked&amp;left_plotlist%5B%5D=1&amp;left_plotlist%5B%5D=2&amp;left_plotlist%5B%5D=3</ref>
     </link>
   </setup>
 
