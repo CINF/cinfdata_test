@@ -41,10 +41,10 @@ function xml_tree_to_assiciative_arrays($xml){
   return $ret;
 }
 
-function plot_settings($type, $params="", $ignore_invalid_type=False){
+function plot_settings($type, $params="", $ignore_invalid_type=False, $gs_file='graphsettings.xml'){
   # Write the type to the associative settings array and hence initiate it
-  $gs = fopen('graphsettings.xml', 'r');
-  $gs = fread($gs, filesize('graphsettings.xml'));
+  $gs = fopen($gs_file, 'r');
+  $gs = fread($gs, filesize($gs_file));
   $gs_xml = new SimpleXMLElement($gs);
 
   # Put the global settings in $settings
