@@ -300,6 +300,7 @@
     <grouping_column>relative_path</grouping_column>
     <right_legend_suffix> (r)</right_legend_suffix>
     <label_column>label</label_column>
+    <sort_dataset_by_column>id</sort_dataset_by_column>
     <!-- dygraph -->
     <dygraph_settings>
       <labels_newline>true</labels_newline>
