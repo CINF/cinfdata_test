@@ -346,13 +346,23 @@
 	<name>Label</name>
       </param2>
     </parameters>
+
+    <!-- plugins -->
+    <plugins>
+      <ShiftGraphs>
+	<title>Shift plots</title>
+	<input>Shift amount</input>
+	<output>raw</output>
+	<debug>true</debug>
+      </ShiftGraphs>
+    </plugins>
   </graph>
 
 
   <global_settings>
     <measurements_table>measurements_vhp_setup</measurements_table>
     <xyvalues_table>xy_values_vhp_setup</xyvalues_table>
-    <folder_name>vhp_setup</folder_name>
+    <folder_name>dev_bugs</folder_name>
     <sql_username>vhp_setup</sql_username>
     <label_column>mass_label</label_column>
     <image_format>png</image_format>
