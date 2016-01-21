@@ -346,6 +346,16 @@
 	<name>Label</name>
       </param2>
     </parameters>
+
+    <!-- plugins -->
+    <plugins>
+      <ShiftGraphs>
+	<title>Shift plots</title>
+	<input>Shift amount</input>
+	<output>raw</output>
+	<debug>true</debug>
+      </ShiftGraphs>
+    </plugins>
   </graph>
 
 

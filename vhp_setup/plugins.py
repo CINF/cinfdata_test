@@ -170,3 +170,72 @@ class Normalizer(object):
             )
 
         return self.interpol_func_cache[id_]
+
+
+class ShiftGraphs(object):
+    """Shift graphs on the left axis
+
+    This plugin will shift the plots in the left axis, to make it
+    possible to better visualize multiple similar graphs.
+
+    The input for the plugin is the desired shift (as int or float),
+    if this input is not present (empty string) or is "auto" then the
+    shift will be created automaticall as a factor times the maximum
+    peak height (see detect_shift for details).
+    """
+
+    def __init__(self, settings, plot_options, ggs=None):
+        self.ggs = ggs
+        self.settings = settings
+        self.label_additions = {
+            'xlabel_addition': '',
+            'y_left_label_addition': '',
+            'y_right_label_addition': '',
+        }
+
+        # We need the left and right data series outside self.run
+        self.left = None
+        self.right = None
+
+    def run(self, left, right):
+        """Normalizes each of the data sets on the left y-axis"""
+        self.left = left
+        self.right = right
+
+        if self.settings['input'] not in ['', 'auto']:
+            try:
+                shift = float(self.settings['input'])
+            except ValueError:
+                print('Invalid shift amount. Must be float or int to indicate '
+                      'amount or empty to try and autodetect\n')
+                raise
+        else:
+            shift = self.detect_shift()
+
+        for number, dat in enumerate(left):
+            dat['data'][:, 1] += shift * number
+
+        print('Plots shifted by integer amounts of {0:.1f}'.format(shift))
+        self.label_additions['y_left_label_addition'] = 'shifted by {0:.1f}'.format(shift)
+
+        return self.label_additions
+
+    def detect_shift(self):
+        """Detect the shift by finding the maximum peak and multiply with factor"""
+        # Find max height
+        max_height = -1
+        for dat in self.left:
+            height = dat['data'][:, 1].max() - dat['data'][:, 1].min()
+            max_height = max(max_height, height)
+
+        # Multiply by factor
+        factor = 1.1
+        if max_height > -0.1:
+            shift = factor * max_height
+        else:
+            # If there is no data?
+            shift = 0.0
+
+        print('Autodetect shift as {0:.1f} times the maximum peak height'.format(factor))
+
+        return shift
