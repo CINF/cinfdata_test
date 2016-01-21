@@ -45,8 +45,14 @@ class graphSettings(object):
 
         gs = xml.etree.ElementTree.ElementTree()
         gs.parse('graphsettings.xml')
-        
+
         # Update with global settings
+        system_global = xml.etree.ElementTree.ElementTree()
+        system_global.parse('../global_settings.xml')
+        system_global = system_global.getroot()
+        self._update_settings_with_xml(system_global)
+
+        # Update with USER global settings (in graphsettings.xml)
         global_settings = gs.find('global_settings')
         self._update_settings_with_xml(global_settings)
 
@@ -82,3 +88,8 @@ class graphSettings(object):
     def get_settings(self):
         """ Return the settings dictionary """
         return self.settings
+
+if __name__ == '__main__':
+    import json
+    gs = graphSettings('multidateplot')
+    print json.dumps(gs.settings, indent=4)

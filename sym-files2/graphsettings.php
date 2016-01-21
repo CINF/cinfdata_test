@@ -42,15 +42,24 @@ function xml_tree_to_assiciative_arrays($xml){
 }
 
 function plot_settings($type, $params="", $ignore_invalid_type=False, $gs_file='graphsettings.xml'){
-  # Write the type to the associative settings array and hence initiate it
+  # Load the system global defaults
+  $gs_global = fopen("../global_settings.xml", 'r');
+  $gs_global = fread($gs_global, filesize("../global_settings.xml"));
+  $gs_xml_global = new SimpleXMLElement($gs_global);
+
+  # Put the system global defaults in settings
+  $settings = xml_tree_to_assiciative_arrays($gs_xml_global);
+
+  # Load user graphsettings
   $gs = fopen($gs_file, 'r');
   $gs = fread($gs, filesize($gs_file));
   $gs_xml = new SimpleXMLElement($gs);
 
-  # Put the global settings in $settings
-  $settings = xml_tree_to_assiciative_arrays($gs_xml->global_settings);
+  # Update the settings with the USER global settings
+  $user_global_settings = xml_tree_to_assiciative_arrays($gs_xml->global_settings);
+  $settings = array_replace($settings, $user_global_settings);
   
-  # Put the graph specific settings in $settings
+  # Update with the graph specific settings
   $type_found = False;
   foreach ($gs_xml->graph as $g) {
     if ($g['type'] == $type) {
@@ -75,5 +84,4 @@ function plot_settings($type, $params="", $ignore_invalid_type=False, $gs_file='
   
   return $settings;
   }
-
 ?>
