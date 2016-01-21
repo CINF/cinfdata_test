@@ -95,7 +95,7 @@ class Plot():
         # Plotting options
         self.maxticks=15
         self.tz = timezone('Europe/Copenhagen')
-        self.right_yaxis = len(self.o['right_plotlist']) > 0
+        self.right_yaxis = None
         self.measurement_count = None
  
         # object to give first good color, and then random colors
@@ -104,17 +104,21 @@ class Plot():
     def new_plot(self, data, plot_info, measurement_count):
         """ Form a new plot with the given data and info """
         self.measurement_count = sum(measurement_count)
-        self._init_plot()
-        self._plot(data)
-        self._zoom_and_flip(data)
-        self._title_and_labels(plot_info)
+        self._init_plot(data)
+        # _plot returns True or False to indicate whether the plot is good
+        if self._plot(data):
+            self._zoom_and_flip(data)
+            self._title_and_labels(plot_info)
         self._save(plot_info)
 
-    def _init_plot(self):
+    def _init_plot(self, data):
         """ Initialize plot """
         self.fig = plt.figure(1)
-
         self.ax1 = self.fig.add_subplot(111)
+
+        # We only activate the right y-axis, if there there points to put on it
+        self.right_yaxis = sum([len(dat['data']) for dat in data['right']]) > 0
+
         if self.right_yaxis:
             self.ax2 = self.ax1.twinx()
 
@@ -130,14 +134,29 @@ class Plot():
           _plot_xyplot
         """
         if self.ggs['default_xscale'] == 'dat':
-            self._plot_dateplot(data)
+            return self._plot_dateplot(data)
         else:
-            self._plot_xyplot(data)
+            return self._plot_xyplot(data)
 
     def _plot_dateplot(self, data):
         """ Make the date plot """
         # Rotate datemarks on xaxis
         self.ax1.set_xticklabels([], rotation=25, horizontalalignment='right')
+
+        # Test for un-workable plot configurations
+        error_msg = None
+        # Test if there is data on the left axis
+        if sum([len(dat['data']) for dat in data['left']]) == 0:
+            error_msg = 'There must\nbe data on\nthe left y-axis'
+        # Test if there is any data at all
+        if self.measurement_count == 0:
+            error_msg = 'No data'
+        # No data
+        if error_msg:
+            y = 0.00032 if self.o['left_logscale'] is True else 0.5
+            self.ax1.text(0.5, y, error_msg, horizontalalignment='center',
+                          verticalalignment='center', color='red', size=60)
+            return False
 
         # Left axis
         for dat in data['left']:
@@ -156,39 +175,35 @@ class Plot():
                                    tz=self.tz,
                                    fmt='-')
         # Right axis
-        for dat in data['right']:
-            # Form legend
-            if dat['lgs'].has_key('legend'):
-                legend = dat['lgs']['legend']
-            else:
-                legend = None
-            # Plot
-            if len(dat['data']) > 0:
-                self.ax2.plot_date(mdates.epoch2num(dat['data'][:,0]),
-                                   dat['data'][:,1],
-                                   label=legend,
-                                   xdate=True,
-                                   color=self.c.get_color(),
-                                   tz=self.tz,
-                                   fmt='-')
-        # No data
-        if self.measurement_count == 0:
-            y = 0.00032 if self.o['left_logscale'] is True else 0.5
-            self.ax1.text(0.5, y, 'No data', horizontalalignment='center',
-                          verticalalignment='center', color='red', size=60)
+        if self.right_yaxis:
+            for dat in data['right']:
+                # Form legend
+                if dat['lgs'].has_key('legend'):
+                    legend = dat['lgs']['legend']
+                else:
+                    legend = None
+                # Plot
+                if len(dat['data']) > 0:
+                    self.ax2.plot_date(mdates.epoch2num(dat['data'][:,0]),
+                                       dat['data'][:,1],
+                                       label=legend,
+                                       xdate=True,
+                                       color=self.c.get_color(),
+                                       tz=self.tz,
+                                       fmt='-')
 
         # Set xtick formatter (only if we have points)
         if self.measurement_count > 0:
             xlim = self.ax1.set_xlim()
-            diff = max(xlim) - min(xlim)  # in minutes
+            diff = max(xlim) - min(xlim)  # in days
             format_out = '%H:%M:%S'  # Default
             # Diff limit to date format translation, will pick the format
             # format of the largest limit the diff is larger than. Limits
             # are in minutes.
             formats = [
                 [1.0,              '%a %H:%M'],  # Larger than 1 day
-                [7.0,              '%Y-%m-%d'],  # Larger than 1 day
-                [7*30.,              '%Y-%m'],  # Larger than 30 days
+                [7.0,              '%Y-%m-%d'],  # Larger than 7 day
+                [7*30.,              '%Y-%m'],  # Larger than 3 months
                 ]
             for limit, format in formats:
                 if diff > limit:
@@ -196,6 +211,8 @@ class Plot():
             fm = mdates.DateFormatter(format_out, tz=self.tz)
             self.ax1.xaxis.set_major_formatter(fm)
 
+        # Indicate that the plot is good
+        return True
 
     def _plot_xyplot(self, data):
         # Left axis
@@ -233,6 +250,9 @@ class Plot():
             y = 0.00032 if self.o['left_logscale'] is True else 0.5
             self.ax1.text(0.5, y, 'No data', horizontalalignment='center',
                           verticalalignment='center', color='red', size=60)
+
+        # Indicate that the plot is good
+        return True
 
     def _zoom_and_flip(self, data):
         """ Apply the y zooms.
@@ -321,6 +341,7 @@ class Plot():
         if self.o['title'] != '':
             # experiment with 'r{0}'.form .. at some time
             self.ax1.set_title('{0}'.format(self.o['title']), y=1.03)
+
         # Legends
         if self.measurement_count > 0:
             ax1_legends = self.ax1.get_legend_handles_labels()
