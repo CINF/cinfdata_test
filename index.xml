@@ -695,7 +695,7 @@
     </link>
     <link>
       <title>GC Raw</title>
-      <ref>vhp_setup/xyplot.php?type=gc_raw&amp;matplotlib=checked</ref>
+      <ref>vhp_setup/xyplot.php?type=gc_raw&amp;matplotlib=checked&amp;plugin_settings[ShiftGraphs][input]=auto</ref>
     </link>
   </setup>
 
