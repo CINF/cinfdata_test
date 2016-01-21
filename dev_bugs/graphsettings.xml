@@ -1,245 +1,108 @@
 <?xml version='1.0' standalone='yes'?>
 <graphs>
 
-  <!-- MULTI DATEPLOT -->
   <graph type='multidateplot'>
     <default_xscale>dat</default_xscale>
     <xlabel>Date</xlabel>
     <right_legend_suffix> (r)</right_legend_suffix>
-    <!-- Fall back settings -->
     <title>Multiple dateplots</title>
     <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
     <dygraph_settings>
       <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
     </dygraph_settings>
 
-    <!-- Date plot 1 - Chamber pressure -->
+    <!-- Chamber pressure -->
     <dateplot1>
-      <title>Chamber pressure</title>
+      <title>Massspec pressure</title>
       <legend>Pressure</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 60 and value > 0 and time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_vhp_setup where type=80 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>1</color>
     </dateplot1>
 
-    <!-- Date plot 2 - PIRANI BUFFER VOLUME -->
     <dateplot2>
-      <title>Pirani, buffer volume</title>
-      <legend>Buffer</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 61 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Pressure / mbar</ylabel>
+      <title>T, Reactor Inlet</title>
+      <legend>T, Reactor Inlet</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_vhp_setup where type=81 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
       <color>2</color>
     </dateplot2>
 
-    <!-- Date plot 3 - Reactor pressure -->
     <dateplot3>
-      <title>Reactor pressure</title>
-      <legend>Reactor</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 69 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Pressure / mbar</ylabel>
+      <title>T, Reactor Outlet</title>
+      <legend>T, Reactor Outlet</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_vhp_setup where type=82 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
       <color>3</color>
     </dateplot3>
 
-    <!-- Date plot 4 - Reactor temperature -->
     <dateplot4>
-      <title>Reactor temperature</title>
-      <legend>TC</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 140 and time between "{from}" and "{to}" order by time</query>
+      <title>T, Reactor Top</title>
+      <legend>T, Reactor Top</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_vhp_setup where type=83 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>4</color>
     </dateplot4>
 
-    <!-- Date plot 5 - Reactor temperature -->
     <dateplot5>
-      <title>RTD temperature</title>
-      <legend>RTD</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 141 and time between "{from}" and "{to}" order by time</query>
+      <title>T, Mass-spec</title>
+      <legend>T, Mass-spec</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_vhp_setup where type=84 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>5</color>
     </dateplot5>
 
-   <!-- Tube-temperature ch01 -->
     <dateplot6>
-      <title>T, Ch01</title>
-      <legend>T, Ch01</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 210 and time between "{from}" and "{to}" order by time</query>
+      <title>T, Gas-lines</title>
+      <legend>T, Gas-lines</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_vhp_setup where type=85 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>6</color>
     </dateplot6>
 
-   <!-- Tube-temperature ch02 -->
     <dateplot7>
-      <title>T, Ch02</title>
-      <legend>T, Ch02</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 211 and time between "{from}" and "{to}" order by time</query>
+      <title>T, Purifying reactor</title>
+      <legend>T, Purifying reactor</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_vhp_setup where type=86 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>7</color>
     </dateplot7>
 
-   <!-- Tube-temperature ch03 -->
     <dateplot8>
-      <title>T, Ch03</title>
-      <legend>T, Ch03</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 212 and time between "{from}" and "{to}" order by time</query>
+      <title>T, Furnace</title>
+      <legend>T, Furnace</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_vhp_setup where type=87 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Temperature / C</ylabel>
       <color>8</color>
     </dateplot8>
-
-   <!-- Tube-temperature ch04 -->
-    <dateplot9>
-      <title>T, Ch04</title>
-      <legend>T, Ch04</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 213 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Temperature / C</ylabel>
-      <color>9</color>
-    </dateplot9>
-
-   <!-- Tube-temperature ch05 -->
-    <dateplot10>
-      <title>T, Ch05</title>
-      <legend>T, Ch05</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 214 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Temperature / C</ylabel>
-      <color>10</color>
-    </dateplot10>
-
-   <!-- Tube-temperature ch06 -->
-    <dateplot11>
-      <title>T, Ch06</title>
-      <legend>T, Ch06</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 215 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Temperature / C</ylabel>
-      <color>11</color>
-    </dateplot11>
-
-   <!-- Tube-temperature ch07 -->
-    <dateplot12>
-      <title>T, Ch07</title>
-      <legend>T, Ch07</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 216 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Temperature / C</ylabel>
-      <color>12</color>
-    </dateplot12>
-
-   <!-- Tube-temperature ch08 -->
-    <dateplot13>
-      <title>T, Ch08</title>
-      <legend>T, Ch08</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 217 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Temperature / C</ylabel>
-      <color>13</color>
-    </dateplot13>
-
-   <!-- Tube-temperature ch09 -->
-    <dateplot14>
-      <title>T, Ch09</title>
-      <legend>T, Ch09</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 218 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Temperature / C</ylabel>
-      <color>14</color>
-    </dateplot14>
-
-   <!-- Tube-temperature ch10 -->
-    <dateplot15>
-      <title>T, Ch10</title>
-      <legend>T, Ch10</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 219 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Temperature / C</ylabel>
-      <color>15</color>
-    </dateplot15>
-
-   <!-- Tube-temperature ch11 -->
-    <dateplot16>
-      <title>T, Ch11</title>
-      <legend>T, Ch11</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 270 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Temperature / C</ylabel>
-      <color>16</color>
-    </dateplot16>
-
-   <!-- Tube-temperature ch12 -->
-    <dateplot17>
-      <title>T, Ch12</title>
-      <legend>T, Ch12</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 271 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Temperature / C</ylabel>
-      <color>17</color>
-    </dateplot17>
-
-   <!-- Tube-temperature ch13 -->
-    <dateplot18>
-      <title>T, Ch13</title>
-      <legend>T, Ch13</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 272 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Temperature / C</ylabel>
-      <color>18</color>
-    </dateplot18>
-
-   <!-- Tube-temperature ch14 -->
-    <dateplot19>
-      <title>T, Ch14</title>
-      <legend>T, Ch14</legend>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 273 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Temperature / C</ylabel>
-      <color>19</color>
-    </dateplot19>
-
   </graph>
 
-  <!-- MASSTIME -->
-  <graph type='masstime'>
+  <!-- MASSSPECTRUM -->
+  <graph type="massspectra">
     <default_xscale>lin</default_xscale>
-    <type>5</type>
-    <xlabel>Time / s</xlabel>
-    <title>Mass vs. time</title>
+    <type>4</type>
     <grouping_column>time</grouping_column>
+    <label_column>id</label_column>
     <right_legend_suffix> (r)</right_legend_suffix>
-    <!-- dygraph -->
+    <gas_analysis>false</gas_analysis>
     <dygraph_settings>
-      <labels_newline>true</labels_newline>
-      <roll_period>1</roll_period>
+      <series_highlight>true</series_highlight>
       <labels_side>true</labels_side>
+      <labels_newline>true</labels_newline>
     </dygraph_settings>
-    <!-- queries -->
     <queries>
-      <default>SELECT x/1000,y  FROM xy_values_microreactorNG where measurement = {id} order by id</default>
-      <column>mass_label</column>
+      <default>SELECT x,y  FROM xy_values_vhp_setup where measurement = {id} order by id</default>
     </queries>
-    <!-- ylabel -->
+    <xlabel>Mass / amu</xlabel>
     <ylabel>
-      <default>Mixed units</default>
-      <column>mass_label</column>
-      <pattern0>
-	<reg_match>^M[0-9]{1,2}$</reg_match>
-	<ylabel>SEM current / A</ylabel>
-      </pattern0>
-      <pattern1>
-	<reg_match>^.*temperature$</reg_match>
-	<ylabel>Temperature / C</ylabel>
-      </pattern1>
-      <pattern2>
-	<reg_match>^.*pressure$|^Pirani.*$</reg_match>
-	<ylabel>Pressure / mbar</ylabel>
-      </pattern2>
-      <pattern3>
-	<reg_match>^Input power$</reg_match>
-	<ylabel>Power / W</ylabel>
-      </pattern3>
-      <pattern4>
-	<reg_match>^Flow [0-9]$</reg_match>
-	<ylabel>Flow / mL/min</ylabel>
-      </pattern4>
+      <default>SEM current / A</default>
     </ylabel>
-    <!-- legend -->
     <legend>
-      <default>{mass_label}</default>
-      <column>mass_label</column>
-      <pattern0>
-	<reg_match>^.*temperature$</reg_match>
-	<legend>Temp.</legend>
-      </pattern0>
+      <default>{id}</default>
     </legend>
-    <!-- parameters -->
+    <title>Mass Spectrum</title>
     <parameters>
       <param0>
 	<field>sem_voltage</field>
@@ -249,25 +112,99 @@
 	<field>preamp_range</field>
 	<name>Range</name>
       </param1>
+      <param2>
+	<field>comment</field>
+	<name>Comment</name>
+      </param2>
     </parameters>
+  </graph>
+
+  <graph type="masstime">
+    <default_xscale>lin</default_xscale>
+    <type>5</type>
+    <grouping_column>time</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <xlabel>Time / s</xlabel>
+    <title>Masstime</title>
+    <!-- dygraph -->
+    <dygraph_settings>
+      <labels_newline>true</labels_newline>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x/1000,y  FROM xy_values_vhp_setup where measurement = {id} order by id</default>
+    </queries>
+    <!-- ylabel -->
+    <ylabel>
+      <default>Mixed units</default>
+      <column>mass_label</column>
+      <pattern0>
+	<reg_match>^M[0-9]{1,2}.*$</reg_match>
+	<ylabel>SEM current / A</ylabel>
+      </pattern0>
+      <pattern1>
+	<reg_match>^Chamber pressure$</reg_match>
+	<ylabel>Pressure / torr</ylabel>
+      </pattern1>
+      <pattern2>
+	<reg_match>^P, medium$</reg_match>
+	<ylabel>Pressure / bar</ylabel>
+      </pattern2>
+      <pattern3>
+	<reg_match>^Temp.*$</reg_match>
+	<ylabel>Temperature / C</ylabel>
+      </pattern3>
+      <pattern4>
+	<reg_match>^T,.*$</reg_match>
+	<ylabel>Temperature / C</ylabel>
+      </pattern4>
+      <pattern5>
+	<reg_match>^Flow.*$</reg_match>
+	<ylabel>Flow / mL/min</ylabel>
+      </pattern5>
+      <pattern6>
+	<reg_match>^Room temperature*$</reg_match>
+	<ylabel>Temperature / C</ylabel>
+      </pattern6>
+    </ylabel>
+    <!-- legend -->
+    <legend>
+      <default>{mass_label}</default>
+      <column>mass_label</column>
+      <pattern0>
+	<reg_match>^Temperature$</reg_match>
+	<legend>Temp.</legend>
+      </pattern0>
+      <pattern1>
+	<reg_match>^Pressure$</reg_match>
+	<legend>Pres.</legend>
+      </pattern1>
+    </legend>
+
+    <parameters>
+      <param0>
+	<field>sem_voltage</field>
+	<name>SEM Voltage / V</name>
+      </param0>
+      <param1>
+	<field>preamp_range</field>
+	<name>Range</name>
+      </param1>
+      <param2>
+	<field>comment</field>
+	<name>Comment</name>
+      </param2>
+    </parameters>
+
     <!-- data treatment -->
-    <flip_x>
-      <gui>Flip x-scale</gui>
-    </flip_x>
     <as_function_of>
       <gui>As function of T</gui>
       <column>mass_label</column>
-      <reg_match>RTD temperature</reg_match>
+      <reg_match>^T, outlet$</reg_match>
       <xlabel>Temperature / C</xlabel>
     </as_function_of>
-    <diff_left_y>
-      <gui>Diff. left y-axis</gui>
-      <ylabel_addition>diff</ylabel_addition>
-    </diff_left_y>
-    <diff_right_y>
-      <gui>Diff. right y-axis</gui>
-      <ylabel_addition>diff</ylabel_addition>
-    </diff_right_y>
     <linscale_x0>
       <gui>X-axis in hours</gui>
       <xlabel_addition>converted to hours</xlabel_addition>
@@ -275,46 +212,150 @@
       <a>0.0002777777777777778</a>
       <b>0</b>
     </linscale_x0>
-    <!--
-    <matplotlib_settings>
-      <width>900</width>
-      <height>600</height>
-      <title_size>74</title_size>
-      <xtick_labelsize>4</xtick_labelsize>
-      <ytick_labelsize>8</ytick_labelsize>
-      <legend_fontsize>16</legend_fontsize>
-      <label_fontsize>16</label_fontsize>
-      <linewidth>5</linewidth>
-      <grid>True</grid>
-    </matplotlib_settings>
-    -->
+    <linscale_x1>
+      <gui>X-axis C->K</gui>
+      <xlabel_addition>C->K</xlabel_addition>
+      <a>1</a>
+      <b>273.15</b>
+    </linscale_x1>
+    <linscale_right_y0>
+      <gui>Right Y-axis C->K</gui>
+      <ylabel_addition>C->K</ylabel_addition>
+      <a>1</a>
+      <b>273.15</b>
+    </linscale_right_y0>
+
+    <plugins>
+      <Normalizer>
+	<title>Normalizer</title>
+	<input>Normalize label</input>
+	<output>raw</output>
+	<debug>true</debug>
+      </Normalizer>
+    </plugins>
+
   </graph>
 
-  <!-- MASSSPECTRUM -->
-  <graph type='massspectrum'>
+  <!-- MASSTIME -->
+  <graph type='gc'>
     <default_xscale>lin</default_xscale>
-    <type>4</type>
-    <grouping_column>time</grouping_column>
+    <type>20</type>
+    <xlabel>Time / s</xlabel>
+    <title>Area vs. time</title>
+    <grouping_column>relative_path</grouping_column>
     <right_legend_suffix> (r)</right_legend_suffix>
-    <label_column>id</label_column>
+    <label_column>label</label_column>
+    <!-- dygraph -->
+    <dygraph_settings>
+      <labels_newline>true</labels_newline>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
     <!-- queries -->
     <queries>
-      <default>SELECT x,y  FROM xy_values_microreactorNG where measurement = {id} order by id</default>
+      <default>SELECT x, y FROM xy_values_vhp_setup where measurement = {id} order by id</default>
+      <!--<column>mass_label</column>-->
     </queries>
+    <!-- ylabel -->
+    <ylabel>
+      <default>Peak Area</default>
+    </ylabel>
+
     <!-- legend -->
     <legend>
-      <default>{id} - {time}</default>
+      <default>{relative_path}-{label}</default>
     </legend>
+
+    <!-- parameters -->
+    <parameters>
+      <param0>
+	<field>sample_name</field>
+	<name>Sample Name</name>
+      </param0>
+      <param1>
+	<field>method_name</field>
+	<name>Method Name</name>
+      </param1>
+      <param2>
+	<field>label</field>
+	<name>Label</name>
+      </param2>
+    </parameters>
+    <!-- data treatment -->
+    <linscale_x0>
+      <gui>X-axis in hours</gui>
+      <xlabel_addition>converted to hours</xlabel_addition>
+      <!-- 1/3600 -->
+      <a>0.000277777777777777</a>
+      <b>0</b>
+    </linscale_x0>
   </graph>
 
-  <!-- GLOBAL SETTINGS -->
+  <!-- MASSTIME -->
+  <graph type='gc_raw'>
+    <default_xscale>lin</default_xscale>
+    <type>21</type>
+    <xlabel>Time / min</xlabel>
+    <title>Raw GC Spectrum</title>
+    <grouping_column>relative_path</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <label_column>label</label_column>
+    <sort_dataset_by_column>id</sort_dataset_by_column>
+    <!-- dygraph -->
+    <dygraph_settings>
+      <labels_newline>true</labels_newline>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x, y FROM xy_values_vhp_setup where measurement = {id} order by id</default>
+      <!--<column>mass_label</column>-->
+    </queries>
+    <!-- ylabel -->
+    <ylabel>
+      <default>Intensity [mixed units]</default>
+      <column>unit</column>
+      <pattern0>
+	<reg_match>^pA$</reg_match>
+	<ylabel>Intensity / pA</ylabel>
+      </pattern0>
+      <pattern1>
+	<reg_match>^25.*$</reg_match>
+	<ylabel>Intensity / 25 muV</ylabel>
+      </pattern1>
+    </ylabel>
+
+    <!-- legend -->
+    <legend>
+      <default>{relative_path}-{label}</default>
+    </legend>
+
+    <!-- parameters -->
+    <parameters>
+      <param0>
+	<field>sample_name</field>
+	<name>Sample Name</name>
+      </param0>
+      <param1>
+	<field>method_name</field>
+	<name>Method Name</name>
+      </param1>
+      <param2>
+	<field>label</field>
+	<name>Label</name>
+      </param2>
+    </parameters>
+  </graph>
+
+
   <global_settings>
-    <measurements_table>measurements_microreactorNG</measurements_table>
-    <xyvalues_table>xy_values_microreactorNG</xyvalues_table>
-    <!--<chamber_name>microreactorNG</chamber_name>-->
-    <sql_username>microreactorNG</sql_username>
-    <image_format>png</image_format>
+    <measurements_table>measurements_vhp_setup</measurements_table>
+    <xyvalues_table>xy_values_vhp_setup</xyvalues_table>
+    <folder_name>vhp_setup</folder_name>
+    <sql_username>vhp_setup</sql_username>
     <label_column>mass_label</label_column>
+    <image_format>png</image_format>
     <mandatory_export_fields>
       <field0>
 	<field>id</field>
@@ -328,19 +369,7 @@
 	<field>time</field>
 	<name>Recorded at</name>
       </field2>
-      <field3>
-	<field>comment</field>
-	<name>Comment</name>
-      </field3>
     </mandatory_export_fields>
-    <matplotlib_settings>
-      <width>900</width>
-      <height>600</height>
-      <title_size>24</title_size>
-      <xtick_labelsize>12</xtick_labelsize>
-      <ytick_labelsize>12</ytick_labelsize>
-      <legend_fontsize>10</legend_fontsize>
-      <label_fontsize>16</label_fontsize>
-    </matplotlib_settings>
   </global_settings>
 </graphs>
+

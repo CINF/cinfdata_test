@@ -120,7 +120,7 @@ foreach($chosen_group as $time){
 $sql_times  = substr($sql_times, 0, -1);  // Remove the trailing comma
 
 // Create the list of individual components of the chosen measurements
-$query = "SELECT id, time, " . $settings["label_column"] . " FROM " .  $settings["measurements_table"] . " where " . $settings["grouping_column"] . " in (" . $sql_times . ") and type = " . $settings["type"] . " order by time desc, id limit 800";
+$query = "SELECT id, time, " . $settings["label_column"] . " FROM " .  $settings["measurements_table"] . " where " . $settings["grouping_column"] . " in (" . $sql_times . ") and type = " . $settings["type"] . " order by " . $settings["sort_dataset_by_column"] . " desc, id limit 800";
 
 // replace \ with \\ in comments (Some setups have bad habits...)
 $query = str_replace("\\","\\\\",$query);
