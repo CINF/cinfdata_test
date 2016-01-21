@@ -2,16 +2,27 @@
 include("graphsettings.php");
 include("../common_functions_v2.php");
 echo(html_header());
+
+# Echo extra html to set up sortable tables
+echo("<script src=\"sortable-0.5.0/js/sortable.min.js\"></script>\n" .
+     "<link rel=\"stylesheet\" href=\"sortable-0.5.0/css/sortable-theme-finder.css\" />");
+
 $db = std_db();
 
 function file_element($file){
-  $bad_names = Array("..", ".", "dygraph", "dygraph_old", "graphsettings.xml", "dygraphs", "xyplot.php.BAK");
+  $bad_names = Array("graphsettings.xml");
   if (in_array($file, $bad_names)){
     return 0;
   }
-  $bad_endings = Array("~", "#", "pyc");
+  $bad_endings = Array("~", "#", "pyc", "txt", "BAK");
   foreach ($bad_endings as $ending){
     if (substr($file, -strlen($ending)) === $ending){
+      return 0;
+    }
+  }
+  $bad_beginnings = Array(".", "dygraph");
+  foreach ($bad_beginnings as $beginning){
+    if (substr($file, 0, strlen($beginning)) === $beginning){
       return 0;
     }
   }
@@ -63,11 +74,6 @@ data presentation webpage code</p>
 <?php
   $max_index = pow(2, 32);
 
-# Create table with table stats
-echo("" . 
-     "<table border=\"1\">\n" .
-     "  <tr><th>Name</th><th>Table full</th><th style=\"width:120px\">Size</th><th>Name</th><th>Table full</th><th>Size</th></tr>\n");
-
 # General variables
 $sum_size = 0;
 $max_size = 0;
@@ -96,13 +102,20 @@ while ($row = mysql_fetch_array($result)){
 		       "size" => byteFormat($row_sum));
 }
 
-# Output double arrays
-$floor_half = (int) (sizeof($to_output)/2);
-$ceil_half = ceil(sizeof($to_output)/2);
-for ($x=0; $x < $floor_half; $x++) {
-  $table_line = $to_output[$x];
+# Create table with table stats
+echo("" . 
+     "<table class=\"sortable-theme-finder\" data-sortable>\n" .
+     "  <thead>\n" .
+     "    <tr><th>Name</th><th>Index used</th><th style=\"width:120px\">Size</th></tr>\n" .
+     "  </thead>\n" .
+     "  <tfoot>\n" .
+     "    <tr><th>Total</th><th></th>" . 
+     "<th style=\"width:120px\">" . byteFormat($sum_size) . "</th></tr>" .
+     "  </tfoot>");
+
+# Output table rows
+foreach($to_output as $table_line){
   echo("  <tr>\n");
-  foreach(Array($to_output[$x], $to_output[$x + $ceil_half]) as $table_line){
     $name = $table_line['name'];
     if($table_line['name'] == $max_percent_name){
       $full = "<b>{$table_line['full']}%</b>";
@@ -120,45 +133,9 @@ for ($x=0; $x < $floor_half; $x++) {
     echo("    <td>$name</td>");
     echo("    <td>$full</td>");
     echo("    <td>$size</td>");
-  }
   echo("  </tr>\n");
+
 }
-
-# Output trailing line with odd number of lines
-if ($floor_half != $ceil_half){
-  echo("  <tr>\n");
-  $table_line = $to_output[$floor_half];
-  if($table_line['name'] == $max_percent_name){
-    $full = "<b>{$table_line['full']}%</b>";
-  }else{
-    $full = "{$table_line['full']}%";
-  }
-  if($table_line['name'] == $max_size_name){
-    $size = "<b>{$table_line['size']}</b>";
-  }else{
-    $size = "{$table_line['size']}";
-  }
-  echo("    <td>{$table_line['name']}</td>");
-  echo("    <td>$full</td>");
-  echo("    <td>$size</td>");
-  echo("    <td></td>");
-  echo("    <td></td>");
-  echo("    <td></td>");
-  echo("  </tr>\n");
-}
-
-# Output the table bottom with summary information
-  echo("  <tr>\n");
-  echo("    <td colspan=4 ><b>Max</b></td>");
-  echo("    <td><b>" . number_format($max_percent, 2, '.', ',') . "%</b></td>");
-  echo("    <td><b>" . byteFormat($max_size, 2, '.', ',') . "</b></td>");
-  echo("  </tr>\n");
-
-  echo("  <tr>\n");
-  echo("    <td colspan=4 ><b>Total</b></td>");
-  echo("    <td></td>");
-  echo("    <td><b>" . byteFormat($sum_size) . "</b></td>");
-  echo("  </tr>\n");
 
 echo("</table>\n");
 
@@ -169,10 +146,12 @@ echo("</table>\n");
 <p>The data presentations webpage consist of the following files. Click the files to view the code.</p>
 
 
-<table border="1" cellpadding="3">
-<tr><th align="left">File</th><th align="left">Number of lines</th></tr>
-<?php
+<table class="sortable-theme-finder" data-sortable>
+  <thead>
+    <tr><th align="left">File</th><th align="left">Number of lines</th></tr>
+  </thead>
 
+<?php
 if ($handle = opendir("../sym-files2")) {
     /* This is the correct way to loop over the directory. */
   $files = Array();
@@ -185,7 +164,7 @@ if ($handle = opendir("../sym-files2")) {
   foreach($files as $file){
     $total_lines += file_element($file);
   }
-  echo("<tr>\n<td><b>Total</b></td><td><b>$total_lines</b></td>\n</tr>\n");
+  echo("<tfoot><tr>\n<td><b>Total</b></td><td><b>$total_lines</b></td>\n</tr></tfoot>\n");
 }
 
 ?>
