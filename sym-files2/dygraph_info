@@ -1,1 +1,2 @@
+2016-01-25 Give up on trying to run from the gitarchive and use a single minified .js file instead. This will require links to be update in all folders.
 2014-06-03 upgrade to version 1.0.1, commit before 72d863f commit after ???

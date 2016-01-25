@@ -148,7 +148,10 @@ function html_header_normal($root, $title, $includehead, $charset, $width, $html
   $header = $header . "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset={$charset}\">\n";
   $header = $header . "    <title>CINF data logging</title>\n";
   $header = $header . "    <link rel=\"StyleSheet\" href=\"{$root}css/style.css\" type=\"text/css\" media=\"screen\">\n";
-  $header = $header . "    <script type=\"text/javascript\" src=\"dygraph/dygraph-dev.js\"></script>\n";
+  if ($root == "../"){
+    # $header = $header . "    <script type=\"text/javascript\" src=\"dygraph/dygraph-dev.js\"></script>\n";
+    $header = $header . "    <script type=\"text/javascript\" src=\"dygraph-combined.js\"></script>\n";
+  }
   $header = $header . "    <script type=\"text/javascript\" src=\"{$root}js/update.js\"></script> \n";
   $header = $header . "    <script type=\"text/javascript\" src=\"{$root}js/toogle.js\"></script>\n";
   $header = $header . "    <script type=\"text/javascript\" src=\"{$root}js/output.js\"></script>\n";
@@ -255,7 +258,8 @@ function html_header_x($root, $title, $includehead, $charset, $width, $html5){
   $header = $header . "    <title>CINF data logging</title>\n";
   $header = $header . "    <link rel=\"StyleSheet\" href=\"{$root}css/style.css\" type=\"text/css\" media=\"screen\">\n";
   if ($root == "../"){
-    $header = $header . "    <script type=\"text/javascript\" src=\"dygraph/dygraph-dev.js\"></script>\n";    
+    #$header = $header . "    <script type=\"text/javascript\" src=\"dygraph/dygraph-dev.js\"></script>\n";    
+    $header = $header . "    <script type=\"text/javascript\" src=\"dygraph-combined.js\"></script>\n";
   }
   $header = $header . "    <script type=\"text/javascript\" src=\"{$root}js/update.js\"></script> \n";
   $header = $header . "    <script type=\"text/javascript\" src=\"{$root}js/toogle.js\"></script>\n";
