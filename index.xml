@@ -204,112 +204,55 @@
     <setup_title>Omicron</setup_title>
     <link>
       <title>Temperature</title>
-      <ref>omicron/read_dateplot.php?type=temperature</ref>
+      <ref>omicron/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=1</ref>
     </link>
     <link>
       <title>Temperature, aggregation</title>
-      <ref>omicron/read_dateplot.php?type=temperature_aggregation</ref>
+      <ref>omicron/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=2</ref>
     </link>
     <link>
       <title>Pressure, analytical chamber</title>
-      <ref>omicron/read_dateplot.php?type=pressure_ana</ref>
+      <ref>omicron/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=3&amp;left_logscale=checked</ref>
     </link>
     <link>
       <title>Heating Power</title>
-      <ref>omicron/read_dateplot.php?type=heating_power</ref>
+      <ref>omicron/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=4</ref>
     </link>
     <link>
       <title>Pressure, prep chamber</title>
-      <ref>omicron/read_dateplot.php?type=pressure_prep</ref>
+      <ref>omicron/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=7&amp;left_logscale=checked</ref>
     </link>
     <link>
       <title>Pressure, nanobeam</title>
-      <ref>omicron/read_dateplot.php?type=pressure_nanobeam</ref>
+      <ref>omicron/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=5&amp;left_logscale=checked</ref>
     </link>
     <link>
       <title>Morning pressure, analytical chamber</title>
-      <ref>omicron/plot.php?type=morning_pressure_ana&amp;from=2009-01-01&amp;to=2012-01-01&amp;manualscale=checked&amp;ymax=1E-8&amp;ymin=1E-12&amp;xsize=1000&amp;ysize=750</ref>
+      <ref>omicron/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=6&amp;left_logscale=checked</ref>
     </link>
     <link>
       <title>Morning pressure, prep chamber</title>
-      <ref>omicron/plot.php?type=morning_pressure_prep&amp;from=2009-01-01&amp;to=2012-01-01&amp;manualscale=checked&amp;ymax=1E-8&amp;ymin=1E-12&amp;xsize=1000&amp;ysize=750</ref>
+      <ref>omicron/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=8&amp;left_logscale=checked</ref>
     </link>
     <link>
       <title>Deposition</title>
-      <ref>omicron/read_plot_group.php?type=deposition</ref>
+      <ref>omicron/xyplot.php?type=deposition&amp;matplotlib=checked</ref>
     </link>
     <link>
       <title>Mass-time</title>
-      <ref>omicron/read_plot_group.php?type=masstime</ref>
+      <ref>omicron/xyplot.php?type=masstime&amp;matplotlib=checked</ref>
     </link>
     <link>
       <title>Mass spectrums</title>
-      <ref>omicron/read_plot.php?type=massspectrum</ref>
+      <ref>omicron/xyplot.php?type=massspectrum&amp;matplotlib=checked&amp;left_logscale=checked</ref>
     </link>
     <link>
       <title>Cluster deposition</title>
-      <ref>omicron/read_plot_group.php?type=cluster_deposition</ref>
+      <ref>omicron/xyplot.php?type=cluster_deposition&amp;matplotlib=checked</ref>
     </link>
     <link>
       <title>Modify comments</title>
       <ref>omicron/modify_comment.php</ref>
-    </link>
-  </setup>
-
-  <!--Omicron Port-->
-  <setup codename="omicron_port">
-    <setup_title>Omicron Port</setup_title>
-    <link>
-      <title>Temperature</title>
-      <ref>omicron_port/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=1</ref>
-    </link>
-    <link>
-      <title>Temperature, aggregation</title>
-      <ref>omicron_port/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=2</ref>
-    </link>
-    <link>
-      <title>Pressure, analytical chamber</title>
-      <ref>omicron_port/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=3&amp;left_logscale=checked</ref>
-    </link>
-    <link>
-      <title>Heating Power</title>
-      <ref>omicron_port/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=4</ref>
-    </link>
-    <link>
-      <title>Pressure, prep chamber</title>
-      <ref>omicron_port/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=7&amp;left_logscale=checked</ref>
-    </link>
-    <link>
-      <title>Pressure, nanobeam</title>
-      <ref>omicron_port/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=5&amp;left_logscale=checked</ref>
-    </link>
-    <link>
-      <title>Morning pressure, analytical chamber</title>
-      <ref>omicron_port/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=6&amp;left_logscale=checked</ref>
-    </link>
-    <link>
-      <title>Morning pressure, prep chamber</title>
-      <ref>omicron_port/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=8&amp;left_logscale=checked</ref>
-    </link>
-    <link>
-      <title>Deposition</title>
-      <ref>omicron_port/xyplot.php?type=deposition&amp;matplotlib=checked</ref>
-    </link>
-    <link>
-      <title>Mass-time</title>
-      <ref>omicron_port/xyplot.php?type=masstime&amp;matplotlib=checked</ref>
-    </link>
-    <link>
-      <title>Mass spectrums</title>
-      <ref>omicron_port/xyplot.php?type=massspectrum&amp;matplotlib=checked&amp;left_logscale=checked</ref>
-    </link>
-    <link>
-      <title>Cluster deposition</title>
-      <ref>omicron_port/xyplot.php?type=cluster_deposition&amp;matplotlib=checked</ref>
-    </link>
-    <link>
-      <title>Modify comments</title>
-      <ref>omicron_port/modify_comment.php</ref>
     </link>
   </setup>
 
