@@ -1,0 +1,352 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+  <!-- multidateplot -->
+  <graph type="multidateplot">
+    <default_xscale>dat</default_xscale>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
+
+    <!-- Temperature -->
+    <dateplot1>
+      <title>Temperature in the Omicron</title>
+      <legend>temp. omicron</legend>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_omicron where time between "{from}" and "{to}" order by time desc</query>
+      <ylabel>Temperature / K</ylabel>
+      <color>1</color>
+    </dateplot1>
+
+    <!-- TEMPERATURE AGGREGATION -->
+    <dateplot2>
+      <query>SELECT unix_timestamp(time), temperature FROM temperature_omicron_nanobeam_aggregation where time between "{from}" and "{to}" order by time desc</query>
+      <ylabel>Temperature / C</ylabel>
+      <title>Temperature in the Nanobeam aggregation</title>
+      <legend>temp. agg.</legend>
+      <color>2</color>
+    </dateplot2>
+    
+    <!-- PRESSURE_ANA -->
+    <dateplot3>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_omicron_ana where time between "{from}" and "{to}" order by time desc</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <title>Pressure in the Omicron Analytical chamber</title>
+      <legend>pressure omicron ana</legend>
+      <color>3</color>
+    </dateplot3>
+    
+    <!-- HEATING POWER -->
+    <dateplot4>
+      <query>SELECT unix_timestamp(time), voltage*current FROM power_omicron where time between "{from}" and "{to}" order by time desc</query>
+      <ylabel>Heating Power / Watt</ylabel>
+      <title>Sample Heating Power</title>
+      <legend>heating power</legend>
+      <color>4</color>
+    </dateplot4>
+    
+    <!-- PRESSURE_ANA -->
+    <dateplot5>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_omicron_nanobeam where time between "{from}" and "{to}" order by time desc</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <title>Pressure in the Omicron Nanobeam chamber</title>
+      <legend>p omicron nanobeam</legend>
+      <color>5</color>
+    </dateplot5>
+  
+    <!-- MORNING_PRESSURE_ANA -->
+    <dateplot6>
+      <query>select unix_timestamp(date(time)), avg(pressure) from pressure_omicron_ana where hour(time) = 7 and minute(time) between 00 and 20 and time between "{from}" and "{to}" group by date(time) order by time desc limit 30</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <title>Pressure at 7 am in the Omicron Analytical chamber</title>
+      <legend>p. omicron morning</legend>
+      <color>6</color>
+      <default_style>barplot</default_style>
+    </dateplot6>
+    
+    <!-- PRESSURE_PREP -->
+    <dateplot7>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_omicron_prep where time between "{from}" and "{to}" and pressure &gt; 1e-13 order by time desc</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <title>Pressure in the Omicron Prep chamber</title>
+      <legend>p. omicron prep</legend>
+      <color>7</color>
+    </dateplot7>
+
+    <dateplot8>
+      <query>select unix_timestamp(date(time)), avg(pressure) from pressure_omicron_prep where hour(time) = 7 and minute(time) between 00 and 20 and time between "{from}" and "{to}" group by date(time) order by time desc limit 30</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <title>Pressure at 7 am in the Omicron Prep chamber</title>
+      <legend>p. prep. morning</legend>
+      <color>8</color>
+    </dateplot8>
+  </graph>
+
+  <!-- DEPOSITION -->
+  <graph type='deposition'>
+    <title>Deposition</title>
+    <xlabel>Time / s</xlabel>
+    <grouping_column>time</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <default_xscale>lin</default_xscale>
+    <type>9</type>
+    <image_format>pdf</image_format>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x/1000, y*100 FROM xy_values_omicron where measurement = {id} order by id</default>
+    </queries>
+    <!-- ylabel -->
+    <ylabel>
+      <default>Mixed units</default>
+      <column>mass_label</column>
+      <pattern0>
+	<reg_match>^Thickness$</reg_match>
+	<ylabel>Thickness / nm</ylabel>
+      </pattern0>
+      <pattern1>
+	<reg_match>^Frequency$</reg_match>
+	<ylabel>Frequency / Hz</ylabel>
+      </pattern1>
+    </ylabel>
+    <!-- legend -->
+    <legend>
+      <default>{id} - {mass_label}</default>
+    </legend>
+  </graph>
+
+  <!-- MASSSPECTRUM -->
+  <graph type='massspectrum'>
+    <title>Mass Spectrum</title>
+    <xlabel>Mass / amu</xlabel>
+    <grouping_column>time</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <default_xscale>lin</default_xscale>
+    <type>4</type>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x,y  FROM xy_values_omicron where measurement = {id} order by id</default>
+    </queries>
+    <!-- ylabel -->
+    <ylabel>
+      <default>SEM current / A</default>
+    </ylabel>
+    <!-- legend -->
+    <legend>
+      <default>{id} - {mass_label}</default>
+    </legend>
+    <!-- Parameters -->
+    <parameters>
+      <param0>
+	<field>SEM_voltage</field>
+	<name>SEM Voltage / V</name>
+      </param0>
+      <param1>
+	<field>preamp_range</field>
+	<name>Range</name>
+      </param1>
+    </parameters>
+  </graph>
+  
+  <!-- MASS TIME -->
+  <graph type='masstime'>
+    <title>Mass vs. time</title>
+    <xlabel>Time / s</xlabel>
+    <grouping_column>time</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <default_xscale>lin</default_xscale>
+    <type>5</type>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x/1000,y  FROM xy_values_omicron where measurement = {id} order by id</default>
+    </queries>
+    <!-- ylabel -->
+    <ylabel>
+      <default>Mixed units</default>
+      <column>mass_label</column>
+      <pattern0>
+	<reg_match>^M[0-9]{1,2}.*$</reg_match>
+	<ylabel>SEM current / A</ylabel>
+      </pattern0>
+      <pattern1>
+	<reg_match>^Temperature$</reg_match>
+	<ylabel>Temperature / C</ylabel>
+      </pattern1>
+      <pattern2>
+	<reg_match>^Chamber pressure$</reg_match>
+	<ylabel>Pressure / mbar</ylabel>
+      </pattern2>
+    </ylabel>
+    <!-- legend -->
+    <legend>
+      <default>{id} - {mass_label}</default>
+    </legend>
+    <!-- parameters -->
+    <parameters>
+      <param0>
+	<field>SEM_voltage</field>
+	<name>SEM Voltage / V</name>
+      </param0>
+      <param1>
+	<field>preamp_range</field>
+	<name>Range</name>
+      </param1>
+      <param2>
+	<field>mass_label</field>
+	<name>Mass label</name>
+      </param2>
+    </parameters>
+    <!-- Data treatment -->
+    <as_function_of>
+      <gui>As function of T</gui>
+      <column>mass_label</column>
+      <reg_match>Temperature</reg_match>
+      <xlabel>Temperature / C</xlabel>
+    </as_function_of>
+  </graph>
+
+  <!-- CLUSTER DEPOSITION -->
+  <graph type='cluster_deposition'>
+    <title>Cluster deposition</title>
+    <xlabel>Time / s</xlabel>
+    <grouping_column>time</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <default_xscale>lin</default_xscale>
+    <image_format>pdf</image_format>
+    <type>10</type>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x,y  FROM xy_values_omicron where measurement = {id} order by id</default>
+    </queries>
+    <ylabel>
+      <default>Current / A &amp; pressure / mbar &amp; flow / ml/m</default>
+    </ylabel>
+    <legend>
+      <default>{id} - {mass_label}</default>
+    </legend>
+
+    <parameters>
+      <param0>
+	<field>ar_flow</field>
+	<name>Ar flow / ml/min</name>
+      </param0>
+      <param1>
+	<field>he_flow</field>
+	<name>He flow / ml/min</name>
+      </param1>
+      <param2>
+	<field>beam_potential</field>
+	<name>Beam potential / V</name>
+      </param2>
+      <param3>
+	<field>skimmer</field>
+	<name>Skimmer / V</name>
+      </param3>
+      <param4>
+	<field>lens1</field>
+	<name>Lens 1 / V</name>
+      </param4>
+      <param5>
+	<field>lens2</field>
+	<name>Lens 2 / V</name>
+      </param5>
+      <param6>
+	<field>lensx_plus</field>
+	<name>Lens X + / V</name>
+      </param6>
+      <param7>
+	<field>lensx_minus</field>
+	<name>Lens X - / V</name>
+      </param7>
+      <param8>
+	<field>lensy_plus</field>
+	<name>Lens Y + / V</name>
+      </param8>
+      <param9>
+	<field>lensy_minus</field>
+	<name>Lens Y - / V</name>
+      </param9>
+      <param10>
+	<field>lens6</field>
+	<name>Lens 6 / V</name>
+      </param10>
+      <param11>
+	<field>lensb</field>
+	<name>Lens B / V</name>
+      </param11>
+      <param12>
+	<field>lense</field>
+	<name>Lens E / V</name>
+      </param12>
+      <param13>
+	<field>spare1</field>
+	<name>Spare 1 / V</name>
+      </param13>
+      <param14>
+	<field>substrate</field>
+	<name>Substrate potential / V</name>
+      </param14>
+      <param15>
+	<field>range_from</field>
+	<name>Range (from) / amu</name>
+      </param15>
+      <param16>
+	<field>range_to</field>
+	<name>Range (to) / amu</name>
+      </param16>
+      <param17>
+	<field>steps</field>
+	<name>Steps</name>
+      </param17>
+      <param18>
+	<field>material</field>
+	<name>Material</name>
+      </param18>
+      <param19>
+	<field>magnetron_power</field>
+	<name>Magnetron power / W</name>
+      </param19>
+      <param20>
+	<field>pirani4</field>
+	<name>Pirani 4 / mbar</name>
+      </param20>
+      <param21>
+	<field>condensation_length</field>
+	<name>Condensation Length / mm</name>
+      </param21>
+      <param22>
+	<field>condensation_temp</field>
+	<name>Condensation temperature / K</name>
+      </param22>
+      <param23>
+	<field>nozzel_dia</field>
+	<name>Nozzle diameter / mm</name>
+      </param23>
+      <param24>
+	<field>entrance_slit</field>
+	<name>Entrance slit / mm</name>
+      </param24>
+      <param25>
+	<field>exit_slit</field>
+	<name>Exit slit / mm</name>
+      </param25>
+      <param26>
+	<field>pulse_delay_width_ratio</field>
+	<name>Pulse Delay to Pulse Width ratio</name>
+      </param26>
+      <param27>
+	<field>tof_filling_time</field>
+	<name>TOF Filling Time</name>
+      </param27>
+    </parameters>
+  </graph>  
+
+  <global_settings>
+    <measurements_table>measurements_omicron</measurements_table>
+    <xyvalues_table>xy_values_omicron</xyvalues_table>
+    <chamber_name>omicron</chamber_name>
+    <sql_username>omicron</sql_username>
+    <folder_name>omicron</folder_name>
+    <image_format>png</image_format>
+    <label_column>mass_label</label_column>
+  </global_settings>
+</graphs>
+    

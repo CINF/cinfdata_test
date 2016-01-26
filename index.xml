@@ -256,6 +256,63 @@
     </link>
   </setup>
 
+  <!--Omicron Port-->
+  <setup codename="omicron_port">
+    <setup_title>Omicron Port</setup_title>
+    <link>
+      <title>Temperature</title>
+      <ref>omicron_port/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=1</ref>
+    </link>
+    <link>
+      <title>Temperature, aggregation</title>
+      <ref>omicron_port/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=2</ref>
+    </link>
+    <link>
+      <title>Pressure, analytical chamber</title>
+      <ref>omicron_port/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=3&amp;left_logscale=checked</ref>
+    </link>
+    <link>
+      <title>Heating Power</title>
+      <ref>omicron_port/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=4</ref>
+    </link>
+    <link>
+      <title>Pressure, prep chamber</title>
+      <ref>omicron_port/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=7&amp;left_logscale=checked</ref>
+    </link>
+    <link>
+      <title>Pressure, nanobeam</title>
+      <ref>omicron_port/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=5&amp;left_logscale=checked</ref>
+    </link>
+    <link>
+      <title>Morning pressure, analytical chamber</title>
+      <ref>omicron_port/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=6&amp;left_logscale=checked</ref>
+    </link>
+    <link>
+      <title>Morning pressure, prep chamber</title>
+      <ref>omicron_port/dateplot.php?type=multidateplot&amp;matplotlib=checked&amp;left_plotlist[]=8&amp;left_logscale=checked</ref>
+    </link>
+    <link>
+      <title>Deposition</title>
+      <ref>omicron_port/xyplot.php?type=deposition&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>Mass-time</title>
+      <ref>omicron_port/xyplot.php?type=masstime&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>Mass spectrums</title>
+      <ref>omicron_port/xyplot.php?type=massspectrum&amp;matplotlib=checked&amp;left_logscale=checked</ref>
+    </link>
+    <link>
+      <title>Cluster deposition</title>
+      <ref>omicron_port/xyplot.php?type=cluster_deposition&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>Modify comments</title>
+      <ref>omicron_port/modify_comment.php</ref>
+    </link>
+  </setup>
+
   <!--XRD-->
   <setup codename="xrd">
     <setup_title>XRD</setup_title>
