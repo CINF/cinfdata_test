@@ -297,8 +297,8 @@
 	<name>Steps</name>
       </param17>
       <param18>
-	<field>material</field>
-	<name>Material</name>
+	<field>Comment</field>
+	<name>Comment</name>
       </param18>
       <param19>
 	<field>magnetron_power</field>
@@ -336,6 +336,10 @@
 	<field>tof_filling_time</field>
 	<name>TOF Filling Time</name>
       </param27>
+      <param28>
+	<field>material</field>
+	<name>Material</name>
+      </param28>
     </parameters>
   </graph>  
 
@@ -347,6 +351,24 @@
     <folder_name>omicron</folder_name>
     <image_format>png</image_format>
     <label_column>mass_label</label_column>
+    <mandatory_export_fields>
+      <field0>
+	<field>id</field>
+	<name>Id</name>
+      </field0>
+      <field1>
+	<field>type</field>
+	<name>Type</name>
+      </field1>
+      <field2>
+	<field>time</field>
+	<name>Recorded at</name>
+      </field2>
+      <field3>
+	<field>Comment</field>
+	<name>Comment</name>
+      </field3>
+    </mandatory_export_fields>
   </global_settings>
 </graphs>
     
