@@ -3,10 +3,6 @@
 
   <!-- MULTI DATEPLOT -->
   <graph type='multidateplot_pressures'>
-    <app>
-      <title>Pressures</title>
-      
-    </app>
     <default_xscale>dat</default_xscale>
     <xlabel>Date</xlabel>
     <right_legend_suffix> (r)</right_legend_suffix>
@@ -19,22 +15,49 @@
     </dygraph_settings>
 
     <dateplot1>
-      <title>Pressure load lock</title>
-      <legend>p$_{load\,lock}$</legend>
-      <!-- dateplot id 10 -->
-      <query>SELECT unix_timestamp(time), value FROM dateplots_thetaprobe WHERE type=10 AND time BETWEEN "{from}" AND "{to}" ORDER BY TIME</query>
+      <title>Main chamber pressure</title>
+      <legend>p_main</legend>
+      <!-- dateplot id 17 -->
+      <query>SELECT unix_timestamp(time), value FROM dateplots_thetaprobe WHERE type=17 AND time BETWEEN "{from}" AND "{to}" ORDER BY TIME</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>1</color>
     </dateplot1>
 
     <dateplot2>
-      <title>Pressure UV gun</title>
-      <legend>p$_{UV\,gun}$</legend>
-      <!-- dateplot id 11 -->
-      <query>SELECT unix_timestamp(time), value FROM dateplots_thetaprobe WHERE type=11 AND time BETWEEN "{from}" AND "{to}" ORDER BY TIME</query>
+      <title>Load lock pressure</title>
+      <legend>p_load_lock</legend>
+      <!-- dateplot id 10 -->
+      <query>SELECT unix_timestamp(time), value FROM dateplots_thetaprobe WHERE type=10 AND time BETWEEN "{from}" AND "{to}" ORDER BY TIME</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>2</color>
     </dateplot2>
+
+    <dateplot3>
+      <title>Load lock roughing pressure</title>
+      <legend>p_load_lock_rough</legend>
+      <!-- dateplot id 18 -->
+      <query>SELECT unix_timestamp(time), value FROM dateplots_thetaprobe WHERE type=18 AND time BETWEEN "{from}" AND "{to}" ORDER BY TIME</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>3</color>
+    </dateplot3>
+
+    <dateplot4>
+      <title>Main chamber temperature</title>
+      <legend>t_main</legend>
+      <!-- dateplot id 19 -->
+      <query>SELECT unix_timestamp(time), value FROM dateplots_thetaprobe WHERE type=19 AND time BETWEEN "{from}" AND "{to}" ORDER BY TIME</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+    <dateplot5>
+      <title>Pressure UV gun</title>
+      <legend>p_uv_gun</legend>
+      <!-- dateplot id 11 -->
+      <query>SELECT unix_timestamp(time), value FROM dateplots_thetaprobe WHERE type=11 AND time BETWEEN "{from}" AND "{to}" ORDER BY TIME</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>5</color>
+    </dateplot5>
   </graph>
 
   <graph type="live_pressures">
@@ -103,7 +126,7 @@
 	  <item3>
 	    <socket>1</socket>
 	    <id>thetaprobe_main_chamber_temperature</id>
-	    <label>UV gun</label>
+	    <label>Chamber temperature</label>
 	    <color>#000000</color>
 	    <format>.2f</format>
 	    <unit>&amp;deg;C</unit>
@@ -183,7 +206,7 @@
 	    <socket>1</socket>
 	    <id>thetaprobe_main_chamber_temperature</id>
 	    <label>Chamber Temperature [C]</label>
-	    <color>#FF0000</color>
+	    <color>#000000</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_main_chamber_temperature") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	</figure>
