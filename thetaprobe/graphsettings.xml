@@ -45,11 +45,11 @@
       <!-- Container 1, contains the second plot -->
       <container0>
 	<type>figure</type>
-	<title>Load Lock</title>
-	<update_interval>1.0</update_interval>
-	<!-- <bgcolor>#E7E7E7</bgcolor>-->
-	<width>600</width>
-	<height>400</height>
+	<title>Main Chamber Pressure [mbar]</title>
+	<update_interval>0.5</update_interval>
+	<!--<bgcolor>#E7E7E7</bgcolor>-->
+	<width>700</width>
+	<height>500</height>
 	<jump_ahead>0.3</jump_ahead>
 	<x_window>3600</x_window>
 	<logscale>true</logscale>
@@ -59,67 +59,135 @@
 	<line_width>3</line_width>
 	<figure>
 	  <plot0>
-	    <socket>0</socket>
-	    <id>thetaprobe_pressure_loadlock</id>
-	    <label>Load lock pressure / [mbar]</label>
-	    <color>#FF0000</color>
-	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_pressure_loadlock") and unix_timestamp(time) > {from}</old_data_query>
+	    <socket>1</socket>
+	    <id>thetaprobe_main_chamber_pressure</id>
+	    <label>Main chamber pressure [mbar]</label>
+	    <color>#0000FF</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_main_chamber_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	</figure>
       </container0>
 
-      <!-- Container 1, contains the second plot -->
       <container1>
-	<type>figure</type>
-	<title>UV Gun</title>
-	<update_interval>1.0</update_interval>
-	<!-- <bgcolor>#E7E7E7</bgcolor>-->
-	<width>600</width>
-	<height>400</height>
-	<jump_ahead>0.3</jump_ahead>
-	<x_window>3600</x_window>
-	<logscale>true</logscale>
-	<!-- Experimental, to fix bad y-range selection with log plot and
-	     constant values -->
-	<!-- <yrangepad>10</yrangepad> -->
-	<line_width>3</line_width>
-	<figure>
-	  <plot0>
-	    <socket>0</socket>
-	    <id>thetaprobe_pressure_uvgun</id>
-	    <label>UV gun pressure / [mbar]</label>
-	    <color>#0000FF</color>
-	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_pressure_uvgun") and unix_timestamp(time) > {from}</old_data_query>
-	  </plot0>	  
-	</figure>
-      </container1>
-
-      <container2>
 	<type>data</type>
-	<!--<bgcolor>#FFFFFF</bgcolor>-->
-	<width>800</width>
-	<height>200</height>
+	<!--<bgcolor>#FF00FF</bgcolor>-->
+	<width>550</width>
+	<height>500</height>
 	<fontsize>24</fontsize>
-	<show_diff>true</show_diff>
+	<!--<show_diff>true</show_diff>-->
 	<data>
 	  <item0>
+	    <socket>1</socket>
+	    <id>thetaprobe_main_chamber_pressure</id>
+	    <label>Chamber pressure</label>
+	    <color>#0000FF</color>
+	    <format>.2e</format>
+	    <unit>mbar</unit>
+	  </item0>
+	  <item1>
 	    <socket>0</socket>
 	    <id>thetaprobe_pressure_loadlock</id>
 	    <label>Load lock</label>
 	    <color>#FF0000</color>
 	    <format>.2e</format>
 	    <unit>mbar</unit>
-	  </item0>
-	  <item1>
-	    <socket>0</socket>
-	    <id>thetaprobe_pressure_uvgun</id>
-	    <label>UV gun</label>
-	    <color>#0000FF</color>
+	  </item1>
+	  <item2>
+	    <socket>1</socket>
+	    <id>thetaprobe_load_lock_roughing_pressure</id>
+	    <label>Load lock pirani</label>
+	    <color>#088A08</color>
 	    <format>.2e</format>
 	    <unit>mbar</unit>
-	  </item1>
+	  </item2>
+	  <item3>
+	    <socket>1</socket>
+	    <id>thetaprobe_main_chamber_temperature</id>
+	    <label>UV gun</label>
+	    <color>#000000</color>
+	    <format>.2f</format>
+	    <unit>&amp;deg;C</unit>
+	  </item3>
 	</data>
+      </container1>
+
+      <!-- Container 2, contains the second plot -->
+      <container2>
+	<type>figure</type>
+	<title>Load Lock [mbar]</title>
+	<update_interval>1.0</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>420</width>
+	<height>300</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>3600</x_window>
+	<logscale>true</logscale>
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<!-- <yrangepad>10</yrangepad> -->
+	<line_width>3</line_width>
+	<figure>
+	  <plot0>
+	    <socket>0</socket>
+	    <id>thetaprobe_pressure_loadlock</id>
+	    <label>Load lock pressure [mbar]</label>
+	    <color>#FF0000</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_pressure_loadlock") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
       </container2>
+
+      <!-- Container 2, contains the second plot -->
+      <container3>
+	<type>figure</type>
+	<title>Load Lock Pirani [mbar]</title>
+	<update_interval>1.0</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>420</width>
+	<height>300</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>3600</x_window>
+	<logscale>true</logscale>
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<!-- <yrangepad>10</yrangepad> -->
+	<line_width>3</line_width>
+	<figure>
+	  <plot0>
+	    <socket>1</socket>
+	    <id>thetaprobe_load_lock_roughing_pressure</id>
+	    <label>Load lock pirani pressure [mbar]</label>
+	    <color>#088A08</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_load_lock_roughing_pressure") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container3>
+
+      <!-- Container 2, contains the second plot -->
+      <container4>
+	<type>figure</type>
+	<title>Chamber Temperature [C]</title>
+	<update_interval>1.0</update_interval>
+	<!-- <bgcolor>#E7E7E7</bgcolor>-->
+	<width>420</width>
+	<height>300</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>3600</x_window>
+	<logscale>true</logscale>
+	<!-- Experimental, to fix bad y-range selection with log plot and
+	     constant values -->
+	<!-- <yrangepad>10</yrangepad> -->
+	<line_width>3</line_width>
+	<figure>
+	  <plot0>
+	    <socket>1</socket>
+	    <id>thetaprobe_main_chamber_temperature</id>
+	    <label>Chamber Temperature [C]</label>
+	    <color>#FF0000</color>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_main_chamber_temperature") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container4>
     </containers>
   </graph>
 
@@ -161,6 +229,7 @@
     </matplotlib_settings>
     <sockets>
       <socket0>rasppi25:8000</socket0>
+      <socket1>rasppi71:8000</socket1>
     </sockets>
   </global_settings>
 </graphs>
