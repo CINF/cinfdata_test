@@ -80,6 +80,10 @@
 	     constant values -->
 	<!-- <yrangepad>10</yrangepad> -->
 	<line_width>3</line_width>
+	<data_reduction>
+	  <time>600</time>
+	  <relative>0.05</relative>
+	</data_reduction>
 	<figure>
 	  <plot0>
 	    <socket>1</socket>
@@ -149,6 +153,10 @@
 	     constant values -->
 	<!-- <yrangepad>10</yrangepad> -->
 	<line_width>3</line_width>
+	<data_reduction>
+	  <time>600</time>
+	  <relative>0.05</relative>
+	</data_reduction>
 	<figure>
 	  <plot0>
 	    <socket>0</socket>
@@ -175,6 +183,10 @@
 	     constant values -->
 	<!-- <yrangepad>10</yrangepad> -->
 	<line_width>3</line_width>
+	<data_reduction>
+	  <time>600</time>
+	  <relative>0.05</relative>
+	</data_reduction>
 	<figure>
 	  <plot0>
 	    <socket>1</socket>
@@ -201,6 +213,10 @@
 	     constant values -->
 	<!-- <yrangepad>10</yrangepad> -->
 	<line_width>3</line_width>
+	<data_reduction>
+	  <time>600</time>
+	  <absolute>0.5</absolute>
+	</data_reduction>
 	<figure>
 	  <plot0>
 	    <socket>1</socket>
