@@ -46,7 +46,7 @@
       <legend>t_main</legend>
       <!-- dateplot id 19 -->
       <query>SELECT unix_timestamp(time), value FROM dateplots_thetaprobe WHERE type=19 AND time BETWEEN "{from}" AND "{to}" ORDER BY TIME</query>
-      <ylabel>Pressure / mbar</ylabel>
+      <ylabel>Temperature / C</ylabel>
       <color>4</color>
     </dateplot4>
 
