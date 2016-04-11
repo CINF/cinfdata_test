@@ -343,4 +343,10 @@ function is_it_christmas()
   }
 }
 
+function pprint($var){
+  echo("<pre>");
+  print_r($var);
+  echo("</pre>");
+}
+
 ?>
