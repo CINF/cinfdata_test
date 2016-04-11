@@ -148,6 +148,10 @@
       <title>Live Values</title>
       <ref>microreactor/live.php?type=live_values</ref>
     </link>
+    <link>
+      <title>Leak Search</title>
+      <ref>microreactor/live.php?type=live_single_mass</ref>
+    </link>
   </setup>
 
   <!--&#181;-reactor NG-->
@@ -197,6 +201,11 @@
       <title>Live Values</title>
       <ref>microreactorNG/live.php?type=live_values</ref>
     </link>
+    <link>
+      <title>Leak Search</title>
+      <ref>microreactor/live.php?type=live_single_mass</ref>
+    </link>
+
   </setup>
 
   <!--Omicron-->
@@ -527,6 +536,10 @@
       <ref>other/live.php?type=live_values_wss</ref>
     </link>
     <link>
+      <title>Fridays List of Items</title>
+      <ref>other/fridays_list_of_items.php</ref>
+    </link>
+    <link>
       <title>Fridays Amounts</title>
       <ref>other/dateplot.php?type=fridays&amp;left_plotlist[]=1&amp;left_plotlist[]=2&amp;right_plotlist[]=3&amp;right_plotlist[]=4&amp;matplotlib=checked</ref>
     </link>
@@ -790,27 +803,45 @@
       <title>Picture Logbook</title>
       <ref>picture_logbook/pictures.php?setup=ChemLab312</ref>
     </link>
-
+    <link>
+      <title>Temperature</title>
+      <ref>chemlab312/dateplot.php?type=multidateplot&amp;left_plotlist[]=2&amp;left_plotlist[]=3&amp;matplotlib=checked</ref>
+    </link>
   </setup>
 
   <!--sniffer-->
   <setup codename="sniffer">
-    <setup_title>sniffer</setup_title>
+    <setup_title>Sniffer</setup_title>
     <link>
-      <title>Chamber pressure</title>
+      <title>Live plots</title>
+      <ref>sniffer/live.php?type=live_values</ref>
+    </link>
+    <link>
+      <title>Pressures</title>
       <ref>sniffer/dateplot.php?type=multidateplot&amp;left_ymin=0&amp;left_ymax=0&amp;left_plotlist[]=1&amp;right_ymin=0&amp;right_ymax=0</ref>
     </link>
     <link>
       <title>Mass-time</title>
-      <ref>sniffer/xyplot.php?type=masstime&amp;matplotlib=checked</ref>
+      <ref>sniffer/xyplot.php?type=masstime&amp;matplotlib=checked&amp;left_logscale=checked</ref>
     </link>
     <link>
-      <title>Massspectra</title>
-      <ref>sniffer/xyplot.php?type=massspectrum</ref>
-    </link>
-    <link>
-      <title>Live Values</title>
-      <ref>sniffer/live.php?type=live_values</ref>
+      <title>Mass spectra</title>
+      <ref>sniffer/xyplot.php?type=massspectrum&amp;matplotlib=checked</ref>
     </link>
   </setup>
+
+  <!--B312 Offices -->
+  <setup codename="b312offices">
+    <setup_title>Offices, 312</setup_title>
+    <link>
+      <title>Temperature, Large Office</title>
+      <ref>offices_312/dateplot.php?type=multidateplot&amp;left_plotlist[]=1&amp;left_plotlist[]=2&amp;matplotlib=checked</ref>
+    </link>
+    <link>
+      <title>Temperature, Small Office</title>
+      <ref>offices_312/dateplot.php?type=multidateplot&amp;left_plotlist[]=3&amp;left_plotlist[]=4&amp;matplotlib=checked</ref>
+    </link>
+  </setup>
+
+
 </setups>
