@@ -257,27 +257,12 @@ function MyFigure(name, definition) {
     /* Add optional settings */
     if (definition.hasOwnProperty("title")) {
         settings.title = definition.title;
-        /* if (definition.title_height != null) {
-            settings.titleHeight = definition.title_height;
-        } */
     }
     if (definition.hasOwnProperty("xlabel")) {
         settings.xlabel = definition.xlabel;
-        /* if (definition.xlabel_height != null) {
-            settings.xLabelHeight = definition.xlabel_height;
-        } */
     }
     if (definition.hasOwnProperty("ylabel")) {
         settings.ylabel = definition.ylabel;
-        /* if (definition.ylabel_width != null) {
-            settings.yLabelWidth = definition.ylabel_width;
-        } */
-    }
-
-    /* EXPERIMENTAL, use yRangePad to fix bad y-axis ranges with log scale and
-       constant values */
-    if (definition.hasOwnProperty("yrangepad")) {
-        settings.yRangePad = definition.yrangepad;
     }
 
     if (definition.hasOwnProperty("axislabelwidth")) {
@@ -287,9 +272,8 @@ function MyFigure(name, definition) {
     if (definition.hasOwnProperty("format")){
         settings.axes = {
             "y": {
-                "axisLabelFormatter": function(y) {
-                    return format_data(y, definition.format);
-                }
+                "axisLabelFormatter":
+		function(y) {return format_data(y, definition.format);}
             }
         };
     }

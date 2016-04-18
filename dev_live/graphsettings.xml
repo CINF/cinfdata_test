@@ -52,6 +52,7 @@
 	<x_window>40</x_window>
 	<logscale>false</logscale>
 	<line_width>3</line_width>
+	<!--<yrangepad>50.0</yrangepad>-->
 	<figure>
 	  <plot0>
 	    <data_channel>rasppi71:sine1</data_channel>
