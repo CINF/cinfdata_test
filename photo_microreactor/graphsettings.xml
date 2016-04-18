@@ -1,55 +1,162 @@
 <?xml version='1.0' standalone='yes'?>
 <graphs>
- 
-  <!-- MASSSPECTRUM -->
-  <graph type='massspectrum'>
-    <query>SELECT x,y  FROM xy_values_photo_microreactor where measurement = {id} order by id</query>
-    <offset_query>SELECT min(y) FROM xy_values_photo_microreactor where measurement = {id}</offset_query>
-    <type>4</type>
-    <xlabel>Mass / amu</xlabel>
-    <ylabel>SEM current / A</ylabel>
-    <title>Mass Spectrum</title>
-    <default_xscale>lin</default_xscale>
-    <default_yscale>lin</default_yscale>
-    <param0_field>sem_voltage</param0_field>
-    <param0_name>SEM Voltage / V</param0_name>
-    <param1_field>preamp_range</param1_field>
-    <param1_name>Range</param1_name>
-  </graph>
-  
+
   <!-- MASSTIME -->
   <graph type='masstime'>
-    <!-- <query>SELECT x/1000,y  FROM xy_values_microreactor where measurement = {id} order by id</query> -->
-    <query>SELECT x/1000,y  FROM xy_values_photo_microreactor where measurement = {id}</query>
-    <t_query>SELECT x/1000,y FROM xy_values_photo_microreactor where measurement = {t_id} order by id</t_query>
-    <type>5</type>
-    <image_format>png</image_format>
-    <xlabel>Time / s</xlabel>
-    <t_xlabel>RTD Tempemperature / </t_xlabel>
-    <temperature_unit>C</temperature_unit>
-    <ylabel>SEM current / A</ylabel>
-    <!-- Title for mass vs. time -->
-    <title>Mass vs. time</title>
-    <!-- Title for mass vs. temperature -->
-    <t_title>Mass vs. temperature</t_title>
-    <legend_field_name>mass_label</legend_field_name>
-    <right_y_axis_field_name>mass_label</right_y_axis_field_name>
-    <right_y_axis_field_value>TC temperature, RTD temperature,Flow 1,Flow 2,Flow 3, Flow 4</right_y_axis_field_value>
-    <right_yscale>lin</right_yscale>
-    <right_ylabel>Temperature / C</right_ylabel>
     <default_xscale>lin</default_xscale>
-    <default_yscale>lin</default_yscale>
-    <param0_field>sem_voltage</param0_field>
-    <param0_name>SEM Voltage / V</param0_name>
-    <param1_field>preamp_range</param1_field>
-    <param1_name>Range</param1_name>
+    <type>5</type>
+    <xlabel>Time / h</xlabel>
+    <!--<title>Mass vs. time</title>-->
+    <grouping_column>time</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <!-- dygraph -->
+    <dygraph_settings>
+      <labels_newline>true</labels_newline>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x/3600000, y  FROM xy_values_photo_microreactor where measurement = {id} order by id</default>
+      <column>mass_label</column>
+    </queries>
+    <!-- ylabel -->
+    <ylabel>
+      <default>Mixed units</default>
+      <column>mass_label</column>
+      <pattern0>
+	<reg_match>^M[0-9]{1,2}$</reg_match>
+	<ylabel>SEM current / A</ylabel>
+      </pattern0>
+      <pattern1>
+	<reg_match>^.*temperature$</reg_match>
+	<ylabel>Temperature / C</ylabel>
+      </pattern1>
+      <pattern2>
+	<reg_match>^.*pressure$|^Pirani.*$</reg_match>
+	<ylabel>Pressure / mbar</ylabel>
+      </pattern2>
+      <pattern3>
+	<reg_match>^Input power$</reg_match>
+	<ylabel>Power / W</ylabel>
+      </pattern3>
+      <pattern4>
+	<reg_match>^Flow [0-9]$</reg_match>
+	<ylabel>Flow / mL/min</ylabel>
+      </pattern4>
+    </ylabel>
+    <!-- legend -->
+    <legend>
+      <default>{mass_label}</default>
+      <column>mass_label</column>
+      <pattern0>
+	<reg_match>^.*temperature$</reg_match>
+	<legend>Temp.</legend>
+      </pattern0>
+    </legend>
+    <!-- parameters -->
+    <parameters>
+      <param0>
+	<field>sem_voltage</field>
+	<name>SEM Voltage / V</name>
+      </param0>
+      <param1>
+	<field>preamp_range</field>
+	<name>Range</name>
+      </param1>
+    </parameters>
+    <!-- data treatment -->
+    <flip_x>
+      <gui>Flip x-scale</gui>
+    </flip_x>
+    <as_function_of>
+      <gui>As function of T</gui>
+      <column>mass_label</column>
+      <reg_match>RTD temperature</reg_match>
+      <xlabel>Temperature / C</xlabel>
+    </as_function_of>
+    <diff_left_y>
+      <gui>Diff. left y-axis</gui>
+      <ylabel_addition>diff</ylabel_addition>
+    </diff_left_y>
+    <diff_right_y>
+      <gui>Diff. right y-axis</gui>
+      <ylabel_addition>diff</ylabel_addition>
+    </diff_right_y>
+    <linscale_x0>
+      <gui>X-axis in seconds</gui>
+      <xlabel_addition>converted to seconds</xlabel_addition>
+      <!-- 1/3600 -->
+      <a>3600</a>
+      <b>0</b>
+    </linscale_x0>
+    <!--
+    <matplotlib_settings>
+      <width>900</width>
+      <height>600</height>
+      <title_size>74</title_size>
+      <xtick_labelsize>4</xtick_labelsize>
+      <ytick_labelsize>8</ytick_labelsize>
+      <legend_fontsize>16</legend_fontsize>
+      <label_fontsize>16</label_fontsize>
+      <linewidth>5</linewidth>
+      <grid>True</grid>
+    </matplotlib_settings>
+    -->
   </graph>
-    
+
+  <!-- MASSSPECTRUM -->
+  <graph type='massspectrum'>
+    <default_xscale>lin</default_xscale>
+    <type>4</type>
+    <grouping_column>time</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <label_column>id</label_column>
+    <!-- queries -->
+    <queries>
+      <default>SELECT x,y  FROM xy_values_photo_microreactor where measurement = {id} order by id</default>
+    </queries>
+    <!-- legend -->
+    <legend>
+      <default>{id} - {time}</default>
+    </legend>
+  </graph>
+
+  <!-- GLOBAL SETTINGS -->
   <global_settings>
     <measurements_table>measurements_photo_microreactor</measurements_table>
     <xyvalues_table>xy_values_photo_microreactor</xyvalues_table>
-    <chamber_name>Photo Microreactor</chamber_name>
+    <chamber_name>photo_microreactor</chamber_name>
     <sql_username>photo_micro</sql_username>
+    <image_format>png</image_format>
+    <label_column>mass_label</label_column>
     <folder_name>photo_microreactor</folder_name>
+    <mandatory_export_fields>
+      <field0>
+	<field>id</field>
+	<name>Id</name>
+      </field0>
+      <field1>
+	<field>type</field>
+	<name>Type</name>
+      </field1>
+      <field2>
+	<field>time</field>
+	<name>Recorded at</name>
+      </field2>
+      <field3>
+	<field>comment</field>
+	<name>Comment</name>
+      </field3>
+    </mandatory_export_fields>
+    <matplotlib_settings>
+      <width>900</width>
+      <height>600</height>
+      <title_size>24</title_size>
+      <xtick_labelsize>12</xtick_labelsize>
+      <ytick_labelsize>12</ytick_labelsize>
+      <legend_fontsize>10</legend_fontsize>
+      <label_fontsize>16</label_fontsize>
+    </matplotlib_settings>
   </global_settings>
 </graphs>
