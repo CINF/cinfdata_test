@@ -306,6 +306,9 @@ MyFigure.prototype.addBatch = function (data_batch){
             }
         }
     }
+
+    // Update figure
+    this.fig.updateOptions({'file': this.data});
 };
 
 MyFigure.prototype.addXYPoint = function (plot_n, x, y){
@@ -330,9 +333,6 @@ MyFigure.prototype.addXYPoint = function (plot_n, x, y){
         this.fig.updateOptions({'file':  this.data});
         this.first_call = false;
     }
-
-    // Determin if it is time to update # FIXME currently disabled
-    this.fig.updateOptions({'file': this.data});
 };
 
 // Function attached to MyFigure prototype, so something like a virtual method
@@ -416,9 +416,6 @@ MyFigure.prototype.addDatePoint = function (plot_n, date, value) {
             this.new_temporary_point[i] = true;
         }
     }
-
-    // Determine if it is time to update FIXME currently disabled
-    this.fig.updateOptions({'file': this.data});
 };
 
 // Function attached to MyFigure prototype, so something like a virtual method
