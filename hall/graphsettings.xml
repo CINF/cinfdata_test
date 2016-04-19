@@ -19,7 +19,7 @@
       <color>1</color>
     </dateplot1>
     <dateplot2>
-      <query>SELECT unix_timestamp(time), value FROM dateplots_hall where type=160 and time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_hall where type=160 and value > -1 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / Bar</ylabel>
       <title>Cooling water pressure</title>
       <legend>Pressure</legend>
@@ -431,13 +431,6 @@
             <label>Sputterchamber Temperature</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot2>
-	  <plot3>
-            <socket>4</socket>
-            <color>#990099</color>
-            <id>ps_chiller_temperature</id>
-            <label>PS Temperature</label>
-	    <old_data_query>select unix_timestamp(time), value from dateplots_ps where type=(SELECT id FROM dateplots_descriptions where codename="ps_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
-	  </plot3>
 	</figure>
       </container3>
 
@@ -489,13 +482,6 @@
             <label>Sputterchamber Pressure</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot2>
-	  <plot3>
-            <socket>4</socket>
-            <color>#990099</color>
-            <id>ps_chiller_pressure</id>
-            <label>PS Pressure</label>
-	    <old_data_query>select unix_timestamp(time), value from dateplots_ps where type=(SELECT id FROM dateplots_descriptions where codename="ps_chiller_pressure") and unix_timestamp(time) > {from}</old_data_query>
-	  </plot3>
 	</figure>
       </container4>
 
@@ -674,7 +660,7 @@
       <socket1>rasppi01:8000</socket1> <!-- N5 Argon pressure -->
       <socket2>rasppi61:8000</socket2> <!-- Cooling water temperature -->
       <socket3>rasppi66:8000</socket3> <!-- Ventilation and hall temperature -->
-      <socket4>rasppi20:8000</socket4> <!--PS -->
+      <socket4>rasppi04:8000</socket4> <!--PS -->
       <socket5>rasppi60:8000</socket5> <!-- XRD -->
       <socket6>rasppi21:8000</socket6> <!-- Sputter Chamber -->
       <socket7>rasppi57:8000</socket7> <!-- Theta Probe -->

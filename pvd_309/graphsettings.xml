@@ -115,7 +115,7 @@
     <!-- Date plot 12 - QCM2 Rate -->
     <dateplot12>
       <title>QCM2 Rate</title>
-      <legend>QCM1 Rate</legend>
+      <legend>QCM2 Rate</legend>
       <query>SELECT unix_timestamp(time), value FROM dateplots_pvd309 where type = 323 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Rate / Å/s</ylabel>
       <color>1</color>

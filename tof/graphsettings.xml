@@ -60,10 +60,10 @@
     <containers> 
       <container0>
 	<type>figure</type>
-	<update_interval>2.5</update_interval> <!-- seconds -->
+	<update_interval>1</update_interval> <!-- seconds -->
 	<x_window>1800</x_window> <!-- x axis interval, seconds -->
-	<width>550</width>
-	<height>400</height>
+	<width>400</width>
+	<height>300</height>
 	<!-- General plot options -->
 	<bgcolor>#CCCCCC</bgcolor> <!-- optional color, default #FFFFFF -->
 	<!-- optional html padding string, remember to subtract the padding
@@ -94,16 +94,82 @@
 	<type>figure</type>
 	<update_interval>2</update_interval> <!-- seconds -->
 	<x_window>1800</x_window> <!-- x axis interval, seconds -->
-	<width>550</width>
-	<height>400</height>
-	<axislabelwidth>150</axislabelwidth>
+	<width>400</width>
+	<height>300</height>
+	<axislabelwidth>50</axislabelwidth>
 	<!-- General plot options -->
 	<bgcolor>#DDDDDD</bgcolor> <!-- optional color, default #FFFFFF -->
 	<!-- optional html padding string, remember to subtract the padding
 	     in the size -->
 	<padding>0px 0px 0px 0px</padding>
 	<!-- title and labels -->
-	<title>Flight Tube [mbar]</title> <!-- optional (escaped) html-->
+	<title>Emission current [mA]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<format>.3f</format>
+	<figure>
+	  <plot0>
+            <socket>1</socket>
+            <color>#0000FF</color>
+            <id>emission</id>
+            <label>Emission / mA</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_tof where type=224 and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container1>
+
+      <container2>
+	<type>figure</type>
+	<update_interval>2</update_interval> <!-- seconds -->
+	<x_window>1800</x_window> <!-- x axis interval, seconds -->
+	<width>400</width>
+	<height>300</height>
+	<axislabelwidth>50</axislabelwidth>
+	<!-- General plot options -->
+	<bgcolor>#DDDDDD</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Reactor pressure [mbar]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<format>.2f</format>
+	<figure>
+	  <plot0>
+            <socket>2</socket>
+            <color>#0000FF</color>
+            <id>M11200362H</id>
+            <label>Pressure / mbar</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_mgw where type=69 and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container2>
+
+      <container3>
+	<type>figure</type>
+	<update_interval>2</update_interval> <!-- seconds -->
+	<x_window>1800</x_window> <!-- x axis interval, seconds -->
+	<width>400</width>
+	<height>300</height>
+	<axislabelwidth>50</axislabelwidth>
+	<!-- General plot options -->
+	<bgcolor>#DDDDDD</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>TOF Roughing [mbar]</title> <!-- optional (escaped) html-->
 	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
 	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
 	<!-- Plot drawing fine tuning -->
@@ -116,19 +182,87 @@
 	  <plot0>
             <socket>0</socket>
             <color>#0000FF</color>
-            <id>tof_iongauge_ft</id>
-            <label>Pressure / mbar</label>
-	    <old_data_query>select unix_timestamp(time), value from dateplots_tof where type=(SELECT id FROM dateplots_descriptions where codename="tof_iongauge_ft") and unix_timestamp(time) > {from}</old_data_query>
+            <id>tof_pirani_roughing</id>
+            <label>Pressure / bar</label>
+	    <old_data_query>select unix_timestamp(time), value*1000 from dateplots_tof where type=(SELECT id FROM dateplots_descriptions where codename="tof_pirani_roughing") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	</figure>
-      </container1>
+      </container3>
 
-      <container2>
+      <container4>
+	<type>figure</type>
+	<update_interval>2</update_interval> <!-- seconds -->
+	<x_window>1800</x_window> <!-- x axis interval, seconds -->
+	<width>400</width>
+	<height>300</height>
+	<axislabelwidth>50</axislabelwidth>
+	<!-- General plot options -->
+	<bgcolor>#DDDDDD</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Buffer Pressure [mbar]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>true</logscale> <!-- optional bool, default false -->
+	<format>.1e</format>
+	<figure>
+	  <plot0>
+            <socket>0</socket>
+            <color>#0000FF</color>
+            <id>tof_pirani_roughing</id>
+<!--            <id>buffer_pressure</id> -->
+            <label>Pressure / mbar</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_mgw where type=(SELECT id FROM dateplots_descriptions where codename="mgw_pressure_buffer") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container4>
+
+      <container5>
+	<type>figure</type>
+	<update_interval>2</update_interval> <!-- seconds -->
+	<x_window>1800</x_window> <!-- x axis interval, seconds -->
+	<width>400</width>
+	<height>300</height>
+	<axislabelwidth>50</axislabelwidth>
+	<!-- General plot options -->
+	<bgcolor>#DDDDDD</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Containment Pressure [mbar]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!--<ylabel>Temperature [&amp;deg;C]</ylabel>--> <!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>true</logscale> <!-- optional bool, default false -->
+	<format>.1e</format>
+	<figure>
+	  <plot0>
+            <socket>0</socket>
+            <color>#0000FF</color>
+            <id>tof_pirani_roughing</id>
+<!--        <id>containment_pressure</id>  -->
+            <label>Pressure / mbar</label>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_mgw where type=(SELECT id FROM dateplots_descriptions where codename="mgw_pressure_containment") and unix_timestamp(time) > {from}</old_data_query>
+	  </plot0>
+	</figure>
+      </container5>
+
+      <container6>
 	<type>data</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>1100</width>
 	<height>600</height>
-	<fontsize>44</fontsize>
+	<fontsize>24</fontsize>
 	<!-- optional html padding string, remember to subtract the padding in
 	     the size top, right, bottom, top, right, bottom, left-->
 	<padding>40px 0px 0px 0px</padding>
@@ -143,22 +277,48 @@
 	  </item0>
 	  <item1>
 	    <socket>0</socket>
-	    <id>tof_iongauge_ft</id>
-	    <label>Flight tube</label>
-	    <color>#009900</color>
+	    <id>tof_pirani_roughing</id>
+	    <label>TOF roughing pressure</label>
+	    <color>#990099</color>
 	    <format>.2e</format>
 	    <unit>mbar</unit>
 	  </item1>
 	  <item2>
+	    <socket>2</socket>
+	    <id>M11200362H</id>
+	    <label>Reactor</label>
+	    <color>#009900</color>
+	    <format>.2f</format>
+	    <unit>bar</unit>
+	  </item2>
+	  <item3>
 	    <socket>1</socket>
 	    <id>emission</id>
 	    <label>Emission</label>
 	    <color>#009900</color>
 	    <format>.4f</format>
-	    <unit>mAr</unit>
-	  </item2>
+	    <unit>mA</unit>
+	  </item3>
+<!--
+	  <item4>
+	    <socket>3</socket>
+	    <id>buffer_pressure</id>
+	    <label>Buffer</label>
+	    <color>#009900</color>
+	    <format>.2f</format>
+	    <unit>mbar</unit>
+	  </item4>
+	  <item5>
+	    <socket>3</socket>
+	    <id>containment_pressure</id>
+	    <label>Containment</label>
+	    <color>#009900</color>
+	    <format>.2f</format>
+	    <unit>mbar</unit>
+	  </item5>
+-->
 	</data>
-      </container2>
+      </container6>
     </containers>
   </graph>
 
@@ -167,7 +327,7 @@
   <graph type='tofspectrum_small'>
     <default_xscale>lin</default_xscale>
     <type>11</type>
-    <grouping_column>time</grouping_column>
+    <grouping_column>comment</grouping_column>
     <right_legend_suffix> (r)</right_legend_suffix>
     <title>TOF Spectrum</title>
     <xlabel>Time / Microseconds</xlabel>
@@ -182,7 +342,7 @@
       <default>SELECT x*1000000,y  FROM xy_values_tof where measurement = {id} order by id</default>
     </queries>
     <ylabel>
-      <default>Response / V</default>
+      <default>TOF Signal / Counts</default>
     </ylabel>
     <legend>
       <default>{id}</default>
@@ -309,7 +469,7 @@
   <graph type='tofspectrum_wide'>
     <default_xscale>lin</default_xscale>
     <type>11</type>
-    <grouping_column>time</grouping_column>
+    <grouping_column>comment</grouping_column>
     <right_legend_suffix> (r)</right_legend_suffix>
     <title>TOF Spectrum</title>
     <xlabel>Time / Microseconds</xlabel>
@@ -324,7 +484,7 @@
       <default>SELECT x*1000000,y  FROM xy_values_tof where measurement = {id} order by id</default>
     </queries>
     <ylabel>
-      <default>Response / V</default>
+      <default>TOF Signal / Counts</default>
     </ylabel>
     <legend>
       <default>{id}</default>
@@ -413,6 +573,114 @@
     </parameters>
   </graph>
 
+  <graph type='tofspectrum_ultrawide'>
+    <default_xscale>lin</default_xscale>
+    <type>11</type>
+    <grouping_column>comment</grouping_column>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>TOF Spectrum</title>
+    <xlabel>Time / Microseconds</xlabel>
+    <image_format>png</image_format>
+    <charset>ISO-8859-1</charset>
+    <matplotlib_settings>
+      <width>32000</width>
+      <height>1000</height>
+    </matplotlib_settings>
+    <flight_time_estimate>true</flight_time_estimate>
+    <queries>
+      <default>SELECT x*1000000,y  FROM xy_values_tof where measurement = {id} order by id</default>
+    </queries>
+    <ylabel>
+      <default>TOF Signal / Counts</default>
+    </ylabel>
+    <legend>
+      <default>{id}</default>
+    </legend>
+    <plugins>
+      <Smooth>
+	<title>Smooth signal</title>
+	<input>Smooth length</input>
+	<output>raw</output>
+      </Smooth>
+      <Normalize>
+	<title>Normalize to count number</title>
+	<output>raw</output>
+      </Normalize>
+      <Massscale>
+	<title>Convert to approximate mass units</title>
+	<output>raw</output>
+      </Massscale>
+      <Intensitymap_ultrawide>
+	<title>Intensity map</title>
+	<output>raw</output>
+      </Intensitymap_ultrawide>
+    </plugins>
+
+    <parameters>
+      <param0>
+	<field>tof_pulse_voltage</field>
+	<name>Pulse Voltage / V</name>
+      </param0>
+      <param1>
+	<field>tof_liner_voltage</field>
+	<name>Liner Voltage / V</name>
+      </param1>
+      <param2>
+	<field>tof_lens_A</field>
+	<name>Lens A Voltage / V</name>
+      </param2>
+      <param3>
+	<field>tof_lens_B</field>
+	<name>Lens B Voltage / V</name>
+      </param3>
+      <param4>
+	<field>tof_lens_C</field>
+	<name>Lens C Voltage / V</name>
+      </param4>
+      <param5>
+	<field>tof_lens_D</field>
+	<name>Lens D Voltage / V</name>
+      </param5>
+      <param6>
+	<field>tof_lens_E</field>
+	<name>Lens E Voltage / V</name>
+      </param6>
+      <param7>
+	<field>tof_ion_energy</field>
+	<name>Ion energy / eV</name>
+      </param7>
+      <param8>
+	<field>tof_R1_voltage</field>
+	<name>R1 voltage / V</name>
+      </param8>
+      <param9>
+	<field>tof_R2_voltage</field>
+	<name>R2 voltage / V</name>
+      </param9>
+      <param10>
+	<field>tof_iterations</field>
+	<name># interations</name>
+      </param10>
+      <param11>
+	<field>sem_voltage</field>
+	<name>MCP voltage / V</name>
+      </param11>
+      <param12>
+	<field>tof_focus_voltage</field>
+	<name>Focus Voltage / V</name>
+      </param12>
+      <param13>
+	<field>tof_deflection_voltage</field>
+	<name>Deflection Voltage / V</name>
+      </param13>
+      <param14>
+	<field>sample_temperature</field>
+	<name>Sample temperature</name>
+      </param14>
+    </parameters>
+  </graph>
+
+
   <!-- MASSSPECTRUM -->
   <graph type='massspectrum'>
     <title>Mass Spectrum</title>
@@ -486,7 +754,7 @@
     <measurements_table>measurements_tof</measurements_table>
     <xyvalues_table>xy_values_tof</xyvalues_table>
     <sql_username>tof</sql_username>
-    <label_column>mass_label</label_column>
+    <label_column>id</label_column>
     <image_format>png</image_format>
     <mandatory_export_fields>
       <field0>
@@ -509,6 +777,8 @@
     <sockets>
       <socket0>rasppi109:8000</socket0> <!-- Main Chamber pressure -->
       <socket1>rasppi49:8000</socket1> <!-- Emission current -->
+      <socket2>rasppi24:8000</socket2> <!-- Reactor pressure -->
+      <socket3>rasppi53:8000</socket3> <!-- Containment + buffer -->
     </sockets>
   </global_settings>
 

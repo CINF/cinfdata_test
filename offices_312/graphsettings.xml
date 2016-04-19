@@ -1,0 +1,77 @@
+<?xml version='1.0' standalone='yes'?>
+<graphs>
+
+  <graph type='multidateplot'>
+    <default_xscale>dat</default_xscale>
+    <xlabel>Date</xlabel>
+    <right_legend_suffix> (r)</right_legend_suffix>
+    <title>Multiple dateplots</title>
+    <ylabel>Mixed</ylabel>
+    <default_time>24</default_time>
+    <dygraph_settings>
+      <roll_period>1</roll_period>
+      <labels_side>true</labels_side>
+    </dygraph_settings>
+
+    <!-- Air Temperature -->
+    <dateplot1>
+      <title>Air Temp, Large office</title>
+      <legend>Temperature, Large office</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_offices_312 where type=330 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>1</color>
+    </dateplot1>
+    <!-- Humidity -->
+    <dateplot2>
+      <title>Humidity, Large office</title>
+      <legend>Humidity, Large office</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_offices_312 where type=331 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Humidity / %</ylabel>
+      <color>2</color>
+    </dateplot2>
+    <!-- Air Temperature -->
+    <dateplot3>
+      <title>Air Temp, Small office</title>
+      <legend>Temperature, Small office</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_offices_312 where type=332 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>3</color>
+    </dateplot3>
+    <!-- Humidity -->
+    <dateplot4>
+      <title>Humidity, Small office</title>
+      <legend>Humidity, Small office</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_offices_312 where type=333 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Humidity / %</ylabel>
+      <color>4</color>
+    </dateplot4>
+
+ </graph>
+
+  <global_settings>
+    <measurements_table>measurements_large_office_312</measurements_table>
+    <xyvalues_table>xy_values_large_office_312</xyvalues_table>
+    <sql_username>large_office_312</sql_username>
+    <label_column>mass_label</label_column>
+    <image_format>png</image_format>
+    <mandatory_export_fields>
+      <field0>
+	<field>id</field>
+	<name>Id</name>
+      </field0>
+      <field1>
+	<field>type</field>
+	<name>Type</name>
+      </field1>
+      <field2>
+	<field>time</field>
+	<name>Recorded at</name>
+      </field2>
+      <field3>
+	<field>comment</field>
+	<name>Comment</name>
+      </field3>
+    </mandatory_export_fields>
+  </global_settings>
+</graphs>
+

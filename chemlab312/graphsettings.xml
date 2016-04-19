@@ -21,6 +21,23 @@
       <ylabel>Pressure / mbar</ylabel>
       <color>1</color>
     </dateplot1>
+    <!-- Air Temperature -->
+    <dateplot2>
+      <title>Air Temperature</title>
+      <legend>Temperature</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_chemlab312 where type=171 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Temperature / C</ylabel>
+      <color>2</color>
+    </dateplot2>
+    <!-- Humidity -->
+    <dateplot3>
+      <title>Humidity</title>
+      <legend>Humidity</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_chemlab312 where type=172 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Humidity / %</ylabel>
+      <color>3</color>
+    </dateplot3>
+
  </graph>
 
   <global_settings>

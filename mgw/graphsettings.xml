@@ -15,7 +15,7 @@
 
     <!-- Date plot 1 - Chamber pressure -->
     <dateplot1>
-      <title>Chamber pressure</title>
+      <title>Containment pressure</title>
       <legend>Pressure</legend>
       <query>SELECT unix_timestamp(time), value FROM dateplots_mgw where type = 60 and value > 0 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>

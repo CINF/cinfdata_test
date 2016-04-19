@@ -13,30 +13,38 @@
       <labels_side>true</labels_side>
     </dygraph_settings>
 
-    <!-- PRESSURE_XRDGAS_ASG -->
+    <!-- Pressure Readouts -->
     <dateplot1>
-      <title>Pressure asg</title>
-      <legend>asg</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM pressure_xrdgas_asg where time between "{from}" and "{to}" order by time</query>
+      <title>Pressure Gas Turbo</title>
+      <legend>Gas Turbo</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_xrd where type = 305 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>1</color>
     </dateplot1>
 
     <dateplot2>
-      <title>Pressure wrg</title>
-      <legend>wrg</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM pressure_xrdgas_wrg where time between "{from}" and "{to}" order by time</query>
+      <title>Gas System, Wide Range</title>
+      <legend>Gas System, wrg</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_xrd where type = 306 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>2</color>
     </dateplot2>
 
     <dateplot3>
-      <title>Pressure wrgms</title>
-      <legend>wrgms</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM pressure_xrdgas_wrgms where time between "{from}" and "{to}" order by time</query>
+      <title>Pressure, MS</title>
+      <legend>Pressure, MS</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_xrd where type = 307 and time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>3</color>
     </dateplot3>
+
+    <dateplot4>
+      <title>Gas System, baratron</title>
+      <legend>Gas System, baratron</legend>
+      <query>SELECT unix_timestamp(time), value FROM dateplots_xrd where type = 308 and time between "{from}" and "{to}" order by time</query>
+      <ylabel>Pressure / mbar</ylabel>
+      <color>4</color>
+    </dateplot4>
   </graph>
 
   <global_settings>

@@ -36,7 +36,7 @@
       <title>Reactor pressure</title>
       <legend>Reactor</legend>
       <query>SELECT unix_timestamp(time), value FROM dateplots_microreactor where type = 230 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Pressure / mbar</ylabel>
+      <ylabel>Pressure / bar</ylabel>
       <color>3</color>
     </dateplot3>
 
@@ -44,7 +44,7 @@
     <dateplot4>
       <title>Backing pressure, buffer turbo</title>
       <legend>Backing, Buffer</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactor_pirani_oldturbo where time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactor_pirani_newturbo where time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>4</color>
     </dateplot4>
@@ -53,7 +53,7 @@
     <dateplot5>
       <title>Backing pressure, chamber turbo</title>
       <legend>Backing, chamber</legend>
-      <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactor_pirani_newturbo where time between "{from}" and "{to}" order by time</query>
+      <query>SELECT unix_timestamp(time), pressure FROM pressure_microreactor_pirani_oldturbo where time between "{from}" and "{to}" order by time</query>
       <ylabel>Pressure / mbar</ylabel>
       <color>5</color>
     </dateplot5>
@@ -597,6 +597,7 @@
       </container8>
     </containers>
   </graph>
+
 
   <!-- MASSTIME -->
   <graph type='masstime'>

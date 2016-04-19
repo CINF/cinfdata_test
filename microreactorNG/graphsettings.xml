@@ -54,7 +54,7 @@
       <title>Reactor pressure</title>
       <legend>Reactor</legend>
       <query>SELECT unix_timestamp(time), value FROM dateplots_microreactorNG where type = 53 and time between "{from}" and "{to}" order by time</query>
-      <ylabel>Pressure / mbar</ylabel>
+      <ylabel>Pressure / bar</ylabel>
       <color>5</color>
     </dateplot5>
 
@@ -391,6 +391,45 @@
     </containers>
   </graph>
 
+  <graph type="live_single_mass">
+    <page_width>1280</page_width>
+    <page_title>μ-reactor NG</page_title>
+    <containers> 
+      <container0>
+	<type>figure</type>
+	<update_interval>0.5</update_interval> <!-- seconds -->
+	<x_window>600</x_window> <!-- x axis interval, seconds -->
+	<width>1050</width>
+	<height>600</height>
+	<!-- General plot options -->
+	<bgcolor>#CCCCCC</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Mass Spec Current [A]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!-- <ylabel>Temperature [&amp;deg;C]</ylabel> --><!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<format>.1e</format>
+	<figure>
+	  <plot0>
+            <socket>2</socket> 
+            <color>#0000FF</color>
+            <id>qms-value</id>
+            <label>QMS current / A</label>
+	  </plot0>
+	</figure>
+      </container0>
+
+    </containers>
+  </graph>
+
+
   <!-- MASSTIME -->
   <graph type='masstime'>
     <default_xscale>lin</default_xscale>
@@ -569,6 +608,7 @@
     <sockets>
       <socket0>rasppi12:8000</socket0> <!-- Sample temperature -->
       <socket1>rasppi16:8000</socket1> <!-- Flows -->
+      <socket2>cinf-microreactorNG-ms:8000</socket2> <!-- Mass spec -->
     </sockets>
   </global_settings>
 </graphs>
