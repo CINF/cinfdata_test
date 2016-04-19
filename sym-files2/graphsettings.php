@@ -43,8 +43,8 @@ function xml_tree_to_assiciative_arrays($xml){
 
 function plot_settings($type, $params="", $ignore_invalid_type=False, $gs_file='graphsettings.xml'){
   # Load the system global defaults
-  $gs_global = fopen("../global_settings.xml", 'r');
-  $gs_global = fread($gs_global, filesize("../global_settings.xml"));
+  $gs_global = fopen("/var/www/cinfdata/global_settings.xml", 'r');
+  $gs_global = fread($gs_global, filesize("/var/www/cinfdata/global_settings.xml"));
   $gs_xml_global = new SimpleXMLElement($gs_global);
 
   # Put the system global defaults in settings
