@@ -94,5 +94,3 @@ function get_index_link($link_xml){
 }
 
 ?>
-
-<!-- [{"setup":"thetaprobe","setup_name":"Theta probe"}] -->
