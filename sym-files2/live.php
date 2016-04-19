@@ -202,7 +202,7 @@ to_javascript("send_to_html", array_keys($send_to_html));
 to_javascript("figure_defs", $figure_defs);
 
 echo("</script>\n");
-echo("<script src=live.js></script>");
+echo("<script src=../js/live.js></script>");
 ?>
 
 <?php echo(html_footer()); ?>
