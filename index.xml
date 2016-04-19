@@ -463,11 +463,11 @@
     <setup_title>Photo-&#181;-reactor</setup_title>
     <link>
       <title>Mass-time</title>
-      <ref>photo_microreactor/read_plot_group.php?type=masstime</ref>
+      <ref>photo_microreactor/xyplot.php?type=masstime&amp;matplotlib=checked</ref>
     </link>
     <link>
       <title>Mass spectra</title>
-      <ref>photo_microreactor/read_plot.php?type=massspectrum</ref>
+      <ref>photo_microreactor/xyplot.php?type=massspectrum&amp;matplotlib=checked</ref>
     </link>
   </setup>
 
