@@ -343,15 +343,15 @@ if (array_key_exists("plugins", $settings))
 <div class="float_left">
   <!--LEFT Y LOG AND MIN MAX-->
   <b>Log-scale</b><input type="checkbox" name="left_logscale" value="checked" <?php echo($left_logscale);?>><br>
-  <b>Y-Min:</b><input name="left_ymin" type="text" size="7" value="<?php echo($left_ymin);?>"><br>
-  <b>Y-Max:</b><input name="left_ymax" type="text" size="7" value="<?php echo($left_ymax);?>"><br>
+  <b>y-min:</b><input name="left_ymin" type="text" size="7" value="<?php echo($left_ymin);?>"><br>
+  <b>y-max:</b><input name="left_ymax" type="text" size="7" value="<?php echo($left_ymax);?>"><br>
 </div>
 
 <div class="float_right">
   <!--RIGHT Y LOG AND MIN MAX-->
   <b>Log-scale</b><input type="checkbox" name="right_logscale" value="checked" <?php echo($right_logscale);?>><br>
-  <b>Y-Min:</b><input name="right_ymin" type="text" size="7" value="<?php echo($right_ymin);?>"><br>
-  <b>Y-Max:</b><input name="right_ymax" type="text" size="7" value="<?php echo($right_ymax);?>"><br>
+  <b>y-min:</b><input name="right_ymin" type="text" size="7" value="<?php echo($right_ymin);?>"><br>
+  <b>y-max:</b><input name="right_ymax" type="text" size="7" value="<?php echo($right_ymax);?>"><br>
 </div>
 <div style="clear: both;"></div>
 
