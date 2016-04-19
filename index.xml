@@ -146,11 +146,11 @@
     </link>
     <link>
       <title>Live Values</title>
-      <ref>microreactor/live.php?type=live_values</ref>
+      <ref>microreactor/live_old.php?type=live_values</ref>
     </link>
     <link>
       <title>Leak Search</title>
-      <ref>microreactor/live.php?type=live_single_mass</ref>
+      <ref>microreactor/live_old.php?type=live_single_mass</ref>
     </link>
   </setup>
 
@@ -199,11 +199,11 @@
     </link>
     <link>
       <title>Live Values</title>
-      <ref>microreactorNG/live.php?type=live_values</ref>
+      <ref>microreactorNG/live_old.php?type=live_values</ref>
     </link>
     <link>
       <title>Leak Search</title>
-      <ref>microreactor/live.php?type=live_single_mass</ref>
+      <ref>microreactor/live_old.php?type=live_single_mass</ref>
     </link>
 
   </setup>
@@ -295,7 +295,7 @@
     </link>
     <link>
       <title>Live Values</title>
-      <ref>hall/live.php?type=live_values</ref>
+      <ref>hall/live_old.php?type=live_values</ref>
     </link>
   </setup>
 
@@ -345,7 +345,7 @@
     </link>
     <link>
       <title>Live Values</title>
-      <ref>tof/live.php?type=live_values</ref>
+      <ref>tof/live_old.php?type=live_values</ref>
     </link>
   </setup>
 
@@ -399,7 +399,7 @@
     </link>
     <link>
       <title>Live Values</title>
-      <ref>ps/live.php?type=live_values</ref>
+      <ref>ps/live_old.php?type=live_values</ref>
     </link>
   </setup>
 
@@ -480,7 +480,7 @@
     </link>
     <link>
       <title>Live Values</title>
-      <ref>ups/live.php?type=live_values</ref>
+      <ref>ups/live_old.php?type=live_values</ref>
     </link>
   </setup>
 
@@ -533,7 +533,7 @@
     </link>
     <link>
       <title>Web-Socket Status</title>
-      <ref>other/live.php?type=live_values_wss</ref>
+      <ref>other/live_old.php?type=live_values_wss</ref>
     </link>
     <link>
       <title>Fridays List of Items</title>
@@ -629,7 +629,7 @@
     </link>
     <link>
       <title>Live Plots</title>
-      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor312/live.php?type=live_values</ref>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor312/live_old.php?type=live_values</ref>
     </link>
     <link>
       <title>All detectors</title>
@@ -670,7 +670,7 @@
     </link>
     <link>
       <title>Live Values</title>
-      <ref>chillers/live.php?type=live_values</ref>
+      <ref>chillers/live_old.php?type=live_values</ref>
     </link>
   </setup>
 
@@ -683,7 +683,7 @@
     </link>
     <link>
       <title>Pressure Live</title>
-      <ref>https://cinfdata.fysik.dtu.dk/thetaprobe/live.php?type=live_pressures</ref>
+      <ref>https://cinfdata.fysik.dtu.dk/thetaprobe/live_old.php?type=live_pressures</ref>
     </link>
   </setup>
 
@@ -734,7 +734,7 @@
     </link>
     <link>
       <title>Live Plots</title>
-      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor307/live.php?type=live_values</ref>
+      <ref>https://cinfdata.fysik.dtu.dk/gasmonitor307/live_old.php?type=live_values</ref>
     </link>
     <link>
       <title>All detectors</title>
@@ -787,7 +787,7 @@
     </link>
     <link>
       <title>Live Values</title>
-      <ref>pvd_309/live.php?type=live_values</ref>
+      <ref>pvd_309/live_old.php?type=live_values</ref>
     </link>
 
   </setup>
@@ -814,7 +814,7 @@
     <setup_title>Sniffer</setup_title>
     <link>
       <title>Live plots</title>
-      <ref>sniffer/live.php?type=live_values</ref>
+      <ref>sniffer/live_old.php?type=live_values</ref>
     </link>
     <link>
       <title>Pressures</title>

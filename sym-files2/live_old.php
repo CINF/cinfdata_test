@@ -190,7 +190,7 @@ to_javascript("measurement_ids", $measurement_ids);
 to_javascript("fig_data_subs", $fig_data_subs);
 to_javascript("figure_defs", $figure_defs);
 echo("</script>\n");
-echo("<script src=../js/live.js></script>");
+echo("<script src=../js/live_old.js></script>");
 ?>
 
 <?php echo(html_footer()); ?>
