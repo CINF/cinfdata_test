@@ -69,9 +69,8 @@
 
       <!-- Container 1, contains the second plot -->
       <container0>
-	<type>figure</type>
+	<type>date_figure</type>
 	<title>Cooling Water Pressure [bar]</title>
-	<update_interval>1.9</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
 	<width>400</width>
 	<height>350</height>
@@ -88,8 +87,7 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-	    <socket>0</socket>
-	    <id>hall_coolingwater_pressure</id>
+	    <data_channel>rasppi02:hall_coolingwater_pressure</data_channel>
 	    <label>Cooling Water Pressure [bar]</label>
 	    <color>#990099</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="hall_coolingwater_pressure") and unix_timestamp(time) > {from}</old_data_query>
@@ -99,9 +97,8 @@
 
       <!-- Container 1, contains the second plot -->
       <container1>
-	<type>figure</type>
+	<type>date_figure</type>
 	<title>N5 Argon Pressure [bar]</title>
-	<update_interval>1.9</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
 	<width>400</width>
 	<height>350</height>
@@ -117,8 +114,7 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-	    <socket>1</socket>
-	    <id>n5_argon_pressure</id>
+	    <data_channel>rasppi01:n5_argon_pressure</data_channel>
 	    <label>N5 Argon Pressure [bar]</label>
 	    <color>#009900</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="n5_argon_pressure") and unix_timestamp(time) > {from}</old_data_query>
@@ -127,9 +123,8 @@
       </container1>
 
       <container2>
-	<type>figure</type>
+	<type>date_figure</type>
 	<title>Cooling Water Temperatures [&amp;deg;C]</title>
-	<update_interval>1.9</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
 	<width>400</width>
 	<height>350</height>
@@ -145,15 +140,13 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-	    <socket>2</socket>
-	    <id>cooling_water_hot</id>
+	    <data_channel>rasppi61:cooling_water_hot</data_channel>
 	    <label>Cooling water temp. hot</label>
 	    <color>#FF0000</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="cooling_water_hot") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	  <plot1>
-	    <socket>2</socket>
-	    <id>cooling_water_cold</id>
+	    <data_channel>rasppi61:cooling_water_cold</data_channel>
 	    <label>Cooling water temp. cold</label>
 	    <color>#0000FF</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="cooling_water_cold") and unix_timestamp(time) > {from}</old_data_query>
@@ -162,9 +155,8 @@
       </container2>
 
       <container3>
-	<type>figure</type>
+	<type>date_figure</type>
 	<title>Hall Temperature [&amp;deg;C]</title>
-	<update_interval>1.9</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
 	<width>400</width>
 	<height>350</height>
@@ -180,8 +172,7 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-	    <socket>3</socket>
-	    <id>hall_temperature</id>
+	    <data_channel>rasppi66:hall_temperature</data_channel>
 	    <label>Hall Temperature</label>
 	    <color>#FF0000</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where value > -100 and type=(SELECT id FROM dateplots_descriptions where codename="hall_temperature") and unix_timestamp(time) > {from}</old_data_query>
@@ -190,9 +181,8 @@
       </container3>
 
       <container4>
-	<type>figure</type>
+	<type>date_figure</type>
 	<title>Ventilation Pressure [Pa]</title>
-	<update_interval>1.9</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
 	<width>400</width>
 	<height>350</height>
@@ -205,8 +195,7 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-	    <socket>3</socket>
-	    <id>hall_ventilation_pressure</id>
+	    <data_channel>rasppi66:hall_ventilation_pressure</data_channel>
 	    <label>Ventilation Pressure</label>
 	    <color>#009999</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="hall_ventilation_pressure") and unix_timestamp(time) > {from}</old_data_query>
@@ -215,7 +204,7 @@
       </container4>
 
       <container5>
-	<type>data</type>
+	<type>table</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>450</width>
 	<height>200</height>
@@ -225,48 +214,42 @@
 	<padding>40px 0px 0px 0px</padding>
 	<data>
 	  <item0>
-	    <socket>0</socket>
-	    <id>hall_coolingwater_pressure</id>
+	    <data_channel>rasppi02:hall_coolingwater_pressure</data_channel>
 	    <label>CW pressure</label>
 	    <color>#990099</color>
 	    <format>.2f</format>
 	    <unit>bar</unit>
 	  </item0>
 	  <item1>
-	    <socket>1</socket>
-	    <id>n5_argon_pressure</id>
+	    <data_channel>rasppi01:n5_argon_pressure</data_channel>
 	    <label>N5 Argon pressure</label>
 	    <color>#009900</color>
 	    <format>.1f</format>
 	    <unit>bar</unit>
 	  </item1>
 	  <item2>
-	    <socket>2</socket>
-	    <id>cooling_water_hot</id>
+	    <data_channel>rasppi61:cooling_water_hot</data_channel>
 	    <label>CW hot</label>
 	    <color>#FF0000</color>
 	    <format>.2f</format>
 	    <unit>&amp;amp;deg;C</unit>
 	  </item2>
 	  <item3>
-	    <socket>2</socket>
-	    <id>cooling_water_cold</id>
+	    <data_channel>rasppi61:cooling_water_cold</data_channel>
 	    <label>CW cold</label>
 	    <color>#0000FF</color>
 	    <format>.2f</format>
 	    <unit>&amp;amp;deg;C</unit>
 	  </item3>
 	  <item4>
-	    <socket>3</socket>
-	    <id>hall_temperature</id>
+	    <data_channel>rasppi66:hall_temperature</data_channel>
 	    <label>Hall temperature</label>
 	    <color>#0000FF</color>
 	    <format>.2f</format>
 	    <unit>&amp;amp;deg;C</unit>
 	  </item4>
 	  <item5>
-	    <socket>3</socket>
-	    <id>hall_ventilation_pressure</id>
+	    <data_channel>rasppi66:hall_ventilation_pressure</data_channel>
 	    <label>Ventilation pressure</label>
 	    <color>#009999</color>
 	    <format>.1f</format>
@@ -284,14 +267,13 @@
 
       <!-- Container 1, contains the second plot -->
       <container0>
-	<type>figure</type>
+	<type>date_figure</type>
 	<title>Cooling Water Pressure [bar]</title>
-	<update_interval>1.9</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
 	<width>480</width>
 	<height>200</height>
 	<jump_ahead>0.3</jump_ahead>
-	<x_window>86400</x_window>
+	<x_window>6400</x_window>
 	<!-- Experimental, to fix bad y-range selection with log plot and
 	     constant values -->
 	<!-- <yrangepad>10</yrangepad> -->
@@ -303,8 +285,7 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-	    <socket>0</socket>
-	    <id>hall_coolingwater_pressure</id>
+	    <data_channel>rasppi02:hall_coolingwater_pressure</data_channel>
 	    <label>Cooling Water Pressure [bar]</label>
 	    <color>#990099</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="hall_coolingwater_pressure") and unix_timestamp(time) > {from}</old_data_query>
@@ -314,9 +295,8 @@
 
       <!-- Container 1, contains the second plot -->
       <container1>
-	<type>figure</type>
+	<type>date_figure</type>
 	<title>N5 Argon, Hall Temperature</title>
-	<update_interval>1.9</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
 	<width>480</width>
 	<height>200</height>
@@ -332,15 +312,13 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-	    <socket>1</socket>
-	    <id>n5_argon_pressure</id>
+	    <data_channel>rasppi01:n5_argon_pressure</data_channel>
 	    <label>N5 Argon Pressure [bar]</label>
 	    <color>#009900</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="n5_argon_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	  <plot1>
-	    <socket>3</socket>
-	    <id>hall_temperature</id>
+	    <data_channel>rasppi66:hall_temperature</data_channel>
 	    <label>Hall Temperature</label>
 	    <color>#FF0000</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where value > -100 and type=(SELECT id FROM dateplots_descriptions where codename="hall_temperature") and unix_timestamp(time) > {from}</old_data_query>
@@ -349,9 +327,8 @@
       </container1>
 
       <container2>
-	<type>figure</type>
+	<type>date_figure</type>
 	<title>Cooling Water Temperatures [&amp;deg;C]</title>
-	<update_interval>1.9</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
 	<width>480</width>
 	<height>200</height>
@@ -367,15 +344,13 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-	    <socket>2</socket>
-	    <id>cooling_water_hot</id>
+	    <data_channel>rasppi61:cooling_water_hot</data_channel>
 	    <label>Cooling water temp. hot</label>
 	    <color>#FF0000</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="cooling_water_hot") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	  <plot1>
-	    <socket>2</socket>
-	    <id>cooling_water_cold</id>
+	    <data_channel>rasppi61:cooling_water_cold</data_channel>
 	    <label>Cooling water temp. cold</label>
 	    <color>#0000FF</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="cooling_water_cold") and unix_timestamp(time) > {from}</old_data_query>
@@ -384,8 +359,7 @@
       </container2>
 
       <container3>
-	<type>figure</type>
-	<update_interval>2.5</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>86400</x_window> <!-- x axis interval, seconds -->
 	<width>480</width>
 	<height>200</height>
@@ -411,23 +385,20 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>7</socket>
             <color>#0000FF</color>
-            <id>thetaprobe_chiller_temperature</id>
+            <data_channel>rasppi57:thetaprobe_chiller_temperature</data_channel>
             <label>Thetaprobe Temperature</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	  <plot1>
-            <socket>5</socket>
             <color>#00FF00</color>
-            <id>xrd_chiller_temperature</id>
+            <data_channel>rasppi60:xrd_chiller_temperature</data_channel>
             <label>XRD Temperature</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_xrd where type=(SELECT id FROM dateplots_descriptions where codename="xrd_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot1>
 	  <plot2>
-            <socket>6</socket>
             <color>#FF0000</color>
-            <id>sputterchamber_chiller_temperature</id>
+            <data_channel>rasppi21:sputterchamber_chiller_temperature</data_channel>
             <label>Sputterchamber Temperature</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot2>
@@ -435,8 +406,7 @@
       </container3>
 
       <container4>
-	<type>figure</type>
-	<update_interval>2.5</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>86400</x_window> <!-- x axis interval, seconds -->
 	<width>480</width>
 	<height>200</height>
@@ -462,23 +432,20 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>7</socket>
             <color>#0000FF</color>
-            <id>thetaprobe_chiller_pressure</id>
+            <data_channel>rasppi57:thetaprobe_chiller_pressure</data_channel>
             <label>Thetaprobe Pressure</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_chiller_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	  <plot1>
-            <socket>5</socket>
             <color>#00FF00</color>
-            <id>xrd_chiller_pressure</id>
+            <data_channel>rasppi60:xrd_chiller_pressure</data_channel>
             <label>XRD Pressure</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_xrd where type=(SELECT id FROM dateplots_descriptions where codename="xrd_chiller_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot1>
 	  <plot2>
-            <socket>6</socket>
             <color>#FF0000</color>
-            <id>sputterchamber_chiller_pressure</id>
+            <data_channel>rasppi21:sputterchamber_chiller_pressure</data_channel>
             <label>Sputterchamber Pressure</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot2>
@@ -486,14 +453,13 @@
       </container4>
 
       <container5>
-	<type>figure</type>
+	<type>date_figure</type>
 	<title>Ventilation Pressure [Pa]</title>
-	<update_interval>1.9</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
 	<width>480</width>
 	<height>200</height>
 	<jump_ahead>0.3</jump_ahead>
-	<x_window>86400</x_window>
+	<x_window>6400</x_window>
 	<line_width>3</line_width>
 	<data_reduction>
 	  <time>600</time>
@@ -501,8 +467,7 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-	    <socket>3</socket>
-	    <id>hall_ventilation_pressure</id>
+	    <data_channel>rasppi66:hall_ventilation_pressure</data_channel>
 	    <label>Ventilation Pressure</label>
 	    <color>#009999</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="hall_ventilation_pressure") and unix_timestamp(time) > {from}</old_data_query>
@@ -511,8 +476,7 @@
       </container5>
 
       <container6>
-	<type>figure</type>
-	<update_interval>1.2</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>86400</x_window> <!-- x axis interval, seconds -->
 	<width>450</width>
 	<height>200</height>
@@ -536,23 +500,20 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>8</socket> 
             <color>#000000</color>
-            <id>b312_ups_kVAPh1</id>
+            <data_channel>rasppi14:b312_ups_kVAPh1</data_channel>
             <label>kVA / Ph1</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_ups_b312 where type=(SELECT id FROM dateplots_descriptions where codename="b312_ups_kVAPh1") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	  <plot1>
-            <socket>8</socket> 
             <color>#0000FF</color>
-            <id>b312_ups_kVAPh2</id>
+            <data_channel>rasppi14:b312_ups_kVAPh2</data_channel>
             <label>kVA / Ph2</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_ups_b312 where type=(SELECT id FROM dateplots_descriptions where codename="b312_ups_kVAPh2") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot1>
 	  <plot2>
-            <socket>8</socket> 
             <color>#FF0000</color>
-            <id>b312_ups_kVAPh3</id>
+            <data_channel>rasppi14:b312_ups_kVAPh3</data_channel>
             <label>kVA / Ph3</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_ups_b312 where type=(SELECT id FROM dateplots_descriptions where codename="b312_ups_kVAPh3") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot2>
@@ -560,14 +521,13 @@
       </container6>
 
       <container7>
-	<type>figure</type>
+	<type>date_figure</type>
 	<title>Humidity [%]</title>
-	<update_interval>1.9</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
 	<width>480</width>
 	<height>200</height>
 	<jump_ahead>0.3</jump_ahead>
-	<x_window>86400</x_window>
+	<x_window>6400</x_window>
 	<line_width>3</line_width>
 	<data_reduction>
 	  <time>600</time>
@@ -575,8 +535,7 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-	    <socket>3</socket>
-	    <id>hall_humidity</id>
+	    <data_channel>rasppi66:hall_humidity</data_channel>
 	    <label>Humidity</label>
 	    <color>#009999</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_hall where type=(SELECT id FROM dateplots_descriptions where codename="hall_humidity") and unix_timestamp(time) > {from}</old_data_query>
@@ -585,7 +544,7 @@
       </container7>
 
       <container8>
-	<type>data</type>
+	<type>table</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>450</width>
 	<height>200</height>
@@ -595,48 +554,42 @@
 	<padding>40px 0px 0px 0px</padding>
 	<data>
 	  <item0>
-	    <socket>0</socket>
-	    <id>hall_coolingwater_pressure</id>
+	    <data_channel>rasppi02:hall_coolingwater_pressure</data_channel>
 	    <label>CW pressure</label>
 	    <color>#990099</color>
 	    <format>.2f</format>
 	    <unit>bar</unit>
 	  </item0>
 	  <item1>
-	    <socket>1</socket>
-	    <id>n5_argon_pressure</id>
+	    <data_channel>rasppi01:n5_argon_pressure</data_channel>
 	    <label>N5 Argon pressure</label>
 	    <color>#009900</color>
 	    <format>.1f</format>
 	    <unit>bar</unit>
 	  </item1>
 	  <item2>
-	    <socket>2</socket>
-	    <id>cooling_water_hot</id>
+	    <data_channel>rasppi61:cooling_water_hot</data_channel>
 	    <label>CW hot</label>
 	    <color>#FF0000</color>
 	    <format>.2f</format>
 	    <unit>&amp;amp;deg;C</unit>
 	  </item2>
 	  <item3>
-	    <socket>2</socket>
-	    <id>cooling_water_cold</id>
+	    <data_channel>rasppi61:cooling_water_cold</data_channel>
 	    <label>CW cold</label>
 	    <color>#0000FF</color>
 	    <format>.2f</format>
 	    <unit>&amp;amp;deg;C</unit>
 	  </item3>
 	  <item4>
-	    <socket>3</socket>
-	    <id>hall_temperature</id>
+	    <data_channel>rasppi66:hall_temperature</data_channel>
 	    <label>Hall temperature</label>
 	    <color>#0000FF</color>
 	    <format>.2f</format>
 	    <unit>&amp;amp;deg;C</unit>
 	  </item4>
 	  <item5>
-	    <socket>3</socket>
-	    <id>hall_ventilation_pressure</id>
+	    <data_channel>rasppi66:hall_ventilation_pressure</data_channel>
 	    <label>Ventilation pressure</label>
 	    <color>#009999</color>
 	    <format>.1f</format>
@@ -655,18 +608,6 @@
     <label_column>None</label_column>
     <image_format>png</image_format>
     <folder_name>hall</folder_name>
-    <sockets>
-      <socket0>rasppi02:8000</socket0> <!-- Cooling water pressure -->
-      <socket1>rasppi01:8000</socket1> <!-- N5 Argon pressure -->
-      <socket2>rasppi61:8000</socket2> <!-- Cooling water temperature -->
-      <socket3>rasppi66:8000</socket3> <!-- Ventilation and hall temperature -->
-      <socket4>rasppi04:8000</socket4> <!--PS -->
-      <socket5>rasppi60:8000</socket5> <!-- XRD -->
-      <socket6>rasppi21:8000</socket6> <!-- Sputter Chamber -->
-      <socket7>rasppi57:8000</socket7> <!-- Theta Probe -->
-      <socket8>rasppi14:8000</socket8> <!-- UPS -->
-
-    </sockets>
     <mandatory_export_fields>
       <field0>
 	<field>None</field>
