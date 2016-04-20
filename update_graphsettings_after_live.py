@@ -16,7 +16,7 @@ for element in root:
 
 sockets = {}
 for socket_element in root.find('.//sockets'):
-    sockets[socket_element.tag] = socket_element.text
+    sockets[socket_element.tag] = socket_element.text.split(':')[0]
 print('Found sockets:', sockets)
 
 with codecs.open(path, mode='r', encoding='utf-8') as file_:
@@ -24,6 +24,7 @@ with codecs.open(path, mode='r', encoding='utf-8') as file_:
 
 in_container = False
 in_plot = False
+in_sockets = False
 lines_out = []
 socket_num = None
 
@@ -52,6 +53,20 @@ for num, line in enumerate(lines):
         in_plot = False
         socket_num = None
 
+    if '<sockets>' in line:
+        in_sockets = True
+        print('\n######## In sockets', line.strip())
+        continue
+
+    if '</sockets>' in line:
+        in_sockets = False
+        print('\n######## Closed sockets', line.strip())
+        continue
+
+    if in_sockets:
+        print('Deleting socket def type', line.strip())
+        continue
+
     if in_container:
         if line.find('<type>figure</type>') >= 0:
             print('* Replace', '<type>figure</type>', '<type>date_figure</type>')
@@ -61,6 +76,13 @@ for num, line in enumerate(lines):
         if line.find('<update_interval>') >= 0:
             print('* Deleted update_interval line', line.strip())
             continue
+
+        if '<type>data</type>' in line:
+            space = line.split('<')[0]
+            lines_out.append(space + '<type>table</type>\n')
+            print('* Replace', '<type>data</type>', '<type>table</type>')
+            continue
+
 
     if in_container and in_plot:
         if line.find('<socket>') >= 0:
