@@ -147,7 +147,7 @@
       <container1>
 	<type>table</type>
 	<!--<bgcolor>#FF00FF</bgcolor>-->
-	<width>550</width>
+	<width>1000</width>
 	<height>300</height>
 	<fontsize>24</fontsize>
 	<!--<show_diff>true</show_diff>-->
