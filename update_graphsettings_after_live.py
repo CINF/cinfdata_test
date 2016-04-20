@@ -70,7 +70,7 @@ for num, line in enumerate(lines):
             space = line.split('<')[0]
             id_ = line.split('>')[1].split('<')[0]
             socket = sockets['socket' + socket_num]
-            new_line = space + '<data_channel>{}:{}</data_channel>\n'.format(socket, id_)
+            new_line = space + '<data_channel>{0}:{1}</data_channel>\n'.format(socket, id_)
             lines_out.append(new_line)
             print('* Replace id line with data_channel', line.strip(), new_line.strip())
             continue
