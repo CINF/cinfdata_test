@@ -37,8 +37,7 @@
     <page_title>Volvo</page_title>
     <containers> 
       <container0>
-	<type>figure</type>
-	<update_interval>2.5</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>7200</x_window> <!-- x axis interval, seconds -->
 	<width>550</width>
 	<height>400</height>
@@ -59,9 +58,8 @@
 	<format>.1e</format>
 	<figure>
 	  <plot0>
-            <socket>0</socket> 
             <color>#0000FF</color>
-            <id>volvo_pressure</id>
+            <data_channel>rasppi04:volvo_pressure</data_channel>
             <label>Pressure / mbar</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_volvo where type=(SELECT id FROM dateplots_descriptions where codename="volvo_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
@@ -69,8 +67,7 @@
       </container0>
       
       <container1>
-	<type>figure</type>
-	<update_interval>2.5</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>7200</x_window> <!-- x axis interval, seconds -->
 	<width>550</width>
 	<height>400</height>
@@ -92,9 +89,8 @@
 	<format>.1e</format>
 	<figure>
 	  <plot0>
-            <socket>0</socket>
             <color>#0000FF</color>
-            <id>volvo_temperature</id>
+            <data_channel>rasppi04:volvo_temperature</data_channel>
             <label>Temperature</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_volvo where type=(SELECT id FROM dateplots_descriptions where codename="volvo_temperature") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
@@ -102,7 +98,7 @@
       </container1>
 
       <container2>
-	<type>data</type>
+	<type>table</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>1100</width>
 	<height>600</height>
@@ -112,16 +108,14 @@
 	<padding>40px 0px 0px 0px</padding>
 	<data>
 	  <item0>
-	    <socket>0</socket>
-	    <id>volvo_pressure</id>
+	    <data_channel>rasppi04:volvo_pressure</data_channel>
 	    <label>Main chamber</label>
 	    <color>#990099</color>
 	    <format>.2e</format>
 	    <unit>mbar</unit>
 	  </item0>
 	  <item1>
-	    <socket>0</socket>
-	    <id>volvo_temperature</id>
+	    <data_channel>rasppi04:volvo_temperature</data_channel>
 	    <label>Temperature</label>
 	    <color>#009900</color>
 	    <format>.2f</format>
@@ -137,8 +131,7 @@
     <page_title>Volvo</page_title>
     <containers> 
       <container0>
-	<type>figure</type>
-	<update_interval>0.5</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>600</x_window> <!-- x axis interval, seconds -->
 	<width>1050</width>
 	<height>600</height>
@@ -159,9 +152,8 @@
 	<format>.1e</format>
 	<figure>
 	  <plot0>
-            <socket>1</socket> 
             <color>#0000FF</color>
-            <id>qms-value</id>
+            <data_channel>cinf-volvo:qms-value</data_channel>
             <label>QMS current / A</label>
 	  </plot0>
 	</figure>
@@ -440,10 +432,6 @@
 	<name>Comment</name>
       </field3>
     </mandatory_export_fields>
-    <sockets>
-      <socket0>rasppi04:8000</socket0> <!-- Temperature and pressure -->
-      <socket1>cinf-volvo:8000</socket1> <!-- Mass Spec -->
-    </sockets>
 
   </global_settings>
 </graphs>

@@ -301,7 +301,7 @@
 	<width>480</width>
 	<height>200</height>
 	<jump_ahead>0.3</jump_ahead>
-	<x_window>86400</x_window>
+	<x_window>6400</x_window>
 	<!-- Experimental, to fix bad y-range selection with log plot and
 	     constant values -->
 	<!-- <yrangepad>10</yrangepad> -->
@@ -333,7 +333,7 @@
 	<width>480</width>
 	<height>200</height>
 	<jump_ahead>0.3</jump_ahead>
-	<x_window>86400</x_window>
+	<x_window>6400</x_window>
 	<!-- Experimental, to fix bad y-range selection with log plot and
 	     constant values -->
 	<!-- <yrangepad>10</yrangepad> -->
@@ -360,7 +360,7 @@
 
       <container3>
 	<type>date_figure</type>
-	<x_window>86400</x_window> <!-- x axis interval, seconds -->
+	<x_window>6400</x_window> <!-- x axis interval, seconds -->
 	<width>480</width>
 	<height>200</height>
 	<axislabelwidth>100</axislabelwidth>
@@ -407,7 +407,7 @@
 
       <container4>
 	<type>date_figure</type>
-	<x_window>86400</x_window> <!-- x axis interval, seconds -->
+	<x_window>6400</x_window> <!-- x axis interval, seconds -->
 	<width>480</width>
 	<height>200</height>
 	<axislabelwidth>150</axislabelwidth>
@@ -477,7 +477,7 @@
 
       <container6>
 	<type>date_figure</type>
-	<x_window>86400</x_window> <!-- x axis interval, seconds -->
+	<x_window>6400</x_window> <!-- x axis interval, seconds -->
 	<width>450</width>
 	<height>200</height>
 	<!-- General plot options -->

@@ -278,8 +278,7 @@
     <page_title>Chiller Status</page_title>
     <containers> 
       <container0>
-	<type>figure</type>
-	<update_interval>2.5</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>440</width>
 	<height>400</height>
@@ -301,30 +300,26 @@
 	<format>.1f</format>
 	<figure>
 	  <plot0>
-            <socket>3</socket>
             <color>#0000FF</color>
-            <id>thetaprobe_chiller_temperature</id>
+            <data_channel>rasppi57:thetaprobe_chiller_temperature</data_channel>
             <label>Thetaprobe Temperature</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	  <plot1>
-            <socket>1</socket>
             <color>#00FF00</color>
-            <id>xrd_chiller_temperature</id>
+            <data_channel>rasppi60:xrd_chiller_temperature</data_channel>
             <label>XRD Temperature</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_xrd where type=(SELECT id FROM dateplots_descriptions where codename="xrd_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot1>
 	  <plot2>
-            <socket>2</socket>
             <color>#FF0000</color>
-            <id>sputterchamber_chiller_temperature</id>
+            <data_channel>rasppi21:sputterchamber_chiller_temperature</data_channel>
             <label>Sputterchamber Temperature</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot2>
 	  <plot3>
-            <socket>0</socket>
             <color>#990099</color>
-            <id>ps_chiller_temperature</id>
+            <data_channel>rasppi20:ps_chiller_temperature</data_channel>
             <label>PS Temperature</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_ps where type=(SELECT id FROM dateplots_descriptions where codename="ps_chiller_temperature") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot3>
@@ -332,8 +327,7 @@
       </container0>
 
       <container1>
-	<type>figure</type>
-	<update_interval>2.5</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>440</width>
 	<height>400</height>
@@ -355,30 +349,26 @@
 	<format>.1f</format>
 	<figure>
 	  <plot0>
-            <socket>3</socket>
             <color>#0000FF</color>
-            <id>thetaprobe_chiller_flow</id>
+            <data_channel>rasppi57:thetaprobe_chiller_flow</data_channel>
             <label>Thetaprobe Flow</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_chiller_flow") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	  <plot1>
-            <socket>1</socket>
             <color>#00FF00</color>
-            <id>xrd_chiller_flow</id>
+            <data_channel>rasppi60:xrd_chiller_flow</data_channel>
             <label>XRD Flow</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_xrd where type=(SELECT id FROM dateplots_descriptions where codename="xrd_chiller_flow") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot1>
 	  <plot2>
-            <socket>2</socket>
             <color>#FF0000</color>
-            <id>sputterchamber_chiller_flow</id>
+            <data_channel>rasppi21:sputterchamber_chiller_flow</data_channel>
             <label>Sputterchamber Flow</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_flow") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot2>
 	  <plot3>
-            <socket>0</socket>
             <color>#990099</color>
-            <id>ps_chiller_flow</id>
+            <data_channel>rasppi20:ps_chiller_flow</data_channel>
             <label>PS Flow</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_ps where type=(SELECT id FROM dateplots_descriptions where codename="ps_chiller_flow") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot3>
@@ -386,7 +376,7 @@
       </container1>
 
       <container2>
-	<type>data</type>
+	<type>table</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>400</width>
 	<height>400</height>
@@ -396,64 +386,56 @@
 	<padding>0px 0px 0px 0px</padding>
 	<data>
 	  <item0>
-	    <socket>3</socket>
-	    <id>thetaprobe_chiller_temperature</id>
+	    <data_channel>rasppi57:thetaprobe_chiller_temperature</data_channel>
 	    <label>θ-probe Temp.</label>
 	    <color>#0000FF</color>
 	    <format>.2f</format>
 	    <unit>C</unit>
 	  </item0>
 	  <item1>
-	    <socket>1</socket>
-	    <id>xrd_chiller_temperature</id>
+	    <data_channel>rasppi60:xrd_chiller_temperature</data_channel>
 	    <label>XRD Temp.</label>
 	    <color>#00FF00</color>
 	    <format>.2f</format>
 	    <unit>C</unit>
 	  </item1>
 	  <item2>
-	    <socket>2</socket>
-	    <id>sputterchamber_chiller_temperature</id>
+	    <data_channel>rasppi21:sputterchamber_chiller_temperature</data_channel>
 	    <label>SC Temp.</label>
 	    <color>#FF0000</color>
 	    <format>.2f</format>
 	    <unit>C</unit>
 	  </item2>
 	  <item3>
-	    <socket>0</socket>
-	    <id>ps_chiller_temperature</id>
+	    <data_channel>rasppi20:ps_chiller_temperature</data_channel>
 	    <label>PS Temp.</label>
 	    <color>#990099</color>
 	    <format>.2f</format>
 	    <unit>C</unit>
 	  </item3>
 	  <item4>
-	    <socket>3</socket>
-	    <id>thetaprobe_chiller_flow</id>
+	    <data_channel>rasppi57:thetaprobe_chiller_flow</data_channel>
 	    <label>θ-probe Flow</label>
 	    <color>#0000FF</color>
 	    <format>.2f</format>
 	    <unit>L/min</unit>
 	  </item4>
 	  <item5>
-	    <socket>1</socket>
-	    <id>xrd_chiller_flow</id>
+	    <data_channel>rasppi60:xrd_chiller_flow</data_channel>
 	    <label>XRD Flow</label>
 	    <color>#00FF00</color>
 	    <format>.2f</format>
 	    <unit>L/min</unit>
 	  </item5>
 	  <item6>
-	    <socket>2</socket>
-	    <id>sputterchamber_chiller_flow</id>
+	    <data_channel>rasppi21:sputterchamber_chiller_flow</data_channel>
 	    <label>SC Flow</label>
 	    <color>#FF0000</color>
 	    <format>.2f</format>
 	    <unit>L/min</unit>
 	  </item6>
 	  <item7>
-	    <socket>0</socket>
-	    <id>ps_chiller_flow</id>
+	    <data_channel>rasppi20:ps_chiller_flow</data_channel>
 	    <label>PS Flow</label>
 	    <color>#990099</color>
 	    <format>.2f</format>
@@ -463,8 +445,7 @@
       </container2>
 
       <container3>
-	<type>figure</type>
-	<update_interval>2.5</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>440</width>
 	<height>400</height>
@@ -486,30 +467,26 @@
 	<format>.1f</format>
 	<figure>
 	  <plot0>
-            <socket>3</socket>
             <color>#0000FF</color>
-            <id>thetaprobe_chiller_pressure</id>
+            <data_channel>rasppi57:thetaprobe_chiller_pressure</data_channel>
             <label>Thetaprobe Pressure</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_chiller_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	  <plot1>
-            <socket>1</socket>
             <color>#00FF00</color>
-            <id>xrd_chiller_pressure</id>
+            <data_channel>rasppi60:xrd_chiller_pressure</data_channel>
             <label>XRD Pressure</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_xrd where type=(SELECT id FROM dateplots_descriptions where codename="xrd_chiller_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot1>
 	  <plot2>
-            <socket>2</socket>
             <color>#FF0000</color>
-            <id>sputterchamber_chiller_pressure</id>
+            <data_channel>rasppi21:sputterchamber_chiller_pressure</data_channel>
             <label>Sputterchamber Pressure</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot2>
 	  <plot3>
-            <socket>0</socket>
             <color>#990099</color>
-            <id>ps_chiller_pressure</id>
+            <data_channel>rasppi20:ps_chiller_pressure</data_channel>
             <label>PS Pressure</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_ps where type=(SELECT id FROM dateplots_descriptions where codename="ps_chiller_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot3>
@@ -517,8 +494,7 @@
       </container3>
 
       <container4>
-	<type>figure</type>
-	<update_interval>2.5</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>440</width>
 	<height>400</height>
@@ -540,30 +516,26 @@
 	<format>.1f</format>
 	<figure>
 	  <plot0>
-            <socket>3</socket>
             <color>#0000FF</color>
-            <id>thetaprobe_chiller_temperature_ambient</id>
+            <data_channel>rasppi57:thetaprobe_chiller_temperature_ambient</data_channel>
             <label>Thetaprobe Ambient Temperature</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_chiller_temperature_ambient") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	  <plot1>
-            <socket>1</socket>
             <color>#00FF00</color>
-            <id>xrd_chiller_temperature_ambient</id>
+            <data_channel>rasppi60:xrd_chiller_temperature_ambient</data_channel>
             <label>XRD temperature_ambient</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_xrd where type=(SELECT id FROM dateplots_descriptions where codename="xrd_chiller_temperature_ambient") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot1>
 	  <plot2>
-            <socket>2</socket>
             <color>#FF0000</color>
-            <id>sputterchamber_chiller_temperature_ambient</id>
+            <data_channel>rasppi21:sputterchamber_chiller_temperature_ambient</data_channel>
             <label>Sputterchamber temperature_ambient</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_sputterchamber where type=(SELECT id FROM dateplots_descriptions where codename="sputterchamber_chiller_temperature_ambient") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot2>
 	  <plot3>
-            <socket>0</socket>
             <color>#990099</color>
-            <id>ps_chiller_temperature_ambient</id>
+            <data_channel>rasppi20:ps_chiller_temperature_ambient</data_channel>
             <label>PS temperature_ambient</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_ps where type=(SELECT id FROM dateplots_descriptions where codename="ps_chiller_temperature_ambient") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot3>
@@ -571,7 +543,7 @@
       </container4>
 
       <container5>
-	<type>data</type>
+	<type>table</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>400</width>
 	<height>400</height>
@@ -581,64 +553,56 @@
 	<padding>0px 0px 0px 0px</padding>
 	<data>
 	  <item0>
-	    <socket>3</socket>
-	    <id>thetaprobe_chiller_pressure</id>
+	    <data_channel>rasppi57:thetaprobe_chiller_pressure</data_channel>
 	    <label>θ-probe Pressure</label>
 	    <color>#0000FF</color>
 	    <format>.1f</format>
 	    <unit>Bar</unit>
 	  </item0>
 	  <item1>
-	    <socket>1</socket>
-	    <id>xrd_chiller_pressure</id>
+	    <data_channel>rasppi60:xrd_chiller_pressure</data_channel>
 	    <label>XRD Pressure</label>
 	    <color>#00FF00</color>
 	    <format>.1f</format>
 	    <unit>Bar</unit>
 	  </item1>
 	  <item2>
-	    <socket>2</socket>
-	    <id>sputterchamber_chiller_pressure</id>
+	    <data_channel>rasppi21:sputterchamber_chiller_pressure</data_channel>
 	    <label>SC Pressure</label>
 	    <color>#FF0000</color>
 	    <format>.1f</format>
 	    <unit>Bar</unit>
 	  </item2>
 	  <item3>
-	    <socket>0</socket>
-	    <id>ps_chiller_pressure</id>
+	    <data_channel>rasppi20:ps_chiller_pressure</data_channel>
 	    <label>PS Pressure</label>
 	    <color>#990099</color>
 	    <format>.1f</format>
 	    <unit>Bar</unit>
 	  </item3>
 	  <item4>
-	    <socket>3</socket>
-	    <id>thetaprobe_chiller_temperature_ambient</id>
+	    <data_channel>rasppi57:thetaprobe_chiller_temperature_ambient</data_channel>
 	    <label>θ-probe Ambient</label>
 	    <color>#0000FF</color>
 	    <format>.1f</format>
 	    <unit>C</unit>
 	  </item4>
 	  <item5>
-	    <socket>1</socket>
-	    <id>xrd_chiller_temperature_ambient</id>
+	    <data_channel>rasppi60:xrd_chiller_temperature_ambient</data_channel>
 	    <label>XRD Ambint</label>
 	    <color>#00FF00</color>
 	    <format>.1f</format>
 	    <unit>C</unit>
 	  </item5>
 	  <item6>
-	    <socket>2</socket>
-	    <id>sputterchamber_chiller_temperature_ambient</id>
+	    <data_channel>rasppi21:sputterchamber_chiller_temperature_ambient</data_channel>
 	    <label>SC Ambient</label>
 	    <color>#FF0000</color>
 	    <format>.1f</format>
 	    <unit>C</unit>
 	  </item6>
 	  <item7>
-	    <socket>0</socket>
-	    <id>ps_chiller_temperature_ambient</id>
+	    <data_channel>rasppi20:ps_chiller_temperature_ambient</data_channel>
 	    <label>PS Ambient</label>
 	    <color>#990099</color>
 	    <format>.1f</format>
@@ -685,12 +649,6 @@
       <legend_fontsize>10</legend_fontsize>
       <label_fontsize>16</label_fontsize>
     </matplotlib_settings>
-    <sockets>
-      <socket0>rasppi20:8000</socket0> <!--PS -->
-      <socket1>rasppi60:8000</socket1> <!-- XRD -->
-      <socket2>rasppi21:8000</socket2> <!-- Sputter Chamber -->
-      <socket3>rasppi57:8000</socket3> <!-- Theta Probe -->
-    </sockets>
 
   </global_settings>
 </graphs>

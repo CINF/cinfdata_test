@@ -59,8 +59,7 @@
     <page_title>TOF</page_title>
     <containers> 
       <container0>
-	<type>figure</type>
-	<update_interval>1</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>1800</x_window> <!-- x axis interval, seconds -->
 	<width>400</width>
 	<height>300</height>
@@ -81,9 +80,8 @@
 	<format>.1e</format>
 	<figure>
 	  <plot0>
-            <socket>0</socket> 
             <color>#0000FF</color>
-            <id>tof_iongauge_main</id>
+            <data_channel>rasppi109:tof_iongauge_main</data_channel>
             <label>Pressure / mbar</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_tof where type=(SELECT id FROM dateplots_descriptions where codename="tof_iongauge_main") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
@@ -91,8 +89,7 @@
       </container0>
       
       <container1>
-	<type>figure</type>
-	<update_interval>2</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>1800</x_window> <!-- x axis interval, seconds -->
 	<width>400</width>
 	<height>300</height>
@@ -114,9 +111,8 @@
 	<format>.3f</format>
 	<figure>
 	  <plot0>
-            <socket>1</socket>
             <color>#0000FF</color>
-            <id>emission</id>
+            <data_channel>rasppi49:emission</data_channel>
             <label>Emission / mA</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_tof where type=224 and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
@@ -124,8 +120,7 @@
       </container1>
 
       <container2>
-	<type>figure</type>
-	<update_interval>2</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>1800</x_window> <!-- x axis interval, seconds -->
 	<width>400</width>
 	<height>300</height>
@@ -147,18 +142,16 @@
 	<format>.2f</format>
 	<figure>
 	  <plot0>
-            <socket>2</socket>
             <color>#0000FF</color>
-            <id>M11200362H</id>
-            <label>Pressure / mbar</label>
-	    <old_data_query>select unix_timestamp(time), value from dateplots_mgw where type=69 and unix_timestamp(time) > {from}</old_data_query>
+            <data_channel>rasppi24:M11200362H</data_channel>
+            <label>Pressure / bar</label>
+	    <old_data_query>select unix_timestamp(time), value/1000 from dateplots_mgw where type=69 and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	</figure>
       </container2>
 
       <container3>
-	<type>figure</type>
-	<update_interval>2</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>1800</x_window> <!-- x axis interval, seconds -->
 	<width>400</width>
 	<height>300</height>
@@ -180,18 +173,16 @@
 	<format>.1e</format>
 	<figure>
 	  <plot0>
-            <socket>0</socket>
             <color>#0000FF</color>
-            <id>tof_pirani_roughing</id>
+            <data_channel>rasppi109:tof_pirani_roughing</data_channel>
             <label>Pressure / bar</label>
-	    <old_data_query>select unix_timestamp(time), value*1000 from dateplots_tof where type=(SELECT id FROM dateplots_descriptions where codename="tof_pirani_roughing") and unix_timestamp(time) > {from}</old_data_query>
+	    <old_data_query>select unix_timestamp(time), value from dateplots_tof where type=(SELECT id FROM dateplots_descriptions where codename="tof_pirani_roughing") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	</figure>
       </container3>
 
       <container4>
-	<type>figure</type>
-	<update_interval>2</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>1800</x_window> <!-- x axis interval, seconds -->
 	<width>400</width>
 	<height>300</height>
@@ -213,10 +204,8 @@
 	<format>.1e</format>
 	<figure>
 	  <plot0>
-            <socket>0</socket>
             <color>#0000FF</color>
-            <id>tof_pirani_roughing</id>
-<!--            <id>buffer_pressure</id> -->
+	    <data_channel>rasppi53:buffer_pressure</data_channel>
             <label>Pressure / mbar</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_mgw where type=(SELECT id FROM dateplots_descriptions where codename="mgw_pressure_buffer") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
@@ -224,8 +213,7 @@
       </container4>
 
       <container5>
-	<type>figure</type>
-	<update_interval>2</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>1800</x_window> <!-- x axis interval, seconds -->
 	<width>400</width>
 	<height>300</height>
@@ -247,10 +235,8 @@
 	<format>.1e</format>
 	<figure>
 	  <plot0>
-            <socket>0</socket>
             <color>#0000FF</color>
-            <id>tof_pirani_roughing</id>
-<!--        <id>containment_pressure</id>  -->
+	    <data_channel>rasppi53:containment_pressure</data_channel>
             <label>Pressure / mbar</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_mgw where type=(SELECT id FROM dateplots_descriptions where codename="mgw_pressure_containment") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
@@ -258,7 +244,7 @@
       </container5>
 
       <container6>
-	<type>data</type>
+	<type>table</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>1100</width>
 	<height>600</height>
@@ -268,32 +254,28 @@
 	<padding>40px 0px 0px 0px</padding>
 	<data>
 	  <item0>
-	    <socket>0</socket>
-	    <id>tof_iongauge_main</id>
+	    <data_channel>rasppi109:tof_iongauge_main</data_channel>
 	    <label>Main chamber</label>
 	    <color>#990099</color>
 	    <format>.2e</format>
 	    <unit>mbar</unit>
 	  </item0>
 	  <item1>
-	    <socket>0</socket>
-	    <id>tof_pirani_roughing</id>
+	    <data_channel>rasppi109:tof_pirani_roughing</data_channel>
 	    <label>TOF roughing pressure</label>
 	    <color>#990099</color>
 	    <format>.2e</format>
 	    <unit>mbar</unit>
 	  </item1>
 	  <item2>
-	    <socket>2</socket>
-	    <id>M11200362H</id>
+	    <data_channel>rasppi24:M11200362H</data_channel>
 	    <label>Reactor</label>
 	    <color>#009900</color>
 	    <format>.2f</format>
 	    <unit>bar</unit>
 	  </item2>
 	  <item3>
-	    <socket>1</socket>
-	    <id>emission</id>
+	    <data_channel>rasppi49:emission</data_channel>
 	    <label>Emission</label>
 	    <color>#009900</color>
 	    <format>.4f</format>
@@ -301,16 +283,14 @@
 	  </item3>
 <!--
 	  <item4>
-	    <socket>3</socket>
-	    <id>buffer_pressure</id>
+	    <data_channel>rasppi53:buffer_pressure</data_channel>
 	    <label>Buffer</label>
 	    <color>#009900</color>
 	    <format>.2f</format>
 	    <unit>mbar</unit>
 	  </item4>
 	  <item5>
-	    <socket>3</socket>
-	    <id>containment_pressure</id>
+	    <data_channel>rasppi53:containment_pressure</data_channel>
 	    <label>Containment</label>
 	    <color>#009900</color>
 	    <format>.2f</format>
@@ -774,12 +754,6 @@
         <name>Comment</name>
       </field3>
     </mandatory_export_fields>
-    <sockets>
-      <socket0>rasppi109:8000</socket0> <!-- Main Chamber pressure -->
-      <socket1>rasppi49:8000</socket1> <!-- Emission current -->
-      <socket2>rasppi24:8000</socket2> <!-- Reactor pressure -->
-      <socket3>rasppi53:8000</socket3> <!-- Containment + buffer -->
-    </sockets>
   </global_settings>
 
 </graphs>
