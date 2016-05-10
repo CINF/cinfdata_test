@@ -6,18 +6,57 @@
     <page_title>Web Socket Proxy Live Plots</page_title> <!-- option page title -->
     <containers>
 
+      <!-- Container 1, contains the second plot -->
+      <container0>
+	<type>date_figure</type>
+	<title>Sent and received [Hz or kb/s]</title>
+	<bgcolor>#E7E7E7</bgcolor>
+	<width>700</width>
+	<height>500</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>360</x_window>
+	<line_width>3</line_width>
+	<logscale>true</logscale>
+	<data_reduction>
+	  <time>600</time>
+	  <relative>0.1</relative>
+	</data_reduction>
+	<figure>
+	  <plot0>
+	    <data_channel>cinf-wsserver:received_kb</data_channel>
+	    <label>Received [kb/s]</label>
+	    <color>#0000FF</color>
+	  </plot0>
+	  <plot1>
+	    <data_channel>cinf-wsserver:sent_kb</data_channel>
+	    <label>Sent [kb/s]</label>
+	    <color>#FF0000</color>
+	  </plot1>
+	  <plot2>
+	    <data_channel>cinf-wsserver:received_n</data_channel>
+	    <label>Received n</label>
+	    <color>#088A08</color>
+	  </plot2>
+	  <plot3>
+	    <data_channel>cinf-wsserver:sent_n</data_channel>
+	    <label>Sent n</label>
+	    <color>#000000</color>
+	  </plot3>
+	</figure>
+      </container0>
+
+
       <container1>
 	<type>table</type>
-	<!--<bgcolor>#FF00FF</bgcolor>-->
-	<width>1000</width>
+	<bgcolor>#FF00FF</bgcolor>
+	<width>580</width>
 	<height>300</height>
 	<fontsize>24</fontsize>
-	<!--<show_diff>true</show_diff>-->
 	<data>
 	  <item0>
 	    <data_channel>cinf-wsserver:received_n</data_channel>
 	    <label>Received data packets</label>
-	    <color>#0000FF</color>
+	    <color>#088A08</color>
 	    <format></format>
 	    <unit>/s</unit>
 	  </item0>
@@ -31,41 +70,64 @@
 	  <item2>
 	    <data_channel>cinf-wsserver:sent_n</data_channel>
 	    <label>Sent data packets</label>
-	    <color>#0000FF</color>
+	    <color>#000000</color>
 	    <format></format>
 	    <unit>/s</unit>
 	  </item2>
 	  <item3>
 	    <data_channel>cinf-wsserver:sent_kb</data_channel>
 	    <label>Sent amount</label>
-	    <color>#0000FF</color>
+	    <color>#FF0000</color>
 	    <format></format>
 	    <unit>kb/s</unit>
 	  </item3>
 	  <item4>
 	    <data_channel>cinf-wsserver:websocket_count</data_channel>
 	    <label>Web Socket client count</label>
-	    <color>#0000FF</color>
+	    <color>#FFFFFF</color>
 	    <format></format>
 	    <unit></unit>
 	  </item4>
 	  <item5>
 	    <data_channel>cinf-wsserver:max_internal_handle_time</data_channel>
 	    <label>Max internal handle time</label>
-	    <color>#0000FF</color>
+	    <color>#FFFFFF</color>
 	    <format>.2e</format>
 	    <unit>s</unit>
 	  </item5>
 	  <item6>
 	    <data_channel>cinf-wsserver:json_decode_error</data_channel>
 	    <label>JSON decode error count</label>
-	    <color>#0000FF</color>
+	    <color>#FFFFFF</color>
 	    <format></format>
 	    <unit>/s</unit>
 	  </item6>
 	</data>
       </container1>
 
+
+      <!-- Container 1, contains the second plot -->
+      <container2>
+	<type>date_figure</type>
+	<title>Max internal handle time [kb/s]</title>
+	<bgcolor>#E7E7E7</bgcolor>
+	<width>500</width>
+	<height>200</height>
+	<jump_ahead>0.3</jump_ahead>
+	<x_window>360</x_window>
+	<line_width>3</line_width>
+	<data_reduction>
+	  <time>600</time>
+	  <relative>0.1</relative>
+	</data_reduction>
+	<figure>
+	  <plot0>
+	    <data_channel>cinf-wsserver:max_internal_handle_time</data_channel>
+	    <label>Received [kb/s]</label>
+	    <color>#0000FF</color>
+	  </plot0>
+	</figure>
+      </container2>
     </containers>
   </graph>
 
