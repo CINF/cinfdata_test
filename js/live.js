@@ -6,6 +6,49 @@
    js_query, Dygraph, document, window, WebSocket, MozWebSocket, location
 */
 
+
+
+var debug_counter = {
+    'add_batch': 0,
+    'add_xy_point': 0,
+    'add_date_point': 0,
+    'other_update': 0,
+    'sort': 0,
+    'on_message': 0,
+    'update_options': 0,
+};
+var last_debug = new Date();
+//    this.x_start = new Date(now.getTime() -
+
+function debug(){
+    var count, key, data_count, now = new Date();
+
+    var interval;
+    interval = (now.getTime() - last_debug.getTime()) / 1000;
+    last_debug = now;
+
+    console.log("###");
+    console.log("Since last update: %s", interval)
+
+    for (key in debug_counter){
+	if (!debug_counter.hasOwnProperty(key)){continue;}
+	count = debug_counter[key];
+	debug_counter[key] = 0;
+	console.log("DEBUG %s: %s Hz", key, count / interval);
+	
+    }
+
+    data_count = 0;
+    for (key in window.figures){
+	if (!window.figures.hasOwnProperty(key)){continue;}
+	data_count += window.figures[key].data.length;
+	
+    }
+    console.log("DEBUG data_length: %s", data_count);
+    window.setTimeout(debug, 1000)
+}
+
+
 function log_input() {
     /* Log the script input: data_channels, subscription_map, send_to_html,
        figure_defs
@@ -118,6 +161,15 @@ function MyFigure(name, definition) {
                             (1 - this.jump_ahead) * definition.x_window * 1000);
     this.x_end = new Date(this.x_start.getTime() + definition.x_window * 1000);
     this.log("Initial window interval: %s, %s", [this.x_start, this.x_end]);
+
+    if (definition.hasOwnProperty('min_update_time')){
+	this.min_update_time = definition.min_update_time;
+	this.last_figure_update = now;
+    } else {
+	this.min_update_time = null;
+	this.last_figure_update = now;
+    }
+
 
     /* Get labels and colors and form initial "default" point and point
        template */
@@ -288,7 +340,9 @@ MyFigure.prototype.addBatch = function (data_batch){
     /* Adds a batch of points to the figure */
     "use strict";
 
-    var value, plots, key;
+    debug_counter['add_batch'] += 1;
+
+    var value, plots, key, now;
 
     for (key in data_batch){
         if (!data_batch.hasOwnProperty(key)){continue;}
@@ -308,12 +362,24 @@ MyFigure.prototype.addBatch = function (data_batch){
     }
 
     // Update figure
-    this.fig.updateOptions({'file': this.data});
+    now = new Date();
+    if (this.min_update_time !== null){
+	if ((now - this.last_figure_update) / 1000 > this.min_update_time){
+	    this.fig.updateOptions({'file': this.data});
+	    debug_counter['update_options'] += 1;
+	    this.last_figure_update = now;
+	}
+    } else {
+	debug_counter['update_options'] += 1;
+	this.fig.updateOptions({'file': this.data});
+    }
 };
 
 MyFigure.prototype.addXYPoint = function (plot_n, x, y){
     /* Adds a point to the figure */
     "use strict";
+
+    debug_counter['add_xy_point'] += 1;
 
     // Define variables
     var new_point = this.data_template.slice(0);
@@ -330,6 +396,7 @@ MyFigure.prototype.addXYPoint = function (plot_n, x, y){
 
     // Update on first call
     if (this.first_call) {
+	debug['other_update'] += 1;
         this.fig.updateOptions({'file':  this.data});
         this.first_call = false;
     }
@@ -339,6 +406,8 @@ MyFigure.prototype.addXYPoint = function (plot_n, x, y){
 MyFigure.prototype.addDatePoint = function (plot_n, date, value) {
     /* Adds a point to the figure */
     "use strict";
+
+    debug_counter['add_date_point'] += 1;
 
     date = new Date(date * 1000);
 
@@ -372,6 +441,7 @@ MyFigure.prototype.addDatePoint = function (plot_n, date, value) {
     }
 
     if (this.first_call) {
+	debug['other_update'] += 1;
         this.fig.updateOptions({'file':  this.data});
         this.first_call = false;
     }
@@ -409,6 +479,7 @@ MyFigure.prototype.addDatePoint = function (plot_n, date, value) {
         this.data = this.data.slice(cut);
 
         // Always force an update if the window has changed
+	debug['other_update'] += 1;
         this.fig.updateOptions({dateWindow: [this.x_start, this.x_end]});
         this.last_update = date;
         // Make sure to add a new temporary point
@@ -473,6 +544,9 @@ MyFigure.prototype.log = function (string, args) {
 MyFigure.prototype.sort = function () {
     /* Sort the data array according to date at index 0 in the rows */
     "use strict";
+
+    debug_counter['sort'] += 1;
+
     this.data.sort(function (a, b) {
         // Compare the 2 dates
         if (a[0].getTime() < b[0].getTime()) {return -1; }
@@ -517,7 +591,7 @@ function handle_batch_data(data) {
     // Send the data batch to all subscribed figures
     for (var container in send_to_containers){
         if (send_to_containers.hasOwnProperty(container)){
-            figure = window.figures[container].addBatch(data_with_hostname);
+            window.figures[container].addBatch(data_with_hostname);
         }
     }
 
@@ -616,6 +690,7 @@ window.onload = function () {
         webSocket.send(JSON.stringify(
 	    {'action': 'subscribe', 'subscriptions': data_channels}
 	));
+
     };
 
     webSocket.onclose = function (e) {
@@ -670,6 +745,7 @@ window.onload = function () {
 
     webSocket.onmessage = function (e) {
         /* ws onmessage: parse the message from JSON and act on it */
+	debug_counter['on_message'] += 1;
         var data = JSON.parse(e.data);
         handle_batch_data(data);
     };
@@ -678,4 +754,7 @@ window.onload = function () {
         /* on ws error log to console */
         console.log("WebSocket error: %o", e);
     };
+
+    window.setTimeout(debug, 1000)
+
 };
