@@ -101,8 +101,7 @@
     <page_title>&amp;mu;-reactorNG</page_title>
     <containers> 
       <container0>
-	<type>figure</type>
-	<update_interval>1.2</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
 	<height>300</height>
@@ -122,9 +121,8 @@
 	<logscale>false</logscale> <!-- optional bool, default false -->
 	<figure>
 	  <plot0>
-            <socket>0</socket>
             <color>#000000</color>
-            <id>microreactorng_temp_sample</id>
+            <data_channel>rasppi12:microreactorng_temp_sample</data_channel>
             <label>Temperature / [C]</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactorNG where type=(SELECT id FROM dateplots_descriptions where codename="microreactorng_temp_sample") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
@@ -132,8 +130,7 @@
       </container0>
 
       <container1>
-	<type>figure</type>
-	<update_interval>0.5</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
 	<height>300</height>
@@ -158,9 +155,8 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>0</socket>
             <color>#0000FF</color>
-            <id>microreactorng_temp_sample</id>
+            <data_channel>rasppi12:microreactorng_temp_sample</data_channel>
             <label>Temperature / [C]</label>
 	  </plot0>
 <!--
@@ -171,9 +167,8 @@
 	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_iongauge_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	  <plot1>
-            <socket>2</socket>
             <color>#FF0000</color>
-            <id>mr_buffer_pressure</id>
+            <data_channel>cinf-microreactorNG-ms:mr_buffer_pressure</data_channel>
             <label>Buf Pressure / mbar</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_buffer_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot1>
@@ -182,7 +177,7 @@
       </container1>
       
       <container2>
-	<type>data</type>
+	<type>table</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>400</width>
 	<height>300</height>
@@ -192,8 +187,7 @@
 	<padding>20px 0px 0px 0px</padding>
 	<data>
 	  <item0>
-	    <socket>0</socket>
-	    <id>microreactorng_temp_sample</id>
+	    <data_channel>rasppi12:microreactorng_temp_sample</data_channel>
 	    <label>TC</label>
 	    <color>#000000</color>
 	    <format>.1f</format>
@@ -201,16 +195,14 @@
 	  </item0>
 <!--
 	  <item1>
-	    <socket>0</socket>
-	    <id>mr_iongauge_pressure</id>
+	    <data_channel>rasppi12:mr_iongauge_pressure</data_channel>
 	    <label>Ion Gauge</label>
 	    <color>#0000FF</color>
 	    <format>.2e</format>
 	    <unit>mbar</unit>
 	  </item1>
 	  <item2>
-	    <socket>0</socket>
-	    <id>mr_buffer_pressure</id>
+	    <data_channel>rasppi12:mr_buffer_pressure</data_channel>
 	    <label>Buffer</label>
 	    <color>#FF0000</color>
 	    <format>.3e</format>
@@ -221,8 +213,7 @@
       </container2>
 
       <container3>
-	<type>figure</type>
-	<update_interval>1.2</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
 	<height>300</height>
@@ -246,9 +237,8 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>1</socket>
             <color>#000000</color>
-            <id>M11213502A</id>
+            <data_channel>rasppi16:M11213502A</data_channel>
             <label>Sample pressure</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactorNG where type=(SELECT id FROM dateplots_descriptions where codename="microreactorng_pressure_reactor") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
@@ -256,8 +246,7 @@
       </container3>
 
       <container4>
-	<type>figure</type>
-	<update_interval>1.2</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
 	<height>300</height>
@@ -281,46 +270,40 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>1</socket>
             <color>#0000FF</color>
-            <id>M11200362A</id>
+            <data_channel>rasppi16:M11200362A</data_channel>
             <label>Flow 2</label>
 	  </plot0>
 	  <plot1>
-            <socket>1</socket>
             <color>#00AA00</color>
-            <id>M11200362C</id>
+            <data_channel>rasppi16:M11200362C</data_channel>
             <label>Flow 1</label>
 	  </plot1>
 	  <plot2>
-            <socket>1</socket>
             <color>#FF0000</color>
-            <id>M11200362E</id>
+            <data_channel>rasppi16:M11200362E</data_channel>
             <label>Flow 3</label>
 	  </plot2>
 	  <plot3>
-            <socket>1</socket>
             <color>#FF00FF</color>
-            <id>M11200362D</id>
+            <data_channel>rasppi16:M11200362D</data_channel>
             <label>Flow 4</label>
 	  </plot3>
 	  <plot4>
-            <socket>1</socket>
             <color>#00FFFF</color>
-            <id>M11210022B</id>
+            <data_channel>rasppi16:M11210022B</data_channel>
             <label>Flow 5</label>
 	  </plot4>
 	  <plot5>
-            <socket>1</socket>
             <color>#CCFF00</color>
-            <id>M11200362G</id>
+            <data_channel>rasppi16:M11200362G</data_channel>
             <label>Flow 6</label>
 	  </plot5>
 	</figure>
       </container4>
 
       <container5>
-	<type>data</type>
+	<type>table</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>400</width>
 	<height>300</height>
@@ -330,58 +313,51 @@
 	<padding>20px 0px 0px 0px</padding>
 	<data>
 	  <item0>
-	    <socket>1</socket>
-	    <id>M11213502A</id>
+	    <data_channel>rasppi16:M11213502A</data_channel>
 	    <label>Sample pressure</label>
 	    <color>#000000</color>
 	    <format>.3f</format>
 	    <unit>Bar</unit>
 	  </item0>
 	  <item1>
-            <socket>1</socket>
             <color>#00AA00</color>
-            <id>M11200362C</id>
+            <data_channel>rasppi16:M11200362C</data_channel>
             <label>Flow 1</label>
 	    <format>.3f</format>
 	    <unit>mL/min</unit>
 	  </item1>
 	  <item2>
-	    <socket>1</socket>
             <color>#0000FF</color>
-            <id>M11200362A</id>
+            <data_channel>rasppi16:M11200362A</data_channel>
             <label>Flow 2</label>
 	    <color>#0000FF</color>
 	    <format>.3f</format>
 	    <unit>mL/min</unit>
 	  </item2>
 	  <plot3>
-            <socket>1</socket>
             <color>#FF0000</color>
-            <id>M11200362E</id>
+            <data_channel>rasppi16:M11200362E</data_channel>
             <label>Flow 3</label>
 	    <unit>mL/min</unit>
 	    <format>.3f</format>
 	  </plot3>
 	  <plot4>
-            <socket>1</socket>
             <color>#FF00FF</color>
-            <id>M11200362D</id>
+            <data_channel>rasppi16:M11200362D</data_channel>
             <label>Flow 4</label>
 	    <unit>mL/min</unit>
 	    <format>.3f</format>
 	  </plot4>
 	  <plot5>
-            <socket>1</socket>
             <color>#00FFFF</color>
-            <id>M11210022B</id>
+            <data_channel>rasppi16:M11210022B</data_channel>
             <label>Flow 5</label>
 	    <unit>mL/min</unit>
 	    <format>.3f</format>
 	  </plot5>
 	  <plot6>
-            <socket>1</socket>
             <color>#CCFF00</color>
-            <id>M11200362G</id>
+            <data_channel>rasppi16:M11200362G</data_channel>
             <label>Flow 6</label>
 	    <unit>mL/min</unit>
 	    <format>.3f</format>
@@ -396,8 +372,7 @@
     <page_title>μ-reactor NG</page_title>
     <containers> 
       <container0>
-	<type>figure</type>
-	<update_interval>0.5</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>600</x_window> <!-- x axis interval, seconds -->
 	<width>1050</width>
 	<height>600</height>
@@ -418,9 +393,8 @@
 	<format>.1e</format>
 	<figure>
 	  <plot0>
-            <socket>2</socket> 
             <color>#0000FF</color>
-            <id>qms-value</id>
+            <data_channel>cinf-microreactorNG-ms:qms-value</data_channel>
             <label>QMS current / A</label>
 	  </plot0>
 	</figure>
@@ -605,10 +579,5 @@
       <legend_fontsize>10</legend_fontsize>
       <label_fontsize>16</label_fontsize>
     </matplotlib_settings>
-    <sockets>
-      <socket0>rasppi12:8000</socket0> <!-- Sample temperature -->
-      <socket1>rasppi16:8000</socket1> <!-- Flows -->
-      <socket2>cinf-microreactorNG-ms:8000</socket2> <!-- Mass spec -->
-    </sockets>
   </global_settings>
 </graphs>
