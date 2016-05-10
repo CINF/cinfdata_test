@@ -67,9 +67,9 @@
 
       <!-- Container 1, contains the second plot -->
       <container0>
-	<type>figure</type>
+	<type>date_figure</type>
+	<min_update_time>1</min_update_time>
 	<title>Main Chamber Pressure [mbar]</title>
-	<update_interval>0.5</update_interval>
 	<!--<bgcolor>#E7E7E7</bgcolor>-->
 	<width>700</width>
 	<height>500</height>
@@ -86,8 +86,7 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-	    <socket>1</socket>
-	    <id>thetaprobe_main_chamber_pressure</id>
+	    <data_channel>rasppi71:thetaprobe_main_chamber_pressure</data_channel>
 	    <label>Main chamber pressure [mbar]</label>
 	    <color>#0000FF</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_main_chamber_pressure") and unix_timestamp(time) > {from}</old_data_query>
@@ -96,7 +95,7 @@
       </container0>
 
       <container1>
-	<type>data</type>
+	<type>table</type>
 	<!--<bgcolor>#FF00FF</bgcolor>-->
 	<width>550</width>
 	<height>500</height>
@@ -104,32 +103,28 @@
 	<!--<show_diff>true</show_diff>-->
 	<data>
 	  <item0>
-	    <socket>1</socket>
-	    <id>thetaprobe_main_chamber_pressure</id>
+	    <data_channel>rasppi71:thetaprobe_main_chamber_pressure</data_channel>
 	    <label>Chamber pressure</label>
 	    <color>#0000FF</color>
 	    <format>.2e</format>
 	    <unit>mbar</unit>
 	  </item0>
 	  <item1>
-	    <socket>0</socket>
-	    <id>thetaprobe_pressure_loadlock</id>
+	    <data_channel>rasppi25:thetaprobe_pressure_loadlock</data_channel>
 	    <label>Load lock</label>
 	    <color>#FF0000</color>
 	    <format>.2e</format>
 	    <unit>mbar</unit>
 	  </item1>
 	  <item2>
-	    <socket>1</socket>
-	    <id>thetaprobe_load_lock_roughing_pressure</id>
+	    <data_channel>rasppi71:thetaprobe_load_lock_roughing_pressure</data_channel>
 	    <label>Load lock pirani</label>
 	    <color>#088A08</color>
 	    <format>.2e</format>
 	    <unit>mbar</unit>
 	  </item2>
 	  <item3>
-	    <socket>1</socket>
-	    <id>thetaprobe_main_chamber_temperature</id>
+	    <data_channel>rasppi71:thetaprobe_main_chamber_temperature</data_channel>
 	    <label>Chamber temperature</label>
 	    <color>#000000</color>
 	    <format>.2f</format>
@@ -140,9 +135,8 @@
 
       <!-- Container 2, contains the second plot -->
       <container2>
-	<type>figure</type>
+	<type>date_figure</type>
 	<title>Load Lock [mbar]</title>
-	<update_interval>1.0</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
 	<width>420</width>
 	<height>300</height>
@@ -159,8 +153,7 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-	    <socket>0</socket>
-	    <id>thetaprobe_pressure_loadlock</id>
+	    <data_channel>rasppi25:thetaprobe_pressure_loadlock</data_channel>
 	    <label>Load lock pressure [mbar]</label>
 	    <color>#FF0000</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_pressure_loadlock") and unix_timestamp(time) > {from}</old_data_query>
@@ -170,9 +163,8 @@
 
       <!-- Container 2, contains the second plot -->
       <container3>
-	<type>figure</type>
+	<type>date_figure</type>
 	<title>Load Lock Pirani [mbar]</title>
-	<update_interval>1.0</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
 	<width>420</width>
 	<height>300</height>
@@ -189,8 +181,7 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-	    <socket>1</socket>
-	    <id>thetaprobe_load_lock_roughing_pressure</id>
+	    <data_channel>rasppi71:thetaprobe_load_lock_roughing_pressure</data_channel>
 	    <label>Load lock pirani pressure [mbar]</label>
 	    <color>#088A08</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_load_lock_roughing_pressure") and unix_timestamp(time) > {from}</old_data_query>
@@ -200,9 +191,8 @@
 
       <!-- Container 2, contains the second plot -->
       <container4>
-	<type>figure</type>
+	<type>date_figure</type>
 	<title>Chamber Temperature [C]</title>
-	<update_interval>1.0</update_interval>
 	<!-- <bgcolor>#E7E7E7</bgcolor>-->
 	<width>420</width>
 	<height>300</height>
@@ -219,8 +209,7 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-	    <socket>1</socket>
-	    <id>thetaprobe_main_chamber_temperature</id>
+	    <data_channel>rasppi71:thetaprobe_main_chamber_temperature</data_channel>
 	    <label>Chamber Temperature [C]</label>
 	    <color>#000000</color>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_thetaprobe where type=(SELECT id FROM dateplots_descriptions where codename="thetaprobe_main_chamber_temperature") and unix_timestamp(time) > {from}</old_data_query>
@@ -266,9 +255,5 @@
       <legend_fontsize>10</legend_fontsize>
       <label_fontsize>16</label_fontsize>
     </matplotlib_settings>
-    <sockets>
-      <socket0>rasppi25:8000</socket0>
-      <socket1>rasppi71:8000</socket1>
-    </sockets>
   </global_settings>
 </graphs>
