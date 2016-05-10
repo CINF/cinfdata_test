@@ -161,8 +161,8 @@
     <page_title>&amp;mu;-reactor</page_title>
     <containers> 
       <container0>
-	<type>figure</type>
-	<update_interval>1.2</update_interval> <!-- seconds -->
+	<min_update_time>5</min_update_time>
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
 	<height>250</height>
@@ -186,9 +186,8 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>0</socket> 
             <color>#000000</color>
-            <id>mr_sample_tc_temperature</id>
+            <data_channel>rasppi12:mr_sample_tc_temperature</data_channel>
             <label>Temperature / [C]</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_sample_tc_temperature") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
@@ -196,8 +195,8 @@
       </container0>
       
       <container1>
-	<type>figure</type>
-	<update_interval>0.5</update_interval> <!-- seconds -->
+	<min_update_time>5</min_update_time>
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
 	<height>250</height>
@@ -222,16 +221,14 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>1</socket>
             <color>#0000FF</color>
-            <id>mr_iongauge_pressure</id>
+            <data_channel>rasppi07:mr_iongauge_pressure</data_channel>
             <label>IG Pressure / mbar</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_iongauge_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	  <plot1>
-            <socket>2</socket>
             <color>#FF0000</color>
-            <id>mr_buffer_pressure</id>
+            <data_channel>rasppi36:mr_buffer_pressure</data_channel>
             <label>Buf Pressure / mbar</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_buffer_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot1>
@@ -239,7 +236,7 @@
       </container1>
 
       <container2>
-	<type>data</type>
+	<type>table</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>400</width>
 	<height>250</height>
@@ -249,24 +246,21 @@
 	<padding>20px 0px 0px 0px</padding>
 	<data>
 	  <item0>
-	    <socket>0</socket>
-	    <id>mr_sample_tc_temperature</id>
+	    <data_channel>rasppi12:mr_sample_tc_temperature</data_channel>
 	    <label>TC</label>
 	    <color>#000000</color>
 	    <format>.1f</format>
 	    <unit>&amp;deg;C</unit>
 	  </item0>
 	  <item1>
-	    <socket>1</socket>
-	    <id>mr_iongauge_pressure</id>
+	    <data_channel>rasppi07:mr_iongauge_pressure</data_channel>
 	    <label>Ion Gauge</label>
 	    <color>#0000FF</color>
 	    <format>.2e</format>
 	    <unit>mbar</unit>
 	  </item1>
 	  <item2>
-	    <socket>2</socket>
-	    <id>mr_buffer_pressure</id>
+	    <data_channel>rasppi36:mr_buffer_pressure</data_channel>
 	    <label>Buffer</label>
 	    <color>#FF0000</color>
 	    <format>.3e</format>
@@ -276,8 +270,8 @@
       </container2>
 
       <container3>
-	<type>figure</type>
-	<update_interval>1.2</update_interval> <!-- seconds -->
+	<min_update_time>5</min_update_time>
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
 	<height>250</height>
@@ -301,9 +295,8 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>4</socket>
             <color>#000000</color>
-            <id>M13201551A</id>
+            <data_channel>rasppi24:M13201551A</data_channel>
             <label>Sample pressure</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_reactor_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
@@ -311,8 +304,8 @@
       </container3>
 
       <container4>
-	<type>figure</type>
-	<update_interval>1.2</update_interval> <!-- seconds -->
+	<min_update_time>5</min_update_time>
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
 	<height>250</height>
@@ -336,46 +329,40 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>4</socket>
             <color>#0000FF</color>
-            <id>M11200362F</id>
+            <data_channel>rasppi24:M11200362F</data_channel>
             <label>Flow 2</label>
 	  </plot0>
 	  <plot1>
-            <socket>4</socket>
             <color>#00AA00</color>
-            <id>M8203814B</id>
+            <data_channel>rasppi24:M8203814B</data_channel>
             <label>Flow 1</label>
 	  </plot1>
 	  <plot2>
-            <socket>3</socket>
             <color>#FF0000</color>
-            <id>21984839</id>
+            <data_channel>rasppi37:21984839</data_channel>
             <label>Flow 3</label>
 	  </plot2>
 	  <plot3>
-            <socket>3</socket>
             <color>#FF00FF</color>
-            <id>21984838</id>
+            <data_channel>rasppi37:21984838</data_channel>
             <label>Flow 4</label>
 	  </plot3>
 	  <plot4>
-            <socket>4</socket>
             <color>#00FFFF</color>
-            <id>M8203814A</id>
+            <data_channel>rasppi24:M8203814A</data_channel>
             <label>Flow 5</label>
 	  </plot4>
 	  <plot5>
-            <socket>5</socket>
             <color>#999999</color>
-            <id>1</id>
+            <data_channel>rasppi26:1</data_channel>
             <label>0</label>
 	  </plot5>
 	</figure>
       </container4>
 
       <container5>
-	<type>data</type>
+	<type>table</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>400</width>
 	<height>250</height>
@@ -385,58 +372,51 @@
 	<padding>20px 0px 0px 0px</padding>
 	<data>
 	  <item0>
-	    <socket>4</socket>
-	    <id>M13201551A</id>
+	    <data_channel>rasppi24:M13201551A</data_channel>
 	    <label>Sample pressure</label>
 	    <color>#000000</color>
 	    <format>.3f</format>
 	    <unit>Bar</unit>
 	  </item0>
 	  <item1>
-            <socket>5</socket>
             <color>#999999</color>
-            <id>1</id>
+            <data_channel>rasppi26:1</data_channel>
             <label>Flow 0</label>
 	    <format>.3f</format>
 	    <unit>mL/min</unit>
 	  </item1>
 	  <item2>
-            <socket>4</socket>
             <color>#00AA00</color>
-            <id>M8203814B</id>
+            <data_channel>rasppi24:M8203814B</data_channel>
             <label>Flow 1</label>
 	    <format>.3f</format>
 	    <unit>mL/min</unit>
 	  </item2>
 	  <item3>
-	    <socket>4</socket>
             <color>#0000FF</color>
-            <id>M11200362F</id>
+            <data_channel>rasppi24:M11200362F</data_channel>
             <label>Flow 2</label>
 	    <color>#0000FF</color>
 	    <format>.3f</format>
 	    <unit>mL/min</unit>
 	  </item3>
 	  <item4>
-            <socket>3</socket>
             <color>#FF0000</color>
-            <id>21984839</id>
+            <data_channel>rasppi37:21984839</data_channel>
             <label>Flow 3</label>
 	    <unit>mL/min</unit>
 	    <format>.3f</format>
 	  </item4>
 	  <item5>
-            <socket>3</socket>
             <color>#FF00FF</color>
-            <id>21984838</id>
+            <data_channel>rasppi37:21984838</data_channel>
             <label>Flow 4</label>
 	    <unit>mL/min</unit>
 	    <format>.3f</format>
 	  </item5>
 	  <item6>
-            <socket>4</socket>
             <color>#00FFFF</color>
-            <id>M8203814A</id>
+            <data_channel>rasppi24:M8203814A</data_channel>
             <label>Flow 5</label>
 	    <unit>mL/min</unit>
 	    <format>.3f</format>
@@ -445,8 +425,8 @@
       </container5>
 
       <container6>
-	<type>figure</type>
-	<update_interval>1.2</update_interval> <!-- seconds -->
+	<min_update_time>5</min_update_time>
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
 	<height>250</height>
@@ -470,9 +450,8 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>6</socket>
             <color>#0000FF</color>
-            <id>mr_chamber_turbo_current</id>
+            <data_channel>rasppi100:mr_chamber_turbo_current</data_channel>
             <label>Turbo current</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_chamber_turbo_current") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
@@ -480,8 +459,8 @@
       </container6>
 
       <container7>
-	<type>figure</type>
-	<update_interval>1.2</update_interval> <!-- seconds -->
+	<min_update_time>5</min_update_time>
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
 	<height>250</height>
@@ -505,30 +484,26 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>6</socket>
             <color>#FF0000</color>
-            <id>mr_chamber_turbo_temp_motor</id>
+            <data_channel>rasppi100:mr_chamber_turbo_temp_motor</data_channel>
             <label>Turbo Temp Motor</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_chamber_turbo_temp_motor") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	  <plot1>
-            <socket>6</socket>
             <color>#00FF00</color>
-            <id>mr_chamber_turbo_temp_bottom</id>
+            <data_channel>rasppi100:mr_chamber_turbo_temp_bottom</data_channel>
             <label>Turbo Temp Bottom</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_chamber_turbo_temp_bottom") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot1>
 	  <plot2>
-            <socket>6</socket>
             <color>#FF00FF</color>
-            <id>mr_chamber_turbo_temp_bearings</id>
+            <data_channel>rasppi100:mr_chamber_turbo_temp_bearings</data_channel>
             <label>Turbo Temp Bearings</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_chamber_turbo_temp_bearings") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot2>
 	  <plot3>
-            <socket>6</socket>
             <color>#00FFFF</color>
-            <id>mr_chamber_turbo_temp_electronics</id>
+            <data_channel>rasppi100:mr_chamber_turbo_temp_electronics</data_channel>
             <label>Turbo Temp Electronics</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_microreactor where type=(SELECT id FROM dateplots_descriptions where codename="mr_chamber_turbo_temp_electronics") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot3>
@@ -536,7 +511,7 @@
       </container7>
 
       <container8>
-	<type>data</type>
+	<type>table</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>400</width>
 	<height>250</height>
@@ -546,48 +521,42 @@
 	<padding>20px 0px 0px 0px</padding>
 	<data>
 	  <item0>
-	    <socket>6</socket>
-	    <id>mr_chamber_turbo_speed</id>
+	    <data_channel>rasppi100:mr_chamber_turbo_speed</data_channel>
 	    <label>Rotaion Speed</label>
 	    <color>#000000</color>
 	    <format>.1f</format>
 	    <unit>Hz</unit>
 	  </item0>
 	  <item1>
-	    <socket>6</socket>
-	    <id>mr_chamber_turbo_current</id>
+	    <data_channel>rasppi100:mr_chamber_turbo_current</data_channel>
 	    <label>Current</label>
 	    <color>#0000FF</color>
 	    <format>.2f</format>
 	    <unit>A</unit>
 	  </item1>
 	  <item2>
-	    <socket>6</socket>
-	    <id>mr_chamber_turbo_temp_motor</id>
+	    <data_channel>rasppi100:mr_chamber_turbo_temp_motor</data_channel>
 	    <label>Motor Temperature</label>
 	    <color>#FF0000</color>
 	    <format>.0f</format>
 	    <unit>&amp;deg;C</unit>
 	  </item2>
 	  <item3>
-	    <socket>6</socket>
-	    <id>mr_chamber_turbo_temp_electronics</id>
+	    <data_channel>rasppi100:mr_chamber_turbo_temp_electronics</data_channel>
 	    <label>Electronics</label>
 	    <color>#00FFFF</color>
 	    <format>.0f</format>
 	    <unit>&amp;deg;C</unit>
 	  </item3>
 	  <item4>
-	    <socket>6</socket>
-	    <id>mr_chamber_turbo_temp_bearings</id>
+	    <data_channel>rasppi100:mr_chamber_turbo_temp_bearings</data_channel>
 	    <label>Bearings</label>
 	    <color>#FF00FF</color>
 	    <format>.0f</format>
 	    <unit>&amp;deg;C</unit>
 	  </item4>
 	  <item5>
-	    <socket>6</socket>
-	    <id>mr_chamber_turbo_temp_bottom</id>
+	    <data_channel>rasppi100:mr_chamber_turbo_temp_bottom</data_channel>
 	    <label>Bearings</label>
 	    <color>#00FF00</color>
 	    <format>.0f</format>
@@ -756,14 +725,5 @@
       <legend_fontsize>10</legend_fontsize>
       <label_fontsize>16</label_fontsize>
     </matplotlib_settings>
-    <sockets>
-      <socket0>rasppi12:8000</socket0> <!-- Sample temperature -->
-      <socket1>rasppi07:8000</socket1> <!-- Ion Gauge -->
-      <socket2>rasppi36:8000</socket2> <!-- Buffer pressure -->
-      <socket3>rasppi37:8000</socket3> <!-- MKS Flow controllers -->
-      <socket4>rasppi24:8000</socket4> <!-- Bronkhorst Flow controllers -->
-      <socket5>rasppi26:8000</socket5> <!-- Analog Flow controller -->
-      <socket6>rasppi100:8000</socket6> <!-- Turbo Pump -->
-    </sockets>
   </global_settings>
 </graphs>
