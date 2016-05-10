@@ -60,7 +60,8 @@
     <containers> 
       <container0>
 	<type>date_figure</type>
-	<x_window>1800</x_window> <!-- x axis interval, seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<min_update_time>5</min_update_time>
 	<width>400</width>
 	<height>300</height>
 	<!-- General plot options -->
@@ -78,6 +79,10 @@
 	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
 	<logscale>true</logscale> <!-- optional bool, default false -->
 	<format>.1e</format>
+	<data_reduction>
+	  <time>2</time>
+	  <relative>1</relative>
+	</data_reduction>
 	<figure>
 	  <plot0>
             <color>#0000FF</color>
@@ -90,7 +95,8 @@
       
       <container1>
 	<type>date_figure</type>
-	<x_window>1800</x_window> <!-- x axis interval, seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<min_update_time>5</min_update_time>
 	<width>400</width>
 	<height>300</height>
 	<axislabelwidth>50</axislabelwidth>
@@ -109,6 +115,10 @@
 	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
 	<logscale>false</logscale> <!-- optional bool, default false -->
 	<format>.3f</format>
+	<data_reduction>
+	  <time>2</time>
+	  <relative>1</relative>
+	</data_reduction>
 	<figure>
 	  <plot0>
             <color>#0000FF</color>
@@ -122,6 +132,7 @@
       <container2>
 	<type>date_figure</type>
 	<x_window>1800</x_window> <!-- x axis interval, seconds -->
+	<min_update_time>5</min_update_time>
 	<width>400</width>
 	<height>300</height>
 	<axislabelwidth>50</axislabelwidth>
@@ -140,6 +151,10 @@
 	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
 	<logscale>false</logscale> <!-- optional bool, default false -->
 	<format>.2f</format>
+	<data_reduction>
+	  <time>2</time>
+	  <relative>1</relative>
+	</data_reduction>
 	<figure>
 	  <plot0>
             <color>#0000FF</color>
@@ -152,7 +167,8 @@
 
       <container3>
 	<type>date_figure</type>
-	<x_window>1800</x_window> <!-- x axis interval, seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<min_update_time>5</min_update_time>
 	<width>400</width>
 	<height>300</height>
 	<axislabelwidth>50</axislabelwidth>
@@ -171,6 +187,10 @@
 	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
 	<logscale>true</logscale> <!-- optional bool, default false -->
 	<format>.1e</format>
+	<data_reduction>
+	  <time>600</time>
+	  <relative>0.05</relative>
+	</data_reduction>
 	<figure>
 	  <plot0>
             <color>#0000FF</color>
@@ -183,7 +203,8 @@
 
       <container4>
 	<type>date_figure</type>
-	<x_window>1800</x_window> <!-- x axis interval, seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<min_update_time>5</min_update_time>
 	<width>400</width>
 	<height>300</height>
 	<axislabelwidth>50</axislabelwidth>
@@ -202,6 +223,10 @@
 	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
 	<logscale>true</logscale> <!-- optional bool, default false -->
 	<format>.1e</format>
+	<data_reduction>
+	  <time>2</time>
+	  <relative>1</relative>
+	</data_reduction>
 	<figure>
 	  <plot0>
             <color>#0000FF</color>
@@ -214,7 +239,8 @@
 
       <container5>
 	<type>date_figure</type>
-	<x_window>1800</x_window> <!-- x axis interval, seconds -->
+	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<min_update_time>5</min_update_time>
 	<width>400</width>
 	<height>300</height>
 	<axislabelwidth>50</axislabelwidth>
@@ -233,6 +259,11 @@
 	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
 	<logscale>true</logscale> <!-- optional bool, default false -->
 	<format>.1e</format>
+	<data_reduction>
+	  <time>600</time>
+	  <relative>0.05</relative>
+	</data_reduction>
+
 	<figure>
 	  <plot0>
             <color>#0000FF</color>
