@@ -103,6 +103,15 @@
       <title>Morning pressure - Beta!</title>
       <ref>volvo/x.php?type=morning_pressure&amp;from=2009-01-01&amp;to=2012-01-01&amp;manualscale=checked&amp;ymax=1E-5&amp;ymin=1E-11&amp;xsize=1000&amp;ysize=750</ref>
     </link>
+    <link>
+      <title>Live Values</title>
+      <ref>volvo/live.php?type=live_values</ref>
+    </link>
+    <link>
+      <title>Leak Search</title>
+      <ref>volvo/live.php?type=live_single_mass</ref>
+    </link>
+
   </setup>
 
   <!--&#181;-reactor-->
@@ -146,11 +155,11 @@
     </link>
     <link>
       <title>Live Values</title>
-      <ref>microreactor/live_old.php?type=live_values</ref>
+      <ref>microreactor/live.php?type=live_values</ref>
     </link>
     <link>
       <title>Leak Search</title>
-      <ref>microreactor/live_old.php?type=live_single_mass</ref>
+      <ref>microreactor/live.php?type=live_single_mass</ref>
     </link>
   </setup>
 
@@ -199,11 +208,11 @@
     </link>
     <link>
       <title>Live Values</title>
-      <ref>microreactorNG/live_old.php?type=live_values</ref>
+      <ref>microreactorNG/live.php?type=live_values</ref>
     </link>
     <link>
       <title>Leak Search</title>
-      <ref>microreactor/live_old.php?type=live_single_mass</ref>
+      <ref>microreactor/live.php?type=live_single_mass</ref>
     </link>
 
   </setup>
@@ -295,7 +304,7 @@
     </link>
     <link>
       <title>Live Values</title>
-      <ref>hall/live_old.php?type=live_values</ref>
+      <ref>hall/live.php?type=live_values</ref>
     </link>
   </setup>
 
@@ -345,7 +354,7 @@
     </link>
     <link>
       <title>Live Values</title>
-      <ref>tof/live_old.php?type=live_values</ref>
+      <ref>tof/live.php?type=live_values</ref>
     </link>
   </setup>
 
@@ -480,7 +489,7 @@
     </link>
     <link>
       <title>Live Values</title>
-      <ref>ups/live_old.php?type=live_values</ref>
+      <ref>ups/live.php?type=live_values</ref>
     </link>
   </setup>
 
@@ -530,6 +539,10 @@
     <link>
       <title>XY plot demo</title>
       <ref>sym-files2/xyplot.php?type=masstime</ref>
+    </link>
+    <link>
+      <title>Web-Socket Status New</title>
+      <ref>other/live.php?type=live_websocket</ref>
     </link>
     <link>
       <title>Web-Socket Status</title>
@@ -670,7 +683,7 @@
     </link>
     <link>
       <title>Live Values</title>
-      <ref>chillers/live_old.php?type=live_values</ref>
+      <ref>chillers/live.php?type=live_values</ref>
     </link>
   </setup>
 
@@ -683,7 +696,7 @@
     </link>
     <link>
       <title>Pressure Live</title>
-      <ref>https://cinfdata.fysik.dtu.dk/thetaprobe/live_old.php?type=live_pressures</ref>
+      <ref>https://cinfdata.fysik.dtu.dk/thetaprobe/live.php?type=live_pressures</ref>
     </link>
   </setup>
 
@@ -814,7 +827,11 @@
     <setup_title>Sniffer</setup_title>
     <link>
       <title>Live plots</title>
-      <ref>sniffer/live_old.php?type=live_values</ref>
+      <ref>sniffer/live.php?type=live_values</ref>
+    </link>
+    <link>
+      <title>Leak search</title>
+      <ref>sniffer/live.php?type=live_single_mass</ref>
     </link>
     <link>
       <title>Pressures</title>
