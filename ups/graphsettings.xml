@@ -164,8 +164,7 @@
     <page_title>UPS, b312</page_title>
     <containers> 
       <container0>
-	<type>figure</type>
-	<update_interval>1.2</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
 	<height>300</height>
@@ -189,23 +188,20 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>0</socket> 
             <color>#000000</color>
-            <id>b312_ups_kVAPh1</id>
+            <data_channel>rasppi14:b312_ups_kVAPh1</data_channel>
             <label>kVA / Ph1</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_ups_b312 where type=(SELECT id FROM dateplots_descriptions where codename="b312_ups_kVAPh1") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	  <plot1>
-            <socket>0</socket> 
             <color>#0000FF</color>
-            <id>b312_ups_kVAPh2</id>
+            <data_channel>rasppi14:b312_ups_kVAPh2</data_channel>
             <label>kVA / Ph2</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_ups_b312 where type=(SELECT id FROM dateplots_descriptions where codename="b312_ups_kVAPh2") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot1>
 	  <plot2>
-            <socket>0</socket> 
             <color>#FF0000</color>
-            <id>b312_ups_kVAPh3</id>
+            <data_channel>rasppi14:b312_ups_kVAPh3</data_channel>
             <label>kVA / Ph3</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_ups_b312 where type=(SELECT id FROM dateplots_descriptions where codename="b312_ups_kVAPh3") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot2>
@@ -213,8 +209,7 @@
       </container0>
 
       <container1>
-	<type>figure</type>
-	<update_interval>1.2</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
 	<width>410</width>
 	<height>300</height>
@@ -238,9 +233,8 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>0</socket> 
             <color>#00FFFF</color>
-            <id>b312_ups_battery_current</id>
+            <data_channel>rasppi14:b312_ups_battery_current</data_channel>
             <label>Temperature / [C]</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_ups_b312 where type=(SELECT id FROM dateplots_descriptions where codename="b312_ups_battery_current") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
@@ -249,7 +243,7 @@
       
 
       <container2>
-	<type>data</type>
+	<type>table</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>400</width>
 	<height>300</height>
@@ -259,32 +253,28 @@
 	<padding>20px 0px 0px 0px</padding>
 	<data>
 	  <item0>
-	    <socket>0</socket>
-	    <id>b312_ups_kVAPh1</id>
+	    <data_channel>rasppi14:b312_ups_kVAPh1</data_channel>
 	    <label>kVA Ph1</label>
 	    <color>#000000</color>
 	    <format>.1f</format>
 	    <unit>kW</unit>
 	  </item0>
 	  <item1>
-	    <socket>0</socket>
-	    <id>b312_ups_kVAPh2</id>
+	    <data_channel>rasppi14:b312_ups_kVAPh2</data_channel>
 	    <label>kVA Ph2</label>
 	    <color>#0000FF</color>
 	    <format>.1f</format>
 	    <unit>kW</unit>
 	  </item1>
 	  <item2>
-	    <socket>0</socket>
-	    <id>b312_ups_kVAPh3</id>
+	    <data_channel>rasppi14:b312_ups_kVAPh3</data_channel>
 	    <label>kVA Ph3</label>
 	    <color>#FF0000</color>
 	    <format>.1f</format>
 	    <unit>kW</unit>
 	  </item2>
 	  <item3>
-	    <socket>0</socket>
-	    <id>b312_ups_battery_current</id>
+	    <data_channel>rasppi14:b312_ups_battery_current</data_channel>
 	    <label>Battery Current</label>
 	    <color>#00FFFF</color>
 	    <format>.1f</format>
@@ -313,8 +303,5 @@
       <legend_fontsize>10</legend_fontsize>
       <label_fontsize>16</label_fontsize>
     </matplotlib_settings>
-    <sockets>
-      <socket0>rasppi14:8000</socket0> <!-- UPS -->
-    </sockets>
   </global_settings>
 </graphs>
