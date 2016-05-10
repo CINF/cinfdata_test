@@ -85,8 +85,8 @@
 	<draw_points>true</draw_points> <!-- optional bool, default true -->
 	<point_size>2</point_size> <!-- optional int, default 2 -->
 	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
-	<logscale>true</logscale> <!-- optional bool, default false -->
-	<format>.1e</format>
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<format>.2f</format>
 	<figure>
 	  <plot0>
             <color>#0000FF</color>
