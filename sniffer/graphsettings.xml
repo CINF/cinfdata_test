@@ -73,9 +73,9 @@
     <page_title>sniffer setup</page_title>
     <containers> 
       <container0>
-	<type>figure</type>
-	<update_interval>0.5</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<min_update_time>3</min_update_time>
 	<width>410</width>
 	<height>300</height>
 	<!-- General plot options -->
@@ -99,16 +99,14 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>0</socket>
             <color>#0000FF</color>
-            <id>sniffer_qms_ion_gauge</id>
+            <data_channel>rasppi107:sniffer_qms_ion_gauge</data_channel>
             <label>QMS Pressure / mbar</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_sniffer where type=(SELECT id FROM dateplots_descriptions where codename="sniffer_qms_ion_gauge") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 	  <plot1>
-            <socket>0</socket>
             <color>#FF0000</color>
-            <id>sniffer_buffer_pressure</id>
+            <data_channel>rasppi107:sniffer_buffer_pressure</data_channel>
             <label>Buf Pressure / mbar</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_sniffer where type=(SELECT id FROM dateplots_descriptions where codename="sniffer_buffer_pressure") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot1>
@@ -116,9 +114,9 @@
       </container0>
 
       <container1>
-	<type>figure</type>
-	<update_interval>0.5</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<min_update_time>3</min_update_time>
 	<width>410</width>
 	<height>300</height>
 	<!-- General plot options -->
@@ -142,17 +140,15 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>0</socket>
             <color>#000000</color>
-            <id>sniffer_qms_roughing</id>
+            <data_channel>rasppi107:sniffer_qms_roughing</data_channel>
             <label>QMS Roughing / mbar</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_sniffer where type=(SELECT id FROM dateplots_descriptions where codename="sniffer_qms_roughing") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot0>
 
 	  <plot1>
-            <socket>0</socket>
             <color>#00FF00</color>
-            <id>sniffer_buffer_roughing</id>
+            <data_channel>rasppi107:sniffer_buffer_roughing</data_channel>
             <label>Buf Roughing / mbar</label>
 	    <old_data_query>select unix_timestamp(time), value from dateplots_sniffer where type=(SELECT id FROM dateplots_descriptions where codename="sniffer_buffer_roughing") and unix_timestamp(time) > {from}</old_data_query>
 	  </plot1>
@@ -160,7 +156,7 @@
       </container1>
 
       <container2>
-	<type>data</type>
+	<type>table</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>400</width>
 	<height>300</height>
@@ -170,48 +166,42 @@
 	<padding>20px 0px 0px 0px</padding>
 	<data>
 	  <item0>
-	    <socket>0</socket>
-	    <id>sniffer_qms_ion_gauge</id>
+	    <data_channel>rasppi107:sniffer_qms_ion_gauge</data_channel>
 	    <label>Ion Gauge</label>
 	    <color>#0000FF</color>
 	    <format>.2e</format>
 	    <unit>mbar</unit>
 	  </item0>
 	  <item1>
-	    <socket>0</socket>
-	    <id>sniffer_buffer_pressure</id>
+	    <data_channel>rasppi107:sniffer_buffer_pressure</data_channel>
 	    <label>Buffer</label>
 	    <color>#FF0000</color>
 	    <format>.2e</format>
 	    <unit>mbar</unit>
 	  </item1>
 	  <item2>
-	    <socket>0</socket>
-	    <id>sniffer_qms_roughing</id>
+	    <data_channel>rasppi107:sniffer_qms_roughing</data_channel>
 	    <label>QMS Roughing</label>
 	    <color>#000000</color>
 	    <format>.2e</format>
 	    <unit>mbar</unit>
 	  </item2>
 	  <item3>
-	    <socket>0</socket>
-	    <id>sniffer_buffer_roughing</id>
+	    <data_channel>rasppi107:sniffer_buffer_roughing</data_channel>
 	    <label>Buffer Roughing</label>
 	    <color>#00FF00</color>
 	    <format>.2e</format>
 	    <unit>mbar</unit>
 	  </item3>
 	  <item4>
-	    <socket>2</socket>
-	    <id>M11210022A</id>
+	    <data_channel>rasppi24:M11210022A</data_channel>
 	    <label>Chip Pressure</label>
 	    <color>#00aacc</color>
 	    <format>.2e</format>
 	    <unit>bar</unit>
 	  </item4>
 	  <item5>
-	    <socket>3</socket>
-	    <id>sniffer_inlet_gas_pressure</id>
+	    <data_channel>rasppi06:sniffer_inlet_gas_pressure</data_channel>
 	    <label>Inlet Pressure</label>
 	    <color>#bbaa22</color>
 	    <format>.2e</format>
@@ -221,9 +211,9 @@
       </container2>
 
       <container3>
-	<type>figure</type>
-	<update_interval>1.2</update_interval> <!-- seconds -->
+	<type>date_figure</type>
 	<x_window>3600</x_window> <!-- x axis interval, seconds -->
+	<min_update_time>5</min_update_time>
 	<width>410</width>
 	<height>300</height>
 	<!-- General plot options -->
@@ -247,34 +237,30 @@
 	</data_reduction>
 	<figure>
 	  <plot0>
-            <socket>1</socket>
             <color>#0000FF</color>
-            <id>21984878</id>
+            <data_channel>rasppi37:21984878</data_channel>
             <label>Flow 1</label>
 	  </plot0>
 	  <plot1>
-            <socket>1</socket>
             <color>#00AA00</color>
-            <id>21984877</id>
+            <data_channel>rasppi37:21984877</data_channel>
             <label>Flow 2</label>
 	  </plot1>
 	  <plot2>
-            <socket>1</socket>
             <color>#FF0000</color>
-            <id>21984876</id>
+            <data_channel>rasppi37:21984876</data_channel>
             <label>Flow 3</label>
 	  </plot2>
 	  <plot3>
-            <socket>1</socket>
             <color>#FF00FF</color>
-            <id>21984879</id>
+            <data_channel>rasppi37:21984879</data_channel>
             <label>Flow 4</label>
 	  </plot3>
 	</figure>
       </container3>
 
       <container4>
-	<type>data</type>
+	<type>table</type>
 	<!--<bgcolor>#FF0000</bgcolor>-->
 	<width>400</width>
 	<height>300</height>
@@ -284,33 +270,29 @@
 	<padding>20px 0px 0px 0px</padding>
 	<data>
 	  <item0>
-            <socket>1</socket>
             <color>#0000FF</color>
-            <id>21984878</id>
+            <data_channel>rasppi37:21984878</data_channel>
             <label>Flow 1</label>
 	    <format>.3f</format>
 	    <unit>mL/min</unit>
 	  </item0>
 	  <item1>
-            <socket>1</socket>
             <color>#00AA00</color>
-            <id>21984877</id>
+            <data_channel>rasppi37:21984877</data_channel>
             <label>Flow 2</label>
 	    <format>.3f</format>
 	    <unit>mL/min</unit>
 	  </item1>
 	  <item2>
-	    <socket>1</socket>
             <color>#FF0000</color>
-            <id>21984876</id>
+            <data_channel>rasppi37:21984876</data_channel>
             <label>Flow 3</label>
 	    <format>.3f</format>
 	    <unit>mL/min</unit>
 	  </item2>
 	  <item3>
-            <socket>1</socket>
             <color>#FF00FF</color>
-            <id>21984879</id>
+            <data_channel>rasppi37:21984879</data_channel>
             <label>Flow 4</label>
 	    <unit>mL/min</unit>
 	    <format>.3f</format>
@@ -321,6 +303,41 @@
     </containers>
   </graph>
 
+  <graph type="live_single_mass">
+    <page_width>1280</page_width>
+    <page_title>Sniffer</page_title>
+    <containers> 
+      <container0>
+	<type>date_figure</type>
+	<x_window>600</x_window> <!-- x axis interval, seconds -->
+	<width>1050</width>
+	<height>600</height>
+	<!-- General plot options -->
+	<bgcolor>#FFFFFF</bgcolor> <!-- optional color, default #FFFFFF -->
+	<!-- optional html padding string, remember to subtract the padding
+	     in the size -->
+	<padding>0px 0px 0px 0px</padding>
+	<!-- title and labels -->
+	<title>Mass Spec Current [A]</title> <!-- optional (escaped) html-->
+	<xlabel>Time</xlabel> <!-- optional (escaped) html -->
+	<!-- <ylabel>Temperature [&amp;deg;C]</ylabel> --><!-- optional (escaped) html -->
+	<!-- Plot drawing fine tuning -->
+	<draw_points>true</draw_points> <!-- optional bool, default true -->
+	<point_size>2</point_size> <!-- optional int, default 2 -->
+	<linewidth>1.5</linewidth> <!-- optional float, default 1.5 -->
+	<logscale>false</logscale> <!-- optional bool, default false -->
+	<format>.1e</format>
+	<figure>
+	  <plot0>
+            <color>#0000FF</color>
+            <data_channel>cinf-sniffer-ms:qms-value</data_channel>
+            <label>QMS current / A</label>
+	  </plot0>
+	</figure>
+      </container0>
+
+    </containers>
+  </graph>
 
   <!-- MASSTIME -->
   <graph type='masstime'>
@@ -491,11 +508,5 @@
       <legend_fontsize>10</legend_fontsize>
       <label_fontsize>16</label_fontsize>
     </matplotlib_settings>
-    <sockets>
-      <socket0>rasppi107:8000</socket0> <!-- Pressures -->
-      <socket1>rasppi37:8000</socket1> <!-- MKS Flow controllers -->
-      <socket2>rasppi24:8000</socket2> <!-- Bronkhorst Flow controllers -->
-      <socket3>rasppi06:8000</socket3> <!-- Brooks Pressure controller (analog) -->
-    </sockets>
   </global_settings>
 </graphs>
