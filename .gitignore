@@ -1,4 +1,5 @@
 sym-files2/error_log.txt
 /figures
 *.pyc
+*.pyo
 *~
