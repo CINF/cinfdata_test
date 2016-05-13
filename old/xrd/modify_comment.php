@@ -1,1 +1,0 @@
-../sym-files/modify_comment.php
